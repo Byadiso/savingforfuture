@@ -1,5 +1,13 @@
-import '../Style/LandingPage.css';
+import "../Style/LandingPage.css";
 import React from "react";
+import tellstory from "../images/tellstory.png";
+import {
+  FaArrowAltCircleDown,
+  FaPenSquare,
+  FaGamepad,
+  FaBookOpen,FaBookReader
+} from "react-icons/fa";
+
 
 function LandingPage() {
   return (
@@ -13,19 +21,19 @@ function LandingPage() {
           <div className="hero_section_header_blue">
             <p>
               A story to <strong>read</strong>
-              <i className="fa fa-arrow-circle-down"></i>
+              <FaArrowAltCircleDown />
             </p>
           </div>
           <div className="hero_section_header_red">
             <p>
               A story to <strong>Write</strong>
-              <i className="fa fa-arrow-circle-down"></i>
+              <FaArrowAltCircleDown />
             </p>
           </div>
           <div className="hero_section_header_green">
             <p>
               A vocabulary to <strong>read</strong>
-              <i className="fa fa-arrow-circle-down"></i>
+              <FaArrowAltCircleDown />
             </p>
           </div>
         </div>
@@ -73,7 +81,7 @@ function LandingPage() {
             {/* <!-- main who --> */}
 
             <div className="main_who_items">
-              <img className="who_image" src="./images/tellstory.png" alt="book" />
+              <img className="who_image" src={tellstory} alt="book" />
               <div>
                 <h2>Tell a story of your own...</h2>
                 <p>Just a paragraph today, don't worry with the rest.</p>
@@ -92,7 +100,7 @@ function LandingPage() {
         <div className="service_content">
           <div className="service_item">
             <div className="app_link banner_and_icon">
-              <i className="fa-solid fa-pen-to-square"></i>
+              <FaPenSquare />
               <a href="./page/add_blog.html">
                 <h5 className="service_title">Write English</h5>
               </a>
@@ -100,7 +108,8 @@ function LandingPage() {
           </div>
           <div className="service_item">
             <div className="app_link banner_and_icon">
-              <i className="fa-solid fa-floppy-disk"></i>
+              
+              <FaBookReader />
               <a href="./page/vocabulary.html">
                 <h5 className="service_title">New vocabularies</h5>
               </a>
@@ -108,7 +117,7 @@ function LandingPage() {
           </div>
           <div className="service_item">
             <div className="app_link banner_and_icon">
-              <i className="fa-solid fa-book-open-reader"></i>
+              <FaBookOpen />
               <a href="./page/stories.html">
                 <h5 className="service_title">Stories</h5>
               </a>
@@ -116,7 +125,7 @@ function LandingPage() {
           </div>
           <div className="service_item">
             <div className="app_link banner_and_icon">
-              <i className="fa-solid fa-gamepad"></i>
+              <FaGamepad />
               <a href="./page/games.html">
                 <h5 className="service_title">Play games</h5>
               </a>

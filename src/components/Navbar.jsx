@@ -1,5 +1,6 @@
 import React from "react";
 import '../Style/NavBar.css';
+import { FaBook,FaGlobe,FaList, FaDatabase, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
 
 function Navbar() {
   return (
@@ -13,25 +14,28 @@ function Navbar() {
           </h2>
 
           <a href="./page/stories.html" className="menu_nav">
-            <i className="fa fa-book"></i>Stories
+          <FaBook />
+            Stories
           </a>
           <a href="./page/blog.html" className="menu_nav">
-            <i className="fa fa-globe"></i>Blogs
+          <FaGlobe />
+            Blogs
           </a>
           <a href="./page/vocabulary.html" className="menu_nav">
-            <i className="fa fa-list"></i>Vocabulary Lists
+          <FaList />
+           Vocabulary Lists
           </a>
           <div className="dropdown" id="dropdown">
             <a href="./page/login.html" className="dropbtn" id="username">
-              <i className="fa fa-sign-in"></i>Login
+             <FaSignInAlt />Login
             </a>
             <div className="dropdown-content hide">
               <a href="./page/dashboard.html">
-                <i className="fa fa-dashboard"></i> Dashboard
+                <FaDatabase /> Dashboard
               </a>
               <a href="./logout.html">
                 {" "}
-                <i className="fa fa-sign-out"></i>logout
+                <FaSignOutAlt />logout
               </a>
             </div>
           </div>

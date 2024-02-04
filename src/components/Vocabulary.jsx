@@ -26,7 +26,7 @@ function Vocabulary() {
                 <button id="submit" class="submit">
                   Search
                 </button>
-                <p id="error" style="color: red"></p>
+            <p id="error" style={{"color":"red"}}></p>
               </div>
 
               <div id="search_content" class="hide"></div>

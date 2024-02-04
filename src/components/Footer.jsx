@@ -1,18 +1,24 @@
-import React from 'react'
-import '../Style/Footer.css';
+import React from "react";
+import "../Style/Footer.css";
+import { FaCopyright } from "react-icons/fa";
 
 function Footer() {
+  const currentdate = new Date();
+
+  const year = currentdate.getFullYear();
+
   return (
     <div>
-        <footer>
+      <footer>
         <div className="copyright">
-        <p><i className="fa fa-copyright"></i> <span  id="footer_date"> 2023</span> Ngana Tech</p>
+          <p>
+            <FaCopyright className="fa fa-copyright" />
+            {year}Ngana Tech
+          </p>
         </div>
-        </footer>
-        
-    
+      </footer>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
