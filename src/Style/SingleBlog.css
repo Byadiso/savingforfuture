@@ -1,0 +1,556 @@
+/* my variables style */
+
+:root {
+    --blueColorContrast: #0b3af6;
+    --blueColor: #29b4e2;
+    --colorHover: #0f4e8d;
+    --whiteColor: #ffffff;
+    --blackColor: rgb(0, 0, 0);
+    --activeColorHeader: rgb(97, 97, 87);
+    --buttonColor: rgb(97, 97, 87);
+    --textColorWhite: #ffffff;
+    --textColorGrey: #4A4D4E;
+    --spacing: 10px;
+    --spacingMargin: 35px;
+    --error: rgb(204, 14, 14);
+    --background-color: rgb(251 251 251);
+    --colorHoverlink: rgba(0, 0, 0, 0.123);
+    --colorfooter: #424343;
+    --textColorGreyParagraph: #818181;
+    --inputColor: #5F6466;
+    --colorforWeakGrey: #74777769;
+    --linkColor: rgb(0, 0, 0);
+    --lowerBackground: #f3f3f3;
+    --colorActive: #29b4e2;
+    --colorGreyComments: #eff3f5dd;
+}
+
+/* all styles  ---------------------------*/
+
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+/* body syles  */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--whiteColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+}
+
+/* menu */
+
+
+
+
+
+/* 
+    input  */
+
+input[type=text], input[type=password], textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    background: var(--inputColor);
+    border: 1px solid var(--inputColor);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    font-size: medium;
+}
+
+.service_text h3 {
+    padding: 10px;
+}
+
+
+/* for single blog */
+
+.single_blog .blog_item_left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header_related h3 {
+    border-bottom: 1px solid var(--colorforWeakGrey);
+    width: 145px;
+    padding: 20px;
+}
+
+.related_blog_item {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.blog_relate_image img {
+    width: 220px;
+    height: 145px;
+    margin: 10px;
+}
+
+/* for main image single */
+.single_blog_image img {
+    width: 520px;
+    height: 345px;
+    margin: 0px;
+    margin-top: 35px;
+}
+
+.icon_blog {
+    display: flex;
+}
+
+.icon_blog p {
+    color: var(--colorforWeakGrey);
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.icon_blog i {
+    color: var(--colorforWeakGrey);
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 20px;
+}
+
+.icon_blog i:hover, .icon_blog p {
+    color: var(--colorGreyText)
+}
+
+.comment_form textarea {
+    background: var(--whiteColor);
+    border: none;
+    border-radius: 10px;
+    color: red;
+}
+
+.comment_form textarea:focus {
+    border: 1px solid var(--colorforWeakGrey);
+
+}
+
+
+.comment_form input[type=submit] {
+
+    padding: 10px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    background: var(--blueColor);
+    box-sizing: border-box;
+    color: var(--whiteColor);
+    cursor: pointer;
+    border: none;
+    border-radius: 20px
+}
+
+.comment_paragraph {
+    color: var(--blueColor);
+}
+
+.comment_box {
+    background: var(--colorGreyComments);
+    border: 1px solid var(--colorGreyComments);
+    border-radius: 8px;
+    padding: 8px;
+    margin: 10px;
+    box-shadow: 0.1em 0.1em 0.2em;
+}
+
+.comment_bottom_section {
+    display: flex;
+    flex: 0.5;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: smaller;
+}
+
+.user_commented {
+    font-size: 10px;
+}
+
+.comment_time {
+    font-size: 10px;
+}
+
+textarea {
+    padding: 10px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
+.dateStamp {
+    color: #29b4e2;
+    /* background: var(--blueColor); */
+}
+
+i {
+    color: #29b4e2;
+}
+
+/* footer */
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+/* footer */
+
+footer .copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--whiteColor);
+    /* background-color: grey; */
+}
+
+footer{
+    background-color: var(--blackColor);
+}
+
+
+.social_media i {
+    margin: var(--spacing);
+}
+
+
+
+/* for responsiveness */
+
+@media only screen and (max-width: 700px) {
+    .ngana_logo {
+        margin-right: 200px;
+        font-size: 30px;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .hero_section {
+        font-size: .8rem;
+    }
+
+    .hire_text {
+        font-size: .7rem;
+        min-width: 130px;
+    }
+
+    .statistic_section {
+        background-color: var(--whiteColor);
+        display: flex;
+        /* flex-direction: column; */
+        color: var(--textColorGrey);
+        justify-content: center;
+        align-items: center;
+        padding: var(--spacing);
+        border-radius: 20px;
+        box-shadow: 0.1em 0.1em 0.2em;
+        box-shadow: none;
+        width: 100%;
+        margin-left: 5px;
+        margin-right: 10px;
+        margin-top: -35px;
+        padding: 10px
+    }
+
+
+    /* for main_who_items */
+    .main_who_items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: var(--textColorGreyParagraph);
+        margin: 20px;
+    }
+
+    .main_who_items img {
+        width: 100%;
+    }
+
+    /* for services */
+    .service_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    /* for portfolio */
+
+    .portfolio_nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .portfolio_nav h1 {
+        font-size: 1rem;
+        margin: 0px;
+    }
+
+    /* for blogs */
+
+    .blog_item_left {
+        margin: 0px;
+        padding: 0px
+    }
+
+    .blog_section {
+        margin: 0px;
+        padding: 0px
+    }
+
+
+
+    .blog_item_rigt {
+        border-left: none;
+
+    }
+
+    .blog_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .blog_content img {
+        Width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        padding: 10px;
+        /* margin:20px */
+    }
+
+    .blog_item_content {
+        margin: 20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #loading {
+        width: 20px;
+        height: 20px;
+    }
+
+    .readme_button {
+        padding: 10px;
+        color: var(--whiteColor);
+        text-decoration: none;
+        background: var(--blueColor);
+        cursor: pointer;
+    }
+
+    .readme_button p {
+        color: var(--whiteColor)
+    }
+
+    /* for edit modal */
+
+    .dashboard_item_rigt {
+        max-width: 100%;
+    }
+
+    /* .dashboard_item_rigt .edit_modal{
+       width:50%
+    } */
+
+    /* for icon */
+
+    #removeBlog, #editBlog {
+        margin-left: 20px;
+    }
+
+    .icon_blog p {
+        color: var(--colorforWeakGrey);
+        margin-right: 5px;
+        cursor: pointer;
+    }
+
+
+
+    /* for footer section */
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: var(--colorfooter);
+        color: var(--whiteColor);
+        padding: 10px;
+    }
+
+    footer div {
+        margin-right: 0px;
+    }
+}
+
+
+
+
+/* 
+for ipods and tables */
+
+@media only screen and (max-width: 920px) {
+
+    body {
+        min-width: 360px;
+    }
+
+    .ngana_logo {
+        margin-right: 50px;
+        margin-left: 50px;
+        font-size: 30px;
+    }
+
+    .hire_now {
+        padding: 15px;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-around;
+        /* flex-direction: column; */
+        margin-bottom: 10px;
+    }
+
+
+    .hero_section {
+        font-size: .8rem;
+    }
+
+    .hire_text {
+        font-size: .7rem;
+        min-width: 130px;
+    }
+
+    .statistic_section {
+        background-color: var(--whiteColor);
+        display: flex;
+        /* flex-direction: column; */
+        color: var(--textColorGrey);
+        justify-content: center;
+        align-items: center;
+        padding: var(--spacing);
+        border-radius: 20px;
+        box-shadow: 0.1em 0.1em 0.2em;
+        box-shadow: none;
+        width: 100%;
+        margin-left: 5px;
+        margin-right: 10px;
+        margin-top: -35px;
+        padding: 10px
+    }
+
+
+    /* for main_who_items */
+    .main_who_items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: var(--textColorGreyParagraph);
+        margin: 20px;
+    }
+
+    .main_who_items img {
+        width: 100%;
+    }
+
+    /* for services */
+    .service_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    /* for portfolio */
+
+    .portfolio_nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .portfolio_nav h1 {
+        font-size: 1rem;
+        margin: 0px;
+    }
+
+    .blog_item_content {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    /* for footer section */
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: var(--colorfooter);
+        color: var(--whiteColor);
+        padding: 10px;
+    }
+
+    footer div {
+        margin-right: 0px;
+    }
+}
+
+
+
+/* 
+  for dark mode */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        /* background: #333; */
+        color: white;
+    }
+
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: #ddd;
+        color: black;
+    }
+
+}
