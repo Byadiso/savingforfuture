@@ -9,7 +9,8 @@ import {
 } from "react-icons/fa";
 
 
-function LandingPage() {
+function LandingPage(props) {
+  
   return (
     <div>
       <div className="hero_section">
@@ -63,7 +64,7 @@ function LandingPage() {
       <div className="main_who_static_section">
         <div className="statistic_section">
           <div className="stat_content">
-            <span id="number_blog">0</span>
+            <span id="number_blog">{props.blogNumber}</span>
             <h4>Interesting Stories</h4>
           </div>
           <div className="stat_content stat_content_middle">
