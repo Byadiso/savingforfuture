@@ -1,6 +1,7 @@
 import React from "react";
 import '../Style/NavBar.css';
 import { FaBook,FaGlobe,FaList, FaDatabase, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -8,31 +9,31 @@ function Navbar() {
       <nav className="main_nav">
         <div className="menu">
           <h2 className="ngana_logo">
-            <a href="./index.html" className="menu_nav">
+            <Link to="/" className="menu_nav">
               LearnByWriting
-            </a>
+            </Link>
           </h2>
 
-          <a href="./page/stories.html" className="menu_nav">
+          <Link to="/Stories" className="menu_nav">
           <FaBook />
             Stories
-          </a>
-          <a href="./page/blog.html" className="menu_nav">
+          </Link>
+          <Link to="/Blogs" className="menu_nav">
           <FaGlobe />
             Blogs
-          </a>
-          <a href="./page/vocabulary.html" className="menu_nav">
+          </Link>
+          <Link to="/vocabulary" className="menu_nav">
           <FaList />
            Vocabulary Lists
-          </a>
+          </Link>
           <div className="dropdown" id="dropdown">
-            <a href="./page/login.html" className="dropbtn" id="username">
+            <Link to="/Login" className="dropbtn" id="username">
              <FaSignInAlt />Login
-            </a>
+            </Link>
             <div className="dropdown-content hide">
-              <a href="./page/dashboard.html">
+              <Link to="/Dashboard">
                 <FaDatabase /> Dashboard
-              </a>
+              </Link>
               <a href="./logout.html">
                 {" "}
                 <FaSignOutAlt />logout

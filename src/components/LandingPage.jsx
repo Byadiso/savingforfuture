@@ -68,7 +68,7 @@ function LandingPage(props) {
             <h4>Interesting Stories</h4>
           </div>
           <div className="stat_content stat_content_middle">
-            <span id="number_books">0</span>
+            <span id="number_books">{props.vocabularyNumber}</span>
             <h4>New words</h4>
           </div>
           <div className="stat_content">

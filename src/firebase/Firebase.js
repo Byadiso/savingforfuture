@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import 'firebase/auth';
+import 'firebase/firestore';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -8,7 +9,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY || 'AIzaSyA5sPlupW_n1XEt6xsw_Y7aAZKltGEFyXw',
+  apiKey: 'AIzaSyA5sPlupW_n1XEt6xsw_Y7aAZKltGEFyXw',
   authDomain: "mybrand-df7b7.firebaseapp.com",
   databaseURL: "https://mybrand-df7b7-default-rtdb.firebaseio.com",
   projectId: "mybrand-df7b7",
@@ -19,7 +20,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getFirestore(app);
+// const database = getFirestore(app);
 
-export default database;
+export default app;
  

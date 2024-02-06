@@ -1,55 +1,44 @@
 import { useEffect, useState } from "react";
+import { Route, Link, Switch, Router, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
+import Stories from "./components/Stories.jsx";
+import Blogs from "./components/ListBlogs.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
-import database from "./firebase/Firebase.js";
-import { uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-
-import { getDatabase , ref, onValue} from "firebase/database";
-const databaseFirebase = getDatabase();
+import { listBlog, listVocabularies } from "./firebase/getBlogs.js";
+// import { listVocabularies } from "./firebase/getVocabularies.js";
 
 function App() {
   const [blogList, setBlogList] = useState([]);
- 
-
-  const blogRefList = ref(databaseFirebase, "blogs/"); 
-
-  
- 
+  const [vocabularyList, setVocabularyList] = useState([]);
 
   useEffect(() => {
-
-     const unsubscribe = () =>{
-    onValue(blogRefList, (snapshot) => {
-      const data = snapshot.val()
-      // const unsubscribe = () =>{
-        let blogsArray = [];
-        for (var [key, value] of Object.entries(data)) {
-          var obj = {
-            id: value.id,
-            title: value.title,
-            body: value.body,
-            Image: value.Image,
-            uid_key: key,
-          };
-  
-          blogsArray.push(obj);
-        }
-        setBlogList(blogsArray)
-      // }   
-         
-    })
-  };
+    const unsubscribe = () => {
+      listBlog(setBlogList);
+      listVocabularies(setVocabularyList);
+    };
     return () => unsubscribe();
   }, []);
 
-  // console.log(blogList.length)
-
   return (
     <div className="App">
+      <div>
+        
+          <Routes>
+            <Route exact path="/" element={App} />
+            <Route path="/Stories" element={Stories} />
+            <Route path="/Blogs" element={Blogs} />
+            <Route path="/Dashboard" element={Dashboard} />
+          </Routes>
+       
+      </div>
       <Navbar />
-      <LandingPage blogNumber={blogList.length}/>
+      <LandingPage
+        blogNumber={blogList.length}
+        vocabularyNumber={vocabularyList.length}
+      />
       <Footer />
     </div>
   );
