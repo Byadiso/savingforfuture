@@ -1,5 +1,5 @@
 import "../Style/LandingPage.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import tellstory from "../images/tellstory.png";
 import {
   FaArrowAltCircleDown,
@@ -7,12 +7,30 @@ import {
   FaGamepad,
   FaBookOpen,FaBookReader
 } from "react-icons/fa";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import { listBlog, listVocabularies } from "../firebase/getBlogs";
 
 
-function LandingPage(props) {
-  
+function LandingPage(props) { 
+    const [blogList, setBlogList] = useState([]);
+  const [vocabularyList, setVocabularyList] = useState([]);
+
+  let blogNumber = blogList.length
+  let vocabularyNumber = vocabularyList.length
+
+  console.log(blogList.length);
+
+  useEffect(() => {
+    // const unsubscribe = () => {
+      listBlog(setBlogList);
+      listVocabularies(setVocabularyList);
+    // };
+    // return () => unsubscribe();
+  }, []);
   return (
     <div>
+      <Navbar />
       <div className="hero_section">
         <div>
           <h3>I am looking for...</h3>
@@ -64,11 +82,11 @@ function LandingPage(props) {
       <div className="main_who_static_section">
         <div className="statistic_section">
           <div className="stat_content">
-            <span id="number_blog">{props.blogNumber}</span>
+            <span id="number_blog">{blogNumber}</span>
             <h4>Interesting Stories</h4>
           </div>
           <div className="stat_content stat_content_middle">
-            <span id="number_books">{props.vocabularyNumber}</span>
+            <span id="number_books">{vocabularyNumber}</span>
             <h4>New words</h4>
           </div>
           <div className="stat_content">
@@ -134,6 +152,7 @@ function LandingPage(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

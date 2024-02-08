@@ -2,8 +2,14 @@ import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import '../Style/Stories.css';
+import { getStories } from "../firebase/APIs";
+
+const RequestLink = "https://shortstories-api.onrender.com/stories";
 
 function Stories() {
+ getStories(RequestLink).then(Stories =>{
+  console.log(Stories.slice(0,10))
+ })
   return (
     <div>
       <Navbar />
@@ -20,7 +26,7 @@ function Stories() {
             />
           </div>
           <div>
-            <button id="load_more_button" className="hide">
+            <button id="load_more_button" className="">
               Load more
             </button>
           </div>
