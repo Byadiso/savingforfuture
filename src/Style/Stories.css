@@ -167,6 +167,16 @@ section {
     margin-top: 20px;
 }
 
+p {
+    color: black;
+}
+h2 , h3, h1{
+    color: var(--blueColor);
+}
+.icon{
+    color: var(--blueColor);
+}
+
 #load_more_button:hover{
     cursor: pointer;
 }

@@ -5,26 +5,48 @@ import {
   FaArrowAltCircleDown,
   FaPenSquare,
   FaGamepad,
-  FaBookOpen,FaBookReader
+  FaBookOpen,
+  FaBookReader,
 } from "react-icons/fa";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { listBlog, listVocabularies } from "../firebase/getBlogs";
+import { Link } from "react-router-dom";
+import { getStories } from "../firebase/APIs";
+import { isAuthenticated } from "../firebase/Authentication";
 
-
-function LandingPage(props) { 
-    const [blogList, setBlogList] = useState([]);
+function LandingPage(props) {
+  const [blogList, setBlogList] = useState([]);
   const [vocabularyList, setVocabularyList] = useState([]);
+  const [storyList, setStoryListList] = useState([]);
 
-  let blogNumber = blogList.length
-  let vocabularyNumber = vocabularyList.length
+  const blogNumber = blogList.length;
+  const vocabularyNumber = vocabularyList.length;
+  const storiesNumber = storyList.length
 
-  console.log(blogList.length);
+
+  // console.log(storyList)
+  // isAuthenticated
+
+
+
+// console.log(isAuthenticated())
+ 
+  
+
+  function Stories() {
+    getStories().then(Stories =>{
+      setStoryListList(Stories)     
+    })
+  }
 
   useEffect(() => {
     // const unsubscribe = () => {
-      listBlog(setBlogList);
-      listVocabularies(setVocabularyList);
+    listBlog(setBlogList);
+    listVocabularies(setVocabularyList);
+    Stories()
+    isAuthenticated();
+  
     // };
     // return () => unsubscribe();
   }, []);
@@ -83,15 +105,15 @@ function LandingPage(props) {
         <div className="statistic_section">
           <div className="stat_content">
             <span id="number_blog">{blogNumber}</span>
-            <h4>Interesting Stories</h4>
+            <h4>Written blogs</h4>
           </div>
           <div className="stat_content stat_content_middle">
             <span id="number_books">{vocabularyNumber}</span>
             <h4>New words</h4>
           </div>
           <div className="stat_content">
-            <span id="number_users">2</span>
-            <h4>We started recently</h4>
+            <span id="number_users">{storiesNumber}</span>
+            <h4>Short stories</h4>
           </div>
         </div>
 
@@ -120,26 +142,25 @@ function LandingPage(props) {
           <div className="service_item">
             <div className="app_link banner_and_icon">
               <FaPenSquare />
-              <a href="./page/add_blog.html">
+              <Link to="/AddBlog">
                 <h5 className="service_title">Write English</h5>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="service_item">
             <div className="app_link banner_and_icon">
-              
               <FaBookReader />
-              <a href="./page/vocabulary.html">
+              <Link to="/Vocabulary">
                 <h5 className="service_title">New vocabularies</h5>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="service_item">
             <div className="app_link banner_and_icon">
               <FaBookOpen />
-              <a href="./page/stories.html">
+              <Link to="/Stories">
                 <h5 className="service_title">Stories</h5>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="service_item">

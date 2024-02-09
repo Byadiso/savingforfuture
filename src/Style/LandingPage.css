@@ -329,6 +329,7 @@ i {
 
 .Service_header {
     margin: 20px;
+    color: var(--whiteColor);
 }
 
 .service_content {
@@ -403,19 +404,19 @@ i {
     align-items: center;
     width: 150px;
     height: 145px;
-    border: 1px solid var(--textColorGrey);
-    color: var(--blueColor);
+    border: 2px solid var(--whiteColor);
+    color: var(--whiteColor);
     padding: 25px;
 }
 
 .app_link:hover {
-    border: 3px solid var(--blueColor);    
+    border: 4px solid var(--whiteColor);    
 }
 
 
 .app_link a {
     text-decoration: none;
-    color: var(--blueColor);
+    color: var(--whiteColor);
 }
 
 

@@ -8,8 +8,7 @@ const databaseFirebase = getDatabase();
 export const listBlog = (setBlogList)=>{
     const blogRefList = ref(databaseFirebase, "blogs/");
     onValue(blogRefList, (snapshot) => {
-        const data = snapshot.val()
-        
+        const data = snapshot.val()        
           let blogsArray = [];
           for (var [key, value] of Object.entries(data)) {
             var obj = {
@@ -48,4 +47,24 @@ export const listVocabularies = (setVocabularyList)=>{
           setVocabularyList(vocabularyArray)       
            
       })
+}
+
+export const listUsers = (setUserList)=>{
+  const userRefList = ref(databaseFirebase, "users/");
+  onValue(userRefList, (snapshot) => {
+      const data = snapshot.val()
+      
+        let usersArray = [];
+        for (var [key, value] of Object.entries(data)) {
+          var obj = {
+              content: value.content,
+              timeStamp: value.time,
+              uid_key: key,
+          };
+  
+          usersArray.push(obj);
+        }
+        setUserList(usersArray)       
+         
+    })
 }
