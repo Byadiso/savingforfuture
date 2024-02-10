@@ -338,7 +338,7 @@ cursor: pointer;
 }
 
 .vocabulary_paragraph {
-    color: var(--textColorGrey);
+    color: var(--red);
 }
 
 .deleteButton {
@@ -462,35 +462,6 @@ footer input[type=text] {
     grid-template-columns: auto auto auto;
 }
 
-/* show 5 related blog  */
-
-#related_blog_item {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: auto auto auto;
-    max-width: 80%;
-
-}
-
-/* page numbers */
-.page_numbers {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.page_numbers h3 {
-    padding: 10px;
-    margin: 5px;
-}
-
-.page_numbers h3:hover {
-    cursor: pointer;
-}
-
-.page_numbers p:hover {
-    cursor: pointer;
-}
 
 .hide {
     display: none;
@@ -501,95 +472,7 @@ footer input[type=text] {
 /* for responsiveness */
 
 @media only screen and (max-width: 720px) {
-    .ngana_logo {
-        margin-right: 200px;
-        font-size: 30px;
-    }
+    
 
-    .menu {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-
-    .hero_section {
-        font-size: .8rem;
-    }
-
-    .hire_text {
-        font-size: .7rem;
-        min-width: 130px;
-    }
-
-    .statistic_section {
-        background-color: var(--whiteColor);
-        display: flex;
-        /* flex-direction: column; */
-        color: var(--textColorGrey);
-        justify-content: center;
-        align-items: center;
-        padding: var(--spacing);
-        border-radius: 20px;
-        box-shadow: 0.1em 0.1em 0.2em;
-        box-shadow: none;
-        width: 100%;
-        margin-left: 5px;
-        margin-right: 10px;
-        margin-top: -35px;
-        padding: 10px
-    }
-
-
-    /* for main_who_items */
-    .main_who_items {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        color: var(--textColorGreyParagraph);
-        margin: 20px;
-    }
-
-    .main_who_items img {
-        width: 100%;
-    }
-
-    /* for services */
-    .service_content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    /* for portfolio */
-
-    .portfolio_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .portfolio_nav h1 {
-        font-size: 1rem;
-        margin: 0px;
-    }
-
-    /* for footer section */
-
-    footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background: var(--colorfooter);
-        color: var(--whiteColor);
-        padding: 10px;
-    }
-
-    footer div {
-        margin-right: 0px;
-    }
+    
 }

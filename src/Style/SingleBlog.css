@@ -121,14 +121,14 @@ input[type=text], input[type=password], textarea {
     cursor: pointer;
 }
 
-.icon_blog i {
-    color: var(--colorforWeakGrey);
+.icon_blog .fa {
+    color: var(--blueColor);
     cursor: pointer;
     margin-right: 5px;
     margin-top: 20px;
 }
 
-.icon_blog i:hover, .icon_blog p {
+.icon_blog .fa:hover, .icon_blog p {
     color: var(--colorGreyText)
 }
 
@@ -202,7 +202,7 @@ textarea {
     /* background: var(--blueColor); */
 }
 
-i {
+.fa {
     color: #29b4e2;
 }
 
@@ -232,7 +232,7 @@ footer{
 }
 
 
-.social_media i {
+.social_media .fa {
     margin: var(--spacing);
 }
 
