@@ -37,7 +37,7 @@ function LandingPage() {
     listBlog(setBlogList);
     listVocabularies(setVocabularyList);
     Stories()
-    isAuthenticated();
+   
   
     // };
     // return () => unsubscribe();

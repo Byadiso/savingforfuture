@@ -13,6 +13,8 @@ import Vocabulary from "./components/Vocabulary.jsx";
 import Login from "./components/Login.jsx";
 import NoMatch from "./components/NoMatch.jsx";
 import SingleBlog from "./components/SingleBlog.jsx";
+import Logout from "./components/Logout.jsx";
+import User from "./components/UserProfile.jsx";
 
 
 function App() {
@@ -25,8 +27,11 @@ function App() {
           <Route path="/Blogs" element={<ListBlogs />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/Vocabulary" element={<Vocabulary />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/User" element={<User />} />
+          
           <Route path="/Blogs/:id" element={<SingleBlog />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Logout" element={<Logout />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </Router>

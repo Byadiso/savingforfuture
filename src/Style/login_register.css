@@ -258,8 +258,3 @@ input[type=text], input[type=password], textarea {
     }
  }
 
-/* 
-for ipods and tables */
-@media only screen and (max-width: 920px) {
-
-}
