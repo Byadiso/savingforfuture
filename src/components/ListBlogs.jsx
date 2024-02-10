@@ -12,10 +12,8 @@ function ListBlogs() {
   console.log(blogList)
 
   useEffect(() => {
-    // const unsubscribe = () => {
     listBlog(setBlogList);   
-    // };
-    // return () => unsubscribe();
+    
   }, []);
 
 

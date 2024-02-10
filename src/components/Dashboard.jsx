@@ -15,7 +15,7 @@ function Dashboard() {
                   id="loading"
                   src="../images/loading.gif"
                   alt="loading trick"
-                  srcset=""
+                  srcSet=""
                   width="100px"
                   margin-bottom="100px"
                 />

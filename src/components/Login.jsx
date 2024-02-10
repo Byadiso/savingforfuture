@@ -1,6 +1,8 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import "../Style/login_register.css";
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -14,7 +16,7 @@ function Login() {
            
               <div className="service_form_item form_login">
                 {/* <h5 id="alert_message_login" className="hide"></h5> */}
-                <p>Login to LearnByWriting.com</p>
+                <h3>Login to LearnByWriting.com</h3>
                 <input
                   type="text"
                   name="email"
@@ -44,7 +46,7 @@ function Login() {
                 </div>
               </div>
               <div className="bottom_login">
-                <h4><a href="../index.html">LearnByWriting.com</a></h4>
+                <h4><Link to="/">LearnByWriting.com</Link></h4>
               </div>
             
           </div>

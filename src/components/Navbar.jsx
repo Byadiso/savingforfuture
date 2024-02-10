@@ -1,15 +1,13 @@
 import React from "react";
 import '../Style/NavBar.css';
-import { FaBook,FaGlobe,FaList, FaDatabase, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
-import { Link, Route, Routes } from 'react-router-dom';
-import Stories from "./Stories";
-import ListBlogs from "./ListBlogs";
-import Dashboard from "./Dashboard";
-import Vocabulary from "./Vocabulary";
-import LandingPage from "./LandingPage";
-import Login from "./Login";
+import { FaBook,FaGlobe,FaList, FaDatabase, FaSignOutAlt, FaSignInAlt, FaUserAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 
 function Navbar() {
+
+  const isLoggedIn = false
+
   return (
     <div>
       <nav className="main_nav">
@@ -33,10 +31,13 @@ function Navbar() {
            Vocabulary Lists
           </Link>
           <div className="dropdown" id="dropdown">
-            <Link className="menu_nav dropbtn" to="/Login"  id="username">
+            { isLoggedIn ? <Link className="menu_nav dropbtn" to="/User"  id="username">
+             <FaUserAlt />User
+            </Link> : <Link className="menu_nav dropbtn" to="/Login"  id="login">
              <FaSignInAlt />Login
-            </Link>
-            <div className="dropdown-content hide">
+            </Link> }
+            
+            { isLoggedIn && <div className="dropdown-content hide">
               <Link className="menu_nav" to="/Dashboard">
                 <FaDatabase /> Dashboard
               </Link>
@@ -44,7 +45,8 @@ function Navbar() {
                 {" "}
                 <FaSignOutAlt />logout
               </Link>
-            </div>
+            </div>}
+            
           </div>
         </div>
       </nav>
