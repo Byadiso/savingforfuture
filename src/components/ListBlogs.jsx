@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { listBlog } from "../firebase/getBlogs";
+import loadingImage from "../images/loading.gif";
+import BlogBLock from "./BlogBLock";
 
 function ListBlogs() {
+
+  const [blogList, setBlogList] = useState([]);
+
+  console.log(blogList)
+
+  useEffect(() => {
+    // const unsubscribe = () => {
+    listBlog(setBlogList);   
+    // };
+    // return () => unsubscribe();
+  }, []);
+
+
   return (
     <div>
       <Navbar />
@@ -11,14 +27,27 @@ function ListBlogs() {
           <div className="blog_content">
             <div className="blog_item_left">
               <div id="blog_admin">
-                <img
-                  id="loading"
-                  src="../images/loading.gif"
-                  alt="loading trick"
-                  srcset=""
-                  width="100px"
-                  margin-bottom="100px"
+              {blogList ? (
+              blogList.map((blog, index) => (
+                <BlogBLock
+                  key={index}
+                  id={blog.id}
+                  body={blog.body}
+                  Image={blog.Image}
+                  title={blog.title}
+                  uid_key={blog.uid_key}
                 />
+              ))
+            ) : (
+              <img
+                id="loading"
+                src={loadingImage}
+                alt="loading trick"
+                srcSet=""
+                width="100px"
+                margin-bottom="100px"
+              />
+            )}
               </div>
             </div>
           </div>

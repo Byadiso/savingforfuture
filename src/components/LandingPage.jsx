@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { getStories } from "../firebase/APIs";
 import { isAuthenticated } from "../firebase/Authentication";
 
-function LandingPage(props) {
+function LandingPage() {
   const [blogList, setBlogList] = useState([]);
   const [vocabularyList, setVocabularyList] = useState([]);
   const [storyList, setStoryListList] = useState([]);
@@ -24,15 +24,7 @@ function LandingPage(props) {
   const vocabularyNumber = vocabularyList.length;
   const storiesNumber = storyList.length
 
-
-  // console.log(storyList)
-  // isAuthenticated
-
-
-
-// console.log(isAuthenticated())
  
-  
 
   function Stories() {
     getStories().then(Stories =>{
@@ -60,22 +52,22 @@ function LandingPage(props) {
 
         <div className="hero_section_header">
           <div className="hero_section_header_blue">
-            <p>
+            <h4>
               A story to <strong>read</strong>
               <FaArrowAltCircleDown />
-            </p>
+            </h4>
           </div>
           <div className="hero_section_header_red">
-            <p>
+            <h4>
               A story to <strong>Write</strong>
               <FaArrowAltCircleDown />
-            </p>
+            </h4>
           </div>
           <div className="hero_section_header_green">
-            <p>
+            <h4>
               A vocabulary to <strong>read</strong>
               <FaArrowAltCircleDown />
-            </p>
+            </h4>
           </div>
         </div>
       </div>
@@ -143,7 +135,7 @@ function LandingPage(props) {
             <div className="app_link banner_and_icon">
               <FaPenSquare />
               <Link to="/AddBlog">
-                <h5 className="service_title">Write English</h5>
+                <h4 className="service_title">Write English</h4>
               </Link>
             </div>
           </div>
@@ -151,7 +143,7 @@ function LandingPage(props) {
             <div className="app_link banner_and_icon">
               <FaBookReader />
               <Link to="/Vocabulary">
-                <h5 className="service_title">New vocabularies</h5>
+                <h4 className="service_title">New vocabularies</h4>
               </Link>
             </div>
           </div>
@@ -159,7 +151,7 @@ function LandingPage(props) {
             <div className="app_link banner_and_icon">
               <FaBookOpen />
               <Link to="/Stories">
-                <h5 className="service_title">Stories</h5>
+                <h4 className="service_title">Stories</h4>
               </Link>
             </div>
           </div>
@@ -167,7 +159,7 @@ function LandingPage(props) {
             <div className="app_link banner_and_icon">
               <FaGamepad />
               <a href="./page/games.html">
-                <h5 className="service_title">Play games</h5>
+                <h4 className="service_title">Play games</h4>
               </a>
             </div>
           </div>

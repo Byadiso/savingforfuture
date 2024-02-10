@@ -18,7 +18,7 @@ function Stories() {
     });
   };
 
-  console.log(storyList);
+ 
 
   useEffect(() => {
     // const unsubscribe = () => {
