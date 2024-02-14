@@ -6,8 +6,6 @@ import { getStories } from "../firebase/APIs";
 import loadingImage from "../images/loading.gif";
 import StoryBlock from "./StoryBlock";
 
-// const RequestLink = "https://shortstories-api.onrender.com/stories";
-
 function Stories() {
   const [storyList, setStoryList] = useState([]);
 
@@ -16,16 +14,12 @@ function Stories() {
       console.log(Stories.slice(0, 10));
       setStoryList(Stories);
     });
-  };
+  }; 
 
- 
-
-  useEffect(() => {
-    // const unsubscribe = () => {
-    fetchStory(setStoryList);
-    // };
-    // return () => unsubscribe();
+  useEffect(() => {   
+    fetchStory(setStoryList);    
   }, []);
+
   return (
     <div>
       <Navbar />
