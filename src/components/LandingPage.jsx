@@ -24,23 +24,17 @@ function LandingPage() {
   const vocabularyNumber = vocabularyList.length;
   const storiesNumber = storyList.length
 
- 
-
   function Stories() {
     getStories().then(Stories =>{
       setStoryListList(Stories)     
     })
   }
 
-  useEffect(() => {
-    // const unsubscribe = () => {
+  useEffect(() => {    
     listBlog(setBlogList);
     listVocabularies(setVocabularyList);
-    Stories()
-   
-  
-    // };
-    // return () => unsubscribe();
+    Stories() 
+    
   }, []);
   return (
     <div>
@@ -125,12 +119,12 @@ function LandingPage() {
       </div>
 
       {/* <!-- Services section --> */}
-
-      <div className="service_section">
-        <div className="Service_header">
-          <h1>Check below your interest...</h1>
+      <div className="Service_header">
+        <h1>Check below your interest...</h1>
         </div>
-        <div className="service_content">
+      <div className="service_section">
+       
+        <div className="service_content">        
           <div className="service_item">
             <div className="app_link banner_and_icon">
               <FaPenSquare />

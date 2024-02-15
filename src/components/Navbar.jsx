@@ -5,19 +5,17 @@ import {
   FaGlobe,
   FaList,
   FaDatabase,
-  FaSignOutAlt,
   FaSignInAlt,
   FaUserAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { checkUser, isAuthenticated } from "../firebase/Authentication";
+import SignOutDiaolog from "./SignOut";
+
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [userId, setUserId] = useState();
-
-
-
   
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
@@ -62,12 +60,9 @@ function Navbar() {
               <div className="dropdown-content hide">
                 <Link className="menu_nav" to="/Dashboard">
                   <FaDatabase /> Dashboard
-                </Link>
-                <Link className="menu_nav" to="/Logout">
-                  {" "}
-                  <FaSignOutAlt />
-                  logout
-                </Link>
+                </Link>  
+                                                       
+                  <SignOutDiaolog />                
               </div>
             )}
           </div>

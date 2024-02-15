@@ -149,32 +149,13 @@ footer .copyright {
     color: var(--whiteColor);    
 }
 
-
-#logout{
-    border: none;
-    background-color: var(--redColor);
-    color: var(--whiteColor);
-    padding: 10px;
-}
-
-#return{
-    border: none;
-    background-color: var(--blueColor);
-    color: var(--whiteColor);
-    padding: 10px;
-}
-
-#logout, #return :hover{
-cursor: pointer;
-}
-
-#logout, #return a{
-    text-decoration: none;
-    color: var(--whiteColor);
-}
-.logout_button button{
+.logout{
     padding: 5px;
     margin: 5px;
+}
+
+.logout:hover{
+cursor: pointer;
 }
 
 /* for responsiveness */
