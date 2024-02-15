@@ -16,7 +16,7 @@ import SkeletonDashboard from "../Skeletons/SkeletonDashboard";
 import styled from "@emotion/styled";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditNoteIcon from "@mui/icons-material/EditNote";
-import EditModal from "./EditForm";
+import EditForm from "./EditForm";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
@@ -116,13 +116,13 @@ function Dashboard() {
                                 <DeleteIcon style={{color:"pink"}}/>
                               </IconButton>
                             </Tooltip>
-                            <EditNoteIcon /> 
-                            {/* <Tooltip title="Edit">
+                     
+                            <Tooltip title="Edit">
                               <IconButton>
                                 <EditNoteIcon /> 
-                                <EditModal />
+                                {/* <EditForm /> */}
                               </IconButton>
-                            </Tooltip> */}
+                            </Tooltip>
                           </Grid>
                         </Grid>
                       </Grid>
