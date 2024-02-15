@@ -1,99 +1,139 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import {
+  Box,
+  ButtonBase,
+  Divider,
+  Grid,
+  IconButton,
+  Paper,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { listBlog } from "../firebase/getBlogs";
+import SkeletonDashboard from "../Skeletons/SkeletonDashboard";
+import styled from "@emotion/styled";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import EditModal from "./EditForm";
 
 function Dashboard() {
+  const [blogList, setBlogList] = useState([]);
+
+  let blogNumber = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+
+  const Img = styled("img")({
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
+  });
+
+  useEffect(() => {
+    listBlog(setBlogList);
+  }, []);
+
   return (
     <div>
       <Navbar />
-      <section>
-        <div className="dashboard_section">
-          <div className="dashboard_content">
-            <div className="dashboard_item_rigt">
-              <div id="blog_admin">
-                <img
-                  id="loading"
-                  src="../images/loading.gif"
-                  alt="loading trick"
-                  srcSet=""
-                  width="100px"
-                  margin-bottom="100px"
-                />
-              </div>
 
-              <div className="add_blog hide" id="form_blog">
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  placeholder="Give it an amazing title"
-                />
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 2, sm: 8, md: 12 }}
+        >
+          <Grid item xs={8}>
+            {blogList.length === 0 &&
+              blogNumber.map((blogskeletom, index) => (
+                <Paper
+                  sx={{
+                    p: 1,
+                    margin: "auto",
+                    maxWidth: 1000,
+                    flexGrow: 1,
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+                  }}
+                >
+                  <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                      <SkeletonDashboard key={index} />
+                    </Grid>
+                  </Grid>
+                </Paper>
+              ))}
+            {blogList &&
+              blogList.map((blog, index) => (
+                <Paper
+                  sx={{
+                    p: 1,
+                    margin: "auto",
+                    maxWidth: 1000,
+                    flexGrow: 1,
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+                  }}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                      <ButtonBase
+                        sx={{ width: 100, height: 100, borderRadius: "50%" }}
+                      >
+                        <Img alt="image-blog" src={blog.Image} />
+                      </ButtonBase>
+                    </Grid>
+                    <Grid item xs={8} sm container>
+                      <Grid
+                        item
+                        xs={8}
+                        container
+                        direction="column"
+                        spacing={1}
+                      >
+                        <Grid item  xs={6}>
+                          <Typography gutterBottom variant="h6" component="div">
+                            {blog.title}
+                          </Typography>
 
-                <textarea
-                  type="text"
-                  name="body"
-                  id="body"
-                  placeholder="Add your amazing text here..."
-                ></textarea>
+                          <Grid item xs={12}>
+                            <Tooltip title="Delete">
+                              <IconButton>
+                                <DeleteIcon style={{color:"pink"}}/>
+                              </IconButton>
+                            </Tooltip>
+                            <EditNoteIcon /> 
+                            {/* <Tooltip title="Edit">
+                              <IconButton>
+                                <EditNoteIcon /> 
+                                <EditModal />
+                              </IconButton>
+                            </Tooltip> */}
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Divider />
+                </Paper>
+              ))}
+          </Grid>
 
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  placeholder="add image"
-                />
-
-                <input
-                  className="addBlog add_blog_button"
-                  type="submit"
-                  value="Add Blog"
-                  id="addBlog"
-                />
-              </div>
-
-             
-              <div className="edit_blog_form hide" id="form_edit">
-                <div className="close_overlay_button">
-                  <h1>X</h1>
-                </div>
-                <input
-                  type="text"
-                  name="title"
-                  id="title_update"
-                  placeholder="add title"
-                />
-
-                <textarea
-                  type="text"
-                  name="body"
-                  id="body_update"
-                  placeholder="Add your content here edit"
-                ></textarea>
-
-                <input
-                  type="file"
-                  name="image"
-                  id="image_update"
-                  placeholder="add image"
-                />
-
-                <input
-                  className="addBlog add_blog_button"
-                  type="submit"
-                  value="Update Blog"
-                  id="updateBlog"
-                />
-                <input
-                  className="add_blog_button"
-                  type="submit"
-                  value="Cancel"
-                  id="cancel_button"
-                />
-              </div>
-              <h5 id="alert_message_add_blog" className="hide">
-                Added successfully
-              </h5>
-            </div>
+          <Grid item xs={3}>
             <div className="dashboard_item_left">
               <div className="dashboard_item">
                 <div className="dashboard_search">
@@ -117,9 +157,9 @@ function Dashboard() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Grid>
+      </Box>
       <Footer />
     </div>
   );

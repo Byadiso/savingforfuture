@@ -8,7 +8,8 @@ const databaseFirebase = getDatabase();
 export const listBlog = (setBlogList)=>{
     const blogRefList = ref(databaseFirebase, "blogs/");
     onValue(blogRefList, (snapshot) => {
-        const data = snapshot.val()        
+        const data = snapshot.val()   
+        console.log(data)     
           let blogsArray = [];
           for (var [key, value] of Object.entries(data)) {
             var obj = {
@@ -17,6 +18,7 @@ export const listBlog = (setBlogList)=>{
               body: value.body,
               Image: value.Image,
               uid_key: key,
+              createdAt:value.createdAt,
             };
     
             blogsArray.push(obj);

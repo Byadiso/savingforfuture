@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { listBlog } from "../firebase/getBlogs";
-import loadingImage from "../images/loading.gif";
 import BlogBLock from "./BlogBLock";
-import CircularProgress from "@mui/material/CircularProgress";
+
 import Box from "@mui/material/Box";
 import "../Style/Blogs.css";
 import SkeletonBlog from "../Skeletons/SkeletonBlog";
@@ -48,9 +47,7 @@ function ListBlogs() {
             ))}
         
         </Grid>
-      </Box>
-
-      
+      </Box>     
 
       <div className="button_control" id="button_control"></div>
      
