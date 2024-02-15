@@ -5,6 +5,8 @@ import "../Style/Stories.css";
 import { getStories } from "../firebase/APIs";
 import loadingImage from "../images/loading.gif";
 import StoryBlock from "./StoryBlock";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 // const RequestLink = "https://shortstories-api.onrender.com/stories";
 
@@ -18,7 +20,7 @@ function Stories() {
     });
   };
 
- 
+  // console.log(storyList.length===0);
 
   useEffect(() => {
     // const unsubscribe = () => {
@@ -29,39 +31,45 @@ function Stories() {
   return (
     <div>
       <Navbar />
-      <section>
-        <div className="stories_section">
-          <div className="stories_item_content" id="books_item_content">
-            {storyList ? (
-              storyList.map((story, index) => (
-                <StoryBlock
-                  key={index}
-                  id={story._id}
-                  title={story.title}
-                  story={story.story}
-                  moral={story.moral}
-                  author={story.author}
-                />
-              ))
-            ) : (
-              <img
-                id="loading"
-                src={loadingImage}
-                alt="loading trick"
-                srcSet=""
-                width="100px"
-                margin-bottom="100px"
-              />
-            )}
-          </div>
+      {/* <section> */}
 
-          {storyList && (
+      <div className="stories_section">
+        <div className="stories_item_content" id="books_item_content">
+          {storyList.length === 0 && (
+            <Box sx={{ display: "flex"}}>
+              <CircularProgress />
+            </Box>
+          )}
+          {storyList ? (
+            storyList.map((story, index) => (
+              <StoryBlock
+                key={index}
+                id={story._id}
+                title={story.title}
+                story={story.story}
+                moral={story.moral}
+                author={story.author}
+              />
+            ))
+          ) : (
+            <img
+              id="loading"
+              src={loadingImage}
+              alt="loading trick"
+              srcSet=""
+              width="100px"
+              margin-bottom="100px"
+            />
+          )}
+        </div>
+
+        {/* {storyList.length===0  && (
             <button id="load_more_button" className="">
               Load more
             </button>
-          )}
-        </div>
-      </section>
+          )} */}
+      </div>
+      {/* </section> */}
       <Footer />
     </div>
   );
