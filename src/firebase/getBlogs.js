@@ -21,9 +21,7 @@ export const listBlog = (setBlogList)=>{
     
             blogsArray.push(obj);
           }
-          setBlogList(blogsArray)
-    
-           
+          setBlogList(blogsArray)  
       })
 }
 
@@ -33,7 +31,6 @@ export const listVocabularies = (setVocabularyList)=>{
     const blogRefList = ref(databaseFirebase, "vocabularies/");
     onValue(blogRefList, (snapshot) => {
         const data = snapshot.val()
-        
           let vocabularyArray = [];
           for (var [key, value] of Object.entries(data)) {
             var obj = {
@@ -41,11 +38,9 @@ export const listVocabularies = (setVocabularyList)=>{
                 timeStamp: value.time,
                 uid_key: key,
             };
-    
             vocabularyArray.push(obj);
           }
-          setVocabularyList(vocabularyArray)       
-           
+          setVocabularyList(vocabularyArray)         
       })
 }
 
@@ -59,15 +54,12 @@ export const listUsers = (setUserList)=>{
               content: value.content,
               timeStamp: value.time,
               uid_key: key,
-          };
-  
+          };  
           usersArray.push(obj);
         }
-        setUserList(usersArray)       
-         
+        setUserList(usersArray);  
     })
 }
-
 
 export const singleBlog = (setBlogList, blogId)=>{
   const blogRefList = ref(databaseFirebase, "blogs/" + blogId);
@@ -81,12 +73,9 @@ export const singleBlog = (setBlogList, blogId)=>{
             body: value.body,
             Image: value.Image,
             uid_key: key,
-          };
-  
+          };  
           blogsArray.push(obj);
         }
-        setBlogList(blogsArray)
-  
-         
+        setBlogList(blogsArray)         
     })
 }

@@ -51,7 +51,7 @@ function Dashboard() {
                 />
               </div>
 
-              {/* <!-- edit form --> */}
+             
               <div className="edit_blog_form hide" id="form_edit">
                 <div className="close_overlay_button">
                   <h1>X</h1>

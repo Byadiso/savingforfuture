@@ -1,27 +1,20 @@
 export const checkMyValue = (user, setError, isRegister) => {
-  let emailInput = user.email;
-  let passwordInput = user.password;
-  let firstname = user.firstname;
-  let lastname = user.lastname;
+  // let emailInput = user.email;
+  // let passwordInput = user.password;
+  // let firstname = user.firstname;
+  // let lastname = user.lastname;
+
+  let {email:emailInput, password:passwordInput, firstname, lastname}= user
 
   if (!emailInput && !passwordInput) {
     setError("email & password missing");
-    setTimeout(() => {
-      console.log("something was wrong");
-    }, 3000);
-    // console.log("first add something");
+    waitThreeSec();  
   } else if (!emailInput) {
     setError("email is missing");
-
-    setTimeout(() => {
-      console.log("something was wrong");
-    }, 3000);
+    waitThreeSec();
   } else if (!passwordInput) {
     setError("Password is missing");
-
-    setTimeout(() => {
-      console.log("something was wrong");
-    }, 3000);
+    waitThreeSec();
   } else if (isRegister) {
     if (!firstname) {
       setError("firstname is missing");
@@ -40,12 +33,17 @@ export const checkMyValue = (user, setError, isRegister) => {
     } else {
       setError("Email is not valid");
     }
-  }
-
-  
+  }  
 };
 
 const validateEmail = (email) => {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
+
+
+const waitThreeSec = ()=>{
+  setTimeout(() => {
+    console.log("something was wrong");
+  }, 3000);  
+}
