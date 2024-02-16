@@ -16,9 +16,10 @@ import SkeletonDashboard from "../Skeletons/SkeletonDashboard";
 import styled from "@emotion/styled";
 import DeleteIcon from "@mui/icons-material/Delete";
 // import EditNoteIcon from "@mui/icons-material/EditNote";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 import EditForm from "./EditForm";
 import CreateBlog from "./CreateBlog";
+import DeleteModal from "./DeleteModal";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
@@ -58,7 +59,7 @@ function Dashboard() {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 8, md: 12 }}
         >
-          <Grid item xs={8}>
+          <Grid item xs={8} style={{marginBottom: "70px",}}>
             {blogList.length === 0 &&
               blogNumber.map((blogskeletom, index) => (
                 <Paper
@@ -83,7 +84,7 @@ function Dashboard() {
                 <Paper
                   sx={{
                     p: 1,
-                    margin: "auto",
+                    margin: "20px",                     
                     maxWidth: 1000,
                     flexGrow: 1,
                     backgroundColor: (theme) =>
@@ -91,7 +92,7 @@ function Dashboard() {
                   }}
                   key={blog.uid_key}
                 >
-                  <Grid container spacing={2}>
+                  <Grid container spacing={2} >
                     <Grid item xs={4}>
                       <ButtonBase
                         sx={{ width: 100, height: 100, borderRadius: "50%" }}
@@ -112,25 +113,15 @@ function Dashboard() {
                             {blog.title}
                           </Typography>
 
-                          <Grid item xs={12}>
-                            <Tooltip title="Delete">
-                              <IconButton>
-                                <DeleteIcon style={{ color: "pink" }} />
-                              </IconButton>
-                            </Tooltip>
-
-                            {/* <Tooltip title="Edit">
-                              <IconButton> */}
-                                {/* <EditNoteIcon />  */}
-                                <EditForm id={blog.id} />
-                              {/* </IconButton>
-                            </Tooltip> */}
+                          <Grid item xs={12} style={{display: "flex", justifyContent:"center"}}>
+                            <DeleteModal id={blog.id} />
+                            <EditForm id={blog.id} />
                           </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Divider />
+                  {/* <Divider /> */}
                 </Paper>
               ))}
           </Grid>
@@ -145,10 +136,7 @@ function Dashboard() {
                 <div className="dashboard_categories">
                   <h1>Dashboard</h1>
 
-                  {/* <IconButton>
-                    <AddIcon style={{ color: "grey" }} /> */}
-                    <CreateBlog />
-                  {/* </IconButton> */}
+                  <CreateBlog />
 
                   <a href="./user.html" id="info">
                     <i className="fa fa-info"></i>My info

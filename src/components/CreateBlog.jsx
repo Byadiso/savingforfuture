@@ -34,13 +34,12 @@ export default function CreateBlog(props) {
 
   return (
     <div>
-      {/* <p onClick={handleOpen}> Create a blog</p> */}
+      
       <Tooltip title="Add a blog">
       <IconButton>
       <AddIcon style={{ color: "grey" }} onClick={handleOpen}/>
       </IconButton>
-      </Tooltip>
-      {/* <p onClick={handleOpen}> Create a blog</p> */}
+      </Tooltip>    
                  
       <Modal
         open={open}
@@ -50,7 +49,7 @@ export default function CreateBlog(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" sx={{ mt: 2 }}>
-            Your blog post
+            Create your blog post:
           </Typography>
 
           <TextField
@@ -60,6 +59,7 @@ export default function CreateBlog(props) {
             padding="10px"
             multiline
             value=""
+            style={{ marginTop:"10px"}}
             maxRows={1}
             name="title"
           />
@@ -69,9 +69,10 @@ export default function CreateBlog(props) {
             multiline
             value=""
             maxRows={4}
+            style={{ marginTop:"10px"}}
             name="body"
           />
-          <Button variant="contained">Create</Button>
+          <Button variant="contained" style={{ margin:"10px",marginLeft:"0px"}}>Create</Button>
         </Box>
       </Modal>
     </div>

@@ -11,6 +11,7 @@ export default function EditForm(props) {
   const [blogs, setBlogList] =useState([])
   const [open, setOpen] = React.useState(false); 
   const [blogToEdit, setBlogToEdit] = useState()
+  const [isUpdated, setIsUpdated] = useState(false)
   
   
   console.log(blogToEdit && blogToEdit[0].title)
@@ -23,7 +24,14 @@ export default function EditForm(props) {
     setBlogToEdit(blog)    
   }
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false)
+    setIsUpdated(false)
+  };
+
+  const handleUpdate = () => {
+    setIsUpdated(true)
+  };
 
   
   const style = {
@@ -57,10 +65,10 @@ export default function EditForm(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" sx={{ mt: 2 }}>
-            Your blog post
+            {isUpdated ? "Your blog post has been updated successfully!" : "Your blog post:"}
           </Typography>         
 
-          <TextField
+          {!isUpdated && <><TextField
             id="outlined-multiline-flexible"
             
             fullWidth
@@ -69,6 +77,7 @@ export default function EditForm(props) {
             multiline
             value={blogToEdit && blogToEdit[0].title}
             maxRows={1}
+            style={{ marginTop:"10px"}}
             name="title"
           />
           <TextField
@@ -77,9 +86,11 @@ export default function EditForm(props) {
             multiline
             value={blogToEdit && blogToEdit[0].body}
             maxRows={4}
+            style={{ marginTop:"10px"}}
             name="body"
-          />
-          <Button variant="contained">Update</Button>
+          /></>}
+          {!isUpdated && <Button variant="contained" onClick={handleUpdate} style={{ margin:"10px",marginLeft:"0px"}}>Update</Button>}
+          {isUpdated && <Button variant="contained" onClick={handleClose} style={{ margin:"10px",marginLeft:"0px"}}>Return</Button>}
         </Box>
       </Modal>
     </div>
