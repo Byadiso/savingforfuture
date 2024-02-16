@@ -46,7 +46,7 @@ function SingleBlog() {
     <div>
       <Navbar />
       {blog && (
-        <Card sx={{ maxWidth: "80%", margin: "50px" }}>
+        <Card sx={{ maxWidth: "85%", margin: "50px", marginBottom:"100px" }}>
           <CardMedia
             component="img"
             height="194"

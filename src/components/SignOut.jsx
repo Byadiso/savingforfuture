@@ -9,7 +9,7 @@ import { LogoutUser } from "../firebase/Authentication";
 import "../Style/user.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-export default function SignOutDiaolog() {
+export default function SignOutDiaolog(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -27,9 +27,19 @@ export default function SignOutDiaolog() {
 
   return (
     <React.Fragment>
-      <div style={{display:"flex", alignItems:"center", justifyContent: "center"}}> 
-        <p variant="none" className="logout" onClick={handleClickOpen}>
-          <LogoutIcon />
+      <div       
+      >
+        <p
+          variant="none"
+          className="logout"
+          onClick={handleClickOpen}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <LogoutIcon className={props.logoutClass} />
           Sign out
         </p>
       </div>
