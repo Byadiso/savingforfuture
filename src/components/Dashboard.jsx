@@ -15,8 +15,10 @@ import { listBlog } from "../firebase/getBlogs";
 import SkeletonDashboard from "../Skeletons/SkeletonDashboard";
 import styled from "@emotion/styled";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditNoteIcon from "@mui/icons-material/EditNote";
+// import EditNoteIcon from "@mui/icons-material/EditNote";
+import AddIcon from '@mui/icons-material/Add';
 import EditForm from "./EditForm";
+import CreateBlog from "./CreateBlog";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
@@ -50,7 +52,6 @@ function Dashboard() {
   return (
     <div>
       <Navbar />
-
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
@@ -88,6 +89,7 @@ function Dashboard() {
                     backgroundColor: (theme) =>
                       theme.palette.mode === "dark" ? "#1A2027" : "#fff",
                   }}
+                  key={blog.uid_key}
                 >
                   <Grid container spacing={2}>
                     <Grid item xs={4}>
@@ -105,7 +107,7 @@ function Dashboard() {
                         direction="column"
                         spacing={1}
                       >
-                        <Grid item  xs={6}>
+                        <Grid item xs={6}>
                           <Typography gutterBottom variant="h6" component="div">
                             {blog.title}
                           </Typography>
@@ -113,16 +115,16 @@ function Dashboard() {
                           <Grid item xs={12}>
                             <Tooltip title="Delete">
                               <IconButton>
-                                <DeleteIcon style={{color:"pink"}}/>
+                                <DeleteIcon style={{ color: "pink" }} />
                               </IconButton>
                             </Tooltip>
-                     
-                            <Tooltip title="Edit">
-                              <IconButton>
-                                <EditNoteIcon /> 
-                                {/* <EditForm /> */}
-                              </IconButton>
-                            </Tooltip>
+
+                            {/* <Tooltip title="Edit">
+                              <IconButton> */}
+                                {/* <EditNoteIcon />  */}
+                                <EditForm id={blog.id} />
+                              {/* </IconButton>
+                            </Tooltip> */}
                           </Grid>
                         </Grid>
                       </Grid>
@@ -142,9 +144,12 @@ function Dashboard() {
                 </div>
                 <div className="dashboard_categories">
                   <h1>Dashboard</h1>
-                  <a href="./add_blog.html" id="add">
-                    <i className="fa fa-plus"></i>Add Blog
-                  </a>
+
+                  {/* <IconButton>
+                    <AddIcon style={{ color: "grey" }} /> */}
+                    <CreateBlog />
+                  {/* </IconButton> */}
+
                   <a href="./user.html" id="info">
                     <i className="fa fa-info"></i>My info
                   </a>
