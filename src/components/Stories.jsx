@@ -7,6 +7,7 @@ import loadingImage from "../images/loading.gif";
 import StoryBlock from "./StoryBlock";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { Grid } from "@mui/material";
 
 // const RequestLink = "https://shortstories-api.onrender.com/stories";
 
@@ -14,62 +15,60 @@ function Stories() {
   const [storyList, setStoryList] = useState([]);
 
   const fetchStory = (setStoryList) => {
-    getStories().then((Stories) => {
-      console.log(Stories.slice(0, 10));
+    getStories().then((Stories) => {     
       setStoryList(Stories);
     });
   };
 
-  // console.log(storyList.length===0);
+
 
   useEffect(() => {
-    // const unsubscribe = () => {
+   
     fetchStory(setStoryList);
-    // };
-    // return () => unsubscribe();
+    
   }, []);
   return (
     <div>
       <Navbar />
-      {/* <section> */}
 
       <div className="stories_section">
         <div className="stories_item_content" id="books_item_content">
           {storyList.length === 0 && (
-            <Box sx={{ display: "flex"}}>
+            <Box sx={{ display: "flex" }}>
               <CircularProgress />
             </Box>
           )}
-          {storyList ? (
-            storyList.map((story, index) => (
-              <StoryBlock
-                key={index}
-                id={story._id}
-                title={story.title}
-                story={story.story}
-                moral={story.moral}
-                author={story.author}
+          <Grid
+            container
+            spacing={{ xs: 1, md: 2 }}
+            columns={{ xs: 2, sm: 6, md: 12 }}
+          >
+            {storyList ? (
+              storyList.map((story, index) => (
+                <Grid item xs={6} key={index}>
+                  <StoryBlock
+                    id={story._id}
+                    number ={index+1}
+                    title={story.title}
+                    story={story.story}
+                    moral={story.moral}
+                    author={story.author}
+                  />
+                </Grid>
+              ))
+            ) : (
+              <img
+                id="loading"
+                src={loadingImage}
+                alt="loading trick"
+                srcSet=""
+                width="100px"
+                margin-bottom="100px"
               />
-            ))
-          ) : (
-            <img
-              id="loading"
-              src={loadingImage}
-              alt="loading trick"
-              srcSet=""
-              width="100px"
-              margin-bottom="100px"
-            />
-          )}
+            )}
+          </Grid>
         </div>
-
-        {/* {storyList.length===0  && (
-            <button id="load_more_button" className="">
-              Load more
-            </button>
-          )} */}
       </div>
-      {/* </section> */}
       <Footer />
     </div>
   );

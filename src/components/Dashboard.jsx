@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import {
-  Box,
-  ButtonBase,
-  Divider,
-  Grid,
-  IconButton,
-  Paper,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, ButtonBase, Card, Grid, Paper, Typography } from "@mui/material";
 import { listBlog } from "../firebase/getBlogs";
 import SkeletonDashboard from "../Skeletons/SkeletonDashboard";
 import styled from "@emotion/styled";
-import DeleteIcon from "@mui/icons-material/Delete";
-// import EditNoteIcon from "@mui/icons-material/EditNote";
-import AddIcon from "@mui/icons-material/Add";
 import EditForm from "./EditForm";
 import CreateBlog from "./CreateBlog";
 import DeleteModal from "./DeleteModal";
@@ -24,20 +12,7 @@ import DeleteModal from "./DeleteModal";
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
 
-  let blogNumber = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-  ];
+  let blogNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   const Img = styled("img")({
     margin: "auto",
@@ -59,7 +34,7 @@ function Dashboard() {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 8, md: 12 }}
         >
-          <Grid item xs={8} style={{marginBottom: "70px",}}>
+          <Grid item xs={8} style={{ marginBottom: "70px" }}>
             {blogList.length === 0 &&
               blogNumber.map((blogskeletom, index) => (
                 <Paper
@@ -81,18 +56,18 @@ function Dashboard() {
               ))}
             {blogList &&
               blogList.map((blog, index) => (
-                <Paper
+                <Card
                   sx={{
                     p: 1,
-                    margin: "20px",                     
+                    margin: "20px",
                     maxWidth: 1000,
                     flexGrow: 1,
                     backgroundColor: (theme) =>
                       theme.palette.mode === "dark" ? "#1A2027" : "#fff",
                   }}
-                  key={blog.uid_key}
+                  key={index}
                 >
-                  <Grid container spacing={2} >
+                  <Grid container spacing={2} key={index}>
                     <Grid item xs={4}>
                       <ButtonBase
                         sx={{ width: 100, height: 100, borderRadius: "50%" }}
@@ -113,7 +88,14 @@ function Dashboard() {
                             {blog.title}
                           </Typography>
 
-                          <Grid item xs={12} style={{display: "flex", justifyContent:"center"}}>
+                          <Grid
+                            item
+                            xs={12}
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
                             <DeleteModal id={blog.id} />
                             <EditForm id={blog.id} />
                           </Grid>
@@ -121,8 +103,7 @@ function Dashboard() {
                       </Grid>
                     </Grid>
                   </Grid>
-                  {/* <Divider /> */}
-                </Paper>
+                </Card>
               ))}
           </Grid>
 
@@ -135,8 +116,10 @@ function Dashboard() {
                 </div>
                 <div className="dashboard_categories">
                   <h1>Dashboard</h1>
-
-                  <CreateBlog />
+                            <div style={{display: "flex", justifyContent:"center", alignItems:"center"}}>
+                            <CreateBlog /> <p>Add a blog</p>
+                            </div>
+                 
 
                   <a href="./user.html" id="info">
                     <i className="fa fa-info"></i>My info

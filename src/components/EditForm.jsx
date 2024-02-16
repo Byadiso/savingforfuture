@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import { IconButton, TextField  } from "@mui/material";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { listBlog } from "../firebase/getBlogs";
+import InputFileUpload from "./InputComonents/FileUpload";
 
 export default function EditForm(props) {
   const [blogs, setBlogList] =useState([])
@@ -89,6 +90,7 @@ export default function EditForm(props) {
             style={{ marginTop:"10px"}}
             name="body"
           /></>}
+          {!isUpdated && <InputFileUpload />}
           {!isUpdated && <Button variant="contained" onClick={handleUpdate} style={{ margin:"10px",marginLeft:"0px"}}>Update</Button>}
           {isUpdated && <Button variant="contained" onClick={handleClose} style={{ margin:"10px",marginLeft:"0px"}}>Return</Button>}
         </Box>

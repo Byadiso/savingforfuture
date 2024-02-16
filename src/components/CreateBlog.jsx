@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { IconButton, TextField, Tooltip } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import InputFileUpload from "./InputComonents/FileUpload";
 
 export default function CreateBlog(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [isCreated, setIsCreated] = useState(false)
 
   const handleOpen = () => {
     setOpen(true);
@@ -57,8 +59,7 @@ export default function CreateBlog(props) {
             fullWidth
             margin="10px"
             padding="10px"
-            multiline
-            value=""
+            multiline           
             style={{ marginTop:"10px"}}
             maxRows={1}
             name="title"
@@ -66,12 +67,12 @@ export default function CreateBlog(props) {
           <TextField
             id="outlined-multiline-flexible"
             fullWidth
-            multiline
-            value=""
+            multiline           
             maxRows={4}
             style={{ marginTop:"10px"}}
             name="body"
           />
+          {!isCreated && <InputFileUpload />}
           <Button variant="contained" style={{ margin:"10px",marginLeft:"0px"}}>Create</Button>
         </Box>
       </Modal>
