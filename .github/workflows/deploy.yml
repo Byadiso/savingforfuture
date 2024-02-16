@@ -41,11 +41,8 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
       - name: Clear npm cache
-        run: npm cache clean --force
-      
-      - name: Install dependencies
-        run: npm ci
-      
+        run: npm cache clean --force   
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
