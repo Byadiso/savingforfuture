@@ -1,8 +1,7 @@
 import React from "react";
 import "../Style/Stories.css";
-import {
-    FaVolumeDown,
-  } from "react-icons/fa";
+import { FaVolumeDown } from "react-icons/fa";
+
 
 function StoryBlock(props) {
   return (
@@ -10,8 +9,7 @@ function StoryBlock(props) {
       <h3 className="story" data-id={props.id}>
         {props.title}
       </h3>
-      <FaVolumeDown className="icon" data-story={props.story.toString()}/>
-    
+      <FaVolumeDown className="icon" data-story={props.story.toString()} />
 
       <p className="story" data-id={props.id}>
         {props.story}

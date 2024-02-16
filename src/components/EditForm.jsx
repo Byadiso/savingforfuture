@@ -1,81 +1,37 @@
-import React from 'react'
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import { IconButton, Tooltip } from '@mui/material';
+import React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { IconButton, Tooltip } from "@mui/material";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 
-
-  
-      //  <div className="edit_blog_form hide" id="form_edit">
-      //           <div className="close_overlay_button">
-      //             <h1>X</h1>
-      //           </div>
-      //           <input
-      //             type="text"
-      //             name="title"
-      //             id="title_update"
-      //             placeholder="add title"
-      //           />
-
-      //           <textarea
-      //             type="text"
-      //             name="body"
-      //             id="body_update"
-      //             placeholder="Add your content here edit"
-      //           ></textarea>
-
-      //           <input
-      //             type="file"
-      //             name="image"
-      //             id="image_update"
-      //             placeholder="add image"
-      //           />
-
-      //           <input
-      //             className="addBlog add_blog_button"
-      //             type="submit"
-      //             value="Update Blog"
-      //             id="updateBlog"
-      //           />
-      //           <input
-      //             className="add_blog_button"
-      //             type="submit"
-      //             value="Cancel"
-      //             id="cancel_button"
-      //           />
-      //         </div>
-   
-
-
-export default function EditModal() {
+export default function EditForm() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
-  
 
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
       <Tooltip title="Edit">
-                              <IconButton>
-                                <EditNoteIcon /> 
-                                <EditModal />
-                              </IconButton>
-                            </Tooltip>
+        <IconButton>
+          <EditNoteIcon />
+          <EditModal />
+        </IconButton>
+      </Tooltip>
       <Modal
         open={open}
         onClose={handleClose}
