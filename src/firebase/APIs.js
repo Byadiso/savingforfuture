@@ -1,4 +1,4 @@
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import app from "./Firebase";
 

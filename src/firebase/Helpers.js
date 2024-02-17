@@ -1,9 +1,5 @@
 export const checkMyValue = (user, setError, isRegister) => {
-  // let emailInput = user.email;
-  // let passwordInput = user.password;
-  // let firstname = user.firstname;
-  // let lastname = user.lastname;
-
+ 
   let {email:emailInput, password:passwordInput, firstname, lastname}= user
 
   if (!emailInput && !passwordInput) {

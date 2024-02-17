@@ -23,8 +23,7 @@ export const isAuthenticated = (setIsloggedState, userId) => {
 
 export const login = (email, password) => {
   signInWithEmailAndPassword(Auth, email, password)
-    .then((userCredential) => {
-      // Signed in
+    .then((userCredential) => {     
       const user = userCredential.user;
       console.log("logged in successfull");
     })
@@ -41,8 +40,7 @@ export const register = (firstname, lastname, email, password) => {
     password,
     firstname,
     lastname
-  ).then((userCredential) => {
-    // Signed in
+  ).then((userCredential) => {   
     const user = userCredential.user;
     const userData = {
       firstname: firstname,
@@ -71,8 +69,7 @@ export const LogoutUser = () => {
     .then(() => {
       console.log("// Sign-out successful.");
     })
-    .catch((error) => {
-      // An error happened.
+    .catch((error) => {     
       console.log(error);
     });
 };
