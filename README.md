@@ -1,4 +1,5 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bfc4eb23-4749-4753-8708-d8eac0c3594a/deploy-status)](https://app.netlify.com/sites/learnbywritingv2/deploys)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ac2c8eeb-7293-489f-a00b-6c4808240c71/deploy-status)](https://app.netlify.com/sites/learnbywritingv3/deploys)
 
 # LearnBywritingV3
 
@@ -18,7 +19,7 @@ LearnBywritingV3 is a project made to improve the language learning process via 
 
 ### My live project can be access by visit this link 
 
-- Github Pages: https://byadiso.github.io/learnbywrittingV3/index.html
+- Github Pages: https://byadiso.github.io/learnbywrittingV3/
 - Netlify : https://learnbywrittingv3.netlify.app/
 
 
@@ -35,7 +36,7 @@ LearnBywritingV3 is a project made to improve the language learning process via 
 
 # Installation
 
-- \$ git clone https://github.com/Byadiso/learnByWritingv2.git
+- \$ git clone https://github.com/Byadiso/learnByWritingv3.git
 - \$ cd learnByWritingv3
 
 # Contributing
