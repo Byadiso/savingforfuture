@@ -1,12 +1,7 @@
-import React, { StrictMode } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
-import { BrowserRouter } from "react-router-dom";
-// import { BrowserRouter as Router, Route, Link, BrowserRouter } from 'react-router-dom'
-// import Stories from './components/Stories';
-// import ListBlogs from './components/ListBlogs';
-// import Dashboard from './components/Dashboard';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
