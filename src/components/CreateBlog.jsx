@@ -30,8 +30,7 @@ export default function CreateBlog(props) {
     boxShadow: 24,
     p: 4,
   };
-  useEffect(() => {
-    // listBlog(setBlogList);
+  useEffect(() => {    
   }, []);
 
   return (

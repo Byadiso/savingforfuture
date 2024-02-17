@@ -10,8 +10,7 @@ function NoMatch() {
       
       <div className='not_found'>
       <p > 404 No Match found!</p>
-      </div>
-      
+      </div>     
 
       <Footer />
       

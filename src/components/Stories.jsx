@@ -4,8 +4,6 @@ import Footer from "./Footer";
 import "../Style/Stories.css";
 import { getStories } from "../firebase/APIs";
 import StoryBlock from "./StoryBlock";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
 import SkeletonStory from "../Skeletons/SkeletonStory";
 

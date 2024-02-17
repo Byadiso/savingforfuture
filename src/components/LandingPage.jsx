@@ -13,7 +13,7 @@ import Footer from "./Footer";
 import { listBlog, listVocabularies } from "../firebase/getBlogs";
 import { Link } from "react-router-dom";
 import { getStories } from "../firebase/APIs";
-import { isAuthenticated } from "../firebase/Authentication";
+// import { isAuthenticated } from "../firebase/Authentication";
 
 function LandingPage() {
   const [blogList, setBlogList] = useState([]);
@@ -104,8 +104,7 @@ function LandingPage() {
         </div>
 
         <div className="who_section">
-          <div className="main_who">
-            {/* <!-- main who --> */}
+          <div className="main_who">       
 
             <div className="main_who_items">
               <img className="who_image" src={tellstory} alt="book" />
@@ -118,7 +117,7 @@ function LandingPage() {
         </div>
       </div>
 
-      {/* <!-- Services section --> */}
+
       <div className="Service_header">
         <h1>Check below your interest...</h1>
         </div>
