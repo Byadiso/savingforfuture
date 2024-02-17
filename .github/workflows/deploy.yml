@@ -16,6 +16,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set CI environment variable to false
+        run: echo "CI=false" >> $GITHUB_ENV
+        
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Detect package manager
