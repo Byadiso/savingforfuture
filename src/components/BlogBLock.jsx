@@ -28,7 +28,7 @@ function BlogBLock(props) {
 
 
   return (
-    <Card sx={{ maxWidth: 345, margin: "20px", marginBottom:"50px" }}>
+    <Card sx={{ maxWidth: 345, margin: "20px"}}>
       <CardMedia
         data-id={props.uid_key}
         sx={{ height: 140 }}

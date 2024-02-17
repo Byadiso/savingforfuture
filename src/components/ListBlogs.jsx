@@ -19,38 +19,38 @@ function ListBlogs() {
 
   return (
     <div>
-      <Navbar />   
+      <Navbar />
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
-        >     
+          style={{
+            paddingTop: "20px",
+            marginBottom: "100px"
+          }}
+        >
           {blogList.length === 0 &&
             blogNumber.map((blogskeletom, index) => (
               <Grid item xs={2} sm={4} md={4} key={index}>
-              <SkeletonBlog key={index} />
+                <SkeletonBlog key={index} />
               </Grid>
             ))}
           {blogList &&
             blogList.map((blog, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index}>
-              <BlogBLock
-                key={index}
-                id={blog.id}
-                body={blog.body}
-                Image={blog.Image}
-                title={blog.title}
-                uid_key={blog.uid_key}
-              />
+              <Grid item xs={2} sm={4} md={4} key={index} >
+                <BlogBLock
+                  key={index}
+                  id={blog.id}
+                  body={blog.body}
+                  Image={blog.Image}
+                  title={blog.title}
+                  uid_key={blog.uid_key}
+                />
               </Grid>
             ))}
-        
         </Grid>
-      </Box>     
-
-      <div className="button_control" id="button_control"></div>
-     
+      </Box>
       <Footer />
     </div>
   );

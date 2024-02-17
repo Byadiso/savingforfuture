@@ -26,6 +26,9 @@ function LandingPage() {
   const blogNumber = blogList.length;
   const vocabularyNumber = vocabularyList.length;
   const storiesNumber = storyList.length;
+  const style = {
+    display:"flex",justifyContent:"center", alignItems:"center", padding:"20px"
+  }
 
   function Stories() {
     getStories().then((Stories) => {
@@ -43,27 +46,27 @@ function LandingPage() {
       <Navbar />
       <div className="hero_section">
         <div>
-          <h3>I am looking for...</h3>
+          <h2>I am looking for...</h2>
         </div>
-
         <div className="hero_section_header">
-          <div className="hero_section_header_blue">
-            <h4>
-              A story to <strong>read</strong>
-              <FaArrowAltCircleDown />
+          <div className="hero_section_header_blue" style={style}>
+            <h4 >
+              A story to <strong>read</strong>              
             </h4>
+            <FaArrowAltCircleDown />
           </div>
-          <div className="hero_section_header_red">
+          <div className="hero_section_header_red" style={style}>
             <h4>
-              A story to <strong>Write</strong>
-              <FaArrowAltCircleDown />
+              A story to <strong>Write</strong>             
             </h4>
+            <FaArrowAltCircleDown />
           </div>
-          <div className="hero_section_header_green">
+          <div className="hero_section_header_green" style={style}>
             <h4>
               A vocabulary to <strong>read</strong>
-              <FaArrowAltCircleDown />
+             
             </h4>
+            <FaArrowAltCircleDown />
           </div>
         </div>
       </div>
