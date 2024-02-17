@@ -1,6 +1,9 @@
 import "../Style/LandingPage.css";
 import React, { useEffect, useState } from "react";
 import tellstory from "../images/tellstory.png";
+import writeImage from "../images/write.png";
+import readImage from "../images/reading.png";
+
 import {
   FaArrowAltCircleDown,
   FaPenSquare,
@@ -22,19 +25,18 @@ function LandingPage() {
 
   const blogNumber = blogList.length;
   const vocabularyNumber = vocabularyList.length;
-  const storiesNumber = storyList.length
+  const storiesNumber = storyList.length;
 
   function Stories() {
-    getStories().then(Stories =>{
-      setStoryListList(Stories)     
-    })
+    getStories().then((Stories) => {
+      setStoryListList(Stories);
+    });
   }
 
-  useEffect(() => {    
+  useEffect(() => {
     listBlog(setBlogList);
     listVocabularies(setVocabularyList);
-    Stories() 
-    
+    Stories();
   }, []);
   return (
     <div>
@@ -66,24 +68,29 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="main_content">
-        <div>
-          <p>
+      <div className="main_content" style={{ backgroundImage: writeImage }}>
+        <div style={{ display: "flex", flexDirection:"row"}}>
+          <p style={{ color: "#818181" }}>
             "Unleash Brainy-Power! It's like a word carnival! Dive into a
             word-o-rama filled with definitions, examples, and surprises.
             Whether you're unraveling word mysteries or just exploring, join the
             word-party meant for language champs and the etymology-curious!"
           </p>
-          <input type="button" value="Learn our vocabularies here" />
+          <img src={writeImage} alt="wite" style={{ width: "30%" }} />         
         </div>
-        <div>
-          <p>
-            "Step into Storyland! Where tales grow like wildflowers (minus the
-            pollen!). Get set for adventures that'll whisk you off to enchanted
-            worlds. From epic quests to cozy tales, our stories are more
-            gripping than a squirrel with a treasure map!"
+        <div style={{ display: "flex", flexDirection:"column", alignItems:"end"}}>
+          {/* <img src={readImage} alt="read" style={{ width: "30%" }} /> */}
+          <p style={{ color: "#818181" }}>
+            {" "}
+            <em>
+              "Step into Storyland! Where tales grow like wildflowers (minus the
+              pollen!). Get set for adventures that'll whisk you off to
+              enchanted worlds. From epic quests to cozy tales, our stories are
+              more gripping than a squirrel with a treasure map!"
+            </em>
           </p>
-          <input type="button" value="Read our recent stories here" />
+
+         
         </div>
       </div>
 
@@ -104,8 +111,7 @@ function LandingPage() {
         </div>
 
         <div className="who_section">
-          <div className="main_who">       
-
+          <div className="main_who">
             <div className="main_who_items">
               <img className="who_image" src={tellstory} alt="book" />
               <div>
@@ -117,13 +123,11 @@ function LandingPage() {
         </div>
       </div>
 
-
       <div className="Service_header">
         <h1>Check below your interest...</h1>
-        </div>
+      </div>
       <div className="service_section">
-       
-        <div className="service_content">        
+        <div className="service_content">
           <div className="service_item">
             <div className="app_link banner_and_icon">
               <FaPenSquare />
