@@ -27,13 +27,20 @@ function Stories() {
     <div>
       <Navbar />
 
-      <div className="stories_section">
-        <div className="stories_item_content" id="books_item_content">
+      {/* <div className="stories_section"> */}
+        {/* <div className="stories_item_content" id="books_item_content"> */}
           
           <Grid
             container
-            spacing={{ xs: 1, md: 2 }}
+            spacing={{ xs: 2, md: 2 }}
             columns={{ xs: 2, sm: 6, md: 12 }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "70px",
+              paddingTop: "40px",
+            }}            
           >
             {storyList.length === 0 &&
               storyNumber.map((blogskeleton, index) => (
@@ -43,7 +50,7 @@ function Stories() {
               ))}
             {storyList &&
               storyList.map((story, index) => (
-                <Grid item xs={6} key={index}>
+                <Grid item xs={12} key={index}>
                   <StoryBlock
                     id={story._id}
                     number={index + 1}
@@ -55,8 +62,8 @@ function Stories() {
                 </Grid>
               ))}
           </Grid>
-        </div>
-      </div>
+        {/* </div> */}
+      {/* </div> */}
       <Footer />
     </div>
   );

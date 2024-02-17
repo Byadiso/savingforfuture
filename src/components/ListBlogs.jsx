@@ -38,7 +38,7 @@ function ListBlogs() {
             ))}
           {blogList &&
             blogList.map((blog, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index} >
+              <Grid item xs={4} sm={4} md={4} key={index} >
                 <BlogBLock
                   key={index}
                   id={blog.id}

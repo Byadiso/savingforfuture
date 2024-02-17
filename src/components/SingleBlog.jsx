@@ -25,13 +25,15 @@ function SingleBlog() {
   let id = useParams().id.split("id=")[1];
 
   let blog = blogList.find((blog) => blog.uid_key.toString() === id);
+
+  let color =["#818181", "#29b4e2","rgb(0, 0, 0)"]
   
 
   let getTime = (timeStamp)=>{
         const time = new Date(timeStamp);
     var date = ("0" + time.getDate()).slice(-2);
     var yr = time.getFullYear();
-    // extracting month from the date object as 2 digit
+    
     var mth = ("0" + (time.getMonth() + 1)).slice(-2);
 
     var dateDisplay = date + "/" + mth + "/" + yr
@@ -54,7 +56,7 @@ function SingleBlog() {
             alt="photo_blog"
           />
           <CardContent>
-            <Typography variant="h4" color="text.primary">
+            <Typography variant="h4" color={color[2]}>
               {blog.title}
             </Typography>
           </CardContent>
@@ -68,9 +70,7 @@ function SingleBlog() {
             </IconButton>
             <IconButton aria-label="comment">
               <CommentIcon />
-            </IconButton>
-
-            
+            </IconButton>          
 
             <ScoreIcon style={{ marginLeft: "60px" }} />
             <Typography
@@ -90,8 +90,8 @@ function SingleBlog() {
               {getTime(blog.createdAt)}
             </Typography>
           </CardActions>
-          <CardContent>
-            <Typography>{blog.body}</Typography>
+          <CardContent style={{margin:"20px", marginBottom:"50px", color:color[1]}}>
+            <Typography style={{ color:color[0]}}>{blog.body}</Typography>
           </CardContent>
         </Card>
       )}
