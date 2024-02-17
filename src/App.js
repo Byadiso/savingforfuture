@@ -13,7 +13,7 @@ import NoMatch from "./components/NoMatch.jsx";
 import SingleBlog from "./components/SingleBlog.jsx";
 import Logout from "./components/Logout.jsx";
 import User from "./components/UserProfile.jsx";
-import Register from "./components/Register.jsx";
+import Register from "./components/RegisterComponent.jsx";
 
 
 function App() {
