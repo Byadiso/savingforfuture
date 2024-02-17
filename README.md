@@ -3,7 +3,7 @@
 
 # LearnBywritingV3
 
-LearnBywritingV3 is a project made to improve the language learning process via writing and reading. With learnByWritingV3, you build easily your writing,journing easy. This time V3 is implemented using improved technologies like React, Firebase, Redux, socket.io and more.
+LearnBywritingV3 is a project made to improve the language learning process via writing and reading. With learnByWritingV3, you build easily your writing,journing easy. This time V3 is implemented using improved technologies like React, Firebase, Redux and more.
 
 # TABLE OF CONTENTS
 
