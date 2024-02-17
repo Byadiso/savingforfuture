@@ -14,7 +14,7 @@ concurrency:
 jobs:
     # build job
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
