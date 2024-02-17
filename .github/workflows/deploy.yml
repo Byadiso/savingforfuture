@@ -14,7 +14,7 @@ concurrency:
 jobs:
     # build job
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

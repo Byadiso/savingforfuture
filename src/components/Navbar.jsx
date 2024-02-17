@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { isAuthenticated } from "../firebase/Authentication";
 import SignOutDiaolog from "./SignOut";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import PersonIcon from "@mui/icons-material/Person";
