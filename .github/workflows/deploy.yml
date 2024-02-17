@@ -12,7 +12,7 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 jobs:
-    # build job
+  # build job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -41,7 +41,7 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
       - name: Clear npm cache
-        run: npm cache clean --force   
+        run: npm cache clean --force
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -50,7 +50,7 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Build project
+      - name: Build project why failing?
         run: ${{ steps.detect-package-manager.outputs.runner }} npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
