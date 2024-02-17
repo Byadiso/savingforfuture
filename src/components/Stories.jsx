@@ -26,44 +26,38 @@ function Stories() {
   return (
     <div>
       <Navbar />
-
-      {/* <div className="stories_section"> */}
-        {/* <div className="stories_item_content" id="books_item_content"> */}
-          
-          <Grid
-            container
-            spacing={{ xs: 2, md: 2 }}
-            columns={{ xs: 2, sm: 6, md: 12 }}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "70px",
-              paddingTop: "40px",
-            }}            
-          >
-            {storyList.length === 0 &&
-              storyNumber.map((blogskeleton, index) => (
-                <Grid item xs={1} sm={6} md={6} key={index}>
-                  <SkeletonStory key={index} />
-                </Grid>
-              ))}
-            {storyList &&
-              storyList.map((story, index) => (
-                <Grid item xs={12} key={index}>
-                  <StoryBlock
-                    id={story._id}
-                    number={index + 1}
-                    title={story.title}
-                    story={story.story}
-                    moral={story.moral}
-                    author={story.author}
-                  />
-                </Grid>
-              ))}
-          </Grid>
-        {/* </div> */}
-      {/* </div> */}
+      <Grid
+        container
+        spacing={{ xs: 2, md: 2 }}
+        columns={{ xs: 2, sm: 6, md: 12 }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "70px",
+          paddingTop: "40px",
+        }}
+      >
+        {storyList.length === 0 &&
+          storyNumber.map((blogskeleton, index) => (
+            <Grid item xs={1} sm={6} md={6} key={index}>
+              <SkeletonStory key={index} />
+            </Grid>
+          ))}
+        {storyList &&
+          storyList.map((story, index) => (
+            <Grid item xs={12} key={index}>
+              <StoryBlock
+                id={story._id}
+                number={index + 1}
+                title={story.title}
+                story={story.story}
+                moral={story.moral}
+                author={story.author}
+              />
+            </Grid>
+          ))}
+      </Grid>
       <Footer />
     </div>
   );
