@@ -16,7 +16,7 @@ import Footer from "./Footer";
 import { listBlog, listVocabularies } from "../firebase/getBlogs";
 import { Link } from "react-router-dom";
 import { getStories } from "../firebase/APIs";
-// import { isAuthenticated } from "../firebase/Authentication";
+import { Grid } from "@mui/material";
 
 function LandingPage() {
   const [blogList, setBlogList] = useState([]);
@@ -69,17 +69,23 @@ function LandingPage() {
       </div>
 
       <div className="main_content" style={{ backgroundImage: writeImage }}>
-        <div style={{ display: "flex", flexDirection:"row"}}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
           <p style={{ color: "#818181" }}>
             "Unleash Brainy-Power! It's like a word carnival! Dive into a
             word-o-rama filled with definitions, examples, and surprises.
             Whether you're unraveling word mysteries or just exploring, join the
             word-party meant for language champs and the etymology-curious!"
           </p>
-          <img src={writeImage} alt="wite" style={{ width: "30%" }} />         
+          <img src={writeImage} alt="wite" style={{ width: "30%", margin:"25px" }} />
         </div>
-        <div style={{ display: "flex", flexDirection:"column", alignItems:"end"}}>
-          {/* <img src={readImage} alt="read" style={{ width: "30%" }} /> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "end",
+          }}
+        >
+         
           <p style={{ color: "#818181" }}>
             {" "}
             <em>
@@ -89,79 +95,80 @@ function LandingPage() {
               more gripping than a squirrel with a treasure map!"
             </em>
           </p>
-
-         
         </div>
       </div>
 
-      <div className="main_who_static_section">
-        <div className="statistic_section">
-          <div className="stat_content">
-            <span id="number_blog">{blogNumber}</span>
-            <h4>Written blogs</h4>
-          </div>
-          <div className="stat_content stat_content_middle">
-            <span id="number_books">{vocabularyNumber}</span>
-            <h4>New words</h4>
-          </div>
-          <div className="stat_content">
-            <span id="number_users">{storiesNumber}</span>
-            <h4>Short stories</h4>
-          </div>
+      <div
+        className="main_who_static_section"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "50px",
+          color: "white",
+        }}
+      >
+       
+        <div className="stat_content">
+          <span id="number_blog">{blogNumber}</span>
+          <h3 style={{ color: "white" }}>Written blogs</h3>
         </div>
-
-        <div className="who_section">
-          <div className="main_who">
-            <div className="main_who_items">
-              <img className="who_image" src={tellstory} alt="book" />
-              <div>
-                <h2>Tell a story of your own...</h2>
-                <p>Just a paragraph today, don't worry with the rest.</p>
-              </div>
-            </div>
-          </div>
+        <div className="stat_content stat_content_middle">
+          <span id="number_books">{vocabularyNumber}</span>
+          <h3 style={{ color: "white" }}>New words</h3>
+        </div>
+        <div className="stat_content">
+          <span id="number_users">{storiesNumber}</span>
+          <h3 style={{ color: "white" }}>Short stories</h3>
         </div>
       </div>
 
-      <div className="Service_header">
-        <h1>Check below your interest...</h1>
-      </div>
-      <div className="service_section">
-        <div className="service_content">
-          <div className="service_item">
-            <div className="app_link banner_and_icon">
-              <FaPenSquare />
-              <Link to="/AddBlog">
-                <h4 className="service_title">Write English</h4>
-              </Link>
-            </div>
+      <Grid
+        container
+        spacing={{ xs: 1, md: 1 }}
+        columns={{ xs: 2, sm: 6, md: 12 }}
+        style={{
+          backgroundColor: "#29b4e2",
+          padding: "50px",
+          paddingBottom: "150px",
+        }}
+      >
+        <Grid item xs={3} className="service_item">
+          <div
+            className="app_link banner_and_icon"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <FaPenSquare />
+            <Link to="/AddBlog">
+              <h3 className="service_title">Write English</h3>
+            </Link>
           </div>
-          <div className="service_item">
-            <div className="app_link banner_and_icon">
-              <FaBookReader />
-              <Link to="/Vocabulary">
-                <h4 className="service_title">New vocabularies</h4>
-              </Link>
-            </div>
+        </Grid>
+        <Grid item xs={3} className="service_item">
+          <div className="app_link banner_and_icon">
+            <FaBookReader />
+            <Link to="/Vocabulary">
+              <h3 className="service_title">New vocabularies</h3>
+            </Link>
           </div>
-          <div className="service_item">
-            <div className="app_link banner_and_icon">
-              <FaBookOpen />
-              <Link to="/Stories">
-                <h4 className="service_title">Stories</h4>
-              </Link>
-            </div>
+        </Grid>
+        <Grid item xs={3} className="service_item">
+          <div className="app_link banner_and_icon">
+            <FaBookOpen />
+            <Link to="/Stories">
+              <h3 className="service_title">Stories</h3>
+            </Link>
           </div>
-          <div className="service_item">
-            <div className="app_link banner_and_icon">
-              <FaGamepad />
-              <a href="./page/games.html">
-                <h4 className="service_title">Play games</h4>
-              </a>
-            </div>
+        </Grid>
+        <Grid item xs={3} className="service_item">
+          <div className="app_link banner_and_icon">
+            <FaGamepad />
+            <Link to="/Games">
+              <h3 className="service_title">Play games</h3>
+            </Link>
           </div>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
       <Footer />
     </div>
   );
