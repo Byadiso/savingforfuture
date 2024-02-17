@@ -19,8 +19,10 @@ LearnBywritingV3 is a project made to improve the language learning process via 
 
 ### My live project can be access by visit this link 
 
-- Github Pages: https://byadiso.github.io/learnbywrittingV3/
-- Netlify : https://learnbywrittingv3.netlify.app/
+- Github Pages: https://byadiso.github.io/learnByWritingV3/
+- Netlify : https://learnbywritingv3.netlify.app
+
+
 
 
 # Build With
