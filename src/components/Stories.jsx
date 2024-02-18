@@ -4,13 +4,19 @@ import Footer from "./Footer";
 import "../Style/Stories.css";
 import { getStories } from "../firebase/APIs";
 import StoryBlock from "./StoryBlock";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import SkeletonStory from "../Skeletons/SkeletonStory";
+import ButtonForAction from "./InputComonents/ButtonForAction";
+import StoryFromChatGPT from "./StoryFromChatGPT";
+import StoryFunny from "./StoryFunny";
 
 // const RequestLink = "https://shortstories-api.onrender.com/stories";
 
 function Stories() {
   const [storyList, setStoryList] = useState([]);
+  const [isChatGpt, setIsChatGpt] = useState(false);
+  const [isFun, setIsFun] = useState(false);
+  const [isAesop, setIsAesop] = useState(false);
 
   let storyNumber = ["1", "2", "3", "4", "5", "6"];
 
@@ -20,12 +26,47 @@ function Stories() {
     });
   };
 
+  const handleAesop = () => {
+    setIsAesop(true);
+    setIsChatGpt(false);
+    setIsFun(false);
+    console.log("let open aesop");
+  };
+  const handleFun = () => {
+    setIsFun(true);
+    setIsAesop(false);
+    setIsChatGpt(false);
+    console.log("let open Fun");
+  };
+  const handleChatGPT = () => {
+    setIsChatGpt(true);
+    setIsAesop(false);
+    setIsFun(false);
+    console.log("let open chatGPT");
+  };
+
   useEffect(() => {
     fetchStory(setStoryList);
-  }, []);
+  }, [isChatGpt, isFun, isAesop]);
   return (
     <div>
       <Navbar />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "Row",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "10px",
+        }}
+      >
+        <ButtonForAction
+          type={"check stories crafted by ChatGPT"}
+          action={handleChatGPT}
+        />
+        <ButtonForAction type={"check Aesop's Fables"} action={handleAesop} />
+        <ButtonForAction type={"check something funny"} action={handleFun} />
+      </div>
       <Grid
         container
         spacing={{ xs: 2, md: 2 }}
@@ -44,7 +85,8 @@ function Stories() {
               <SkeletonStory key={index} />
             </Grid>
           ))}
-        {storyList &&
+        {isAesop &&
+          storyList &&
           storyList.map((story, index) => (
             <Grid item xs={12} key={index}>
               <StoryBlock
@@ -57,6 +99,8 @@ function Stories() {
               />
             </Grid>
           ))}
+        {isChatGpt && <StoryFromChatGPT />}
+        {isFun && <StoryFunny />}
       </Grid>
       <Footer />
     </div>

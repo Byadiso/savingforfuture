@@ -8,9 +8,6 @@ import { LogoutUser, isAuthenticated } from "../firebase/Authentication";
 function Logout() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  //   console.log(isLoggedIn);
-
   const HandleLogOut = () => {
     LogoutUser();
   };

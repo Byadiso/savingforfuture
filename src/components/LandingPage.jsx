@@ -26,9 +26,13 @@ function LandingPage() {
   const blogNumber = blogList.length;
   const vocabularyNumber = vocabularyList.length;
   const storiesNumber = storyList.length;
+
   const style = {
-    display:"flex",justifyContent:"center", alignItems:"center", padding:"20px"
-  }
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px",
+  };
 
   function Stories() {
     getStories().then((Stories) => {
@@ -50,21 +54,20 @@ function LandingPage() {
         </div>
         <div className="hero_section_header">
           <div className="hero_section_header_blue" style={style}>
-            <h4 >
-              A story to <strong>read</strong>              
+            <h4>
+              A story to <strong>read</strong>
             </h4>
             <FaArrowAltCircleDown />
           </div>
           <div className="hero_section_header_red" style={style}>
             <h4>
-              A story to <strong>Write</strong>             
+              A story to <strong>Write</strong>
             </h4>
             <FaArrowAltCircleDown />
           </div>
           <div className="hero_section_header_green" style={style}>
             <h4>
               A vocabulary to <strong>read</strong>
-             
             </h4>
             <FaArrowAltCircleDown />
           </div>
@@ -79,7 +82,11 @@ function LandingPage() {
             Whether you're unraveling word mysteries or just exploring, join the
             word-party meant for language champs and the etymology-curious!"
           </p>
-          <img src={writeImage} alt="wite" style={{ width: "30%", margin:"25px" }} />
+          <img
+            src={writeImage}
+            alt="wite"
+            style={{ width: "30%", margin: "25px" }}
+          />
         </div>
         <div
           style={{
@@ -88,7 +95,6 @@ function LandingPage() {
             alignItems: "end",
           }}
         >
-         
           <p style={{ color: "#818181" }}>
             {" "}
             <em>
@@ -111,7 +117,6 @@ function LandingPage() {
           color: "white",
         }}
       >
-       
         <div className="stat_content">
           <span id="number_blog">{blogNumber}</span>
           <h3 style={{ color: "white" }}>Written blogs</h3>
@@ -124,6 +129,19 @@ function LandingPage() {
           <span id="number_users">{storiesNumber}</span>
           <h3 style={{ color: "white" }}>Short stories</h3>
         </div>
+      </div>
+      <div
+        style={{
+          backgroundColor: "#29b4e2",
+          padding: "20px",
+          color:"white"
+        }}
+      >
+        <h1 style={{
+                  padding: "20px",
+          color:"white"
+        }}>"Connect Through Words, Learn Through Writing!"</h1>
+        <hr />
       </div>
 
       <Grid

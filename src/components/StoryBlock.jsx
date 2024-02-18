@@ -35,8 +35,7 @@ function StoryBlock(props) {
           <Typography
             variant="p"
             color="text.secondary"            
-            data-id={props.id}   
-            style={{   padding:"100px" }}     
+            data-id={props.id}              
           >
            <strong>{props.moral}</strong> 
           </Typography>
