@@ -79,7 +79,7 @@ function Stories() {
           paddingTop: "40px",
         }}
       >
-        {storyList.length === 0 &&
+        {isAesop && storyList.length === 0 &&
           storyNumber.map((blogskeleton, index) => (
             <Grid item xs={1} sm={6} md={6} key={index}>
               <SkeletonStory key={index} />
