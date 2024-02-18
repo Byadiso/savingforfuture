@@ -14,7 +14,7 @@ import StoryFunny from "./StoryFunny";
 
 function Stories() {
   const [storyList, setStoryList] = useState([]);
-  const [isChatGpt, setIsChatGpt] = useState(false);
+  const [isChatGpt, setIsChatGpt] = useState(true);
   const [isFun, setIsFun] = useState(false);
   const [isAesop, setIsAesop] = useState(false);
 

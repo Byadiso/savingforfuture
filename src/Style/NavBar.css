@@ -129,15 +129,11 @@ body {
     background-color: #ddd;
 }
 
-/* Show the dropdown menu on hover */
+/* Show the dropdown menu on hover
 .dropdown:hover .dropdown-content {
-    display: block;
-    margin: 14px;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-/* .dropdown:hover .dropbtn {background-color: var(--textColorGrey);} */
-
+    display: none;
+    margin: 50px;
+} */
 
 /* i {
     color: var(--blueColor);
@@ -317,14 +313,12 @@ for ipads and tables */
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
-        /* color: var(--textColorGreyParagraph); */
+        flex-direction: column;       
         margin: 20px;        
     }
 
     .dropdown {
-       
-        margin-bottom: 10px;
+       margin-bottom: 10px;
     }
 
     .main_who_items img {

@@ -278,17 +278,14 @@ i {
 
 .main_who_static_section {
     background-color: black;
-    margin-top: -10px;
-    padding-top: 5px;
+   
 }
 
 .main_who_items {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--blueColor);
-    /* margin: 10px; */
-        
+    color: var(--blueColor);        
 }
 
 .who_header {
@@ -307,9 +304,7 @@ i {
 .main_who_items img {
     Width: 15%;
     height: 100%;
-    border-radius: 20px;
-    /* padding: 10px; */
-    margin: 20px
+    border-radius: 20px;  
 }
 
 .main_who_items p {
@@ -322,11 +317,11 @@ i {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-bottom: 100px;
+
 }
 
 .Service_header {
-    padding: 20px;
+
     color: var(--whiteColor);
     background-color: var(--blueColor);
 }
@@ -373,7 +368,6 @@ i {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 .service_form_item {
@@ -655,7 +649,7 @@ input[type=text], input[type=password], textarea {
 }
 
 .portfolio_nav h1:hover {
-    /* background:var(--colorforWeakGrey) */
+   
     border-bottom: 1px solid var(--colorforWeakGrey);
 }
 
@@ -682,29 +676,6 @@ input[type=text], input[type=password], textarea {
 
 .portfolio_image img:hover {
     border: 4px solid var(--colorforWeakGrey);
-}
-
-
-/* footer */
-footer .copyright {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--whiteColor);  
-}
-
-footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background-color: var(--blackColorHeader);
-    width: 100%;
-    color: white;
-    text-align: center;
-}
-
-.social_media i {
-    margin: var(--spacing);
 }
 
 
@@ -756,27 +727,7 @@ footer{
     .hero_section {
         font-size: .8rem;
     }
-    .hire_text {
-        font-size: .7rem;
-        min-width: 130px;
-    }
-
-    .statistic_section {
-        background-color: var(--whiteColor);
-        display: flex;       
-        color: var(--textColorGrey);
-        justify-content: center;
-        align-items: center;
-        padding: var(--spacing);
-        border-radius: 20px;
-        box-shadow: 0.1em 0.1em 0.2em;
-        box-shadow: none;
-        width: 100%;
-        margin-left: 5px;
-        margin-right: 10px;
-        margin-top: -35px;
-        padding: 10px
-    }
+  
 
 
     /* for main_who_items */
@@ -806,28 +757,8 @@ footer{
         all: unset;
     }
 
-    /* for portfolio */
-    .portfolio_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .portfolio_nav h1 {
-        font-size: 1rem;
-        margin: 0px;
-    }
-
-    /* for footer section */
-    footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background: var(--blackColor);
-        color: var(--whiteColor);
-        padding: 10px;
-    }   
+ 
+  
 }
 
 /* 
@@ -844,8 +775,7 @@ for ipads and tables */
     .menu {
         display: flex;
         justify-content: space-around;
-        flex-direction: column;
-        /* margin-bottom: 10px; */
+        flex-direction: column;        
     }
     .hero_section {
         font-size: .8rem;
@@ -866,9 +796,8 @@ for ipads and tables */
         box-shadow: none;
         width: 70%;
         margin-left: 150px;
-        /* margin-right: 10px; */
         margin-top: -25px;
-        /* padding: 10px; */
+       
     }
 
     /* for main_who_items */
@@ -876,8 +805,7 @@ for ipads and tables */
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
-        /* color: var(--textColorGreyParagraph); */
+        flex-direction: column;      
         margin: 20px;        
     }
 
@@ -932,8 +860,7 @@ for ipads and tables */
 /* 
   for dark mode */
 @media (prefers-color-scheme: dark) {
-    body {
-        /* background: #333; */
+    body {       
         color: white;
     }
 }

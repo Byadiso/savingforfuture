@@ -1,13 +1,11 @@
 import "../Style/LandingPage.css";
 import React, { useEffect, useState } from "react";
-import tellstory from "../images/tellstory.png";
+
 import writeImage from "../images/write.png";
-import readImage from "../images/reading.png";
 
 import {
   FaArrowAltCircleDown,
   FaPenSquare,
-  FaGamepad,
   FaBookOpen,
   FaBookReader,
 } from "react-icons/fa";
@@ -16,7 +14,7 @@ import Footer from "./Footer";
 import { listBlog, listVocabularies } from "../firebase/getBlogs";
 import { Link } from "react-router-dom";
 import { getStories } from "../firebase/APIs";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 
 function LandingPage() {
   const [blogList, setBlogList] = useState([]);
@@ -32,6 +30,7 @@ function LandingPage() {
     justifyContent: "center",
     alignItems: "center",
     padding: "20px",
+    color: "#29b4e2",
   };
 
   function Stories() {
@@ -48,62 +47,54 @@ function LandingPage() {
   return (
     <div>
       <Navbar />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "70px",
+          color: "#818181",
+        }}
+      >
+        <h1>
+          Welcome to <strong>LearnByWriting </strong>!
+        </h1>
+        <h4
+          style={{
+            fontWeight: 325,
+            fontSize: 25,
+          }}
+        >
+          <br /> Welcome to our world of learning through writing. Every
+          keystroke is a step in your language journey.
+          <br /> Join us in this transformative adventure of self-discovery.
+          Start your journey today and let's make every word count!
+        </h4>
+      </div>
       <div className="hero_section">
         <div>
-          <h2>I am looking for...</h2>
+          <h1 style={{ color: "white" }}>Are you looking for...</h1>
         </div>
         <div className="hero_section_header">
           <div className="hero_section_header_blue" style={style}>
-            <h4>
-              A story to <strong>read</strong>
-            </h4>
-            <FaArrowAltCircleDown />
+            <h2 style={{ color: "black" }}>
+              A story to <strong>read ? </strong>
+            </h2>
+            <FaArrowAltCircleDown style={{ margin: "10px", fontSize: 40 }} />
           </div>
           <div className="hero_section_header_red" style={style}>
-            <h4>
-              A story to <strong>Write</strong>
-            </h4>
-            <FaArrowAltCircleDown />
+            <h2 style={{ color: "black" }}>
+              A story to <strong>Write ?</strong>
+            </h2>
+            <FaArrowAltCircleDown style={{ margin: "10px", fontSize: 40 }} />
           </div>
           <div className="hero_section_header_green" style={style}>
-            <h4>
-              A vocabulary to <strong>read</strong>
-            </h4>
-            <FaArrowAltCircleDown />
+            <h2 style={{ color: "black" }}>
+              A vocabulary to <strong>read ?</strong>
+            </h2>
+            <FaArrowAltCircleDown style={{ margin: "10px", fontSize: 40 }} />
           </div>
-        </div>
-      </div>
-
-      <div className="main_content" style={{ backgroundImage: writeImage }}>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <p style={{ color: "#818181" }}>
-            "Unleash Brainy-Power! It's like a word carnival! Dive into a
-            word-o-rama filled with definitions, examples, and surprises.
-            Whether you're unraveling word mysteries or just exploring, join the
-            word-party meant for language champs and the etymology-curious!"
-          </p>
-          <img
-            src={writeImage}
-            alt="wite"
-            style={{ width: "30%", margin: "25px" }}
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "end",
-          }}
-        >
-          <p style={{ color: "#818181" }}>
-            {" "}
-            <em>
-              "Step into Storyland! Where tales grow like wildflowers (minus the
-              pollen!). Get set for adventures that'll whisk you off to
-              enchanted worlds. From epic quests to cozy tales, our stories are
-              more gripping than a squirrel with a treasure map!"
-            </em>
-          </p>
         </div>
       </div>
 
@@ -113,7 +104,7 @@ function LandingPage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          padding: "50px",
+          padding: "40px",
           color: "white",
         }}
       >
@@ -130,64 +121,95 @@ function LandingPage() {
           <h3 style={{ color: "white" }}>Short stories</h3>
         </div>
       </div>
-      <div
-        style={{
-          backgroundColor: "#29b4e2",
-          padding: "20px",
-          color:"white"
-        }}
-      >
-        <h1 style={{
-                  padding: "20px",
-          color:"white"
-        }}>"Connect Through Words, Learn Through Writing!"</h1>
-        <hr />
+
+      <div className="main_content">
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <div div style={{ display: "flex", flexDirection: "column" }}>
+            <h2
+              style={{
+                color: "grey",
+              }}
+            >
+              "Connect Through Words, Learn Through Writing!"
+            </h2>
+            <p
+              style={{
+                color: "black",
+                padding: "5px",
+                fontWeight: 325,
+                fontSize: 22,
+              }}
+            >
+              "Experience Brainy Adventure! Dive into our word playground,
+              brimming with definitions and surprises. Whether you're looking
+              for an interesting story or just exploring, come join the fun for
+              curious minds!"
+            </p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Button variant="outlined" size="large">
+                Join today
+              </Button>
+            </div>
+          </div>
+
+          <>
+            <img
+              src={writeImage}
+              alt="wite"
+              style={{ width: "30%", margin: "25px" }}
+            />
+          </>
+        </div>
       </div>
+
+     
 
       <Grid
         container
-        spacing={{ xs: 1, md: 1 }}
-        columns={{ xs: 2, sm: 6, md: 12 }}
+        spacing={{ xs: 2, md: 2 }}
+        columns={{ xs: 3, sm: 6, md: 12 }}
         style={{
           backgroundColor: "#29b4e2",
           padding: "50px",
           paddingBottom: "150px",
+          paddingLeft: "150px",
         }}
       >
-        <Grid item xs={3} className="service_item">
-          <div
-            className="app_link banner_and_icon"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            <FaPenSquare />
-            <Link to="/AddBlog">
-              <h3 className="service_title">Write English</h3>
-            </Link>
-          </div>
+        <Grid item xs={3} className="service_item app_link banner_and_icon" style={{
+         
+          margin: "15px",
+         
+        }}>
+          <FaPenSquare />
+          <Link to="/AddBlog">
+            <h3 className="service_title">Write English</h3>
+          </Link>
         </Grid>
-        <Grid item xs={3} className="service_item">
-          <div className="app_link banner_and_icon">
-            <FaBookReader />
-            <Link to="/Vocabulary">
-              <h3 className="service_title">New vocabularies</h3>
-            </Link>
-          </div>
+        <Grid item xs={3} className="service_item app_link banner_and_icon" style={{
+         
+         margin: "15px",
+        
+       }}>
+          <FaBookReader />
+          <Link to="/Vocabulary">
+            <h3 className="service_title">New vocabularies</h3>
+          </Link>
         </Grid>
-        <Grid item xs={3} className="service_item">
-          <div className="app_link banner_and_icon">
-            <FaBookOpen />
-            <Link to="/Stories">
-              <h3 className="service_title">Stories</h3>
-            </Link>
-          </div>
-        </Grid>
-        <Grid item xs={3} className="service_item">
-          <div className="app_link banner_and_icon">
-            <FaGamepad />
-            <Link to="/Games">
-              <h3 className="service_title">Play games</h3>
-            </Link>
-          </div>
+        <Grid item xs={3} className="service_item app_link banner_and_icon" style={{
+         
+         margin: "15px",
+        
+       }}>
+          <FaBookOpen />
+          <Link to="/Stories">
+            <h3 className="service_title">Stories</h3>
+          </Link>
         </Grid>
       </Grid>
       <Footer />
