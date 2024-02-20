@@ -64,81 +64,6 @@ body {
     margin: 0;
 }
 
-/* menu */
-.main_nav a {
-    color: var(--whiteColor);
-}
-
-.main_nav {
-    color: var(--textColorWhite);
-    background-color: var(--blackColorHeader)
-}
-
-.menu .fa {
-    margin: 10px;
-}
-
-.menu {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    color: var(--whiteColor);
-
-}
-
-.menu a {
-    text-decoration: none;
-}
-
-
-
-/* DropDown menu */
-.dropbtn {
-    color: white;
-    padding: 20px;
-    font-size: 16px;
-    border: none;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    /* margin-bottom: 10px; */
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 10px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-    margin: 14px;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-/* .dropdown:hover .dropbtn {background-color: var(--textColorGrey);} */
-
 
 /* hero section */
 .hero_section {
@@ -200,6 +125,11 @@ body {
 
 .main_content > div p{
     color: var(--blackColor);
+    
+}
+
+.welcome_text {
+    color: var(--blueColor);
     
 }
 
@@ -675,35 +605,19 @@ input[type=text], input[type=password], textarea {
 
 /* for responsiveness  mobile*/
 @media only screen and (max-width: 720px) {
-    /* body {
-        min-width: 360px;
-    } */
+   
     .ngana_logo {
         margin-right: 200px;
         font-size: 30px;
     }
-    .menu {
-        /* display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--blackColorHeader);
-        justify-content: space-around;
-        flex-direction: column;       */
+ 
+   
+
+    .welcome_text {
+        color: var(--blueColor);
+        
     }
-    .menu a{
-              margin: 4px;
-    }
-    .nav_small {
-        display: inline;
-    }
-    .h1{
-        font-size: 400;
-        font-weight: 400;
-        color: "red";
-    }
-    .small_device {
-        display: none;
-    }
+   
     .hero_section_header {
         display: flex;
         justify-content: center;
@@ -712,11 +626,14 @@ input[type=text], input[type=password], textarea {
     .hero_section_header div .fa {
         padding: 5px;
     }
-    .main_content >div> p{
-        background-color:  red;
-        
+    /* .main_content >div> p{
+        background-color:  red;     
      
-    }  
+    }   */
+
+    .image_landing{
+        display: none;
+    }
 
     .burger_menu {
         display: block;

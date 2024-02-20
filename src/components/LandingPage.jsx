@@ -48,6 +48,7 @@ function LandingPage() {
     <div>
       <Navbar />
       <div
+      className="welcome_text"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -57,9 +58,9 @@ function LandingPage() {
           color: "#818181",
         }}
       >
-        <h1>
+        <h2 className="welcome_text">
           Welcome to <strong>LearnByWriting </strong>!
-        </h1>
+        </h2>
         <h4
           style={{
             fontWeight: 325,
@@ -160,7 +161,7 @@ function LandingPage() {
           </div>
         </div>
 
-        <img
+        <img className="image_landing"
           src={writeImage}
           alt="write"
           style={{ width: "20%", margin: "25px" }}

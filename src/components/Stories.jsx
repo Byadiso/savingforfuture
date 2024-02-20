@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import "../Style/Stories.css";
 import { getStories } from "../firebase/APIs";
 import StoryBlock from "./StoryBlock";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import SkeletonStory from "../Skeletons/SkeletonStory";
 import ButtonForAction from "./InputComonents/ButtonForAction";
 import StoryFromChatGPT from "./StoryFromChatGPT";
@@ -51,10 +51,10 @@ function Stories() {
   return (
     <div>
       <Navbar />
-      <div
+      <div className="Story_controllers"
         style={{
           display: "flex",
-          flexDirection: "Row",
+          flexDirection: "column",
           flexwrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
