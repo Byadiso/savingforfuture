@@ -138,23 +138,7 @@ footer {
 /* for responsiveness */
 
 @media only screen and (max-width: 720px) {
-    .ngana_logo {
-        margin-right: 200px;
-        font-size: 30px;
-    }
-
-    .menu {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-    .menu h2{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-left: 220px;
-    }
+   
 
    .Story_controllers{
     display: flex;

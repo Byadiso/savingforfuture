@@ -129,16 +129,6 @@ body {
     background-color: #ddd;
 }
 
-/* Show the dropdown menu on hover
-.dropdown:hover .dropdown-content {
-    display: none;
-    margin: 50px;
-} */
-
-/* i {
-    color: var(--blueColor);
-    margin: 5px;
-} */
 
 .logout:hover{
     background-color: #ddd;   
@@ -152,7 +142,7 @@ body {
     }
     .ngana_logo {
         margin-right: 200px;
-        font-size: 30px;
+       color: red;
     }
     .menu {
         display: flex;
@@ -161,6 +151,7 @@ body {
         background-color: var(--blackColorHeader);
         justify-content: space-around;
         flex-direction: column;
+        color: red;
     }
     .nav_small {
         display: inline;
@@ -274,9 +265,9 @@ for ipads and tables */
         min-width: 360px;
     }
     .ngana_logo {
-        margin-right: 50px;
+        /* margin-right: 50px;
         margin-left: 50px;
-        font-size: 30px;
+        font-size: 30px; */
     }
     .menu {
         display: flex;

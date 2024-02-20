@@ -59,85 +59,6 @@ body {
     margin: 0;
 }
 
-/* menu */
-
-.main_nav a {
-    color: var(--whiteColor);
-}
-
-.main_nav {
-    color: var(--textColorWhite);
-    background-color: var(--blackColorHeader);
-}
-
-.menu .fa {
-    margin: 10px;
-}
-
-.menu {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    color: var(--whiteColor);
-}
-
-.menu a {
-    text-decoration: none;
-    font-size: 15px;
-}
-
-i {
-    color: #29b4e2;
-}
-
-
-
-/* DropDown menu */
-.dropbtn {
-    color: white;
-    padding: 20px;
-    font-size: 16px;
-    border: none;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 10px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-    margin: 14px;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-/* .dropdown:hover .dropbtn {background-color: var(--textColorGrey);} */
-
 
 /* hero section */
 section {
@@ -574,12 +495,6 @@ footer {
 @media only screen and (max-width: 700px) {
    
 
-    .menu {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
 
     .blog_item {
         display: flex;
@@ -716,64 +631,18 @@ for ipods and tables */
         min-width: 360px;
     }
 
-    .ngana_logo {
-        margin-right: 50px;
-        margin-left: 50px;
-        font-size: 30px;
-    }
+ 
 
-    .hire_now {
-        padding: 15px;
-    }
-
-    .menu {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 10px;
-    }
+    
 
 
-    .hero_section {
-        font-size: .8rem;
-    }
+  
+    
 
-    .hire_text {
-        font-size: .7rem;
-        min-width: 130px;
-    }
-
-    .statistic_section {
-        background-color: var(--whiteColor);
-        display: flex;
-        color: var(--textColorGrey);
-        justify-content: center;
-        align-items: center;
-        padding: var(--spacing);
-        border-radius: 20px;
-        box-shadow: 0.1em 0.1em 0.2em;
-        box-shadow: none;
-        width: 100%;
-        margin-left: 5px;
-        margin-right: 10px;
-        margin-top: -35px;
-        padding: 10px
-    }
+    
 
 
-    /* for main_who_items */
-    .main_who_items {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        color: var(--textColorGreyParagraph);
-        margin: 20px;
-    }
-
-    .main_who_items img {
-        width: 100%;
-    }
-
+    
     /* for services */
     .service_content {
         display: flex;
@@ -801,20 +670,7 @@ for ipods and tables */
         margin: 10px;
     }
 
-    /* for footer section */
-
-    footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: var(--whiteColor);
-        padding: 10px;
-    }
-
-    footer div {
-        margin-right: 0px;
-    }
+ 
 }
 
 /* 
@@ -825,52 +681,9 @@ for ipods and tables */
     body {
         min-width: 360px;
     }
+     
 
-    .ngana_logo {
-        margin-right: 50px;
-        margin-left: 50px;
-        font-size: 30px;
-    }
-
-    .hire_now {
-        padding: 15px;
-    }
-
-    .menu {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 10px;
-    }
-
-
-    .hero_section {
-        font-size: .8rem;
-    }
-
-    .hire_text {
-        font-size: .7rem;
-        min-width: 130px;
-    }
-
-    .statistic_section {
-        background-color: var(--whiteColor);
-        display: flex;
-        color: var(--textColorGrey);
-        justify-content: center;
-        align-items: center;
-        padding: var(--spacing);
-        border-radius: 20px;
-        box-shadow: 0.1em 0.1em 0.2em;
-        box-shadow: none;
-        width: 100%;
-        margin-left: 5px;
-        margin-right: 10px;
-        margin-top: -35px;
-        padding: 10px
-    }
-
-
-    /* for main_who_items */
+   /* for main_who_items */
     .main_who_items {
         display: flex;
         align-items: center;
@@ -913,23 +726,7 @@ for ipods and tables */
 
     .blog_item h3, p {
         font-size: 20px;
-    }
-
-    /* for footer section */
-
-    footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: var(--whiteColor);
-        padding: 10px;
-
-    }
-
-    footer div {
-        margin-right: 0px;
-    }
+    }    
 }
 
 

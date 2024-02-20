@@ -71,34 +71,7 @@ body {
     color: var(--redColor);
 }
 
-/* menu  */
-.main_nav a{
-    color: var(--whiteColor);
-}
 
-.main_nav{
-color: var(--textColorWhite);
-background-color: var(--blackColor);
-}
-
-.menu .fa{
-    margin: 10px;    
-}
-.menu{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;    
-    color: var(--whiteColor);
-   
-}
-
-.menu a{
-    text-decoration: none;
-}
-
-.menu_nav i {
-    color: var(--blueColor);
-}
 
 /* Service section */
 
