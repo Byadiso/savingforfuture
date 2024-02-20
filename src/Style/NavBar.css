@@ -104,7 +104,9 @@ body {
 .dropdown {
     position: relative;
     display: inline-block;    
+    padding: 20px;
 }
+
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -126,7 +128,14 @@ body {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #ddd;    
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block; 
+    margin-top: 24px;
+    
 }
 
 

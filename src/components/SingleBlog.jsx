@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { listBlog } from "../firebase/getBlogs";
 import "../Style/SingleBlog.css";
 import {
@@ -18,11 +18,18 @@ import ScoreIcon from "@mui/icons-material/Score";
 import ShareIcon from "@mui/icons-material/Share";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import CommentIcon from '@mui/icons-material/Comment';
+import { isAuthenticated } from "../firebase/Authentication";
 
 function SingleBlog() {
   const [blogList, setBlogList] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // will redirect to login page if not logged in
+  const navigate = useNavigate();
 
   let id = useParams().id.split("id=")[1];
+
+  console.log(useParams().id)
 
   let blog = blogList.find((blog) => blog.uid_key.toString() === id);
 
@@ -42,7 +49,13 @@ function SingleBlog() {
 
   useEffect(() => {
     listBlog(setBlogList);
-  }, []);
+    isAuthenticated(setIsLoggedIn);
+    if (!isLoggedIn) {
+      navigate("/Login");
+    } else {
+      navigate(`/Blogs/id=${id}`);
+    }
+  }, [navigate, isLoggedIn,id]);
 
   return (
     <div>

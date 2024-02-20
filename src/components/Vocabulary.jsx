@@ -4,15 +4,28 @@ import Footer from "./Footer";
 import "../Style/Vocabulary.css";
 import { listVocabularies } from "../firebase/getBlogs";
 import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../firebase/Authentication";
 
 function Vocabulary() {
   const [vocabularyList, setVocabularyList] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // will redirect to login page if not logged in
+  const navigate = useNavigate();
 
   console.log(vocabularyList);
 
   useEffect(() => {
     listVocabularies(setVocabularyList);
-  }, []);
+    isAuthenticated(setIsLoggedIn);
+    if (!isLoggedIn) {
+      navigate("/Login");
+    } else {
+      navigate("/Vocabulary");
+    }
+
+  }, [navigate, isLoggedIn]);
   return (
     <div>
       <Navbar />

@@ -50,7 +50,7 @@ function Navbar() {
           <div className="dropdown" id="dropdown">
             {isLoggedIn ? (
               <Link to="/Dashboard" style={style}>
-                <DashboardIcon /> Dashboard
+                <DashboardIcon className="Dashboard_dropdown"/> Dashboard
               </Link>
             ) : (
               <Link className="menu_nav dropbtn" to="/Login" id="login" style={style}>

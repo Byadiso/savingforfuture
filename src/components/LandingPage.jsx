@@ -15,11 +15,13 @@ import { listBlog, listVocabularies } from "../firebase/getBlogs";
 import { Link } from "react-router-dom";
 import { getStories } from "../firebase/APIs";
 import { Button, Grid } from "@mui/material";
+import { isAuthenticated } from "../firebase/Authentication";
 
 function LandingPage() {
   const [blogList, setBlogList] = useState([]);
   const [vocabularyList, setVocabularyList] = useState([]);
   const [storyList, setStoryListList] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const blogNumber = blogList.length;
   const vocabularyNumber = vocabularyList.length;
@@ -42,6 +44,7 @@ function LandingPage() {
   useEffect(() => {
     listBlog(setBlogList);
     listVocabularies(setVocabularyList);
+    isAuthenticated(setIsLoggedIn);
     Stories();
   }, []);
   return (
@@ -148,7 +151,7 @@ function LandingPage() {
             an interesting story or just exploring, come join the fun for
             curious minds!"
           </p>
-          <div
+          {!isLoggedIn && <div
             style={{
               display: "flex",
               justifyContent: "center",
@@ -158,7 +161,7 @@ function LandingPage() {
             <Button variant="outlined" size="large">
               Join today
             </Button>
-          </div>
+          </div>}
         </div>
 
         <img className="image_landing"
@@ -170,6 +173,7 @@ function LandingPage() {
 
       <Grid
         container
+        className="main_service_container"
         spacing={{ xs: 2, md: 2 }}
         columns={{ xs: 3, sm: 6, md: 12 }}
         style={{

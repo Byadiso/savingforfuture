@@ -337,13 +337,13 @@ i {
     color: var(--whiteColor);
 }
 
-
+/* 
 
 .service_image img {
     width: 200px;
     height: 145px;
 
-}
+} */
 
 /* 
     input  */
@@ -444,16 +444,7 @@ input[type=text], input[type=password], textarea {
     width: 220px;
 }
 
-.readmore {
-    float: left;
-    margin: 0px;
-}
 
-.readmore:hover {
-    cursor: pointer;
-    color: var(--colorforWeakGrey);
-    border-bottom: 1px solid var(--colorforWeakGrey);
-}
 
 .blog_item_rigt {
     border-left: 2px solid var(--colorforWeakGrey);
@@ -551,7 +542,6 @@ input[type=text], input[type=password], textarea {
 }
 
 .header_portfolio h1 {
-    /* padding:0px  10px 0px 10px; */
     margin: 0px
 }
 
@@ -602,7 +592,6 @@ input[type=text], input[type=password], textarea {
     border: 4px solid var(--colorforWeakGrey);
 }
 
-
 /* for responsiveness  mobile*/
 @media only screen and (max-width: 720px) {
    
@@ -613,8 +602,7 @@ input[type=text], input[type=password], textarea {
    
 
     .welcome_text {
-        color: var(--blueColor);
-        
+        color: var(--blueColor);        
     }
    
     .hero_section_header {
@@ -622,11 +610,11 @@ input[type=text], input[type=password], textarea {
         justify-content: center;
         flex-direction: column;
     }
+
     .hero_section_header div .fa {
         padding: 5px;
     }
     
-
     .image_landing{
         display: none;
     }
@@ -636,7 +624,6 @@ input[type=text], input[type=password], textarea {
         font-size: .8rem;
     }
   
-
 
     /* for main_who_items */
     .main_who_items {
@@ -663,6 +650,9 @@ input[type=text], input[type=password], textarea {
     /* remove link style on a tag */
     a, button {
         all: unset;
+    }
+    .main_service_container {
+        /* padding-right: 10px; */        
     }
 
  

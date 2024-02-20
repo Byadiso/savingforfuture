@@ -8,10 +8,17 @@ import styled from "@emotion/styled";
 import EditForm from "./EditForm";
 import CreateBlog from "./CreateBlog";
 import DeleteModal from "./DeleteModal";
+import { isAuthenticated } from "../firebase/Authentication";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const navigate = useNavigate();
+
+
+  console.log(isLoggedIn)
   let blogNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   const Img = styled("img")({
@@ -23,7 +30,14 @@ function Dashboard() {
 
   useEffect(() => {
     listBlog(setBlogList);
-  }, []);
+    isAuthenticated(setIsLoggedIn);
+
+    if (!isLoggedIn) {
+      navigate("/Login");
+    } else {
+      navigate("/Dashboard");
+    }
+  }, [navigate, isLoggedIn]);
 
   return (
     <div>

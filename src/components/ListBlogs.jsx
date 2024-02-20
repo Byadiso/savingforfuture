@@ -8,14 +8,27 @@ import Box from "@mui/material/Box";
 import "../Style/Blogs.css";
 import SkeletonBlog from "../Skeletons/SkeletonBlog";
 import { Grid } from "@mui/material";
+import { isAuthenticated } from "../firebase/Authentication";
+import { useNavigate } from "react-router-dom";
 
 function ListBlogs() {
   const [blogList, setBlogList] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+// will redirect to login page if not logged in
+  const navigate = useNavigate();
+
   let blogNumber = ["1", "2", "3", "4", "5", "6"];
 
   useEffect(() => {
     listBlog(setBlogList);
-  }, []);
+    isAuthenticated(setIsLoggedIn);
+    if (!isLoggedIn) {
+      navigate("/Login");
+    } else {
+      navigate("/Blogs");
+    }
+  }, [navigate, isLoggedIn]);
 
   return (
     <div>
