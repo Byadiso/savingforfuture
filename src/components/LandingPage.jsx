@@ -122,53 +122,50 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="main_content">
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div div style={{ display: "flex", flexDirection: "column" }}>
-            <h2
-              style={{
-                color: "grey",
-              }}
-            >
-              "Connect Through Words, Learn Through Writing!"
-            </h2>
-            <p
-              style={{
-                color: "black",
-                padding: "5px",
-                fontWeight: 325,
-                fontSize: 22,
-              }}
-            >
-              "Experience Brainy Adventure! Dive into our word playground,
-              brimming with definitions and surprises. Whether you're looking
-              for an interesting story or just exploring, come join the fun for
-              curious minds!"
-            </p>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Button variant="outlined" size="large">
-                Join today
-              </Button>
-            </div>
+      <div
+        className="main_content"
+        style={{ display: "flex", flexDirection: "row" }}
+      >
+        <div div style={{ display: "flex", flexDirection: "column" }}>
+          <h2
+            style={{
+              color: "grey",
+            }}
+          >
+            "Connect Through Words, Learn Through Writing!"
+          </h2>
+          <p
+            style={{
+              color: "black",
+              padding: "5px",
+              fontWeight: 325,
+              fontSize: 22,
+            }}
+          >
+            "Experience Brainy Adventure! Dive into our word playground,
+            brimming with definitions and surprises. Whether you're looking for
+            an interesting story or just exploring, come join the fun for
+            curious minds!"
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button variant="outlined" size="large">
+              Join today
+            </Button>
           </div>
-
-          <>
-            <img
-              src={writeImage}
-              alt="wite"
-              style={{ width: "30%", margin: "25px" }}
-            />
-          </>
         </div>
-      </div>
 
-     
+        <img
+          src={writeImage}
+          alt="write"
+          style={{ width: "20%", margin: "25px" }}
+        />
+      </div>
 
       <Grid
         container
@@ -181,31 +178,40 @@ function LandingPage() {
           paddingLeft: "150px",
         }}
       >
-        <Grid item xs={3} className="service_item app_link banner_and_icon" style={{
-         
-          margin: "15px",
-         
-        }}>
+        <Grid
+          item
+          xs={3}
+          className="service_item app_link banner_and_icon"
+          style={{
+            margin: "15px",
+          }}
+        >
           <FaPenSquare />
           <Link to="/AddBlog">
             <h3 className="service_title">Write English</h3>
           </Link>
         </Grid>
-        <Grid item xs={3} className="service_item app_link banner_and_icon" style={{
-         
-         margin: "15px",
-        
-       }}>
+        <Grid
+          item
+          xs={3}
+          className="service_item app_link banner_and_icon"
+          style={{
+            margin: "15px",
+          }}
+        >
           <FaBookReader />
           <Link to="/Vocabulary">
             <h3 className="service_title">New vocabularies</h3>
           </Link>
         </Grid>
-        <Grid item xs={3} className="service_item app_link banner_and_icon" style={{
-         
-         margin: "15px",
-        
-       }}>
+        <Grid
+          item
+          xs={3}
+          className="service_item app_link banner_and_icon"
+          style={{
+            margin: "15px",
+          }}
+        >
           <FaBookOpen />
           <Link to="/Stories">
             <h3 className="service_title">Stories</h3>

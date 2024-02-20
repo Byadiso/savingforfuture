@@ -22,6 +22,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/learnByWritingV3" element={<LandingPage />} />
+
           <Route path="/Stories" element={<Stories />} />
           <Route path="/Blogs" element={<ListBlogs />} />
           <Route path="/Dashboard" element={<Dashboard />} />

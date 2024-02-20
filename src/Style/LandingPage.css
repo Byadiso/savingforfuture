@@ -202,13 +202,7 @@ body {
     color: var(--blackColor);
     
 }
-.main_content div {
-    padding:20px;
-    margin: 20px;
-    /* border: 1px solid black; */
-    /* font-family:'Courier New', Courier, monospace;  */
 
-}
 
 
 /* statistic section */
@@ -681,23 +675,31 @@ input[type=text], input[type=password], textarea {
 
 /* for responsiveness  mobile*/
 @media only screen and (max-width: 720px) {
-    body {
+    /* body {
         min-width: 360px;
-    }
+    } */
     .ngana_logo {
         margin-right: 200px;
         font-size: 30px;
     }
     .menu {
-        display: flex;
+        /* display: flex;
         justify-content: center;
         align-items: center;
         background-color: var(--blackColorHeader);
         justify-content: space-around;
-        flex-direction: column;
+        flex-direction: column;       */
+    }
+    .menu a{
+              margin: 4px;
     }
     .nav_small {
         display: inline;
+    }
+    .h1{
+        font-size: 400;
+        font-weight: 400;
+        color: "red";
     }
     .small_device {
         display: none;
@@ -710,10 +712,10 @@ input[type=text], input[type=password], textarea {
     .hero_section_header div .fa {
         padding: 5px;
     }
-    .main_content {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;        
+    .main_content >div> p{
+        background-color:  red;
+        
+     
     }  
 
     .burger_menu {

@@ -55,6 +55,7 @@ function Stories() {
         style={{
           display: "flex",
           flexDirection: "Row",
+          flexwrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
           padding: "10px",
