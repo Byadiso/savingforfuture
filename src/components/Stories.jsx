@@ -51,14 +51,9 @@ function Stories() {
   return (
     <div>
       <Navbar />
-      <div className="Story_controllers"
+      <div id="Story_controllers"
         style={{
-          display: "flex",
-          flexDirection: "column",
-          flexwrap: "wrap",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "10px",
+          
         }}
       >
         <ButtonForAction

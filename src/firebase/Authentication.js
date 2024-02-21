@@ -21,6 +21,16 @@ export const isAuthenticated = (setIsloggedState, userId) => {
   });
 };
 
+export const getLoggedUser = (setIsloggedState) => {
+  onAuthStateChanged(Auth, (user) => {
+    if (user) {
+      setIsloggedState(user);
+    } else {
+      console.log("No user logged in")
+    }
+  });
+}
+
 export const login = (email, password) => {
   signInWithEmailAndPassword(Auth, email, password)
     .then((userCredential) => {     
