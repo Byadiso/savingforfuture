@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -14,7 +13,8 @@ import SingleBlog from "./components/SingleBlog.jsx";
 import Logout from "./components/Logout.jsx";
 import User from "./components/UserProfile.jsx";
 import Register from "./components/RegisterComponent.jsx";
-
+import AddBlog from "./components/AddBlog.jsx";
+import Settings from "./components/Settings.jsx";
 
 function App() {
   return (
@@ -24,20 +24,31 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/learnByWritingV3" element={<LandingPage />} />
 
-          <Route path="/Stories" element={<Stories />} />
+          {/* routes for Blogs */}
           <Route path="/Blogs" element={<ListBlogs />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/Vocabulary" element={<Vocabulary />} />
-          <Route path="/User" element={<User />} />
-          
           <Route path="/Blogs/:id" element={<SingleBlog />} />
+          <Route path="/Add_blog" element={<AddBlog />} />
+
+          {/* routes for stories */}
+          <Route path="/Stories" element={<Stories />} />
+
+          {/* routes for stories */}
+          <Route path="/Vocabulary" element={<Vocabulary />} />
+
+          <Route path="/Dashboard" element={<Dashboard />} />
+{/* routes for stories */}
+          <Route path="/Settings" element={<Settings />} />
+
+          <Route path="/User" element={<User />} />
+
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
 
           <Route path="/Logout" element={<Logout />} />
+          {/* routes when no match */}
           <Route path="*" element={<NoMatch />} />
         </Routes>
-      </Router>      
+      </Router>
     </div>
   );
 }

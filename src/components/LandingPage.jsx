@@ -81,24 +81,32 @@ function LandingPage() {
           <h1 style={{ color: "white" }}>Are you looking for...</h1>
         </div>
         <div className="hero_section_header">
+        <Link to="/stories" style={{textDecoration:"none"}}>
           <div className="hero_section_header_blue" style={style}>
+           
             <h2 style={{ color: "black" }}>
               A story to <strong>read ? </strong>
             </h2>
             <FaArrowAltCircleDown style={{ margin: "10px", fontSize: 40 }} />
+           
           </div>
+          </Link>
+          <Link to="/Add_blog" style={{textDecoration:"none"}}>
           <div className="hero_section_header_red" style={style}>
             <h2 style={{ color: "black" }}>
               A story to <strong>Write ?</strong>
             </h2>
             <FaArrowAltCircleDown style={{ margin: "10px", fontSize: 40 }} />
           </div>
+          </Link>
+          <Link to="/Vocabulary" style={{textDecoration:"none"}}>
           <div className="hero_section_header_green" style={style}>
             <h2 style={{ color: "black" }}>
               A vocabulary to <strong>read ?</strong>
             </h2>
             <FaArrowAltCircleDown style={{ margin: "10px", fontSize: 40 }} />
           </div>
+          </Link>
         </div>
       </div>
 
@@ -158,9 +166,11 @@ function LandingPage() {
               alignItems: "center",
             }}
           >
+            <Link to="/register">
             <Button variant="outlined" size="large">
               Join today
             </Button>
+            </Link>
           </div>}
         </div>
 

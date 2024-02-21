@@ -9,7 +9,7 @@ import EditForm from "./EditForm";
 import CreateBlog from "./CreateBlog";
 import DeleteModal from "./DeleteModal";
 import { isAuthenticated } from "../firebase/Authentication";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
@@ -135,15 +135,15 @@ function Dashboard() {
                             </div>
                  
 
-                  <a href="./user.html" id="info">
+                  <Link to="/User" id="info">
                     <i className="fa fa-info"></i>My info
-                  </a>
-                  <a href="./vocabulary.html" id="members">
+                  </Link>
+                  <Link to="/vocabulary" id="members">
                     <i className="fa-solid fa-floppy-disk"></i>Your Vocabulary
-                  </a>
-                  <a href="./settings.html" id="settings">
+                  </Link>
+                  <Link to="/Settings" id="settings">
                     <i className="fa fa-gear"></i>Settings
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

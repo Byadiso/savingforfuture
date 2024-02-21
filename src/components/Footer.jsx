@@ -11,10 +11,10 @@ function Footer() {
     <div>
       <footer>
         <div className="copyright">
-          <p>
+          <h5>
             <FaCopyright className="fa fa-copyright" />
             {year}Ngana Tech
-          </p>
+          </h5>
         </div>
       </footer>
     </div>
