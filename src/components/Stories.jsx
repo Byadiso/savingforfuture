@@ -29,20 +29,17 @@ function Stories() {
   const handleAesop = () => {
     setIsAesop(true);
     setIsChatGpt(false);
-    setIsFun(false);
-    console.log("let open aesop");
+    setIsFun(false);   
   };
   const handleFun = () => {
     setIsFun(true);
     setIsAesop(false);
-    setIsChatGpt(false);
-    console.log("let open Fun");
+    setIsChatGpt(false);   
   };
   const handleChatGPT = () => {
     setIsChatGpt(true);
     setIsAesop(false);
-    setIsFun(false);
-    console.log("let open chatGPT");
+    setIsFun(false);    
   };
 
   useEffect(() => {

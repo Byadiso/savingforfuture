@@ -14,9 +14,7 @@ function Vocabulary() {
   // will redirect to login page if not logged in
   const navigate = useNavigate();
 
-  console.log(vocabularyList);
-
-  useEffect(() => {
+    useEffect(() => {
     listVocabularies(setVocabularyList);
     isAuthenticated(setIsLoggedIn);
     if (!isLoggedIn) {

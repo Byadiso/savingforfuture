@@ -25,7 +25,7 @@ export const checkMyValue = (user, setError, isRegister) => {
 
   if (emailInput && passwordInput) {
     if (validateEmail(emailInput) === true) {
-      console.log("Good to login");
+     return true;
     } else {
       setError("Email is not valid");
     }

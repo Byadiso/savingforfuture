@@ -11,8 +11,7 @@ function UserProfile() {
   let email = loggedUser.email;
   let userId = loggedUser.uid;
 
-  
-  console.log(loggedUser)
+
   useEffect(() => {    
     getLoggedUser(setLoggedUser);
 

@@ -1,7 +1,5 @@
-/* my variables style */
-
 :root {
-    /* --blueColorContrast: #0b3af6; */
+
     --blueColorContrast: #29b4e2;
     --blueColor: #29b4e2;
     --blueColorBC: #d7f4fde3;
@@ -26,7 +24,6 @@
     --linkColor: rgb(0, 0, 0);
     --lowerBackground: #f3f3f3;
     --colorActive: #29b4e2;
-
 }
 
 
@@ -51,6 +48,7 @@ body {
 .login_main{
     display: flex;
     background-color: var(--blueColor);
+    margin: 0px;
 }
 
 .Service_form_header h4 {

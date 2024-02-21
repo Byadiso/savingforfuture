@@ -75,21 +75,22 @@ body {
 
 /* Service section */
 
-.service_section {
-   
+.service_section {   
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
     color: var(--textColorGrey);
     background: var(--blueColorContrast);
-    padding: 119px;         
+    padding: 80px;  
+    margin: 0px;       
 }
 
 
 .register_content{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     color: var(--whiteColor);
     width: 100%;

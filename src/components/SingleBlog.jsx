@@ -29,8 +29,6 @@ function SingleBlog() {
 
   let id = useParams().id.split("id=")[1];
 
-  console.log(useParams().id)
-
   let blog = blogList.find((blog) => blog.uid_key.toString() === id);
 
   let color =["#818181", "#29b4e2","rgb(0, 0, 0)"]

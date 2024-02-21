@@ -62,7 +62,7 @@ function Register() {
     <div>
       <Navbar />
       <div>
-        <section>
+        {/* <section> */}
           <div className="service_section">
             <div className="register_content">
               <h1>Start mastering</h1>
@@ -70,19 +70,17 @@ function Register() {
 
               <p>
                 <i className="fa fa-check-circle"></i>
-                Start learning with vocabulary lists related to your favorite
-                subject, seasonal themes, or the book you’re reading
+                Start writing daily, interesting stories full of adventures.
               </p>
 
               <p>
                 <i className="fa fa-check-circle"></i>
                 Create your own custom lists and flashcards to learn the words
-                you want to know
+                you want to know.
               </p>
 
               <p>
-                <i className="fa fa-check-circle"></i>Chart your points,
-                achievements, and trouble words
+                <i className="fa fa-check-circle"></i>Enjoy reading beautiful stories crafted by Aesop.
               </p>
               <img src={tellstory} width="214px" alt="" />
             </div>
@@ -141,7 +139,7 @@ function Register() {
               </div>
             </div>
           </div>
-        </section>
+        {/* </section> */}
       </div>
       <Footer />
     </div>

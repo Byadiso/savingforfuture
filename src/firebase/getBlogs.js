@@ -8,8 +8,7 @@ const databaseFirebase = getDatabase();
 export const listBlog = (setBlogList)=>{
     const blogRefList = ref(databaseFirebase, "blogs/");
     onValue(blogRefList, (snapshot) => {
-        const data = snapshot.val()   
-        console.log(data)     
+        const data = snapshot.val()       
           let blogsArray = [];
           for (var [key, value] of Object.entries(data)) {
             var obj = {
