@@ -23,6 +23,8 @@ function LandingPage() {
   const [storyList, setStoryListList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  
+
   const blogNumber = blogList.length;
   const vocabularyNumber = vocabularyList.length;
   const storiesNumber = storyList.length;
@@ -34,6 +36,8 @@ function LandingPage() {
     padding: "20px",
     color: "#29b4e2",
   };
+
+  
 
   function Stories() {
     getStories().then((Stories) => {
