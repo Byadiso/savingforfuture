@@ -14,9 +14,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const location = useLocation();
-
-  console.log(location.pathname ==="/Blogs")
+  const location = useLocation();  
 
   const style = {
     display: "flex",
