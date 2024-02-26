@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import InputFileUpload from "./InputComonents/FileUpload";
 
 function AddBlog() {
@@ -27,12 +27,14 @@ function AddBlog() {
     p: 4,
   };
 
+  console.log("this create blog")
+
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div>
-        <Box sx={style}>
-          <Typography id="modal-modal-title" sx={{ mt: 2 }}>
+        {/* <Box sx={style}>
+          <Typography  sx={{ mt: 2 }}>
             {isCreated
               ? "Your blog post has been updated successfully!"
               : "Your blog post:"}
@@ -66,9 +68,11 @@ function AddBlog() {
           >
             Create
           </Button>
-        </Box>
-        <Footer />
+        </Box> */}
+        <p>Hello Create a blog</p>
+        
       </div>
+      {/* <Footer /> */}
     </>
   );
 }
