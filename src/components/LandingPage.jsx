@@ -206,7 +206,7 @@ function LandingPage() {
           }}
         >
           <FaPenSquare />
-          <Link to="/Blog/Create">
+          <Link to="/Add_blog">
             <h3 className="service_title">Write English</h3>
           </Link>
         </Grid>

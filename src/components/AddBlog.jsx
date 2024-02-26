@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, Input, TextField, Typography } from "@mui/material";
 import InputFileUpload from "./InputComonents/FileUpload";
+import TextArea from "./InputComonents/TextArea";
+import InputComponent from "./InputComonents/InputComponent";
 
 function AddBlog() {
   const [isCreated, setIsCreated] = useState(false);
@@ -15,64 +17,43 @@ function AddBlog() {
 
   const style = {
     position: "absolute",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "start  ",
+    flexDirection: "column",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 500,
     bgcolor: "background.paper",
-    border: "1px solid grey",
-    padding: "10px",
-    margin: "10px",
-    boxShadow: 24,
     p: 4,
   };
 
-  console.log("this create blog")
-
   return (
     <>
-      {/* <Navbar /> */}
-      <div>
-        {/* <Box sx={style}>
-          <Typography  sx={{ mt: 2 }}>
-            {isCreated
-              ? "Your blog post has been updated successfully!"
-              : "Your blog post:"}
-          </Typography>
+      <Navbar />
 
-          <>
-            <TextField
-              id="outlined-multiline-flexible"
-              fullWidth
-              margin="10px"
-              padding="10px"
-              multiline
-              maxRows={1}
-              style={{ marginTop: "10px" }}
-              name="title"
-            />
-            <TextField
-              id="outlined-multiline-flexible"
-              fullWidth
-              multiline
-              maxRows={4}
-              style={{ marginTop: "10px" }}
-              name="body"
-            />
-          </>
-          <InputFileUpload />
-          <Button
-            variant="contained"
-            onClick={handleCreate}
-            style={{ margin: "10px", marginLeft: "0px" }}
-          >
-            Create
-          </Button>
-        </Box> */}
-        <p>Hello Create a blog</p>
-        
+      <div style={style}>
+        <h2 style={{color:"#4A4D4E", marginBottom:"50px"}}>Create Your Awesome Blog! </h2>
+        <>
+          <InputComponent />
+          <TextArea />
+          
+        </>
+        <>                
+        <InputFileUpload />
+        <Button
+
+          variant="contained"
+          onClick={handleCreate}
+          style={{ marginTop: "50px" }}
+        >
+          Create
+        </Button>
+        </>
       </div>
-      {/* <Footer /> */}
+
+      <Footer />
     </>
   );
 }
