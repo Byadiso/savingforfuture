@@ -24,7 +24,7 @@ export default function InputFileUpload(props) {
       tabIndex={-1}
       startIcon={<CloudUploadIcon />}
       style={{ marginTop:"10px", backgroundColor:"#4A4D4E"}}
-      onchange={props.handleChange}
+      onChange={props.handleChange}
       
     >
       Upload file

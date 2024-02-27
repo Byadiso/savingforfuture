@@ -473,26 +473,14 @@ footer .copyright {
     /* background-color: grey; */
 }
 
-footer {
-    position: fixed;
-    background-color: var(--blackColorHeader);
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-}
 
 
-.social_media i {
-    margin: var(--spacing);
-}
 
 
 
 /* for responsiveness */
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 720px) {
    
 
 
@@ -500,9 +488,6 @@ footer {
         display: flex;
         flex-direction: column;
     }
-
-
-
 
     /* for blogs */
     .blog_item_left {
@@ -602,20 +587,11 @@ footer {
     }
 
 
-    /* for footer section */
-
-    footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background: var(--blackColorHeader);
-        color: var(--whiteColor);
-        padding: 10px;
-    }
-
-    footer div {
-        margin-right: 0px;
+    .Add_blog_container {        
+        top: 60%;
+        left: 70%;   
+        margin-top: 75px;
+        padding-bottom: 20px;
     }
 }
 

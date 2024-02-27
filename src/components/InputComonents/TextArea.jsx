@@ -23,7 +23,7 @@ export default function TextArea(props) {
       multiline
       placeholder="Type your blog here..."
       name={props.name}
-      onchange={props.onclick}
+      onChange={props.handleChange}
     />
   );
 }

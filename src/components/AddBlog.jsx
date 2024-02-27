@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { Box, Button, Input, TextField, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import InputFileUpload from "./InputComonents/FileUpload";
 import TextArea from "./InputComonents/TextArea";
 import InputComponent from "./InputComonents/InputComponent";
+import "../Style/Blogs.css";
 
 function AddBlog() {
   const [isCreated, setIsCreated] = useState(false);
-  const handleCreate = () => {
-    setIsCreated(true);
-    console.log("Yes");
-  };
 
-  console.log("Yes");
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const navigate = useNavigate();
+
+  const [blog, setBlog] = useState({});
+  const [error, setError] = useState("");
 
   const style = {
     position: "absolute",
@@ -29,27 +30,50 @@ function AddBlog() {
     p: 4,
   };
 
+  const handleOnClick = () => {
+    // setIsCreated(true);
+    console.log(blog)
+  };
+
+  const handleChange = (event) => {
+    if (error) {
+      setError("");
+    }
+    if (event.target.name === "title") {
+      setBlog({ ...blog, title: event.target.value });
+    }
+    if (event.target.name === "body") {
+      setBlog({ ...blog, body: event.target.value });
+    }
+    if (event.target.name === "image") {
+      setBlog({ ...blog, URL: event.target.file[0] });
+    }
+    // console.log(event.target.value)
+  };
+
+  console.log(blog);
+
   return (
     <>
       <Navbar />
 
-      <div style={style}>
-        <h2 style={{color:"#4A4D4E", marginBottom:"50px"}}>Create Your Awesome Blog! </h2>
+      <div style={style} className="Add_blog_container">
+        <h2 style={{ color: "#4A4D4E", marginBottom: "50px" }}>
+          Create Your Awesome Blog!{" "}
+        </h2>
         <>
-          <InputComponent />
-          <TextArea />
-          
+          <InputComponent name="title" handleChange={handleChange} />
+          <TextArea name="body" handleChange={handleChange} />
         </>
-        <>                
-        <InputFileUpload />
-        <Button
-
-          variant="contained"
-          onClick={handleCreate}
-          style={{ marginTop: "50px" }}
-        >
-          Create
-        </Button>
+        <>
+          <InputFileUpload name="image" handleChange={handleChange} />
+          <Button
+            variant="contained"
+            onClick={handleOnClick}
+            style={{ marginTop: "50px" }}
+          >
+            Create
+          </Button>
         </>
       </div>
 

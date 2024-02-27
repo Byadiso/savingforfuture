@@ -24,7 +24,7 @@ export default function InputComponent(props) {
       aria-label="Demo input"
       placeholder="Type your title here..."
       name={props.name}      
-      onchange={props.handleChange}
+      onChange={props.handleChange}
     />
   );
 }
