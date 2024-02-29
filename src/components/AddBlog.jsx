@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { Button } from "@mui/material";
@@ -7,15 +7,17 @@ import TextArea from "./InputComonents/TextArea";
 import InputComponent from "./InputComonents/InputComponent";
 import "../Style/Blogs.css";
 import { createBlog } from "../firebase/createBlog";
+import { isAuthenticated } from "../firebase/Authentication";
+import { useNavigate } from "react-router-dom";
+import { ValidateBlog } from "../firebase/Helpers";
 
 function AddBlog() {
-  const [isCreated, setIsCreated] = useState(false);
-  const [imageURL,setImageURL] = useState('');
+  const [isCreated, setIsCreated] = useState(false);  
   const [preview,setPreview] = useState('');
-  const [message, setIMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [blog, setBlog] = useState({});
   const [error, setError] = useState("");
@@ -36,11 +38,11 @@ function AddBlog() {
     p: 4,
   };
 
-  const handleOnClick = () => {
-    // setIsCreated(true);
-    console.log(blog)
-    console.log("Submitting something.........")
-    createBlog(blog.image, blog.body, blog.title)
+  const handleOnClick = () => {   
+    ValidateBlog(blog,setErrorMessage);
+    if(errorMessage === undefined){
+      createBlog(blog)   
+    }     
   };
 
   const handleChange = (event) => {
@@ -56,14 +58,23 @@ function AddBlog() {
       
   };
 
-  const handleChangeFile= (event)=>{
-    // console.log(event.target.files[0])
+  const handleChangeFile= (event)=>{   
       setBlog({ ...blog, image: event.target.files[0] });
-      setPreview(URL.createObjectURL(event.target.files[0]) )
-  
+      setPreview(URL.createObjectURL(event.target.files[0]) )  
   }
 
-  // console.log(blog);
+  isAuthenticated(setIsLoggedIn);
+
+  useEffect(() => {  
+    // if(isCreated === true){
+    //   navigate("/Blogs");
+    // }
+
+    // if (isLoggedIn) {
+    //   navigate("/Login");
+    // } 
+  }, [navigate,isCreated, isLoggedIn]);
+ 
 
   return (
     <>

@@ -7,6 +7,7 @@ import { IconButton } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import { listBlog } from "../firebase/getBlogs";
+import { deleteBlog } from "../firebase/createBlog";
 
 export default function DeleteModal(props) {
   const [blogs, setBlogList] = useState([]);
@@ -29,8 +30,11 @@ export default function DeleteModal(props) {
 }
 
   const handleDelete = ()=>{
+
     setIsDeleted(true)
+    deleteBlog(props.id)    
     console.log("we are deletig this blog")
+
   }
 
   const style = {

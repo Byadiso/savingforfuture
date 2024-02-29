@@ -44,7 +44,28 @@ export const waitThreeSec = ()=>{
   }, 3000);  
 }
 
-export  const removePTag =(sentence)=>{
- // Use a regular expression to remove <p> tags
+export  const removePTag =(sentence)=>{ 
  return sentence.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/&nbsp/g,"");
 }
+
+
+export const ValidateBlog = (blog, setError, isRegister) => {
+ 
+  let {title, body, image}= blog
+
+  if (!title && !body && !image) {
+    setError("title & password && image missing");
+    waitThreeSec();  
+  } else if (!title) {
+    setError("title is missing");
+    waitThreeSec();
+  } else if (!body) {
+    setError("body is missing");
+    waitThreeSec();
+  } else if (image) {
+    setError("Image is missing");
+  }
+
+  
+
+};

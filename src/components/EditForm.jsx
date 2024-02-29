@@ -12,14 +12,14 @@ export default function EditForm(props) {
   const [blogs, setBlogList] =useState([])
   const [open, setOpen] = React.useState(false); 
   const [blogToEdit, setBlogToEdit] = useState()
-  const [isUpdated, setIsUpdated] = useState(false)
+  const [isUpdated, setIsUpdated] = useState(false)  
   
-  
-  console.log(blogToEdit && blogToEdit[0].title)
+
   const handleOpen = () => {
     getblog()
     setOpen(true)
   };
+  
   const getblog = ()=>{ 
     const blog = blogs.filter((blog) => blog.id ===props.id);
     setBlogToEdit(blog)    

@@ -6,14 +6,16 @@ import {app} from "./Firebase";
 
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { ref as dbRef, set, serverTimestamp, getDatabase } from "firebase/database";
+import { ref as dbRef, set, serverTimestamp, getDatabase, remove } from "firebase/database";
+import { ValidateBlog } from './Helpers';
 
 
 const db = getDatabase();
 
 
 
-export const createBlog = async (image, body, title) => {
+export const createBlog = async (blog) => {    
+  let {title, body, image}= blog
   try {
     // Upload image to Firebase Storage
     const imageName = image.name;
@@ -47,7 +49,25 @@ export const createBlog = async (image, body, title) => {
     });
 
     console.log("Blog added successfully!");
+  
   } catch (error) {
     console.error("Error saving blog data:", error.message);
   }
 };
+
+
+export const deleteBlog = async (id) => {    
+  try {       
+ //remove blog if I am the admin user
+  await remove(dbRef(db, "blogs/" + id), function (error) {
+    if (error) {
+       console.log("delete error" + error);    
+    }
+  });
+    console.log("Blog Deleted successfully!"); 
+  } catch (error) {
+    console.error("Error deleting blog data:", error.message);
+  }
+};
+
+

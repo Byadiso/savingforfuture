@@ -40,9 +40,7 @@ function Login() {
     isAuthenticated(setIsLoggedIn);
     if (isLoggedIn) {
       navigate("/");
-    } else {
-      navigate("/Login");
-    }
+    } 
   }, [navigate, isLoggedIn]);
 
   return (
