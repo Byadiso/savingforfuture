@@ -33,6 +33,7 @@ function AddBlog() {
   const handleOnClick = () => {
     // setIsCreated(true);
     console.log(blog)
+    console.log("Submitting something.........")
   };
 
   const handleChange = (event) => {
@@ -45,7 +46,7 @@ function AddBlog() {
     if (event.target.name === "body") {
       setBlog({ ...blog, body: event.target.value });
     }
-    if (event.target.name === "image") {
+    if (event.target.name === "file") {
       setBlog({ ...blog, URL: event.target.file[0] });
     }
     // console.log(event.target.value)
