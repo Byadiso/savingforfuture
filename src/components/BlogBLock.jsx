@@ -17,7 +17,7 @@ function BlogBLock(props) {
    
     var sentenceRegex = /^[^.!?]*[.!?]/;
     var sentences = text.match(sentenceRegex);
-    return sentences[0];
+    return sentences;
   }
 
   const handleClick = (event) => {
