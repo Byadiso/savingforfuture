@@ -19,6 +19,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import CommentIcon from '@mui/icons-material/Comment';
 import { isAuthenticated } from "../firebase/Authentication";
+import { removePTag } from "../firebase/Helpers";
 
 function SingleBlog() {
   const [blogList, setBlogList] = useState([]);
@@ -102,7 +103,7 @@ function SingleBlog() {
             </Typography>
           </CardActions>
           <CardContent style={{margin:"20px", marginBottom:"50px", color:color[1]}}>
-            <Typography style={{ color:color[0]}}>{blog.body}</Typography>
+            <Typography style={{ color:color[0]}}>{removePTag(blog.body)}</Typography>
           </CardContent>
         </Card>
       )}

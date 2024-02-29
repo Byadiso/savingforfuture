@@ -10,6 +10,7 @@ import SkeletonBlog from "../Skeletons/SkeletonBlog";
 import { Grid } from "@mui/material";
 import { isAuthenticated } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
+import { removePTag } from "../firebase/Helpers";
 
 function ListBlogs() {
   const [blogList, setBlogList] = useState([]);
@@ -55,7 +56,7 @@ function ListBlogs() {
                 <BlogBLock
                   key={index}
                   id={blog.id}
-                  body={blog.body}
+                  body={removePTag(blog.body)}
                   Image={blog.Image}
                   title={blog.title}
                   uid_key={blog.uid_key}

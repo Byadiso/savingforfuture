@@ -132,8 +132,7 @@ function Dashboard() {
                   <h1>Dashboard</h1>
                             <div style={{display: "flex", justifyContent:"center", alignItems:"center"}}>
                             <CreateBlog /> <p>Add a blog</p>
-                            </div>
-                 
+                            </div>                 
 
                   <Link to="/User" id="info">
                     <i className="fa fa-info"></i>My info

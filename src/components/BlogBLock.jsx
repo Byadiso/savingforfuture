@@ -13,8 +13,7 @@ import {
 function BlogBLock(props) {
   const navigate = useNavigate();
 
-  function firstSentence(text) {
-   
+  function firstSentence(text) {   
     var sentenceRegex = /^[^.!?]*[.!?]/;
     var sentences = text.match(sentenceRegex);
     return sentences;

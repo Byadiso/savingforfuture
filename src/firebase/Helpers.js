@@ -32,14 +32,19 @@ export const checkMyValue = (user, setError, isRegister) => {
   }  
 };
 
-const validateEmail = (email) => {
+export const validateEmail = (email) => {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
 
 
-const waitThreeSec = ()=>{
+export const waitThreeSec = ()=>{
   setTimeout(() => {
     console.log("something was wrong");
   }, 3000);  
+}
+
+export  const removePTag =(sentence)=>{
+ // Use a regular expression to remove <p> tags
+ return sentence.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/&nbsp/g,"");
 }
