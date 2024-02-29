@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 import 'firebase/auth';
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 import 'firebase/firestore';
+import { getStorage } from "firebase/storage";
 
 
 const firebaseConfig = {
@@ -17,6 +19,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const storage = getStorage(app);
+const db = getDatabase(app);
 
-export  {app, auth};
+export  {app, auth,storage, db};
  

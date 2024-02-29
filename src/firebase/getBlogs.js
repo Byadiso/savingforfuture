@@ -1,5 +1,7 @@
 import { getDatabase , ref, onValue, serverTimestamp } from "firebase/database";
+import { ref as refStorage, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { initializeApp } from "firebase/app";
+import { storage } from './Firebase';
 import {app} from "./Firebase";
 import 'firebase/firestore';
 
@@ -83,60 +85,61 @@ export const singleBlog = (setBlogList, blogId)=>{
 }
 
 
+// // 
+// export const createBlog = (image, body, title)=>{
+  
+//   // add blog here
+//   const imageName = image.name;
+//     //reference a collection
+//     const storageRef = ref.storage(storage,"images/" + imageName);
 
-export const createBlog = (image, body, title, message)=>{
-  // add blog here
-  const imageName = image.name;
-    //reference a collection
-    const storageRef = app.storage().ref("images/" + imageName);
+//     // upload image to selected  storage reference
+//     var uploadTask = storageRef.put(image);
 
-    // upload image to selected  storage reference
-    var uploadTask = storageRef.put(image);
+//     uploadTask.on(
+//       "state_changed",
+//       function (snapshot) {
+//         var progress =
+//           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//         console.log("Upload is " + progress + "done");
+//       },
+//       function (error) {
+//         //  let message = error.message;
+//         console.log(error.message);
+//       },
+//       function () {
+//         // handle successfully upload here..
+//         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+//           // getimage downloaded url here and upload to the database
 
-    uploadTask.on(
-      "state_changed",
-      function (snapshot) {
-        var progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "done");
-      },
-      function (error) {
-        message = error.message;
-        console.log(error.message);
-      },
-      function () {
-        // handle successfully upload here..
-        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-          // getimage downloaded url here and upload to the database
+//           var id = Math.floor(Math.random() * 100);
 
-          var id = Math.floor(Math.random() * 100);
+//           app
+//             .database()
+//             .ref("blogs/")
+//             .push()
+//             .set(
+//               {
+//                 title: title,
+//                 body: body,
+//                 createdAt: serverTimestamp(),
+//                 Image: downloadURL,
+//                 id: id,
+//               },
+//               function (error) {
+//                 if (error) {
+//                   console.log("error whie uploading");
+//                   // message ="error whie uploading"
+//                 } else {
+//                   console.log("successfully uploaded");
+//                   // message="successfully uploaded"                 
+//                 }
+//               }
+//             );
+//         });      
 
-          app
-            .database()
-            .ref("blogs/")
-            .push()
-            .set(
-              {
-                title: title,
-                body: body,
-                createdAt: serverTimestamp(),
-                Image: downloadURL,
-                id: id,
-              },
-              function (error) {
-                if (error) {
-                  console.log("error whie uploading");
-                  message ="error whie uploading"
-                } else {
-                  console.log("successfully uploaded");
-                  message="successfully uploaded"                 
-                }
-              }
-            );
-        });      
-
-        console.log("blog added successully");
-        message = "successfully added"
-      }
-    );
-  }
+//         console.log("blog added successully");
+//         // message = "successfully added"
+//       }
+//     );
+//   }

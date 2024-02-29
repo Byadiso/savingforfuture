@@ -6,9 +6,13 @@ import InputFileUpload from "./InputComonents/FileUpload";
 import TextArea from "./InputComonents/TextArea";
 import InputComponent from "./InputComonents/InputComponent";
 import "../Style/Blogs.css";
+import { createBlog } from "../firebase/createBlog";
 
 function AddBlog() {
   const [isCreated, setIsCreated] = useState(false);
+  const [imageURL,setImageURL] = useState('');
+  const [preview,setPreview] = useState('');
+  const [message, setIMessage] = useState('');
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const navigate = useNavigate();
@@ -22,6 +26,8 @@ function AddBlog() {
     justifyContent: "center",
     alignItems: "start  ",
     flexDirection: "column",
+    paddingBottom:"50px",
+    marginTop:"20px",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
@@ -34,6 +40,7 @@ function AddBlog() {
     // setIsCreated(true);
     console.log(blog)
     console.log("Submitting something.........")
+    createBlog(blog.image, blog.body, blog.title)
   };
 
   const handleChange = (event) => {
@@ -46,13 +53,17 @@ function AddBlog() {
     if (event.target.name === "body") {
       setBlog({ ...blog, body: event.target.value });
     }
-    if (event.target.name === "file") {
-      setBlog({ ...blog, URL: event.target.file[0] });
-    }
-    // console.log(event.target.value)
+      
   };
 
-  console.log(blog);
+  const handleChangeFile= (event)=>{
+    // console.log(event.target.files[0])
+      setBlog({ ...blog, image: event.target.files[0] });
+      setPreview(URL.createObjectURL(event.target.files[0]) )
+  
+  }
+
+  // console.log(blog);
 
   return (
     <>
@@ -67,7 +78,8 @@ function AddBlog() {
           <TextArea name="body" handleChange={handleChange} />
         </>
         <>
-          <InputFileUpload name="image" handleChange={handleChange} />
+          <InputFileUpload name="image" handleChange={handleChangeFile} />
+          {preview && <img src={preview} alt="img" style={{width:"100px",height:"80px", marginTop:"10px", borderRadius:"10px"}}/>}
           <Button
             variant="contained"
             onClick={handleOnClick}

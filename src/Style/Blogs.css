@@ -588,11 +588,13 @@ footer .copyright {
 
 
     .Add_blog_container {        
-        top: 60%;
+        top: 60%; 
         left: 70%;   
         margin-top: 75px;
         padding-bottom: 20px;
     }
+
+   
 }
 
 

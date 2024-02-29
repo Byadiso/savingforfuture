@@ -21,6 +21,7 @@ export default function InputFileUpload(props) {
       component="label"
       role={undefined}
       variant="contained"
+      name="file"
       tabIndex={-1}
       startIcon={<CloudUploadIcon />}
       style={{ marginTop:"10px", backgroundColor:"#4A4D4E"}}
