@@ -7,12 +7,14 @@ import { IconButton, TextField  } from "@mui/material";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { listBlog } from "../firebase/getBlogs";
 import InputFileUpload from "./InputComonents/FileUpload";
+import { editBlog } from "../firebase/createBlog";
 
 export default function EditForm(props) {
   const [blogs, setBlogList] =useState([])
   const [open, setOpen] = React.useState(false); 
-  const [blogToEdit, setBlogToEdit] = useState()
+  const [blogToEdit, setBlogToEdit] = useState({})
   const [isUpdated, setIsUpdated] = useState(false)  
+  const [error, setError] = useState("");
   
 
   const handleOpen = () => {
@@ -31,9 +33,23 @@ export default function EditForm(props) {
   };
 
   const handleUpdate = () => {
+    editBlog(blogToEdit,props.id )
     setIsUpdated(true)
   };
 
+  console.log(blogToEdit)
+
+  const HandleEdited = (e)=>{     
+      if (error) {
+        setError("");
+      }
+      if (e.target.name === "title") {
+        setBlogToEdit({ ...blogToEdit, title: e.target.value });
+      }
+      if (e.target.name === "body") {
+        setBlogToEdit({ ...blogToEdit, body: e.target.value });
+      }
+  }
   
   const style = {
     position: "absolute",
@@ -43,8 +59,7 @@ export default function EditForm(props) {
     width: 500,
     bgcolor: "background.paper",
     border: "1px solid grey",
-    padding: "10px",
-    // margin: "10px",
+    padding: "10px",   
     boxShadow: 24,
     p: 4,
   };
@@ -70,14 +85,14 @@ export default function EditForm(props) {
           </Typography>         
 
           {!isUpdated && <><TextField
-            id="outlined-multiline-flexible"
-            
+            id="outlined-multiline-flexible"            
             fullWidth
             margin="10px"
             padding="10px"
             multiline
-            value= {blogToEdit && blogToEdit[0].title}
+            defaultValue= {blogToEdit && blogToEdit.title}
             maxRows={1}
+            onChange={(e)=>HandleEdited(e)}
             style={{ marginTop:"10px"}}
             name="title"
           />
@@ -85,8 +100,9 @@ export default function EditForm(props) {
             id="outlined-multiline-flexible"            
             fullWidth
             multiline
-            value={blogToEdit && blogToEdit[0].body}
+            defaultValue={blogToEdit && blogToEdit.body}
             maxRows={4}
+            onChange={(e)=>HandleEdited(e)}
             style={{ marginTop:"10px"}}
             name="body"
           /></>}
