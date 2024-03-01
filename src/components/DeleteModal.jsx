@@ -56,8 +56,8 @@ export default function DeleteModal(props) {
 
   return (
     <div>
-      <IconButton>
-        <DeleteIcon onClick={handleOpen} style={{color: "pink"}}/>
+      <IconButton onClick={handleOpen}>
+        <DeleteIcon  style={{color: "pink"}}/>
       </IconButton>
 
       <Modal

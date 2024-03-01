@@ -19,7 +19,7 @@ export default function EditForm(props) {
     getblog()
     setOpen(true)
   };
-  
+
   const getblog = ()=>{ 
     const blog = blogs.filter((blog) => blog.id ===props.id);
     setBlogToEdit(blog)    
@@ -44,7 +44,7 @@ export default function EditForm(props) {
     bgcolor: "background.paper",
     border: "1px solid grey",
     padding: "10px",
-    margin: "10px",
+    // margin: "10px",
     boxShadow: 24,
     p: 4,
   };
@@ -54,8 +54,8 @@ export default function EditForm(props) {
 
   return (
     <div>
-      <IconButton>
-        <EditNoteIcon onClick={handleOpen} />
+      <IconButton onClick={handleOpen} >
+        <EditNoteIcon />
       </IconButton>
 
       <Modal
@@ -76,7 +76,7 @@ export default function EditForm(props) {
             margin="10px"
             padding="10px"
             multiline
-            value={blogToEdit && blogToEdit[0].title}
+            value= {blogToEdit && blogToEdit[0].title}
             maxRows={1}
             style={{ marginTop:"10px"}}
             name="title"

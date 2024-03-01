@@ -26,7 +26,7 @@ export default function CreateBlog(props) {
     bgcolor: "background.paper",
     border: "1px solid grey",
     padding: "10px",
-    margin: "10px",
+    // margin: "10px",
     boxShadow: 24,
     p: 4,
   };
@@ -37,8 +37,8 @@ export default function CreateBlog(props) {
     <div>
       
       <Tooltip title="Add a blog">
-      <IconButton>
-      <AddIcon style={{ color: "grey" }} onClick={handleOpen}/>
+      <IconButton onClick={handleOpen}>
+      <AddIcon style={{ color: "grey" }} />
       </IconButton>
       </Tooltip>    
                  

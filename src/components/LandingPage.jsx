@@ -142,7 +142,7 @@ function LandingPage() {
         className="main_content"
         style={{ display: "flex", flexDirection: "row" }}
       >
-        <div div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <h2
             style={{
               color: "grey",
