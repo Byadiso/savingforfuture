@@ -72,12 +72,12 @@ export const deleteBlog = async (id) => {
 
 
 export const editBlog = async (blog, BlogID) => {    
-  let {title, body, image}= blog
+  let {title, body, Image} = blog
   try {
     // Upload image to Firebase Storage
-    const imageName = image.name;
+    const imageName = Image.name;
     const storageRef = ref(storage, "images/" + imageName);
-    const uploadTask = uploadBytesResumable(storageRef, image);
+    const uploadTask = uploadBytesResumable(storageRef, Image);
 
     uploadTask.on(
       "state_changed",
