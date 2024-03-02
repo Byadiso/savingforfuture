@@ -15,10 +15,11 @@ export default function EditForm(props) {
   const [blogToEdit, setBlogToEdit] = useState({});
   const [isUpdated, setIsUpdated] = useState(false);
   const [error, setError] = useState("");
+  const [preview,setPreview] = useState('');
 
   const handleOpen = () => {
     getblog();
-    setOpen(true);
+    setOpen(true);    
   };
 
   const getblog = () => {
@@ -34,14 +35,13 @@ export default function EditForm(props) {
   const handleClose = () => {
     setOpen(false);
     setIsUpdated(false);
+    setPreview("")
   };
 
   const handleUpdate = () => {
     editBlog(blogToEdit, props.id);
     setIsUpdated(true);
   };
-
-  console.log(blogToEdit);
 
   const HandleChange = (e) => {
     if (error) {
@@ -57,7 +57,7 @@ export default function EditForm(props) {
 
   const handleFileChange = (e) => {
     setBlogToEdit({ ...blogToEdit, Image: e.target.files[0] });
-    // setPreview(URL.createObjectURL(event.target.files[0]) )
+    setPreview(URL.createObjectURL(e.target.files[0]) )
   };
 
   const style = {
@@ -99,14 +99,12 @@ export default function EditForm(props) {
             <>
               <TextField
                 id="outlined-multiline-flexible"
-                fullWidth
-                margin="10px"
-                padding="10px"
+                fullWidth                
                 multiline
                 defaultValue={blogToEdit && blogToEdit.title}
                 maxRows={1}
                 onChange={(e) => HandleChange(e)}
-                style={{ marginTop: "10px" }}
+                sx={{ marginTop: "10px",margin:"10px",padding:"10px" }}
                 name="title"
               />
               <TextField
@@ -116,7 +114,7 @@ export default function EditForm(props) {
                 defaultValue={blogToEdit && blogToEdit.body}
                 maxRows={4}
                 onChange={(e) => HandleChange(e)}
-                style={{ marginTop: "10px" }}
+                sx={{ marginTop: "10px" }}
                 name="body"
               />
             </>
@@ -124,6 +122,7 @@ export default function EditForm(props) {
           {!isUpdated && (
             <InputFileUpload handleChange={(e) => handleFileChange(e)} />
           )}
+          {!isUpdated && preview && <img src={preview} alt="img" style={{width:"100px",height:"80px", marginTop:"10px", borderRadius:"10px"}}/>}
           {!isUpdated && (
             <Button
               variant="contained"

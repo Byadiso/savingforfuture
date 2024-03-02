@@ -46,11 +46,14 @@ function Dashboard() {
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 8, md: 12 }}
+         
         >
           <Grid item xs={8} style={{ marginBottom: "70px" }}>
             {blogList.length === 0 &&
               blogNumber.map((blogskeletom, index) => (
                 <Paper
+                key={index}
+                
                   sx={{
                     p: 1,
                     margin: "auto",

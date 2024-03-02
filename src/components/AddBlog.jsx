@@ -14,7 +14,7 @@ import { ValidateBlog } from "../firebase/Helpers";
 function AddBlog() {
   const [isCreated, setIsCreated] = useState(false);  
   const [preview,setPreview] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -40,7 +40,8 @@ function AddBlog() {
 
   const handleOnClick = () => {   
     ValidateBlog(blog,setErrorMessage);
-    if(errorMessage === undefined){
+    console.log(errorMessage === null);
+    if(errorMessage === null){
       createBlog(blog)   
     }     
   };
@@ -65,15 +66,15 @@ function AddBlog() {
 
   isAuthenticated(setIsLoggedIn);
 
-  useEffect(() => {  
-    // if(isCreated === true){
-    //   navigate("/Blogs");
-    // }
+  // useEffect(() => {  
+  //   // if(isCreated === true){
+  //   //   navigate("/Blogs");
+  //   // }
 
-    // if (isLoggedIn) {
-    //   navigate("/Login");
-    // } 
-  }, [navigate,isCreated, isLoggedIn]);
+  //   // if (isLoggedIn) {
+  //   //   navigate("/Login");
+  //   // } 
+  // }, [navigate,isCreated, isLoggedIn]);
  
 
   return (

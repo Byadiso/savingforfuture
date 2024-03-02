@@ -18,6 +18,7 @@ export default function DeleteModal(props) {
   const handleOpen = () => {
     getblog();
     setOpen(true);
+    console.log(props.id)
   };
   const getblog = () => {
     const blog = blogs.filter((blog) => blog.id === props.id);
@@ -33,7 +34,7 @@ export default function DeleteModal(props) {
 
     setIsDeleted(true)
     deleteBlog(props.id)    
-    console.log("we are deletig this blog")
+   
 
   }
 

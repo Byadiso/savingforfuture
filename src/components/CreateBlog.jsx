@@ -55,11 +55,10 @@ export default function CreateBlog(props) {
 
           <TextField
             id="outlined-multiline-flexible"
-            fullWidth
-            margin="10px"
+            fullWidth            
             padding="10px"
             multiline           
-            style={{ marginTop:"10px"}}
+            sx={{ marginTop:"10px",margin:"10px"}}
             maxRows={1}
             name="title"
           />
@@ -68,7 +67,7 @@ export default function CreateBlog(props) {
             fullWidth
             multiline           
             maxRows={4}
-            style={{ marginTop:"10px"}}
+            sx={{ marginTop:"10px"}}
             name="body"
           />
           {!isCreated && <InputFileUpload />}
