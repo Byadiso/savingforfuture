@@ -1,5 +1,3 @@
-// import { getDatabase , onValue, serverTimestamp, set } from "firebase/database";
-// import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 import { database, storage } from "./Firebase";
 import { app } from "./Firebase";
@@ -13,7 +11,7 @@ import {
   remove,
   update,
 } from "firebase/database";
-import { ValidateBlog } from "./Helpers";
+// import { ValidateBlog } from "./Helpers";
 
 const db = getDatabase();
 
