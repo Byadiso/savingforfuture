@@ -55,10 +55,10 @@ function Stories() {
       >
         <ButtonForAction
           type={"check stories crafted by ChatGPT"}
-          action={handleChatGPT}
+          handleOnClick={handleChatGPT}
         />
-        <ButtonForAction type={"check Aesop's Fables"} action={handleAesop} />
-        <ButtonForAction type={"check something funny"} action={handleFun} />
+        <ButtonForAction type={"check Aesop's Fables"} handleOnClick={handleAesop} />
+        <ButtonForAction type={"check something funny"} handleOnClick={handleFun} />
       </div>
       <Grid
         container
