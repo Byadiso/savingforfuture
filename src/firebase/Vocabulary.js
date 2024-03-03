@@ -37,14 +37,16 @@ export const createVocabulary = async (vocabulary, userID) => {
 
 export const listVocabularies = (setVocabularyList)=>{
   const blogRefList = ref(db, "vocabularies/");
-  
+
   onValue(blogRefList, (snapshot) => {
       const data = snapshot.val()
+      console.log(data);
         let vocabularyArray = [];
         for (var [key, value] of Object.entries(data)) {
           var obj = {
               content: value.content,
-              timeStamp: value.time,
+              header: value.header,
+              timeStamp: value.createdAt,
               uid_key: key,
           };
           vocabularyArray.push(obj);

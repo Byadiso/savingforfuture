@@ -9,6 +9,7 @@ function VocabularyBlock(props) {
         <h4
           className="vocabulary_header"
           data-word={props.header}
+          style={{color: 'black'}}
         >
           {props.header}
         </h4>{" "}

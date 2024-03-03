@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../Style/Vocabulary.css";
-import { listVocabularies } from "../firebase/getBlogs";
-import { FaTrash } from "react-icons/fa";
+import { listVocabularies } from "../firebase/Vocabulary";
 import { isAuthenticated } from "../firebase/Authentication";
 import NoAccess from "./NoAccess";
-import { Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import InputComponent from "./InputComonents/InputComponent";
 import VocabularyBlock from "./VocabularyBlock";
 
@@ -28,7 +27,7 @@ function Vocabulary() {
     }
   };
 
-  console.log(vocabularyList)
+  // console.log(vocabularyList);
 
   useEffect(() => {
     listVocabularies(setVocabularyList);
@@ -79,19 +78,35 @@ function Vocabulary() {
             </div>
 
             <div
-            // className="vocabulary_item_content"
-            // id="vocabulary_item_content"
+              className="vocabulary_item_content"
+              id="vocabulary_item_content"
             >
+              <Box sx={{ flexGrow: 1 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          style={{
+            paddingTop: "20px",
+            marginBottom: "100px"
+          }}
+        >
               {vocabularyList &&
-                vocabularyList.map((vocabulary , index) => {
+                vocabularyList.map((vocabulary , index) => (
+                  <Grid item xs={4} sm={3} md={4} key={index} >
                   <VocabularyBlock
-                  key= {index}
+                    key= {index}
                     header={vocabulary.header}
                     uid={vocabulary.uid_key
                     }
                     content={vocabulary.content}
-                  />;
-                })}
+                  />
+                  </Grid>
+                 
+                  ))}
+              
+              </Grid>
+                </Box>
             </div>
           </div>
         </div>
