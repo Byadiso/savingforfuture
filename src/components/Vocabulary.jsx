@@ -4,26 +4,31 @@ import Footer from "./Footer";
 import "../Style/Vocabulary.css";
 import { listVocabularies } from "../firebase/getBlogs";
 import { FaTrash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../firebase/Authentication";
 import NoAccess from "./NoAccess";
+import { Button } from "@mui/material";
+import InputComponent from "./InputComonents/InputComponent";
 
 function Vocabulary() {
   const [vocabularyList, setVocabularyList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const[SearchTerm, setSearchTerm] = useState("")
 
-  // will redirect to login page if not logged in
-  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value)
+    console.log(e.target.value);
+  };
+
+  const handleSubmit =(e)=>{
+    e.preventDefault();    
+    console.log(SearchTerm);
+    console.log("submitting something...");
+  }
 
   useEffect(() => {
     listVocabularies(setVocabularyList);
     isAuthenticated(setIsLoggedIn);
-    // if (!isLoggedIn) {
-    //   navigate("/NoAccess");
-    // } else{
-    //   navigate("/Vocabulary");
-    // }
-  }, [navigate, isLoggedIn]);
+  }, [isLoggedIn]);
   return (
     <div>
       <Navbar />
@@ -36,16 +41,23 @@ function Vocabulary() {
                 Explore our library of over
                 {" " + vocabularyList.length} curated lists.
               </p>
-              <div className="vocabulary_search">
-                <input
-                  type="search"
+              <div
+                className="vocabulary_search"
+                style={{
+                  margin: "20px",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+               
+                <InputComponent
+                  placeholder="Search your world..."
                   name="search"
-                  id="search"
-                  placeholder="Search your world"
+                  handleChange={(e)=>handleChange(e)}
                 />
-                <button id="submit" className="submit">
-                  Search
-                </button>
+                <Button variant="contained" style={{marginLeft:"10px"}} onClick={handleSubmit}>Search</Button>
                 <p id="error" style={{ color: "red" }}></p>
               </div>
 
@@ -79,7 +91,9 @@ function Vocabulary() {
             </div>
           </div>
         </div>
-      ): <NoAccess /> }
+      ) : (
+        <NoAccess />
+      )}
       <Footer />
     </div>
   );
