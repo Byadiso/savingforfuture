@@ -65,8 +65,7 @@ export const deleteBlog = async (id) => {
       if (error) {
         console.log("delete error" + error);
       }
-    });
-    // console.log("Blog Deleted successfully!");
+    });    
   } catch (error) {
     console.error("Error deleting blog data:", error.message);
   }

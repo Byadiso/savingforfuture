@@ -8,22 +8,27 @@ import { isAuthenticated } from "../firebase/Authentication";
 import NoAccess from "./NoAccess";
 import { Button } from "@mui/material";
 import InputComponent from "./InputComonents/InputComponent";
+import VocabularyBlock from "./VocabularyBlock";
 
 function Vocabulary() {
   const [vocabularyList, setVocabularyList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const[SearchTerm, setSearchTerm] = useState("")
+  const [SearchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setSearchTerm(e.target.value)
-    console.log(e.target.value);
+    setError("");
+    setSearchTerm(e.target.value);
   };
 
-  const handleSubmit =(e)=>{
-    e.preventDefault();    
-    console.log(SearchTerm);
-    console.log("submitting something...");
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!SearchTerm) {
+      setError("Please enter a search term");
+    }
+  };
+
+  console.log(vocabularyList)
 
   useEffect(() => {
     listVocabularies(setVocabularyList);
@@ -51,42 +56,41 @@ function Vocabulary() {
                   justifyContent: "space-between",
                 }}
               >
-               
                 <InputComponent
                   placeholder="Search your world..."
                   name="search"
-                  handleChange={(e)=>handleChange(e)}
+                  handleChange={(e) => handleChange(e)}
                 />
-                <Button variant="contained" style={{marginLeft:"10px"}} onClick={handleSubmit}>Search</Button>
-                <p id="error" style={{ color: "red" }}></p>
+                <Button
+                  variant="contained"
+                  style={{ marginLeft: "10px" }}
+                  onClick={handleSubmit}
+                >
+                  Search
+                </Button>
               </div>
+              <p
+                style={{ color: "red", fontSize: "13px", marginLeft: "-100px" }}
+              >
+                {error}
+              </p>
 
               <div id="search_content" className="hide"></div>
             </div>
 
             <div
-              className="vocabulary_item_content"
-              id="vocabulary_item_content"
+            // className="vocabulary_item_content"
+            // id="vocabulary_item_content"
             >
               {vocabularyList &&
-                vocabularyList.map((vocabulary) => {
-                  <div className="vocabulary_box">
-                    <div id="header_vocabulary">
-                      <u>
-                        <h4
-                          className="vocabulary_header"
-                          data-word={vocabulary.header}
-                        >
-                          {vocabulary.header}
-                        </h4>{" "}
-                      </u>
-                      <FaTrash
-                        className="fa fa-trash deleteButton"
-                        data-uid={vocabulary.key}
-                      />
-                    </div>
-                    <p className="vocabulary_paragraph">{vocabulary.content}</p>
-                  </div>;
+                vocabularyList.map((vocabulary , index) => {
+                  <VocabularyBlock
+                  key= {index}
+                    header={vocabulary.header}
+                    uid={vocabulary.uid_key
+                    }
+                    content={vocabulary.content}
+                  />;
                 })}
             </div>
           </div>
