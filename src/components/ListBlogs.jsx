@@ -11,6 +11,7 @@ import { Grid } from "@mui/material";
 import { isAuthenticated } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
 import { removePTag } from "../firebase/Helpers";
+import NoAccess from "./NoAccess";
 
 function ListBlogs() {
   const [blogList, setBlogList] = useState([]);
@@ -24,16 +25,18 @@ function ListBlogs() {
   useEffect(() => {
     listBlog(setBlogList);
     isAuthenticated(setIsLoggedIn);
-    if (!isLoggedIn) {
-      navigate("/Login");
-    } else {
-      navigate("/Blogs");
-    }
+    // if (!isLoggedIn) {
+    //   navigate("/Login");
+    // } else {
+    //   navigate("/Blogs");
+    // }
   }, [navigate, isLoggedIn]);
 
   return (
     <div>
       <Navbar />
+
+      {isLoggedIn ? 
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
@@ -65,6 +68,7 @@ function ListBlogs() {
             ))}
         </Grid>
       </Box>
+      : <NoAccess />}
       <Footer />
     </div>
   );

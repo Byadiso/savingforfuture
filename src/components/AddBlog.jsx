@@ -10,6 +10,7 @@ import { createBlog } from "../firebase/createBlog";
 import { isAuthenticated } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
 import { ValidateBlog } from "../firebase/Helpers";
+import NoAccess from "./NoAccess";
 
 function AddBlog() {
   const [isCreated, setIsCreated] = useState(false);  
@@ -81,6 +82,8 @@ function AddBlog() {
     <>
       <Navbar />
 
+      {isLoggedIn ? 
+
       <div style={style} className="Add_blog_container">
         <h2 style={{ color: "#4A4D4E", marginBottom: "50px" }}>
           Create Your Awesome Blog!{" "}
@@ -101,6 +104,7 @@ function AddBlog() {
           </Button>
         </>
       </div>
+      : <NoAccess />}
 
       <Footer />
     </>

@@ -10,13 +10,13 @@ import CreateBlog from "./CreateBlog";
 import DeleteModal from "./DeleteModal";
 import { isAuthenticated } from "../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
+import NoAccess from "./NoAccess";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
-
 
   let blogNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -41,19 +41,18 @@ function Dashboard() {
   return (
     <div>
       <Navbar />
+      {isLoggedIn ? 
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 8, md: 12 }}
-         
         >
           <Grid item xs={8} style={{ marginBottom: "70px" }}>
             {blogList.length === 0 &&
               blogNumber.map((blogskeletom, index) => (
                 <Paper
-                key={index}
-                
+                  key={index}
                   sx={{
                     p: 1,
                     margin: "auto",
@@ -132,9 +131,15 @@ function Dashboard() {
                 </div>
                 <div className="dashboard_categories">
                   <h1>Dashboard</h1>
-                            <div style={{display: "flex", justifyContent:"center", alignItems:"center"}}>
-                            <CreateBlog /> <p>Add a blog</p>
-                            </div>                 
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <CreateBlog /> <p>Add a blog</p>
+                  </div>
 
                   <Link to="/User" id="info">
                     <i className="fa fa-info"></i>My info
@@ -151,6 +156,7 @@ function Dashboard() {
           </Grid>
         </Grid>
       </Box>
+      : <NoAccess />}
       <Footer />
     </div>
   );
