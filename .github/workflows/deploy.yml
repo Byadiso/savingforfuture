@@ -57,7 +57,7 @@ jobs:
       - name: Run npm install with debug logging
         run: npm install --loglevel verbose
       
-      - name: Build project why failing?
+      - name: Build project
         run: ${{ steps.detect-package-manager.outputs.runner }} npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
