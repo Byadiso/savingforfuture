@@ -40,7 +40,7 @@ export const listVocabularies = (setVocabularyList)=>{
 
   onValue(blogRefList, (snapshot) => {
       const data = snapshot.val()
-      console.log(data);
+      // console.log(data);
         let vocabularyArray = [];
         for (var [key, value] of Object.entries(data)) {
           var obj = {

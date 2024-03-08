@@ -8,30 +8,38 @@ import NoAccess from "./NoAccess";
 import { Box, Button, Grid } from "@mui/material";
 import InputComponent from "./InputComonents/InputComponent";
 import VocabularyBlock from "./VocabularyBlock";
+import { getWord } from "../firebase/APIs";
 
 function Vocabulary() {
   const [vocabularyList, setVocabularyList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [SearchTerm, setSearchTerm] = useState("");
+  const [wordList, setWordList] = useState([]);
   const [error, setError] = useState("");
+  const [checkingVocabulary, setCheckingVocabulary] = useState(false);
 
   const handleChange = (e) => {
     setError("");
+    setCheckingVocabulary(false);
     setSearchTerm(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!SearchTerm) {
       setError("Please enter a search term");
+    } else {
+      setCheckingVocabulary(true);
+      getWord(SearchTerm, setError).then((word) => {
+        setWordList(word.results);
+      });
     }
   };
 
-  // console.log(vocabularyList);
-
   useEffect(() => {
-    listVocabularies(setVocabularyList);
     isAuthenticated(setIsLoggedIn);
+    listVocabularies(setVocabularyList);
   }, [isLoggedIn]);
   return (
     <div>
@@ -74,7 +82,13 @@ function Vocabulary() {
                 {error}
               </p>
 
-              <div id="search_content" className="hide"></div>
+              {checkingVocabulary && wordList.length !== 0 &&
+                wordList.map((word, key) => (
+                  <p key={key} id="search_content">
+                    <strong>{SearchTerm + " : "}</strong>
+                    {word.definition}
+                  </p>
+                ))}
             </div>
 
             <div
@@ -82,31 +96,29 @@ function Vocabulary() {
               id="vocabulary_item_content"
             >
               <Box sx={{ flexGrow: 1 }}>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-          style={{
-            paddingTop: "20px",
-            marginBottom: "100px"
-          }}
-        >
-              {vocabularyList &&
-                vocabularyList.map((vocabulary , index) => (
-                  <Grid item xs={4} sm={3} md={4} key={index} >
-                  <VocabularyBlock
-                    key= {index}
-                    header={vocabulary.header}
-                    uid={vocabulary.uid_key
-                    }
-                    content={vocabulary.content}
-                  />
-                  </Grid>
-                 
-                  ))}
-              
-              </Grid>
-                </Box>
+                <Grid
+                  container
+                  spacing={{ xs: 2, md: 3 }}
+                  columns={{ xs: 4, sm: 8, md: 12 }}
+                  style={{
+                    paddingTop: "20px",
+                    marginBottom: "100px",
+                  }}
+                >
+                  {!checkingVocabulary &&
+                    vocabularyList &&
+                    vocabularyList.map((vocabulary, index) => (
+                      <Grid item xs={4} sm={3} md={4} key={index}>
+                        <VocabularyBlock
+                          key={index}
+                          header={vocabulary.header}
+                          uid={vocabulary.uid_key}
+                          content={vocabulary.content}
+                        />
+                      </Grid>
+                    ))}
+                </Grid>
+              </Box>
             </div>
           </div>
         </div>
