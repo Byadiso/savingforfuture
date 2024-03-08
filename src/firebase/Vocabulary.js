@@ -17,16 +17,11 @@ const db = getDatabase();
 
 export const createVocabulary = async (vocabulary, userID) => {
   let { word } = vocabulary;
-  try {
-    // Generate a unique random ID (consider using a more robust method like UUID)
-    // const id = Math.floor(Math.random() * 1000000); // 6-digit random number
-
-    // Save vocabulary data to Firebase Realtime Database
+  try {    
     await set(dbRef(db, "Vocabularies/"), {
       word,
       createdAt: serverTimestamp(),
-      addedBy: userID,
-      // id,
+      addedBy: userID,   
     });
 
     console.log("Vocabulary added successfully!");
@@ -37,10 +32,8 @@ export const createVocabulary = async (vocabulary, userID) => {
 
 export const listVocabularies = (setVocabularyList)=>{
   const blogRefList = ref(db, "vocabularies/");
-
   onValue(blogRefList, (snapshot) => {
       const data = snapshot.val()
-      // console.log(data);
         let vocabularyArray = [];
         for (var [key, value] of Object.entries(data)) {
           var obj = {

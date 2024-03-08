@@ -18,7 +18,6 @@ export default function DeleteModal(props) {
   const handleOpen = () => {
     getblog();
     setOpen(true);
-    console.log(props.id)
   };
   const getblog = () => {
     const blog = blogs.filter((blog) => blog.id === props.id);
@@ -27,16 +26,13 @@ export default function DeleteModal(props) {
 
   const handleClose = () => {
     setOpen(false);
-    setIsDeleted(false)
-}
+    setIsDeleted(false);
+  };
 
-  const handleDelete = ()=>{
-
-    setIsDeleted(true)
-    deleteBlog(props.id)    
-   
-
-  }
+  const handleDelete = () => {
+    setIsDeleted(true);
+    deleteBlog(props.id);
+  };
 
   const style = {
     position: "absolute",
@@ -58,7 +54,7 @@ export default function DeleteModal(props) {
   return (
     <div>
       <IconButton onClick={handleOpen}>
-        <DeleteIcon  style={{color: "pink"}}/>
+        <DeleteIcon style={{ color: "pink" }} />
       </IconButton>
 
       <Modal
@@ -69,14 +65,28 @@ export default function DeleteModal(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" sx={{ mt: 2 }}>
-            {!isDeleted ? "Are you sure you want to delete this blog?": null}
+            {!isDeleted ? "Are you sure you want to delete this blog?" : null}
           </Typography>
           <Typography id="modal-modal-title" sx={{ mt: 2 }}>
-            {!isDeleted ? blogToDelete && blogToDelete[0].title : "Your blog has been deleted successfully!"}
+            {!isDeleted
+              ? blogToDelete && blogToDelete[0].title
+              : "Your blog has been deleted successfully!"}
           </Typography>
 
-          {!isDeleted ? <Button variant="contained" style={{backgroundColor:"pink", margin:"20px"}} onClick={handleDelete}>Yes</Button>: null}
-          <Button variant="contained" style={{margin: isDeleted ? "20px": "0"}} onClick={handleClose}>
+          {!isDeleted ? (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "pink", margin: "20px" }}
+              onClick={handleDelete}
+            >
+              Yes
+            </Button>
+          ) : null}
+          <Button
+            variant="contained"
+            style={{ margin: isDeleted ? "20px" : "0" }}
+            onClick={handleClose}
+          >
             Return
           </Button>
         </Box>

@@ -49,8 +49,7 @@ export  const removePTag =(sentence)=>{
 }
 
 
-export const ValidateBlog = (blog, setError, isRegister) => {
- 
+export const ValidateBlog = (blog, setError) => { 
   let {title, body, image}= blog
 
   if (!title && !body && !image) {
@@ -64,8 +63,6 @@ export const ValidateBlog = (blog, setError, isRegister) => {
     waitThreeSec();
   } else if (image) {
     setError("Image is missing");
-  }
-
-  
+  } 
 
 };

@@ -63,8 +63,7 @@ export const register = (firstname, lastname, email, password) => {
       .collection("users")
       .doc(user.uid)
       .set(userData)
-      .then((user) => {
-        // User data stored in Firestore successfully
+      .then((user) => {       
         console.log("User data stored in Firestore.");
       })
       .catch((error) => {
@@ -77,7 +76,7 @@ export const register = (firstname, lastname, email, password) => {
 export const LogoutUser = () => {
   signOut(Auth)
     .then(() => {
-      console.log("// Sign-out successful.");
+        console.log("// Sign-out successful.");
     })
     .catch((error) => {     
       console.log(error);
