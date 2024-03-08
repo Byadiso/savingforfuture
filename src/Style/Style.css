@@ -23,16 +23,38 @@
     --colorGreyComments: #eff3f5dd;
 }
 
-.not_found{
+.not_found {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 200px;
-   
+
 }
 
-.not_found p{
-    color: var(--whiteColor) ;
+.not_found p {
+    color: var(--whiteColor);
     font-size: large;
     font-weight: 800;
 }
+
+
+
+/* For responsiveness  */
+@media only screen and (max-width: 720px) {
+.NoAccessContainer {
+    /* margin-left: "80px";
+    margin-right: "2080px";
+    background-color: red;
+    color: red; */
+}
+
+}
+
+@media only screen and (max-width: 900px) {
+    .NoAccessContainer {
+        
+        /* background-color: red;
+        color: red; */
+    }
+    
+    }

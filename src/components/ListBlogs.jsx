@@ -25,18 +25,12 @@ function ListBlogs() {
   useEffect(() => {
     listBlog(setBlogList);
     isAuthenticated(setIsLoggedIn);
-    // if (!isLoggedIn) {
-    //   navigate("/Login");
-    // } else {
-    //   navigate("/Blogs");
-    // }
+    
   }, [navigate, isLoggedIn]);
 
   return (
     <div>
       <Navbar />
-
-      {isLoggedIn ? 
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
@@ -53,7 +47,7 @@ function ListBlogs() {
                 <SkeletonBlog key={index} />
               </Grid>
             ))}
-          {blogList &&
+          { isLoggedIn ? blogList &&
             blogList.map((blog, index) => (
               <Grid item xs={4} sm={4} md={4} key={index} >
                 <BlogBLock
@@ -65,10 +59,10 @@ function ListBlogs() {
                   uid_key={blog.uid_key}
                 />
               </Grid>
-            ))}
+            )): <NoAccess />}
         </Grid>
       </Box>
-      : <NoAccess />}
+      
       <Footer />
     </div>
   );
