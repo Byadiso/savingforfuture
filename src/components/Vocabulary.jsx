@@ -33,8 +33,13 @@ function Vocabulary() {
       setError("Please enter a search term");
     } else {
       setCheckingVocabulary(true);
-      getWord(SearchTerm, setError).then((word) => {
-        setWordList(word.results);
+      getWord(SearchTerm).then((word) => {
+        if(!word){
+          console.log(word)
+        }else{
+          setWordList(word.results);
+        }
+        
       });
     }
   };
@@ -43,8 +48,7 @@ function Vocabulary() {
     isAuthenticated(setIsLoggedIn);
     listVocabularies(setVocabularyList);
     //waiting for data to load after 4seconds
-    waitToLoad(setLoading)   
-
+    waitToLoad(setLoading);
   }, [isLoggedIn]);
   return (
     <div>
@@ -69,7 +73,6 @@ function Vocabulary() {
                 }}
               >
                 <InputComponent
-                  placeholder="Search your world..."
                   name="search"
                   handleChange={(e) => handleChange(e)}
                 />

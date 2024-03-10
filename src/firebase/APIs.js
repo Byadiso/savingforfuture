@@ -30,20 +30,12 @@ export const getWord = async (word) => {
       try {
         const response = await fetch(url, options);
         const result = await response.json();
-        return result
-        // const data = result.results;
-        // vocabularies.push(data)       
-        // data.forEach((element) => {
-        //   const definition = document.createElement("p");
-        //   definition.innerHTML =
-        //     `<strong>
-        //     "${word.charAt(0).toUpperCase() + word.slice(1) }"
-        //                  : </strong>` + element.definition.charAt(0).toUpperCase()+element.definition.slice(1) ;
-          
-        // });
+        return result      
       
       } catch (error) {       
-        console.error(error);       
+        // console.error(error);
+         
+        return error     
       }
     
   };

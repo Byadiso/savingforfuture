@@ -22,7 +22,7 @@ export default function InputComponent(props) {
   return (
     <CustomInput
       aria-label="Demo input"
-      placeholder="Type your title here..."
+      placeholder="Type your world here..."
       name={props.name}      
       onChange={props.handleChange}
     />
