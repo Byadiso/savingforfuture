@@ -9,6 +9,7 @@ import { Box, Button, Grid } from "@mui/material";
 import InputComponent from "./InputComonents/InputComponent";
 import VocabularyBlock from "./VocabularyBlock";
 import { getWord } from "../firebase/APIs";
+import { waitToLoad } from "../firebase/Helpers";
 
 function Vocabulary() {
   const [vocabularyList, setVocabularyList] = useState([]);
@@ -17,6 +18,7 @@ function Vocabulary() {
   const [wordList, setWordList] = useState([]);
   const [error, setError] = useState("");
   const [checkingVocabulary, setCheckingVocabulary] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleChange = (e) => {
     setError("");
@@ -40,6 +42,9 @@ function Vocabulary() {
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     listVocabularies(setVocabularyList);
+    //waiting for data to load after 4seconds
+    waitToLoad(setLoading)   
+
   }, [isLoggedIn]);
   return (
     <div>
@@ -82,7 +87,8 @@ function Vocabulary() {
                 {error}
               </p>
 
-              {checkingVocabulary && wordList.length !== 0 &&
+              {checkingVocabulary &&
+                wordList.length !== 0 &&
                 wordList.map((word, key) => (
                   <p key={key} id="search_content">
                     <strong>{SearchTerm + " : "}</strong>
@@ -123,7 +129,7 @@ function Vocabulary() {
           </div>
         </div>
       ) : (
-        <NoAccess />
+        !loading && <NoAccess />
       )}
       <Footer />
     </div>

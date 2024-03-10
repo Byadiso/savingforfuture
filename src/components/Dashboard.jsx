@@ -11,10 +11,12 @@ import DeleteModal from "./DeleteModal";
 import { isAuthenticated } from "../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
 import NoAccess from "./NoAccess";
+import { waitToLoad } from "../firebase/Helpers";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -31,11 +33,12 @@ function Dashboard() {
     listBlog(setBlogList);
     isAuthenticated(setIsLoggedIn);
 
-    if (!isLoggedIn) {
-      navigate("/Login");
-    } else {
-      navigate("/Dashboard");
-    }
+    waitToLoad(setLoading)   
+    // if (!isLoggedIn) {
+    //   navigate("/Login");
+    // } else {
+    //   navigate("/Dashboard");
+    // }
   }, [navigate, isLoggedIn]);
 
   return (
@@ -156,7 +159,7 @@ function Dashboard() {
           </Grid>
         </Grid>
       </Box>
-      : <NoAccess />}
+      : !loading && <NoAccess />}
       <Footer />
     </div>
   );

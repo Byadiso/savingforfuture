@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { Button } from "@mui/material";
@@ -8,20 +8,21 @@ import InputComponent from "./InputComonents/InputComponent";
 import "../Style/Blogs.css";
 import { createBlog } from "../firebase/createBlog";
 import { isAuthenticated } from "../firebase/Authentication";
-import { useNavigate } from "react-router-dom";
-import { ValidateBlog } from "../firebase/Helpers";
+// import { useNavigate } from "react-router-dom";
+import { ValidateBlog, waitToLoad } from "../firebase/Helpers";
 import NoAccess from "./NoAccess";
 
 function AddBlog() {
-  const [isCreated, setIsCreated] = useState(false);  
+  // const [isCreated, setIsCreated] = useState(false);  
   const [preview,setPreview] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [blog, setBlog] = useState({});
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const style = {
     position: "absolute",
@@ -66,6 +67,7 @@ function AddBlog() {
   }
 
   isAuthenticated(setIsLoggedIn);
+  waitToLoad(setLoading)   
 
   // useEffect(() => {  
   //   // if(isCreated === true){
@@ -104,7 +106,7 @@ function AddBlog() {
           </Button>
         </>
       </div>
-      : <NoAccess />}
+      :!loading &&  <NoAccess />}
 
       <Footer />
     </>

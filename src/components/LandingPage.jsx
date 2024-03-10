@@ -11,7 +11,8 @@ import {
 } from "react-icons/fa";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { listBlog, listVocabularies } from "../firebase/getBlogs";
+import { listBlog } from "../firebase/getBlogs";
+import {  listVocabularies } from "../firebase/Vocabulary";
 import { Link } from "react-router-dom";
 import { getStories } from "../firebase/APIs";
 import { Button, Grid } from "@mui/material";

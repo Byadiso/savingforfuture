@@ -10,12 +10,13 @@ import SkeletonBlog from "../Skeletons/SkeletonBlog";
 import { Grid } from "@mui/material";
 import { isAuthenticated } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
-import { removePTag } from "../firebase/Helpers";
+import { removePTag, waitToLoad } from "../firebase/Helpers";
 import NoAccess from "./NoAccess";
 
 function ListBlogs() {
   const [blogList, setBlogList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 // will redirect to login page if not logged in
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function ListBlogs() {
   useEffect(() => {
     listBlog(setBlogList);
     isAuthenticated(setIsLoggedIn);
+    waitToLoad(setLoading)  
     
   }, [navigate, isLoggedIn]);
 
@@ -59,7 +61,7 @@ function ListBlogs() {
                   uid_key={blog.uid_key}
                 />
               </Grid>
-            )): <NoAccess />}
+            )): !loading && <NoAccess />}
         </Grid>
       </Box>
       

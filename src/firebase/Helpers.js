@@ -44,6 +44,12 @@ export const waitThreeSec = ()=>{
   }, 3000);  
 }
 
+export const waitToLoad =(setFunction)=>{
+  setTimeout(() => {
+    setFunction(false);
+  }, 1500); 
+}
+
 export  const removePTag =(sentence)=>{ 
  return sentence.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/&nbsp/g,"");
 }
