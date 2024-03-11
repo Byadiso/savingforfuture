@@ -33,9 +33,9 @@ function Vocabulary() {
       setError("Please enter a search term");
     } else {
       setCheckingVocabulary(true);
-      getWord(SearchTerm).then((word) => {
-        if(!word){
-          console.log(word)
+      getWord(SearchTerm).then((word,error) => {
+        if(error){
+          console.log(error)
         }else{
           setWordList(word.results);
         }
