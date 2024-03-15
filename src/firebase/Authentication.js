@@ -33,14 +33,18 @@ export const getLoggedUser = (setIsloggedState) => {
 
 export const login = (email, password) => {
   signInWithEmailAndPassword(Auth, email, password)
-    .then((userCredential) => {     
-      const user = userCredential.user;
-      console.log("logged in successfull");
-    })
-    .catch((error) => {
-      console.log(error);
+    // .then((userCredential) => {     
+    //   const user = userCredential.user;
+    //   console.log("logged in successfull");
+    //   return user
      
-    });
+    // })
+    // .catch((error) => {
+    //   error = { error: error,message:"Email/password error"}
+    //   console.log(error);      
+     
+    // });
+    
 };
 
 export const register = (firstname, lastname, email, password) => {
