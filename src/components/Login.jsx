@@ -31,20 +31,22 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     checkMyValue(user, setError, false);
-    const Auth = getAuth();
-    signInWithEmailAndPassword(Auth, user.email, user.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("logged in successfull", user);
-        error === "" && setSuccessMessage("Logged in successfully");
-      })
-      .catch((error) => {
-        error = { error: error, message: "Email/password error" };
-        // console.log(error);
-        setError(error.message);
-      });
-
-    // console.log(error);
+    if(user.email && user.password){
+      const Auth = getAuth();
+      signInWithEmailAndPassword(Auth, user.email, user.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("logged in successfull", user);
+          error === "" && setSuccessMessage("Logged in successfully");
+        })
+        .catch((error) => {
+          error = { error: error, message: "Email/password error" };        
+          setError(error.message);
+        });
+  
+    }
+    
+  
   };
 
   useEffect(() => {
