@@ -3,8 +3,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../Style/Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { isAuthenticated, login } from "../firebase/Authentication";
-import { checkMyValue, waitThreeSec, waitToLoad } from "../firebase/Helpers";
+import { isAuthenticated } from "../firebase/Authentication";
+import { checkMyValue } from "../firebase/Helpers";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import ProgressBar from "./InputComonents/ProgressBar";
 
@@ -117,10 +117,10 @@ function Login() {
               color: "black"
             }}
           >
-            <h3 style={{
+            <h5 style={{
               
               color: "green"
-            }}>{successMessage}</h3>
+            }}>{successMessage}</h5>
             <ProgressBar />
           </div>
         )}
