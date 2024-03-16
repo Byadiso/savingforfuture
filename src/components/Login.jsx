@@ -66,7 +66,7 @@ function Login() {
         {!isLoggedIn && (
           <div className="service_section">
             <div className="service_item_left login_form" id="login_form">
-              <div className="service_form_item form_login">
+              <div className="form_login">
                 <h4>Login to LearnByWriting.com</h4>
                 <input
                   type="text"
@@ -98,12 +98,12 @@ function Login() {
                     Sign Up. It's free and takes seconds.
                   </Link>
                 </div>
+                <p >
+                  <Link to="/" style={{color:"black", textDecoration:"none"}}><strong>LearnByWriting.com</strong></Link>
+                </p>
               </div>
-              <div className="bottom_login">
-                <h4>
-                  <Link to="/">LearnByWriting.com</Link>
-                </h4>
-              </div>
+              
+              
             </div>
           </div>
         )}
@@ -114,13 +114,11 @@ function Login() {
               justifyContent: "center",
               marginTop: "100px",
               flexDirection: "column",
-              color: "black"
-            }}
+              }}
           >
-            <h5 style={{
-              
+            <p style={{              
               color: "green"
-            }}>{successMessage}</h5>
+            }}>{successMessage}</p>
             <ProgressBar />
           </div>
         )}
