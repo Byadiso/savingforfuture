@@ -9,6 +9,7 @@ import SkeletonStory from "../Skeletons/SkeletonStory";
 import ButtonForAction from "./InputComonents/ButtonForAction";
 import StoryFromChatGPT from "./StoryFromChatGPT";
 import StoryFunny from "./StoryFunny";
+import NoConnection from "./NoConnection";
 
 // const RequestLink = "https://shortstories-api.onrender.com/stories";
 
@@ -17,29 +18,36 @@ function Stories() {
   const [isChatGpt, setIsChatGpt] = useState(true);
   const [isFun, setIsFun] = useState(false);
   const [isAesop, setIsAesop] = useState(false);
+  const [error, setError] = useState();
 
   let storyNumber = ["1", "2", "3", "4", "5", "6"];
 
   const fetchStory = (setStoryList) => {
-    getStories().then((Stories) => {
-      setStoryList(Stories);
-    });
+    getStories()
+      .then((Stories) => {
+        setStoryList(Stories);
+      })
+      .catch((err) => {
+        err = { error: err, errorMessage: "Connection error, try again later!"};        
+        setError(err.errorMessage);
+      });
   };
+
 
   const handleAesop = () => {
     setIsAesop(true);
     setIsChatGpt(false);
-    setIsFun(false);   
+    setIsFun(false);
   };
   const handleFun = () => {
     setIsFun(true);
     setIsAesop(false);
-    setIsChatGpt(false);   
+    setIsChatGpt(false);
   };
   const handleChatGPT = () => {
     setIsChatGpt(true);
     setIsAesop(false);
-    setIsFun(false);    
+    setIsFun(false);
   };
 
   useEffect(() => {
@@ -48,17 +56,19 @@ function Stories() {
   return (
     <div>
       <Navbar />
-      <div id="Story_controllers"
-        style={{
-          
-        }}
-      >
+      <div id="Story_controllers" style={{}}>
         <ButtonForAction
           type={"check stories crafted by ChatGPT"}
           handleOnClick={handleChatGPT}
         />
-        <ButtonForAction type={"check Aesop's Fables"} handleOnClick={handleAesop} />
-        <ButtonForAction type={"check something funny"} handleOnClick={handleFun} />
+        <ButtonForAction
+          type={"check Aesop's Fables"}
+          handleOnClick={handleAesop}
+        />
+        <ButtonForAction
+          type={"check something funny"}
+          handleOnClick={handleFun}
+        />
       </div>
       <Grid
         container
@@ -72,13 +82,15 @@ function Stories() {
           paddingTop: "40px",
         }}
       >
-        {isAesop && storyList.length === 0 &&
-          storyNumber.map((blogskeleton, index) => (
+        { error ? <NoConnection errorMessage={error}/> :  !error && isAesop &&
+          storyList.length === 0 &&
+          storyNumber.map((index) => (
             <Grid item xs={1} sm={6} md={6} key={index}>
               <SkeletonStory key={index} />
             </Grid>
           ))}
-        {isAesop &&
+          
+        {  isAesop &&
           storyList &&
           storyList.map((story, index) => (
             <Grid item xs={12} key={index}>
@@ -92,8 +104,9 @@ function Stories() {
               />
             </Grid>
           ))}
-        {isChatGpt && <StoryFromChatGPT />}
-        {isFun && <StoryFunny />}
+        {!error && isChatGpt && <StoryFromChatGPT />}
+        {!error && isFun && <StoryFunny />}
+       
       </Grid>
       <Footer />
     </div>
