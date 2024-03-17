@@ -4,8 +4,10 @@ import Footer from "./Footer";
 import "../Style/Register.css";
 import tellstory from "../images/tellstory.png";
 import { checkMyValue } from "../firebase/Helpers";
-import { isAuthenticated, register } from "../firebase/Authentication";
+import { isAuthenticated} from "../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { app } from "../firebase/Firebase";
 
 function Register() {
   const [user, setUser] = useState({
@@ -42,10 +44,37 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     checkMyValue(user, setError, true);
-    error === "" &&
-      register(user.firstname, user.lastname, user.email, user.password);
-    error === "" && setSuccessMessage("Registered in successfully");
-    error === "" && navigate("/");
+     const {firstname, lastname, email, password}= user
+      const Auth = getAuth();
+    createUserWithEmailAndPassword(
+        Auth,
+        email,
+        password,
+        firstname,
+        lastname
+      ).then((userCredential) => {   
+        const user = userCredential.user;
+        const userData = {
+          firstname: firstname,
+          lastname: lastname,
+          displayName: firstname,
+          email: email,
+        };
+        app
+          .firestore()
+          .collection("users")
+          .doc(user.uid)
+          .set(userData)
+          .then((user) => {       
+            console.log("User data stored in Firestore.");
+            error === "" && setSuccessMessage("Registered in successfully");
+            error === "" && navigate("/");
+          })
+          
+      }).catch((error) => {
+        setError(error)
+        console.error("Error storing user data in Firestore:", error);
+      });    
   };
 
   useEffect(() => {
