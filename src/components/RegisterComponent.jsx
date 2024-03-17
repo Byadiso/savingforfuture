@@ -8,6 +8,7 @@ import { isAuthenticated} from "../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "../firebase/Firebase";
+import ProgressBar from "./InputComonents/ProgressBar";
 
 function Register() {
   const [user, setUser] = useState({
@@ -17,7 +18,6 @@ function Register() {
     lastname: "",
   });
   const [error, setError] = useState();
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -66,25 +66,26 @@ function Register() {
           .doc(user.uid)
           .set(userData)
           .then((user) => {       
-            console.log("User data stored in Firestore.");
-            error === "" && setSuccessMessage("Registered in successfully");
-            error === "" && navigate("/");
+            setIsLoggedIn(true)
+            error === "" && setSuccessMessage("Registered successfully!");
+            // error === "" && navigate("/");
           })
           
       }).catch((error) => {
         error = { error: error, errorMessage: error.message, }
-        setError(error.errorMessage)
-        console.log("Error storing user data in Firestore:", error.errorMessage);
+        setError(error.errorMessage)        
       });    
   };
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
-    if (isLoggedIn) {
-      navigate("/");
-    } else {
-      navigate("/Register");
-    }
+    setTimeout(() => {
+      if (isLoggedIn) {
+        navigate("/");
+      } else {
+        navigate("/Register");
+      }
+    }, 6000);     
   }, [navigate, isLoggedIn]);
 
   return (
@@ -98,7 +99,9 @@ function Register() {
           alignItems: "center",
         }}
       >
-        <div className="register_content">
+        {!isLoggedIn && (
+        
+        <><div className="register_content">
           <h1>Start mastering</h1>
           <p>
             <strong>Create an account to:</strong>
@@ -167,6 +170,23 @@ function Register() {
             </div>
           </div>
         </div>
+        </>)}
+
+        {isLoggedIn && successMessage && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "100px",
+              flexDirection: "column",
+              }}
+          >
+            <p style={{              
+              color: "green"
+            }}>{successMessage}</p>
+            <ProgressBar />
+          </div>
+        )}
       </div>
       <Footer />
     </div>
