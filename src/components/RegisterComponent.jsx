@@ -72,8 +72,9 @@ function Register() {
           })
           
       }).catch((error) => {
-        setError(error)
-        console.error("Error storing user data in Firestore:", error);
+        error = { error: error, errorMessage: error.message, }
+        setError(error.errorMessage)
+        console.log("Error storing user data in Firestore:", error.errorMessage);
       });    
   };
 
