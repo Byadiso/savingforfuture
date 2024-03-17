@@ -27,9 +27,7 @@ export default function SignOutDiaolog(props) {
   const HandleLogOut = () => {
     LogoutUser();
     navigate("/");
-    handleClose();
-    
-
+    handleClose();  
   };
 
   return (

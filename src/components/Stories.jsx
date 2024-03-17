@@ -19,6 +19,7 @@ function Stories() {
   const [isFun, setIsFun] = useState(false);
   const [isAesop, setIsAesop] = useState(false);
   const [error, setError] = useState();
+  const [isActive, setIsActive] = useState(false);
 
   let storyNumber = ["1", "2", "3", "4", "5", "6"];
 
@@ -38,8 +39,10 @@ function Stories() {
     setIsAesop(true);
     setIsChatGpt(false);
     setIsFun(false);
+    // setIsActive(true);
   };
   const handleFun = () => {
+    // setIsActive(true);
     setIsFun(true);
     setIsAesop(false);
     setIsChatGpt(false);
@@ -48,6 +51,7 @@ function Stories() {
     setIsChatGpt(true);
     setIsAesop(false);
     setIsFun(false);
+    // setIsActive(true);
   };
 
   useEffect(() => {
@@ -58,16 +62,19 @@ function Stories() {
       <Navbar />
       <div id="Story_controllers" style={{}}>
         <ButtonForAction
-          type={"check stories crafted by ChatGPT"}
+          type={"Read stories crafted by ChatGPT"}
           handleOnClick={handleChatGPT}
+          isActive = {isActive}
         />
         <ButtonForAction
-          type={"check Aesop's Fables"}
+          type={"Read Aesop's Fables"}
           handleOnClick={handleAesop}
+          isActive = {isActive}
         />
         <ButtonForAction
-          type={"check something funny"}
+          type={"Read something funny"}
           handleOnClick={handleFun}
+          isActive = {isActive}
         />
       </div>
       <Grid
