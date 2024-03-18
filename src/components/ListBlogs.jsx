@@ -12,6 +12,7 @@ import { isAuthenticated } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
 import { removePTag, waitToLoad } from "../firebase/Helpers";
 import NoAccess from "./NoAccess";
+import NoConnection from "./NoConnection";
 
 function ListBlogs() {
   const [blogList, setBlogList] = useState([]);
@@ -43,12 +44,13 @@ function ListBlogs() {
             marginBottom: "100px"
           }}
         >
-          {blogList.length === 0 &&
+          {isLoggedIn && blogList.length === 0 &&
             blogNumber.map((blogskeletom, index) => (
               <Grid item xs={2} sm={4} md={4} key={index}>
                 <SkeletonBlog key={index} />
               </Grid>
             ))}
+          {/* {error && <NoConnection errorMessage={error}/>} */}
           { isLoggedIn ? blogList &&
             blogList.map((blog, index) => (
               <Grid item xs={4} sm={4} md={4} key={index} >

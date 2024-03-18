@@ -11,7 +11,7 @@ const URLVocabulary = "https://wordsapiv1.p.rapidapi.com/words"
 
 export const getStories = async () => {
   let response = await fetch(RequestLink);
-  let data = response.json();
+  let data = response.json();  
   return data;
 };
 

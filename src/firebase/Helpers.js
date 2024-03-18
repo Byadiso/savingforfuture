@@ -3,23 +3,23 @@ export const checkMyValue = (user, setError, isRegister) => {
   let {email:emailInput, password:passwordInput, firstname, lastname}= user
 
   if (!emailInput && !passwordInput) {
-    setError("email & password missing");
+    setError("Email & Password missing");
     waitThreeSec();  
   } else if (!emailInput) {
-    setError("email is missing");
+    setError("Email is missing");
     waitThreeSec();
   } else if (!passwordInput) {
     setError("Password is missing");
     waitThreeSec();
   } else if (isRegister) {
     if (!firstname) {
-      setError("firstname is missing");
+      setError("First Name is missing");
     }
     if (!lastname) {
-      setError("lastname is missing");
+      setError("Last Name is missing");
     }
     if (!lastname && !firstname) {
-      setError("last name and first name are missing");
+      setError("Last Name and First Name are missing");
     }
   }
 

@@ -3,7 +3,7 @@
 
 # LearnBywritingV3
 
-LearnBywritingV3 is a project made to improve the language learning process via writing and reading. With learnByWritingV3, you enjoy writing everyday. LearnByWritingV3 is implemented in order to improved UI and UX using React, Firebase, MAU and more...
+Welcome to LearnByWritingV3! This project is all about improving language learning through daily writing. With a focus on enhanced UI/UX, we've implemented React, Firebase, MAU, and more to make your learning experience seamless. Let's write our way to fluency!
 
 # TABLE OF CONTENTS
 

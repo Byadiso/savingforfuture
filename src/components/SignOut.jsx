@@ -8,9 +8,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { LogoutUser } from "../firebase/Authentication";
 import "../Style/user.css";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
+
 
 export default function SignOutDiaolog(props) {
   const [open, setOpen] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,7 +26,8 @@ export default function SignOutDiaolog(props) {
 
   const HandleLogOut = () => {
     LogoutUser();
-    handleClose();
+    navigate("/");
+    handleClose();  
   };
 
   return (

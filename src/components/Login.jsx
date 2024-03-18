@@ -3,13 +3,14 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../Style/Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { isAuthenticated, login } from "../firebase/Authentication";
+import { isAuthenticated } from "../firebase/Authentication";
 import { checkMyValue } from "../firebase/Helpers";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import ProgressBar from "./InputComonents/ProgressBar";
 
 function Login() {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -29,29 +30,43 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    checkMyValue(user, setError,false);
-    error === "" && login(user.email, user.password);
-    error === ""  && setSuccessMessage("Logged in successfully");
-    error === "" && navigate("/");
- 
+    checkMyValue(user, setError, false);
+    if(user.email && user.password){
+      const Auth = getAuth();
+      signInWithEmailAndPassword(Auth, user.email, user.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("logged in successfull", user);
+          error === "" && setSuccessMessage("Logged in successfully");
+        })
+        .catch((error) => {
+          error = { error: error, message: "Email/password error" };        
+          setError(error.message);
+        });
+  
+    }
+    
+  
   };
 
   useEffect(() => {
-    isAuthenticated(setIsLoggedIn);
-    if (isLoggedIn) {
-      navigate("/");
-    } 
-  }, [navigate, isLoggedIn]);
+    isAuthenticated(setIsLoggedIn);    
+    setTimeout(() => {
+      if (isLoggedIn) {
+        navigate("/");
+      }  
+    }, 6000);  
+
+     }, [navigate, isLoggedIn]);
 
   return (
     <div>
       <Navbar />
-      <section className="login_main">
+      <section className={isLoggedIn ? "" : "login_main" }>
         {!isLoggedIn && (
           <div className="service_section">
             <div className="service_item_left login_form" id="login_form">
-             
-              <div className="service_form_item form_login">
+              <div className="form_login">
                 <h4>Login to LearnByWriting.com</h4>
                 <input
                   type="text"
@@ -69,7 +84,7 @@ function Login() {
                   placeholder="Password"
                   id="password_login"
                 />
-                <p id="error">{error===null ? successMessage : error}</p>
+                <p id="error">{error === null ? successMessage : error}</p>
                 <div className="login_register">
                   <input
                     className="login"
@@ -83,13 +98,28 @@ function Login() {
                     Sign Up. It's free and takes seconds.
                   </Link>
                 </div>
+                <p >
+                  <Link to="/" style={{color:"black", textDecoration:"none"}}><strong>LearnByWriting.com</strong></Link>
+                </p>
               </div>
-              <div className="bottom_login">
-                <h4>
-                  <Link to="/">LearnByWriting.com</Link>
-                </h4>
-              </div>
+              
+              
             </div>
+          </div>
+        )}
+        {isLoggedIn && successMessage && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "100px",
+              flexDirection: "column",
+              }}
+          >
+            <p style={{              
+              color: "green"
+            }}>{successMessage}</p>
+            <ProgressBar />
           </div>
         )}
       </section>
