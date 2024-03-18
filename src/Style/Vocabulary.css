@@ -282,11 +282,19 @@ cursor: pointer;
     display: inline-block;
     color: var(--blueColor);
 }
+<<<<<<< HEAD
+/* 
+#search_content{
+    padding-bottom: 80px;
+    margin: 50px;
+} */
+=======
 
 #search_content{
     padding-bottom: 80px;
     margin: 50px;
 }
+>>>>>>> origin/main
 
 
 

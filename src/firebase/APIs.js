@@ -17,33 +17,22 @@ export const getStories = async () => {
 
 
 export const getWord = async (word) => {
-    // let vocabularies =[]  
-      const url = `${URLVocabulary}/${word}`;
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key": process.env.RapidAPI_Key || RapidAPI_Key,
-          "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);       
-        const result = await response.json();
-        if(response.status === 404){
-          let error = {status:response.status, error: "Word not found"} 
-          // console.log(error)
-          return error
-          
-        }
-        return result      
-      
-      } catch (error) {       
-        console.error(error);         
-        // return error     
-      }
-    
+  const url = `${URLVocabulary}/${word}`;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": process.env.RapidAPI_Key || RapidAPI_Key,
+      "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
+    },
   };
+  const response = await fetch(url, options);
+  if (response.status === 404) {
+    let error = { status: response.status, error: "That word Word was not found" }
+    return error
+  }
+  const result = await response.json();
+  return result
+};
 
-  
+
 

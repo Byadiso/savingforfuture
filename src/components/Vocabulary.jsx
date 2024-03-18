@@ -21,7 +21,7 @@ function Vocabulary() {
   const [loading, setLoading] = useState(true);
 
   const handleChange = (e) => {
-    setError("");
+    setError("");    
     setCheckingVocabulary(false);
     setSearchTerm(e.target.value);
   };
@@ -33,9 +33,10 @@ function Vocabulary() {
       setError("Please enter a search term");
     } else {
       setCheckingVocabulary(true);
-      getWord(SearchTerm).then((word,error) => {
-        if(error){
-          console.log(error)
+      getWord(SearchTerm).then((word,error) => {       
+        if(word.error){                    
+          setError(word.error)
+          setSearchTerm("")
         }else{
           setWordList(word.results);
         }
@@ -43,13 +44,14 @@ function Vocabulary() {
       });
     }
   };
+  console.log(error)
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     listVocabularies(setVocabularyList);
     //waiting for data to load after 4seconds
     waitToLoad(setLoading);
-  }, [isLoggedIn]);
+  }, [isLoggedIn,error]);
   return (
     <div>
       <Navbar />
@@ -90,13 +92,13 @@ function Vocabulary() {
                 {error}
               </p>
 
-              {checkingVocabulary &&
+              {  error==="" && checkingVocabulary && wordList &&
                 wordList.length !== 0 &&
                 wordList.map((word, key) => (
-                  <p key={key} id="search_content">
-                    <strong>{SearchTerm + " : "}</strong>
-                    {word.definition}
-                  </p>
+                  <div key={key} id="search_content">
+                    <p><strong>{SearchTerm + " : "}</strong>
+                    {word.definition}</p>
+                  </div>
                 ))}
             </div>
 
