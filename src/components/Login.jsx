@@ -64,10 +64,11 @@ function Login() {
       <Navbar />
       <section className={isLoggedIn ? "" : "login_main" }>
         {!isLoggedIn && (
-          <div className="service_section">
-            <div className="service_item_left login_form" id="login_form">
-              <div className="form_login">
-                <h4>Login to LearnByWriting.com</h4>
+          <div>
+            <div className="login_form">
+              <div>
+                <p>Login to LearnByWriting.com</p>
+                <p className="error">{error === null ? successMessage : error}</p>
                 <input
                   type="text"
                   name="email"
@@ -83,16 +84,16 @@ function Login() {
                   className="password"
                   placeholder="Password"
                   id="password_login"
-                />
-                <p id="error">{error === null ? successMessage : error}</p>
-                <div className="login_register">
-                  <input
+                />                
+                <input
                     className="login"
                     onClick={handleSubmit}
                     type="submit"
                     value="login"
                     id="loginSubmit"
                   />
+                <div className="login_register">
+                  
                   <p>Don't have an account yet?</p>
                   <Link to="/Register">
                     Sign Up. It's free and takes seconds.
