@@ -154,7 +154,6 @@ input[type=text], input[type=password], textarea {
 
 .login_register a {
     text-decoration: none;
-    /* color: var(--blueColor); */
 
 }
 
@@ -169,9 +168,6 @@ input[type=text], input[type=password], textarea {
     display: flex;
     justify-content: center;
 }
-
-/* 
-
 
 /* ..........register.....section..... */
 .hide {
@@ -190,6 +186,21 @@ input[type=text], input[type=password], textarea {
 /* for responsiveness */
 
 @media only screen and (max-width: 720px) {
+
+/* .main_register_container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+background-color: blue;
+} */
   
- 
+.register_form{
+    padding-left: 150px;
+    padding-top: 10px;
+    background-color: var(--blueColor);
+    margin: 0px;
+}
+ .register_content{
+    display: none;
+ }
 }
