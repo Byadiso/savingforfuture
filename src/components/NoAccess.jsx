@@ -5,15 +5,7 @@ import "../Style/Style.css";
 function NoAccess() {
   return (
     <div
-      className="NoAccessContainer"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "start",
-        marginTop: "150px",
-        marginLeft: "350px",
-        justifyContent: "start",
-      }}
+      className="NoAccessContainer"     
     >
       <h1 style={{ color: "black" }}> 403</h1>
       <h3 style={{ color: "black" }}> Access Denied</h3>

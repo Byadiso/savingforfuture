@@ -36,25 +36,29 @@
     font-size: large;
     font-weight: 800;
 }
+.NoAccessContainer{
+    display: "flex";
+    flex-direction: "column";
+    align-items: "start";
+    margin-top: 150px;
+    margin-left : 350px;
+    justify-content: "start";
+}
 
 
 
 /* For responsiveness  */
 @media only screen and (max-width: 720px) {
-.NoAccessContainer {
-    /* margin-left: "80px";
-    margin-right: "2080px";
-    background-color: red;
-    color: red; */
+.NoAccessContainer {   
+    margin: 0px;
+    padding: 0px;    
 }
 
 }
 
-@media only screen and (max-width: 900px) {
-    .NoAccessContainer {
-        
-        /* background-color: red;
-        color: red; */
-    }
-    
+@media only screen and (max-width: 920px) {
+    .NoAccessContainer {        
+        /* background-color: var(--blueColor);
+        color: var(--blackColor); */
+        }    
     }
