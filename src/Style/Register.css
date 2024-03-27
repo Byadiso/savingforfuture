@@ -119,11 +119,7 @@ input[type=text], input[type=password], textarea {
     background: var(--whiteColor);
     border: 1px solid var(--blueColorContrast);    
 }
-/* 
-.form_login {
-    border-radius: 4px;
-    margin: 35px;
-} */
+
 
 .form_login input {
     border-radius: 20px;
@@ -187,15 +183,9 @@ input[type=text], input[type=password], textarea {
 
 @media only screen and (max-width: 720px) {
 
-/* .main_register_container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-background-color: blue;
-} */
   
 .register_form{
-    padding-left: 150px;
+    padding-left: 35px;
     padding-top: 10px;
     background-color: var(--blueColor);
     margin: 0px;

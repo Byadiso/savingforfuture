@@ -49,12 +49,12 @@ function Vocabulary() {
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     listVocabularies(setVocabularyList);
-    //waiting for data to load after 4seconds
     waitToLoad(setLoading);
   }, [isLoggedIn,error]);
   return (
     <div>
       <Navbar />
+      <div style={{display:"flex", alignItems:"center"}}>
       {isLoggedIn ? (
         <div className="vocabulary_main">
           <div className="vocabulary_content">
@@ -136,6 +136,7 @@ function Vocabulary() {
       ) : (
         !loading && <NoAccess />
       )}
+      </div>
       <Footer />
     </div>
   );

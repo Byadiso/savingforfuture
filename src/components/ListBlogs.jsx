@@ -65,8 +65,7 @@ function ListBlogs() {
               </Grid>
             )): !loading && <NoAccess />}
         </Grid>
-      </Box>
-      
+      </Box>     
       <Footer />
     </div>
   );

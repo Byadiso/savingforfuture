@@ -36,12 +36,13 @@
     font-size: large;
     font-weight: 800;
 }
-.NoAccessContainer{
+
+.NoAccessContainer {
     display: "flex";
     flex-direction: "column";
     align-items: "start";
-    margin-top: 150px;
-    margin-left : 350px;
+    margin-top: 110px;
+    margin-left: 430px;
     justify-content: "start";
 }
 
@@ -49,16 +50,16 @@
 
 /* For responsiveness  */
 @media only screen and (max-width: 720px) {
-.NoAccessContainer {   
-    margin: 0px;
-    padding: 0px;    
-}
+    .NoAccessContainer {
+        margin: 200px;
+        padding:50px;
+    }
 
 }
 
 @media only screen and (max-width: 920px) {
-    .NoAccessContainer {        
-        /* background-color: var(--blueColor);
-        color: var(--blackColor); */
-        }    
+    .NoAccessContainer {
+        margin: 0px;
+        /* padding: 0px; */
     }
+}
