@@ -32,18 +32,14 @@ function Dashboard() {
   useEffect(() => {
     listBlog(setBlogList);
     isAuthenticated(setIsLoggedIn);
-
     waitToLoad(setLoading)   
-    // if (!isLoggedIn) {
-    //   navigate("/Login");
-    // } else {
-    //   navigate("/Dashboard");
-    // }
+    
   }, [navigate, isLoggedIn]);
 
   return (
     <div>
       <Navbar />
+      <div style={{display:"flex", alignItems:"center"}}>
       {isLoggedIn ? 
       <Box sx={{ flexGrow: 1 }}>
         <Grid
@@ -160,6 +156,7 @@ function Dashboard() {
         </Grid>
       </Box>
       : !loading && <NoAccess />}
+      </div>
       <Footer />
     </div>
   );

@@ -69,21 +69,10 @@ function AddBlog() {
   isAuthenticated(setIsLoggedIn);
   waitToLoad(setLoading)   
 
-  // useEffect(() => {  
-  //   // if(isCreated === true){
-  //   //   navigate("/Blogs");
-  //   // }
-
-  //   // if (isLoggedIn) {
-  //   //   navigate("/Login");
-  //   // } 
-  // }, [navigate,isCreated, isLoggedIn]);
- 
-
   return (
     <>
       <Navbar />
-
+      <div style={{display:"flex", alignItems:"center"}}>
       {isLoggedIn ? 
 
       <div style={style} className="Add_blog_container">
@@ -107,6 +96,9 @@ function AddBlog() {
         </>
       </div>
       :!loading &&  <NoAccess />}
+
+      </div>
+
 
       <Footer />
     </>
