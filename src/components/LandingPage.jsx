@@ -195,7 +195,7 @@ function LandingPage() {
           backgroundColor: "#29b4e2",
           padding: "50px",
           paddingBottom: "150px",
-          paddingLeft: "150px",
+          paddingLeft: "90px",
         }}
       >
         <Grid
