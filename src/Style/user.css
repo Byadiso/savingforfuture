@@ -45,7 +45,7 @@ section {
 
 /* for responsiveness */
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 720px) {
     #loading {
         width: 20px;
         height: 20px;
