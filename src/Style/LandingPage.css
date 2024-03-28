@@ -1,9 +1,7 @@
-/* esetting my box sizing */
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-/* my variables style */
 :root {
     --blueColorContrast: #0b3af6;
     --blueColor: #29b4e2;
@@ -29,8 +27,7 @@
     --spacingMargin: 35px;
     --error: rgb(204, 14, 14);
     --background-color: rgb(251 251 251);
-    --colorHoverlink: rgba(0, 0, 0, 0.123);
-    --colorfooter: #424343;
+    --colorHoverlink: rgba(0, 0, 0, 0.123);   
     --textColorGreyParagraph: #818181;
     --inputColor: #5F6466;
     --colorforWeakGrey: #74777769;
@@ -56,7 +53,6 @@
 
 body {
     font-family: 'Roboto',  sans-serif;
-    /* font-family:'Courier New', Courier, monospace;  */
     background-color: var(--whiteColor);
     background-position: center;
     background-repeat: no-repeat;
@@ -192,7 +188,6 @@ i {
 }
 
 /* who I am section */
-
 .who_section {
     display: block;
     align-items: center;
@@ -323,8 +318,7 @@ i {
     width: 150px;
     height: 145px;
     border: 2px solid var(--whiteColor);
-    color: var(--whiteColor);
-    /* padding: 25px; */
+    color: var(--whiteColor);   
 }
 
 .app_link:hover {
@@ -337,16 +331,7 @@ i {
     color: var(--whiteColor);
 }
 
-/* 
-
-.service_image img {
-    width: 200px;
-    height: 145px;
-
-} */
-
-/* 
-    input  */
+/* input  */
 input[type=text], input[type=password], textarea {
     width: 100%;
     padding: 12px 20px;

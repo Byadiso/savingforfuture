@@ -13,7 +13,6 @@
     --error: rgb(204, 14, 14);
     --background-color: rgb(251 251 251);
     --colorHoverlink: rgba(0, 0, 0, 0.123);
-    --colorfooter: #424343;
     --textColorGreyParagraph: #818181;
     --inputColor: #5F6466;
     --colorforWeakGrey: #74777769;
@@ -52,7 +51,7 @@
 @media only screen and (max-width: 720px) {
     .NoAccessContainer {
         margin: 200px;
-        padding:50px;
+        padding: 50px;
     }
 
 }
@@ -60,6 +59,5 @@
 @media only screen and (max-width: 920px) {
     .NoAccessContainer {
         margin: 0px;
-        /* padding: 0px; */
     }
 }

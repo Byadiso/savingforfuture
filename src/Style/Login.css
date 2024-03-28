@@ -1,29 +1,12 @@
 :root {
 
-    --blueColorContrast: #29b4e2;
     --blueColor: #29b4e2;
-    --blueColorBC: #d7f4fde3;
-    --blueColorWhite: #80dfff88;
-    --BlackColor: #000000;
-    --colorHover: #0f4e8d;
     --whiteColor: #ffffff;
-    --activeColorHeader: rgb(97, 97, 87);
-    --buttonColor: rgb(97, 97, 87);
     --textColorWhite: #ffffff;
     --textColorGrey: #4A4D4E;
-    --spacing: 10px;
-    --spacingMargin: 35px;
-    --error: rgb(204, 14, 14);
-    --background-color: rgb(251 251 251);
-    --colorHoverlink: rgba(0, 0, 0, 0.123);
-    --colorfooter: #424343;
+   --error: rgb(204, 14, 14);   
     --textColorGreyParagraph: #818181;
-    --inputColor: #5F6466;
-    --colorforWeakGrey: #74777769;
-    --colorforWeakGreyBackground: #3c3f3fc5;
-    --linkColor: rgb(0, 0, 0);
-    --lowerBackground: #f3f3f3;
-    --colorActive: #29b4e2;
+   
 }
 
 
@@ -37,7 +20,7 @@
 
 
 
-.login_main{
+.login_main {
     display: flex;
     background-color: var(--blueColor);
     margin: 0px;
@@ -53,10 +36,9 @@
     margin: 50px;
     padding: 50px;
     background: var(--whiteColor);
-    /* padding: 5px; */
     border: 5px solid var(--whiteColor);
-    border-radius: 10px;    
-} 
+    border-radius: 10px;
+}
 
 /* input*/
 
@@ -77,9 +59,9 @@ input[type=text], input[type=password], textarea {
     border: none;
     border-radius: 1px;
     padding: 10px;
-    width: 100%;    
+    width: 100%;
     cursor: pointer;
-   
+
 }
 
 .login_register {
@@ -104,14 +86,6 @@ input[type=text], input[type=password], textarea {
     display: none;
 }
 
-/* #alert_message_login, #alert_message_register {
-    background: green;
-    color: white;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-} */
-
 /* ..........register.....section..... */
 .bottom_login {
     color: var(--whiteColor);
@@ -123,5 +97,3 @@ input[type=text], input[type=password], textarea {
     text-decoration: none;
     color: var(--textColorWhite);
 }
-
-/* for responsiveness  mobile*/

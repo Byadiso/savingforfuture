@@ -1,40 +1,7 @@
-/* my variables style */
-
 :root {
-    --blueColorContrast: #0b3af6;
-    --blueColor: #29b4e2;
-    --blackColorHeader: rgb(0, 0, 0);
-    --blueColorBC: #02090be3;
-    --blueColorWhite: #e4f6fc88;
-    --blueColorWhiteLess: #e7f7fc;
-    --redColorWhiteLess: #fdeded;
-    --redColor: #fa1717;
-    --GreenColorWhiteLess: #f1faf0;
-    --GreenColor: #36c729;
-    --OrangeColor: #be530bef;
-    --OrangeColorBlack: #713209ef;
-    --OrangeColorWhite: #977761ef;
-    --BlackBC: #5ca4bc;
-    --colorHover: #0f4e8d;
-    --whiteColor: #ffffff;
-    --activeColorHeader: rgb(97, 97, 87);
-    --buttonColor: rgb(97, 97, 87);
-    --textColorWhite: #ffffff;
-    --textColorGrey: #4A4D4E;
-    --spacing: 10px;
-    --spacingMargin: 35px;
-    --error: rgb(204, 14, 14);
-    --background-color: rgb(251 251 251);
-    --colorHoverlink: rgba(0, 0, 0, 0.123);
-    --colorfooter: #424343;
-    --textColorGreyParagraph: #818181;
-    --inputColor: #5F6466;
-    --colorforWeakGrey: #74777769;
-    --colorforWeakGreyBackground: #3c3f3fc5;
-    --linkColor: rgb(0, 0, 0);
-    --lowerBackground: #f3f3f3;
-    --colorActive: #29b4e2;
 
+    --whiteColor: #ffffff;
+    --error: rgb(204, 14, 14);
 }
 
 /* all styles  ---------------------------*/
@@ -49,7 +16,6 @@
 }
 
 /* body syles  */
-
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--whiteColor);
@@ -62,48 +28,38 @@ body {
 
 /* hero section */
 section {
-
     margin: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-
-
-.logout{
+.logout {
     padding: 5px;
     margin: 5px;
 }
 
-.logout:hover{
-cursor: pointer;
+.logout:hover {
+    cursor: pointer;
 }
 
 /* for responsiveness */
 
 @media only screen and (max-width: 700px) {
-  
-   #loading {
+    #loading {
         width: 20px;
         height: 20px;
-    }   
+    }
 }
 
 
-
-
-/* 
-for ipods and tables */
+/* for ipods and tables */
 
 @media only screen and (max-width: 920px) {
 
     body {
         min-width: 360px;
     }
-
-
 }
 
 /* 
@@ -113,13 +69,10 @@ for ipods and tables */
 
     body {
         min-width: 360px;
-    } 
+    }
 }
 
-
-
-/* 
-  for dark mode */
+/*   for dark mode */
 
 @media (prefers-color-scheme: dark) {
     body {

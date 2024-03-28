@@ -1,9 +1,7 @@
-/* esetting my box sizing */
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
-
-/* my variables style */
 
 :root {
     --blueColorContrast: #0b3af6;
@@ -132,7 +130,7 @@ input[type=text], input[type=password], textarea {
 
 .dashboard_content {
     display: flex;
-    /* flex-direction: column; */
+    
 }
 
 
@@ -154,8 +152,7 @@ input[type=text], input[type=password], textarea {
     right: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.938);
-    /* Example overlay background color with transparency */
+    background-color: rgba(0, 0, 0, 0.938);   
     z-index: 2;
     padding: 300px;
     padding-top: 500px;
@@ -250,7 +247,6 @@ color: var(--redColor);
 
 .blog_item {
     width: 100%;
-    /* max-height: 40%; */
     justify-content: center;
     display: flex;
     margin-bottom: 5px;
@@ -260,7 +256,6 @@ color: var(--redColor);
 }
 
 .blog_image {
-    /* /* margin-right: -40px; */
     padding-top: 10px; 
 }
 
@@ -300,13 +295,13 @@ color: var(--redColor);
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* border-left: 2px solid var(--colorforWeakGrey); */
+   
     margin: 20px;
     padding: 60px;
     padding-top: 20px;
     max-width: 80%;
     background: var(--whiteColor);
-    /* margin-right: 20px; */
+    
 }
 
 .form_blog {
@@ -433,7 +428,6 @@ color: var(--redColor);
 
 /* for login */
 .hero_login_section {
-
     padding: 30px;
     background: linear-gradient(0deg, rgba(15, 15, 15, 0.76), rgba(3, 3, 3, 0.774)), url(../images/background.jpg);
     background-repeat: no-repeat;

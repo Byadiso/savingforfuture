@@ -15,7 +15,6 @@
     --error: rgb(204, 14, 14);
     --background-color: rgb(251 251 251);
     --colorHoverlink: rgba(0, 0, 0, 0.123);
-    --colorfooter: #424343;
     --textColorGreyParagraph: #818181;
     --inputColor: #5F6466;
     --colorforWeakGrey: #74777769;
@@ -192,37 +191,11 @@ textarea {
 }
 
 .dateStamp {
-    color: #29b4e2;
-    /* background: var(--blueColor); */
+    color: #29b4e2;    
 }
 
 .fa {
     color: #29b4e2;
-}
-
-/* footer */
-
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-}
-
-/* footer */
-
-footer .copyright {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--whiteColor);
-    /* background-color: grey; */
-}
-
-footer{
-    background-color: var(--blackColor);
 }
 
 
@@ -355,10 +328,7 @@ for ipods and tables */
         min-width: 360px;
     }
 
- 
-
-
-   
+    
 
     /* for main_who_items */
     .main_who_items {

@@ -26,7 +26,7 @@
     --error: rgb(204, 14, 14);
     --background-color: rgb(251 251 251);
     --colorHoverlink: rgba(0, 0, 0, 0.123);
-    --colorfooter: #424343;
+
     --textColorGreyParagraph: #818181;
     --inputColor: #5F6466;
     --colorforWeakGrey: #74777769;
@@ -108,25 +108,6 @@ h2 , h3, h1{
 
 .hide{
     display: none;
-}
-
-/* footer */
-
-footer .copyright {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--whiteColor);    
-}
-
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background-color: var(--blackColorHeader);
-    width: 100%;
-    color: white;
-    text-align: center;
 }
 
 .social_media i {
