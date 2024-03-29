@@ -67,7 +67,14 @@ body {
 .error {
     color: var(--redColor);
 }
-
+.register_container {    
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 65px;
+        align-items: center;
+        justify-content:center;
+        padding-left: 200px    
+}
 
 .register_content {
     display: flex;
@@ -79,6 +86,8 @@ body {
     margin: 20px;
     padding-bottom: 20px;
 }
+
+
 
 
 .register_form {
@@ -98,8 +107,13 @@ body {
     justify-content: center;
     align-items: start;
     margin-bottom: 20px;
-    background: var(--textColorGrey);
+    background: var(--whiteColor);
     padding: 1px 10px 1px 10px;
+    color: var(--blackColor)
+}
+
+.login_button:hover{
+cursor: pointer;
 }
 
 
@@ -177,10 +191,12 @@ input[type=text], input[type=password], textarea {
 
 
 /* for responsiveness */
-
 @media only screen and (max-width: 720px) {
-
-
+.register_container{  
+       padding: 0px;  
+    margin-bottom: 75px;   
+ 
+}
     .register_form {
         padding-left: 35px;
         padding-top: 10px;

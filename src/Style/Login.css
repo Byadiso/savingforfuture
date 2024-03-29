@@ -86,6 +86,10 @@ input[type=text], input[type=password], textarea {
     display: none;
 }
 
+.register_button, .buttonToHome:hover{
+    cursor: pointer;
+    }
+
 /* ..........register.....section..... */
 .bottom_login {
     color: var(--whiteColor);

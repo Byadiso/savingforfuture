@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "../firebase/Firebase";
 import ProgressBar from "./InputComonents/ProgressBar";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 function Register() {
   const [user, setUser] = useState({
@@ -92,12 +93,7 @@ function Register() {
     <div>
       <Navbar />
       <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          paddingBottom: "65px",
-          alignItems: "center",
-        }}
+        className="register_container"
       >
         {!isLoggedIn && (
         
@@ -106,14 +102,14 @@ function Register() {
           <p>
             <strong>Create an account to:</strong>
           </p>
-          <p>Start writing daily, interesting stories full of adventures.</p>
+          <p><CheckCircleOutlineIcon sx={{ color: "#29b4e2" }}/>Start writing daily, interesting stories full of adventures.</p>
 
           <p>
-            Create your own custom lists and flashcards to learn the words you
+          <CheckCircleOutlineIcon sx={{ color: "#29b4e2" }}/>Create your own custom lists and flashcards to learn the words you
             want to know.
           </p>
 
-          <p>Enjoy reading beautiful stories crafted by Aesop.</p>
+          <p> <CheckCircleOutlineIcon sx={{ color: "#29b4e2" }}/>Enjoy reading beautiful stories crafted by Aesop.</p>
           <img src={tellstory} width="214px" alt="" />
         </div>
         <div className="register_form" id="register_form">
@@ -163,8 +159,8 @@ function Register() {
                 />
 
                 <div className="login_content">
-                  <p style={{color:"white"}}>Already have an account?</p>
-                  <Link to="/login">Login</Link>
+                  <p >Already have an account?</p>
+                  <Link to="/login" className="login_button">Login</Link>
                 </div>
               </div>
             </div>

@@ -95,12 +95,12 @@ function Login() {
                 <div className="login_register">
                   
                   <p>Don't have an account yet?</p>
-                  <Link to="/Register">
+                  <Link to="/Register" className="register_button">
                     Sign Up. It's free and takes seconds.
                   </Link>
                 </div>
                 <p >
-                  <Link to="/" style={{color:"black", textDecoration:"none"}}><strong>LearnByWriting.com</strong></Link>
+                  <Link to="/" style={{color:"black", textDecoration:"none"}} className="buttonToHome"><strong>LearnByWriting.com</strong></Link>
                 </p>
               </div>
               
