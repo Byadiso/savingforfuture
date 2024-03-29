@@ -17,7 +17,7 @@ Welcome to LearnByWritingV3! This project is all about improving language learni
 
 # DEMO
 
-### My live project can be access by visit this link 
+### Live project can be accessed via below link:
 
 - Github Pages: https://byadiso.github.io/learnByWritingV3/
 - Netlify : https://learnbywritingv3.netlify.app
@@ -37,12 +37,6 @@ Welcome to LearnByWritingV3! This project is all about improving language learni
 
 - \$ git clone https://github.com/Byadiso/learnByWritingv3.git
 - \$ cd learnByWritingv3
-
-# Contributing
-
-- Make contribution
-
-# Licensing
 
 # Author
 
