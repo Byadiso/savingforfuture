@@ -3,25 +3,6 @@
 :root {
     --blueColorContrast: #0b3af6;
     --blueColor: #29b4e2;
-    --colorHover: #0f4e8d;
-    --whiteColor: #ffffff;
-    --blackColor: rgb(0, 0, 0);
-    --activeColorHeader: rgb(97, 97, 87);
-    --buttonColor: rgb(97, 97, 87);
-    --textColorWhite: #ffffff;
-    --textColorGrey: #4A4D4E;
-    --spacing: 10px;
-    --spacingMargin: 35px;
-    --error: rgb(204, 14, 14);
-    --background-color: rgb(251 251 251);
-    --colorHoverlink: rgba(0, 0, 0, 0.123);
-    --textColorGreyParagraph: #818181;
-    --inputColor: #5F6466;
-    --colorforWeakGrey: #74777769;
-    --linkColor: rgb(0, 0, 0);
-    --lowerBackground: #f3f3f3;
-    --colorActive: #29b4e2;
-    --colorGreyComments: #eff3f5dd;
 }
 
 /* all styles  ---------------------------*/

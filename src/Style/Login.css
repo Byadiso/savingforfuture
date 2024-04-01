@@ -1,12 +1,9 @@
 :root {
 
-    --blueColor: #29b4e2;
-    --whiteColor: #ffffff;
-    --textColorWhite: #ffffff;
-    --textColorGrey: #4A4D4E;
-   --error: rgb(204, 14, 14);   
-    --textColorGreyParagraph: #818181;
-   
+    --blueColor: #008DDA;
+    --blueActiveColor: #29b4e2;
+    --redColor: #fa1717;  
+    --greyColor: #4b4a4a;
 }
 
 
