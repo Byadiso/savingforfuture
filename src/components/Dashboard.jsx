@@ -25,9 +25,7 @@ function Dashboard() {
 
   const [ dataBugdet, setDataBudget ] = useState();
 
-  const getData = () =>{
-    setDataBudget(dataBugdet)    
-  }
+ 
 
   const data = {
     earnings: 10000,
@@ -37,15 +35,16 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getData()
-    listBlog(setBlogList);
+    
+ 
+      setDataBudget(dataBugdet)    
+   
     isAuthenticated(setIsLoggedIn);
     waitToLoad(setLoading);
-  }, [navigate, isLoggedIn, getData]);
+  }, [navigate, isLoggedIn, dataBugdet]);
 
   return (
-    <div className="main_dashboard">
-      <Navbar />
+    <div className="main_dashboard">     
       <div className="bugdet_summary">
         <div className="bugdet_summary_item">
           <BudgetGraph data={data} />
@@ -61,10 +60,8 @@ function Dashboard() {
         <div style={{ padding:"20px"}}>
         {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
         </div>
-
        
-      </div>
-      <Footer />
+      </div>     
     </div>
   );
 }
