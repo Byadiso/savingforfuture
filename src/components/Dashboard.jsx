@@ -12,6 +12,8 @@ import { isAuthenticated } from "../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
 import NoAccess from "./NoAccess";
 import { waitToLoad } from "../firebase/Helpers";
+import TableData from "./TableData";
+import CardBugdeto from "./CardBugdeto";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
@@ -39,91 +41,12 @@ function Dashboard() {
   return (
     <div>
       <Navbar />
+      <div tyle={{display:"flex", alignItems:"center", flexDirection: "row"}}>
+        <CardBugdeto />
+      </div>
       <div style={{display:"flex", alignItems:"center"}}>
       {isLoggedIn ? 
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 2, sm: 8, md: 12 }}
-        >
-          <Grid item xs={8} style={{ marginBottom: "70px" }}>
-            {blogList.length === 0 &&
-              blogNumber.map((blogskeletom, index) => (
-                <Paper
-                  key={index}
-                  sx={{
-                    p: 1,
-                    margin: "auto",
-                    maxWidth: 1000,
-                    flexGrow: 1,
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-                  }}
-                >
-                  <Grid container spacing={1}>
-                    <Grid item xs={12}>
-                      <SkeletonDashboard key={index} />
-                    </Grid>
-                  </Grid>
-                </Paper>
-              ))}
-            {blogList &&
-              blogList.map((blog, index) => (
-                <Card
-                  sx={{
-                    p: 1,
-                    margin: "20px",
-                    maxWidth: 1000,
-                    flexGrow: 1,
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-                  }}
-                  key={index}
-                >
-                  <Grid container spacing={2} key={index}>
-                    <Grid item xs={4}>
-                      <ButtonBase
-                        sx={{ width: 100, height: 100, borderRadius: "50%" }}
-                      >
-                        <Img alt="image-blog" src={blog.Image} />
-                      </ButtonBase>
-                    </Grid>
-                    <Grid item xs={8} sm container>
-                      <Grid
-                        item
-                        xs={8}
-                        container
-                        direction="column"
-                        spacing={1}
-                      >
-                        <Grid item xs={6}>
-                          <Typography gutterBottom variant="h6" component="div">
-                            {blog.title}
-                          </Typography>
-
-                          <Grid
-                            item
-                            xs={12}
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <DeleteModal id={blog.id} />
-                            <EditForm id={blog.id} />
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Card>
-              ))}
-          </Grid>
-
-        
-        </Grid>
-      </Box>
+      <TableData />
       : !loading && <NoAccess />}
       </div>
       <Footer />

@@ -19,7 +19,7 @@ function UserProfile() {
   return (
     <div>
       <Navbar />
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center" , color:"#4b4a4a"}}>
         {isLoggedIn ? (
           <div>
             <h1>UserProfile</h1>
