@@ -32,29 +32,25 @@ function Navbar() {
         <div className="menu">
           <h2 className="ngana_logo">
             <Link className="menu_nav" to="/" style={style}>
-              <LightModeIcon fontSize="large" style={{ color: "#29b4e2" }} />
-              LearnByWriting
+              <LightModeIcon fontSize="large" style={{ color: "white" }} />
+              Bugdeto
             </Link>
-          </h2>
-
-          <Link to="/Stories" className="" style={style}>
-            <AutoStoriesIcon />
-            <span className={ location.pathname ==="/Stories"? "active": null}>
-            Stories
-            </span>
-          </Link>
-          <Link    to="/Blogs" style={style}>
-            
-            <LocalLibraryIcon />
-            <span className={ location.pathname ==="/Blogs"? "active": null}>Blogs</span>
-           
-          </Link>
-          <Link className="" to="/Vocabulary" style={style}>
-
-            <FormatListBulletedIcon />
-            <span className={ location.pathname ==="/Vocabulary"? "active": null}>Vocabulary Lists</span>
-          </Link>
-          <div className="dropdown" id="dropdown">
+          </h2> 
+          <Link to="/Dashboard" style={style}>
+                <DashboardIcon className="Dashboard_dropdown"/> <span className={ location.pathname ==="/Dashboard"? "active": null}>Dashboard </span>
+          </Link>   
+          <Link
+                  className=" dropbtn"
+                  to="/User"
+                  id="username"
+                  style={{ color: "white" }}
+                >
+                  <PersonIcon />
+                  User
+                </Link>   
+          
+          
+          {/* <div className="dropdown" id="dropdown">
             {isLoggedIn ? (
               <Link to="/Dashboard" style={style}>
                 <DashboardIcon className="Dashboard_dropdown"/> <span className={ location.pathname ==="/Dashboard"? "active": null}>Dashboard </span>
@@ -82,7 +78,7 @@ function Navbar() {
                 </Link>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </nav>
     </div>

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import Stories from "./components/Stories";
 import Dashboard from "./components/Dashboard";
 import LandingPage from "./components/LandingPage.jsx";
 
@@ -14,7 +13,7 @@ import Logout from "./components/Logout.jsx";
 import User from "./components/UserProfile.jsx";
 import Register from "./components/RegisterComponent.jsx";
 import AddBlog from "./components/AddBlog.jsx";
-import Settings from "./components/Settings.jsx";
+
 
 function App() {
   return (
@@ -29,16 +28,12 @@ function App() {
           <Route path="/Blogs/:id" element={<SingleBlog />} />
           <Route path="/Add_blog" element={<AddBlog />} />
 
-          {/* routes for stories */}
-          <Route path="/Stories" element={<Stories />} />
-
-          {/* routes for stories */}
+          
           <Route path="/Vocabulary" element={<Vocabulary />} />
 
           <Route path="/Dashboard" element={<Dashboard />} />
 {/* routes for stories */}
-          <Route path="/Settings" element={<Settings />} />
-
+         
           <Route path="/User" element={<User />} />
 
           <Route path="/Login" element={<Login />} />

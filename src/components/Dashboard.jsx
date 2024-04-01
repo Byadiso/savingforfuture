@@ -121,38 +121,7 @@ function Dashboard() {
               ))}
           </Grid>
 
-          <Grid item xs={3}>
-            <div className="dashboard_item_left">
-              <div className="dashboard_item">
-                <div className="dashboard_search">
-                  <input type="text" placeholder="Search.." name="search" />
-                  <i className="fa fa-search"></i>
-                </div>
-                <div className="dashboard_categories">
-                  <h1>Dashboard</h1>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <CreateBlog /> <p>Add a blog</p>
-                  </div>
-
-                  <Link to="/User" id="info">
-                    <i className="fa fa-info"></i>My info
-                  </Link>
-                  <Link to="/vocabulary" id="members">
-                    <i className="fa-solid fa-floppy-disk"></i>Your Vocabulary
-                  </Link>
-                  <Link to="/Settings" id="settings">
-                    <i className="fa fa-gear"></i>Settings
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Grid>
+        
         </Grid>
       </Box>
       : !loading && <NoAccess />}
