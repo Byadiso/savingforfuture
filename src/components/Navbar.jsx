@@ -20,6 +20,12 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
 import PaymentsIcon from "@mui/icons-material/Payments";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import GroupIcon from '@mui/icons-material/Group';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
 import Dashboard from "./Dashboard";
 
 const drawerWidth = 240;
@@ -81,7 +87,7 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const icons = [<InboxIcon />, <MailIcon />, <PaymentsIcon />, <InboxIcon />]
+  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <CalendarMonthIcon/>];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -129,17 +135,18 @@ export default function Navbar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Dashboard", "Add to Bugdeto", "User", "settings"].map((text, index) => (
-           
+          {["Dashboard", "Add ", "User", "Reports"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
-                  {icons[index]}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemIcon>{icons[index]}</ListItemIcon>
+                <Link
+                  to={"/" + text}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <ListItemText primary={text} />
+                </Link>
               </ListItemButton>
             </ListItem>
-           
           ))}
         </List>
         <Divider />
@@ -148,7 +155,7 @@ export default function Navbar() {
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {icons[4]}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
@@ -163,49 +170,3 @@ export default function Navbar() {
     </Box>
   );
 }
-
-// import React, { useEffect, useState } from "react";
-// import "../Style/NavBar.css";
-// import { Link, useLocation } from "react-router-dom";
-// import { isAuthenticated } from "../firebase/Authentication";
-// import DashboardIcon from "@mui/icons-material/Dashboard";
-// import PaymentsIcon from "@mui/icons-material/Payments";
-
-// function Navbar() {
-//   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-//   const location = useLocation();
-
-//   const style = {
-//     display: "flex",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   };
-
-//   useEffect(() => {
-//     isAuthenticated(setIsLoggedIn);
-//   }, []);
-
-//   return (
-//     <div>
-//       <nav className="main_nav">
-//         <div className="menu">
-//           <h2 className="ngana_logo">
-//             <Link className="menu_nav" to="/" style={style}>
-//               <PaymentsIcon fontSize="large" style={{ color: "white" }} />
-//               Bugdeto
-//             </Link>
-//           </h2>
-//           <Link to="/Dashboard" style={style}>
-//             <DashboardIcon className="Dashboard_dropdown" />{" "}
-//             <span className={location.pathname === "/Dashboard" ? "" : null}>
-//               Dashboard{" "}
-//             </span>
-//           </Link>
-//         </div>
-//       </nav>
-//     </div>
-//   );
-// }
-
-// export default Navbar;

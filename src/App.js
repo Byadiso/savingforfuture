@@ -11,6 +11,7 @@ import Logout from "./components/Logout.jsx";
 import User from "./components/UserProfile.jsx";
 import Register from "./components/RegisterComponent.jsx";
 import Navbar from "./components/Navbar.jsx";
+import AddRecord from "./components/AddRecord.jsx";
 
 
 function App() {
@@ -18,12 +19,14 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/learnByWritingV3" element={<LandingPage />} />              
+          <Route path="/" element={<LandingPage />} /> 
+          <Route path="/bugdeto" element={<LandingPage />} />                         
 
           <Route path="/Dashboard" element={<Navbar />} />
 
           <Route path="/User" element={<User />} />
+          <Route path="/Add" element={<AddRecord />} />
+          <Route path="/Reports" element={<User />} />
 
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />

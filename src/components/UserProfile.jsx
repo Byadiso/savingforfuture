@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import { getLoggedUser, isAuthenticated } from "../firebase/Authentication";
 import NoAccess from "./NoAccess";
+import { Link } from "react-router-dom";
 
 function UserProfile() {
   const [loggedUser, setLoggedUser] = useState([]);
@@ -17,20 +16,21 @@ function UserProfile() {
   }, [isLoggedIn]);
 
   return (
-    <div>
-      <Navbar />
-      <div style={{ display: "flex", alignItems: "center" , color:"#4b4a4a"}}>
+    <div style={{ display: "flex", alignItems: "center" , color:"white", justifyContent:"center"}}>
+      
+      <div style={{ display: "flex", alignItems: "center" , color:"white"}}>
         {isLoggedIn ? (
           <div>
             <h1>UserProfile</h1>
             <p>Email: {email && email}</p>
             <p>Uid: {userId && userId}</p>
+            <Link to="/" style={{  color:"white"}}>Go back to Home Page</Link>
           </div>
         ) : (
           <NoAccess />
         )}
       </div>
-      <Footer />
+      
     </div>
   );
 }
