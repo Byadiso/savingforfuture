@@ -1,9 +1,9 @@
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ac2c8eeb-7293-489f-a00b-6c4808240c71/deploy-status)](https://app.netlify.com/sites/learnbywritingv3/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ac2c8eeb-7293-489f-a00b-6c4808240c71/deploy-status)](https://app.netlify.com/sites/Bugdeto/deploys)
 
-# LearnBywritingV3
+# Bugdeto
 
-Welcome to LearnByWritingV3! This project is all about improving language learning through daily writing. With a focus on enhanced UI/UX, we've implemented React, Firebase, MAU, and more to make your learning experience seamless. Let's write our way to fluency!
+Bugdeto
 
 # TABLE OF CONTENTS
 
@@ -19,8 +19,8 @@ Welcome to LearnByWritingV3! This project is all about improving language learni
 
 ### Live project can be accessed via below link:
 
-- Github Pages: https://byadiso.github.io/learnByWritingV3/
-- Netlify : https://learnbywritingv3.netlify.app
+- Github Pages: https://byadiso.github.io/bugdeto/
+- Netlify : https://bugdeto.netlify.app
 
 # Build With
 
@@ -35,8 +35,8 @@ Welcome to LearnByWritingV3! This project is all about improving language learni
 
 # Installation
 
-- \$ git clone https://github.com/Byadiso/learnByWritingv3.git
-- \$ cd learnByWritingv3
+- \$ git clone https://github.com/Byadiso/Bugdeto.git
+- \$ cd Bugdeto
 
 # Author
 
