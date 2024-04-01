@@ -42,20 +42,31 @@ function AddRecord() {
   };
 
   const handleChange = (event) => {
-    if (error) {
+    const { name, value } = event.target;
+    
       setError("");
-    }
-    if (event.target.name === "title") {
-      setBlog({ ...blog, title: event.target.value });
-    }
-    if (event.target.name === "body") {
-      setBlog({ ...blog, body: event.target.value });
-    }
+      setBlog((prevBlog) => ({
+        ...prevBlog,
+        [name]: value,
+      }))
+   
+    // if (event.target.name === "title") {
+    //   setBlog({ ...blog, title: event.target.value });
+    // }
+    // if (event.target.name === "body") {
+    //   setBlog({ ...blog, body: event.target.value });
+    // }
       
   };
 
-  isAuthenticated(setIsLoggedIn);
-  waitToLoad(setLoading)   
+  React.useEffect(() => {
+    isAuthenticated(setIsLoggedIn);
+    waitToLoad(setLoading);
+  }, []); // Empty dependency array means this effect runs once on mount
+  
+
+  // isAuthenticated(setIsLoggedIn);
+  // waitToLoad(setLoading)   
 
   return (
     <>
