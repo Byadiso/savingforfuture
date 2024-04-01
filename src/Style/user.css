@@ -2,6 +2,8 @@
 
     --whiteColor: #ffffff;
     --error: rgb(204, 14, 14);
+    --blueColor: #008DDA;
+    --blueActiveColor: #29b4e2;
 }
 
 /* all styles  ---------------------------*/
@@ -17,8 +19,8 @@
 
 /* body syles  */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--whiteColor);
+    font-family: 'Roboto',  sans-serif;
+    background-color: var(--blueColor);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

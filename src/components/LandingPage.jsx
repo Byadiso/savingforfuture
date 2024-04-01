@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { listBlog } from "../firebase/getBlogs";
 import { Link } from "react-router-dom";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, IconButton } from "@mui/material";
 import { isAuthenticated } from "../firebase/Authentication";
 
 function LandingPage() {
@@ -22,10 +22,14 @@ function LandingPage() {
    
   }, []);
   return (
-    <div>
-      <Navbar />
-
-      <Footer />
+    <div className="main_Landing">
+        <IconButton style={{ color: "white" }}>
+          <Link to="/Dashboard" style={{textDecoration:"none", color:"white"}}>
+          <PaymentsIcon fontSize="large" />
+          </Link>              
+             
+            </IconButton>
+            <h2>Bugdeto </h2>
     </div>
   );
 }

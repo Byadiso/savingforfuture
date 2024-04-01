@@ -23,7 +23,8 @@
 /* body syles  */
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto',  sans-serif;
+    background-color: var(--blueColor);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
