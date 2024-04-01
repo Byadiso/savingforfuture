@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 const bull = (
   <Box
     component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+    sx={{ display: "inline-block", mx: "1px", transform: "scale(0.8)" }}
   >
     •
   </Box>
@@ -17,10 +17,10 @@ const card = (
   <React.Fragment>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Recent Deposits
+        Total On Account
       </Typography>
       <Typography variant="h5" component="div">
-        be{bull}nev{bull}o{bull}lent
+        1000PLN
       </Typography>
     </CardContent>
   </React.Fragment>

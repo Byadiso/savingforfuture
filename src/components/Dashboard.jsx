@@ -14,40 +14,55 @@ import NoAccess from "./NoAccess";
 import { waitToLoad } from "../firebase/Helpers";
 import TableData from "./TableData";
 import CardBugdeto from "./CardBugdeto";
+import BudgetGraph from "./BudgetGraph";
+import "../Style/Dashboard.css";
+import { dataBugdet } from "../firebase/data";
 
 function Dashboard() {
   const [blogList, setBlogList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const [ dataBugdet, setDataBudget ] = useState();
+
+  const getData = () =>{
+    setDataBudget(dataBugdet)    
+  }
+
+  const data = {
+    earnings: 10000,
+    expenses: 5000,
+  };
+
   const navigate = useNavigate();
 
-  let blogNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-  const Img = styled("img")({
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%",
-  });
-
   useEffect(() => {
+    getData()
     listBlog(setBlogList);
     isAuthenticated(setIsLoggedIn);
-    waitToLoad(setLoading)   
-    
-  }, [navigate, isLoggedIn]);
+    waitToLoad(setLoading);
+  }, [navigate, isLoggedIn, getData]);
 
   return (
-    <div>
+    <div className="main_dashboard">
       <Navbar />
-      <div tyle={{display:"flex", alignItems:"center", flexDirection: "row"}}>
-        <CardBugdeto />
+      <div className="bugdet_summary">
+        <div className="bugdet_summary_item">
+          <BudgetGraph data={data} />
+        </div>
+        <div className="bugdet_summary_item">
+          <CardBugdeto dataExpense={dataBugdet}/>
+        </div>
       </div>
-      <div style={{display:"flex", alignItems:"center"}}>
-      {isLoggedIn ? 
-      <TableData />
-      : !loading && <NoAccess />}
+      <div style={{ display: "flex", alignItems: "center", width:"100%" , padding:"80px"}}>
+        <div style={{ padding:"20px"}}>
+        {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
+        </div>
+        <div style={{ padding:"20px"}}>
+        {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
+        </div>
+
+       
       </div>
       <Footer />
     </div>

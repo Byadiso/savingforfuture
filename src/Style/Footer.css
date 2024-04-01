@@ -24,7 +24,7 @@
 
 
 footer {
-    position: fixed;
+    
     /* or absolute, depending on your layout */
     bottom: 0;
     left: 0;
@@ -35,7 +35,7 @@ footer {
     flex-direction: column;
     background: var(--blackColor);
     color: var(--whiteColor);
-    padding: 10px;
+    /* padding: 5px; */
 }
 
 footer div {
