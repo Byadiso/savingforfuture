@@ -5,7 +5,6 @@ import Dashboard from "./components/Dashboard";
 import LandingPage from "./components/LandingPage.jsx";
 
 import ListBlogs from "./components/ListBlogs";
-import Vocabulary from "./components/Vocabulary.jsx";
 import Login from "./components/Login.jsx";
 import NoMatch from "./components/NoMatch.jsx";
 import SingleBlog from "./components/SingleBlog.jsx";
@@ -26,10 +25,8 @@ function App() {
           {/* routes for Blogs */}
           <Route path="/Blogs" element={<ListBlogs />} />
           <Route path="/Blogs/:id" element={<SingleBlog />} />
-          <Route path="/Add_blog" element={<AddBlog />} />
-
-          
-          <Route path="/Vocabulary" element={<Vocabulary />} />
+          <Route path="/Add_blog" element={<AddBlog />} />      
+         
 
           <Route path="/Dashboard" element={<Dashboard />} />
 {/* routes for stories */}

@@ -37,7 +37,7 @@ function Navbar() {
             </Link>
           </h2> 
           <Link to="/Dashboard" style={style}>
-                <DashboardIcon className="Dashboard_dropdown"/> <span className={ location.pathname ==="/Dashboard"? "active": null}>Dashboard </span>
+                <DashboardIcon className="Dashboard_dropdown"/> <span className={ location.pathname ==="/Dashboard"? "": null}>Dashboard </span>
           </Link>   
           <Link
                   className=" dropbtn"
@@ -50,35 +50,7 @@ function Navbar() {
                 </Link>   
           
           
-          {/* <div className="dropdown" id="dropdown">
-            {isLoggedIn ? (
-              <Link to="/Dashboard" style={style}>
-                <DashboardIcon className="Dashboard_dropdown"/> <span className={ location.pathname ==="/Dashboard"? "active": null}>Dashboard </span>
-              </Link>
-            ) : (
-              <Link  to="/Login" id=" " style={style}>
-                <LoginIcon />
-                Login
-              </Link>
-            )}
-
-            {isLoggedIn && (
-              <div className="dropdown-content hide">
-                <Link
-                  className=" dropbtn"
-                  to="/User"
-                  id="username"
-                  style={{ color: "black" }}
-                >
-                  <PersonIcon />
-                  User
-                </Link>
-                <Link style={style}>
-                  <SignOutDiaolog logoutClass="logout" />
-                </Link>
-              </div>
-            )}
-          </div> */}
+         
         </div>
       </nav>
     </div>
