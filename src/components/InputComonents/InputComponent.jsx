@@ -23,7 +23,7 @@ const MemoizedInputComponent = React.memo(function InputComponent(props) {
   return (
     <CustomInput
       aria-label="Demo input"
-      placeholder="Type your expenses here..."
+      placeholder={"Your " + props.name}
       name={props.name}      
       onChange={props.handleChange}
     />

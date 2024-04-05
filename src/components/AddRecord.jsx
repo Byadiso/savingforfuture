@@ -7,6 +7,7 @@ import { isAuthenticated } from "../firebase/Authentication";
 
 import { ValidateBlog, waitToLoad } from "../firebase/Helpers";
 import NoAccess from "./NoAccess";
+import RadioComponent from "./InputComonents/RadioComponent";
 
 function AddRecord() {  
   
@@ -40,6 +41,7 @@ function AddRecord() {
       createTransaction(data)   
     }     
   };
+  console.log(data)
 
   const handleChange = (event) => {
     const { name, value } = event.target;    
@@ -70,7 +72,8 @@ function AddRecord() {
         </h2>
         <>
           <InputComponent name="title" handleChange={handleChange} />
-          <InputComponent name="amount" handleChange={handleChange} />       
+          <InputComponent name="amount" handleChange={handleChange} />  
+          <RadioComponent name="type" handleChange={handleChange} />     
         </>
         <>
           

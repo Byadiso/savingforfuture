@@ -16,10 +16,12 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { TableHead } from '@mui/material';
+import { transactionArray } from '../firebase/data';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
+  
 
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);
@@ -36,6 +38,7 @@ function TablePaginationActions(props) {
   const handleLastPageButtonClick = (event) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
+ 
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
@@ -78,11 +81,14 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export default function TableData(props) {
+export default function TableData() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [ rows, setRows] = React.useState([])
 
-  const rows = props.rows
+  const getTransaction =()=> {setRows(transactionArray)}
+
+  
 
   console.log(rows)
 
@@ -98,6 +104,9 @@ export default function TableData(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  React.useEffect(()=>{
+    getTransaction();
+  },[])
 
   return (
     <TableContainer component={Paper}>

@@ -13,7 +13,7 @@ function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const [ dataBugdet, setDataBudget ] = useState();
+  
 
  
 
@@ -23,14 +23,12 @@ function Dashboard() {
   };
 
   const navigate = useNavigate();
+  // const getTransaction =()=> {setDataBudget(transactionArray)}
 
-  useEffect(() => {   
- 
-    setDataBudget(transactionArray)    
-   
-    isAuthenticated(setIsLoggedIn);
+  useEffect(() => {      
+       isAuthenticated(setIsLoggedIn);
     waitToLoad(setLoading);
-  }, [navigate, isLoggedIn, dataBugdet]);
+  }, [navigate, isLoggedIn,]);
 
   return (
     <div className="main_dashboard">     
@@ -44,10 +42,10 @@ function Dashboard() {
       </div>
       <div style={{ display: "flex", alignItems: "center", width:"100%" , padding:"80px"}}>
         <div style={{ padding:"20px"}}>
-        {isLoggedIn ? <TableData rows={dataBugdet}/> : !loading && <NoAccess />}
+        {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
         </div>
         <div style={{ padding:"20px"}}>
-        {isLoggedIn ? <TableData rows={dataBugdet} /> : !loading && <NoAccess />}
+        {isLoggedIn ? <TableData  /> : !loading && <NoAccess />}
         </div>
        
       </div>     
