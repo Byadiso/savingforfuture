@@ -91,27 +91,14 @@ function Register() {
 
   return (
     <div>
-      <Navbar />
+      
       <div
         className="register_container"
       >
         {!isLoggedIn && (
         
-        <><div className="register_content">
-          <h1>Start mastering</h1>
-          <p>
-            <strong>Create an account to:</strong>
-          </p>
-          <p><CheckCircleOutlineIcon sx={{ color: "#29b4e2" }}/>Start writing daily, interesting stories full of adventures.</p>
-
-          <p>
-          <CheckCircleOutlineIcon sx={{ color: "#29b4e2" }}/>Create your own custom lists and flashcards to learn the words you
-            want to know.
-          </p>
-
-          <p> <CheckCircleOutlineIcon sx={{ color: "#29b4e2" }}/>Enjoy reading beautiful stories crafted by Aesop.</p>
-          <img src={tellstory} width="214px" alt="" />
-        </div>
+        <>
+        
         <div className="register_form" id="register_form">
           <div className="">
             <div className="register_form_item">
@@ -183,8 +170,7 @@ function Register() {
             <ProgressBar />
           </div>
         )}
-      </div>
-      <Footer />
+      </div>      
     </div>
   );
 }

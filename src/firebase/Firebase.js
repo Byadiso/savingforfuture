@@ -7,13 +7,14 @@ import { getStorage } from "firebase/storage";
 
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA5sPlupW_n1XEt6xsw_Y7aAZKltGEFyXw',
-  authDomain: "mybrand-df7b7.firebaseapp.com",
-  databaseURL: "https://mybrand-df7b7-default-rtdb.firebaseio.com",
-  projectId: "mybrand-df7b7",
-  storageBucket: "mybrand-df7b7.appspot.com",
-  messagingSenderId: "1073877765217",
-  appId: "1:1073877765217:web:7f63596f42c5d4ca18ae20"
+  apiKey: "AIzaSyDwrBTO77z2Z-O2HfBZ6yxO5NJG2gUo4dg",
+  authDomain: "bugdeto.firebaseapp.com",
+  databaseURL: "https://bugdeto-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "bugdeto",
+  storageBucket: "bugdeto.appspot.com",
+  messagingSenderId: "1013395788593",
+  appId: "1:1013395788593:web:5d7d10a30ebc5364dbd610",
+  measurementId: "G-LD959Z9TBW"
 };
 
 // Initialize Firebase
@@ -22,5 +23,14 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 const db = getDatabase(app);
 
+// console.log(app)
+// console.log(auth)
+// console.log(storage)
+// console.log(db)
+
 export  {app, auth,storage, db};
+
+
+
+
  

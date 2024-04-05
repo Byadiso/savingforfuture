@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import InputComponent from "./InputComonents/InputComponent";
 import "../Style/Blogs.css";
-import { createBlog } from "../firebase/createBlog";
+import { createTransaction } from "../firebase/Transaction";
 import { isAuthenticated } from "../firebase/Authentication";
 
 import { ValidateBlog, waitToLoad } from "../firebase/Helpers";
@@ -13,7 +13,7 @@ function AddRecord() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [blog, setBlog] = useState({});
+  const [data, setData] = useState({});
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -34,28 +34,20 @@ function AddRecord() {
   };
 
   const handleOnClick = () => {   
-    ValidateBlog(blog,setErrorMessage);
+    ValidateBlog(data,setErrorMessage);
     console.log(errorMessage === null);
     if(errorMessage === null){
-      createBlog(blog)   
+      createTransaction(data)   
     }     
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    
+    const { name, value } = event.target;    
       setError("");
-      setBlog((prevBlog) => ({
+      setData((prevBlog) => ({
         ...prevBlog,
         [name]: value,
-      }))
-   
-    // if (event.target.name === "title") {
-    //   setBlog({ ...blog, title: event.target.value });
-    // }
-    // if (event.target.name === "body") {
-    //   setBlog({ ...blog, body: event.target.value });
-    // }
+      }))   
       
   };
 
@@ -65,8 +57,6 @@ function AddRecord() {
   }, []); // Empty dependency array means this effect runs once on mount
   
 
-  // isAuthenticated(setIsLoggedIn);
-  // waitToLoad(setLoading)   
 
   return (
     <>
@@ -80,7 +70,7 @@ function AddRecord() {
         </h2>
         <>
           <InputComponent name="title" handleChange={handleChange} />
-          <InputComponent name="Amount" handleChange={handleChange} />       
+          <InputComponent name="amount" handleChange={handleChange} />       
         </>
         <>
           

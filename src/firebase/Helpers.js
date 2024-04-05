@@ -1,6 +1,6 @@
 export const checkMyValue = (user, setError, isRegister) => {
  
-  let {email:emailInput, password:passwordInput, firstname, lastname}= user
+  let {email:emailInput, password:passwordInput, firsttitle, lasttitle}= user
 
   if (!emailInput && !passwordInput) {
     setError("Email & Password missing");
@@ -12,14 +12,14 @@ export const checkMyValue = (user, setError, isRegister) => {
     setError("Password is missing");
     waitThreeSec();
   } else if (isRegister) {
-    if (!firstname) {
-      setError("First Name is missing");
+    if (!firsttitle) {
+      setError("First title is missing");
     }
-    if (!lastname) {
-      setError("Last Name is missing");
+    if (!lasttitle) {
+      setError("Last title is missing");
     }
-    if (!lastname && !firstname) {
-      setError("Last Name and First Name are missing");
+    if (!lasttitle && !firsttitle) {
+      setError("Last title and First title are missing");
     }
   }
 
@@ -55,20 +55,17 @@ export  const removePTag =(sentence)=>{
 }
 
 
-export const ValidateBlog = (blog, setError) => { 
-  let {title, body, image}= blog
+export const ValidateBlog = (transaction, setError) => { 
+  let {title, amount}= transaction
 
-  if (!title && !body && !image) {
-    setError("title & password && image missing");
+  if (!title && !amount ) {
+    setError("title & amount missing");
     waitThreeSec();  
   } else if (!title) {
     setError("title is missing");
     waitThreeSec();
-  } else if (!body) {
-    setError("body is missing");
+  } else if (!amount) {
+    setError("amount is missing");
     waitThreeSec();
-  } else if (image) {
-    setError("Image is missing");
   } 
-
 };

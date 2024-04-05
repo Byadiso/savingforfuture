@@ -2,7 +2,7 @@ function createData(name, money) {
     return { name, money };
   }
   
-  export const dataBugdet = [
+  export const transactionArray = [
     createData('Cupcake', 200),
     createData('Donut', 452, ),
     createData('Shopping', 262,),

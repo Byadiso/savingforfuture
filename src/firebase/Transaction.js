@@ -15,48 +15,29 @@ import {
 
 const db = getDatabase();
 
-export const createBlog = async (blog) => {
-  let { title, body, image } = blog;
+export const createTransaction = async (data) => {
+  let { title, amount} = data;
   try {
-    // Upload image to Firebase Storage
-    const imageName = image.name;
-    const storageRef = ref(storage, "images/" + imageName);
-    const uploadTask = uploadBytesResumable(storageRef, image);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-      },
-      (error) => {
-        console.error("Error uploading image:", error.message);
-      }
-    );
-
-    // Wait for the upload to complete and get the download URL
-    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+     
 
     // Generate a unique random ID (consider using a more robust method like UUID)
     const id = Math.floor(Math.random() * 1000000); // 6-digit random number
 
     // Save blog data to Firebase Realtime Database
-    await set(dbRef(db, "blogs/" + id), {
+    await set(dbRef(db, "Transactions/" + id), {
       title,
-      body,
+      amount,
       createdAt: serverTimestamp(),
-      Image: downloadURL,
       id,
     });
 
-    console.log("Blog added successfully!");
+    console.log("Transaction added successfully!");
   } catch (error) {
-    console.error("Error saving blog data:", error.message);
+    console.error("Error saving transaction data:", error.message);
   }
 };
 
-export const deleteBlog = async (id) => {
+export const deleteTransaction= async (id) => {
   try {
     //remove blog if I am the admin user
     await remove(dbRef(db, "blogs/" + id), function (error) {
@@ -69,11 +50,11 @@ export const deleteBlog = async (id) => {
   }
 };
 
-export const editBlog = async (blog, BlogID) => {
+export const editTransaction = async (blog, BlogID) => {
   let { title, body, Image } = blog;
   try {
     // Upload image to Firebase Storage
-    if(Image.name === undefined){
+    if(Image.title === undefined){
       const blogRef = dbRef(db, "blogs/" + BlogID);
       await update(blogRef, {
         title,

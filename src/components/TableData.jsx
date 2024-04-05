@@ -78,29 +78,13 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, money) {
-  return { name, money };
-}
-
-const rows = [
-  createData('Cupcake', 200),
-  createData('Donut', 452, ),
-  createData('Shopping', 262,),
-  createData('Rent', 159),
-  createData('SuperBet', 356),
-  createData('Honeycomb', 408),
-  createData('Ice cream sandwich', 237),
-  createData('Jelly Bean', 375),
-  createData('KitKat', 518),
-  createData('Lollipop', 392),
-  createData('Marshmallow', 318),
-  createData('Nougat', 360),
-  createData('Oreo', 4370),
-].sort((a, b) => (a.name < b.name ? -1 : 1));
-
-export default function TableData() {
+export default function TableData(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const rows = props.rows
+
+  console.log(rows)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =

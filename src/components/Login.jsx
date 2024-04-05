@@ -61,7 +61,7 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
+      
       <section className={isLoggedIn ? "" : "login_main" }>
         {!isLoggedIn && (
           <div>
@@ -100,7 +100,7 @@ function Login() {
                   </Link>
                 </div>
                 <p >
-                  <Link to="/" style={{color:"black", textDecoration:"none"}} className="buttonToHome"><strong>LearnByWriting.com</strong></Link>
+                  <Link to="/" style={{color:"black", textDecoration:"none"}} className="buttonToHome"><strong>Bugdeto.com</strong></Link>
                 </p>
               </div>
               
@@ -124,7 +124,7 @@ function Login() {
           </div>
         )}
       </section>
-      <Footer />
+    
     </div>
   );
 }

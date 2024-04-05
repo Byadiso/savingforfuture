@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import { Box, ButtonBase, Card, Grid, Paper, Typography } from "@mui/material";
-import { listBlog } from "../firebase/getBlogs";
-import SkeletonDashboard from "../Skeletons/SkeletonDashboard";
-import styled from "@emotion/styled";
-import EditForm from "./EditForm";
-import CreateBlog from "./CreateBlog";
-import DeleteModal from "./DeleteModal";
 import { isAuthenticated } from "../firebase/Authentication";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NoAccess from "./NoAccess";
 import { waitToLoad } from "../firebase/Helpers";
 import TableData from "./TableData";
 import CardBugdeto from "./CardBugdeto";
 import BudgetGraph from "./BudgetGraph";
 import "../Style/Dashboard.css";
-import { dataBugdet } from "../firebase/data";
+import { transactionArray } from "../firebase/data";
 
-function Dashboard() {
-  const [blogList, setBlogList] = useState([]);
+function Dashboard() {  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -34,10 +24,9 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    
+  useEffect(() => {   
  
-      setDataBudget(dataBugdet)    
+    setDataBudget(transactionArray)    
    
     isAuthenticated(setIsLoggedIn);
     waitToLoad(setLoading);
@@ -50,15 +39,15 @@ function Dashboard() {
           <BudgetGraph data={data} />
         </div>
         <div className="bugdet_summary_item">
-          <CardBugdeto dataExpense={dataBugdet}/>
+          <CardBugdeto dataExpense="1000PLN"/>
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center", width:"100%" , padding:"80px"}}>
         <div style={{ padding:"20px"}}>
-        {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
+        {isLoggedIn ? <TableData rows={dataBugdet}/> : !loading && <NoAccess />}
         </div>
         <div style={{ padding:"20px"}}>
-        {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
+        {isLoggedIn ? <TableData rows={dataBugdet} /> : !loading && <NoAccess />}
         </div>
        
       </div>     
