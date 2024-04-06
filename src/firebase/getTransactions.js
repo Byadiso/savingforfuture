@@ -8,46 +8,30 @@ import 'firebase/firestore';
 const databaseFirebase = getDatabase();
 
 
-export const listBlog = (setBlogList)=>{
-    const blogRefList = ref(databaseFirebase, "blogs/");
-    onValue(blogRefList, (snapshot) => {
+export const listTransactions = (setTransactionList)=>{
+    const transactionRefList = ref(databaseFirebase, "Transactions/");
+    onValue(transactionRefList, (snapshot) => {
         const data = snapshot.val()       
-          let blogsArray = [];
+          let transactionsArray = [];
           for (var [key, value] of Object.entries(data)) {
             var obj = {
               id: value.id,
               title: value.title,
-              body: value.body,
-              Image: value.Image,
+              amount: value.amount,
+              type: value.type,
               uid_key: key,
               createdAt:value.createdAt,
             };
     
-            blogsArray.push(obj);
+            transactionsArray.push(obj);
           }
-          setBlogList(blogsArray)  
+          setTransactionList(transactionsArray)  
       })
 }
 
-export const listUsers = (setUserList)=>{
-  const userRefList = ref(databaseFirebase, "users/");
-  onValue(userRefList, (snapshot) => {
-      const data = snapshot.val()      
-        let usersArray = [];
-        for (var [key, value] of Object.entries(data)) {
-          var obj = {
-              content: value.content,
-              timeStamp: value.time,
-              uid_key: key,
-          };  
-          usersArray.push(obj);
-        }
-        setUserList(usersArray);  
-    })
-}
 
-export const singleBlog = (setBlogList, blogId)=>{
-  const blogRefList = ref(databaseFirebase, "blogs/" + blogId);
+export const singleTransaction = (setBlogList, blogId)=>{
+  const blogRefList = ref(databaseFirebase, "Transactions/" + blogId);
   onValue(blogRefList, (snapshot) => {
       const data = snapshot.val()        
         let blogsArray = [];

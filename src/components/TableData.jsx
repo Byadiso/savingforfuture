@@ -17,6 +17,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { TableHead } from '@mui/material';
 import { transactionArray } from '../firebase/data';
+import { listTransactions } from '../firebase/getTransactions';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -84,17 +85,17 @@ TablePaginationActions.propTypes = {
 export default function TableData() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [ rows, setRows] = React.useState([])
+  // const [ rows, setRows] = React.useState([])
+  const [data, setData] = React.useState([])
 
-  const getTransaction =()=> {setRows(transactionArray)}
+ 
 
-  
-
-  console.log(rows)
+  console.log(data)
+ 
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -105,7 +106,7 @@ export default function TableData() {
     setPage(0);
   };
   React.useEffect(()=>{
-    getTransaction();
+    listTransactions(setData)
   },[])
 
   return (
@@ -119,16 +120,19 @@ export default function TableData() {
       </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
+            ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : data
           ).map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.title}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.money}
-              </TableCell>              
+                {row.amount}
+              </TableCell>    
+              <TableCell style={{ width: 160 }} align="right">
+                {row.type}
+              </TableCell>           
             </TableRow>
           ))}
           {emptyRows > 0 && (
@@ -142,7 +146,7 @@ export default function TableData() {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={rows.length}
+              count={data.length}
               rowsPerPage={rowsPerPage}
               page={page}
               slotProps={{

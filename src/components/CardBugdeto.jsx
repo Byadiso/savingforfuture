@@ -26,10 +26,21 @@ const card = (
   </React.Fragment>
 );
 
-export default function CardBugdeto() {
+export default function CardBugdeto(props) {
   return (
     <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">{card}</Card>
+      <Card variant="outlined">
+      <React.Fragment>
+    <CardContent>
+      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        Total On Account
+      </Typography>
+      <Typography variant="h5" component="div">
+        {props.dataExpense} PLN
+      </Typography>
+    </CardContent>
+  </React.Fragment>
+      </Card>
     </Box>
   );
 }
