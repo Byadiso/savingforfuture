@@ -87,7 +87,7 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <CalendarMonthIcon/>];
+  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <BarChartIcon />,<CalendarMonthIcon/>];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -135,10 +135,10 @@ export default function Navbar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Dashboard", "Add ", "User", "Reports"].map((text, index) => (
+          {["Dashboard", "Add ", "User", "Reports", "Super"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon>{icons[index]}</ListItemIcon>
+                <ListItemIcon style={{ display:"flex", justifyContent:"center",color: text!=="Super"? "#ACE2E1": "#008DDA" }}>{icons[index]}</ListItemIcon>
                 <Link
                   to={"/" + text}
                   style={{ textDecoration: "none", color: "black" }}
@@ -154,8 +154,8 @@ export default function Navbar() {
           {["Current month", "Last month", "2024"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
-                  {icons[4]}
+                <ListItemIcon >
+                  {icons[5]}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
