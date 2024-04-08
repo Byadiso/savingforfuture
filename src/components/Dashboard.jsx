@@ -60,11 +60,9 @@ function Dashboard() {
       </div>
       <div style={{ display: "flex", alignItems: "center", width:"100%" , padding:"80px"}}>
         <div style={{ padding:"20px", width:"100%" }}>
-        {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
+        {isLoggedIn ? <TableData fetchDataFunction={listTransactions}/> : !loading && <NoAccess />}
         </div>
-        {/* <div style={{ padding:"20px"}}>
-        {isLoggedIn ? <TableData  /> : !loading && <NoAccess />}
-        </div> */}
+       
        
       </div>     
     </div>

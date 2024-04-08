@@ -12,6 +12,7 @@ import User from "./components/UserProfile.jsx";
 import Register from "./components/RegisterComponent.jsx";
 import Navbar from "./components/Navbar.jsx";
 import AddRecord from "./components/AddRecord.jsx";
+import SuperBet from "./components/SuperBet.jsx";
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
           <Route path="/User" element={<User />} />
           <Route path="/Add" element={<AddRecord />} />
           <Route path="/Reports" element={<User />} />
+
+          <Route path="/Super" element={<SuperBet />} />
 
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />

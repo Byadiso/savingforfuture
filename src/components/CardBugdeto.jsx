@@ -35,7 +35,7 @@ export default function CardBugdeto(props) {
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
         Total On Account
       </Typography>
-      <Typography variant="h5" component="div">
+      <Typography variant="h5" component="div" sx={{ color: props.dataExpense < 0 ? "red" : "#008DDA"}}>
         {props.dataExpense} PLN
       </Typography>
     </CardContent>

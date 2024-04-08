@@ -16,8 +16,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { TableHead } from '@mui/material';
-import { transactionArray } from '../firebase/data';
 import { listTransactions } from '../firebase/getTransactions';
+import { formatTime } from '../firebase/Helpers';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -82,7 +82,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export default function TableData() {
+export default function TableData({fetchDataFunction}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);  
   const [data, setData] = React.useState([])
@@ -98,16 +98,16 @@ export default function TableData() {
     setPage(0);
   };
   React.useEffect(()=>{
-    listTransactions(setData)
-  },[])
+    fetchDataFunction(setData)
+  },[fetchDataFunction])
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 300 }} aria-label="custom pagination table">
       <TableHead>
-        <TableRow sx={{ color: "Black" , fontWeight: 400 }}>
+        <TableRow sx={{ color: "Black" , fontWeight: "800px" }}>
           <TableCell>Transaction</TableCell> 
-          <TableCell>Money</TableCell>         
+          {/* <TableCell>Money</TableCell>          */}
         </TableRow>
       </TableHead>
         <TableBody>
@@ -119,16 +119,16 @@ export default function TableData() {
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              <TableCell  align="right">
+              <TableCell  style={{ color:  "#ACE2E1" }}>
+                {formatTime(row.createdAt)}
+              </TableCell>   
+              <TableCell >
                 {row.amount}
-              </TableCell> 
-              
+              </TableCell>               
               <TableCell style={{ display:"flex", justifyContent:"center",backgroundColor: row.type !=="Expense"? "#ACE2E1": "#F7EEDD", color: "#008DDA" }} align="right">
                 {row.type}
               </TableCell> 
-              <TableCell  align="right">
-                {row.createdAt}
-              </TableCell>            
+                       
             </TableRow>
           ))}
           {emptyRows > 0 && (

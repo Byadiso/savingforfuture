@@ -24,8 +24,8 @@ export const listTransactions = (setTransactionList)=>{
             };
     
             transactionsArray.push(obj);
-          }
-          setTransactionList(transactionsArray)  
+          }          
+          setTransactionList(transactionsArray.sort((a, b) => b.createdAt - a.createdAt))  
       })
 }
 
