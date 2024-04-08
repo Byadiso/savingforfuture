@@ -56,7 +56,7 @@ function AddRecord() {
   React.useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     waitToLoad(setLoading);
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []); 
   
 
 

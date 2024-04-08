@@ -84,16 +84,8 @@ TablePaginationActions.propTypes = {
 
 export default function TableData() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [ rows, setRows] = React.useState([])
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);  
   const [data, setData] = React.useState([])
-
- 
-
-  console.log(data)
- 
-
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
@@ -123,16 +115,20 @@ export default function TableData() {
             ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : data
           ).map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row.name} >
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
+              <TableCell  align="right">
                 {row.amount}
-              </TableCell>    
-              <TableCell style={{ width: 160 }} align="right">
+              </TableCell> 
+              
+              <TableCell style={{ display:"flex", justifyContent:"center",backgroundColor: row.type !=="Expense"? "#ACE2E1": "#F7EEDD", color: "#008DDA" }} align="right">
                 {row.type}
-              </TableCell>           
+              </TableCell> 
+              <TableCell  align="right">
+                {row.createdAt}
+              </TableCell>            
             </TableRow>
           ))}
           {emptyRows > 0 && (

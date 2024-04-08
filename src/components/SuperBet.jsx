@@ -9,7 +9,7 @@ import BudgetGraph from "./BudgetGraph";
 import "../Style/Dashboard.css";
 import { listTransactions } from "../firebase/getTransactions";
 
-function Dashboard() {  
+function SuperBet() {  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([])
@@ -61,14 +61,10 @@ function Dashboard() {
       <div style={{ display: "flex", alignItems: "center", width:"100%" , padding:"80px"}}>
         <div style={{ padding:"20px", width:"100%" }}>
         {isLoggedIn ? <TableData /> : !loading && <NoAccess />}
-        </div>
-        {/* <div style={{ padding:"20px"}}>
-        {isLoggedIn ? <TableData  /> : !loading && <NoAccess />}
-        </div> */}
-       
+        </div>             
       </div>     
     </div>
   );
 }
 
-export default Dashboard;
+export default SuperBet;
