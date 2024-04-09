@@ -16,8 +16,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -25,6 +23,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import GroupIcon from '@mui/icons-material/Group';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 
 import Dashboard from "./Dashboard";
 
@@ -87,7 +86,7 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <BarChartIcon />,<CalendarMonthIcon/>];
+  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <SportsSoccerIcon />,<CalendarMonthIcon/>];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -138,7 +137,7 @@ export default function Navbar() {
           {["Dashboard", "Add ", "User", "Reports", "Super"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon style={{ display:"flex", justifyContent:"center",color: text!=="Super"? "#ACE2E1": "#008DDA" }}>{icons[index]}</ListItemIcon>
+                <ListItemIcon style={{ display:"flex", justifyContent:"center",color: text!=="Super"? "#008DDA": "red" }}>{icons[index]}</ListItemIcon>
                 <Link
                   to={"/" + text}
                   style={{ textDecoration: "none", color: "black" }}
