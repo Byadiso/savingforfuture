@@ -134,7 +134,7 @@ export default function Navbar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Dashboard", "Add ", "User", "Reports", "Super"].map((text, index) => (
+          {["Dashboard", "Add ", "Benefits", "Reports", "Super"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon style={{ display:"flex", justifyContent:"center",color: text!=="Super"? "#008DDA": "red" }}>{icons[index]}</ListItemIcon>

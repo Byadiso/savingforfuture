@@ -1,18 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-
-import Dashboard from "./components/Dashboard";
 import LandingPage from "./components/LandingPage.jsx";
-
 
 import Login from "./components/Login.jsx";
 import NoMatch from "./components/NoMatch.jsx";
 import Logout from "./components/Logout.jsx";
-import User from "./components/UserProfile.jsx";
 import Register from "./components/RegisterComponent.jsx";
 import Navbar from "./components/Navbar.jsx";
 import AddRecord from "./components/AddRecord.jsx";
 import SuperBet from "./components/SuperBet.jsx";
+import Benefits from "./components/Benefits.jsx";
 
 
 function App() {
@@ -25,9 +22,9 @@ function App() {
 
           <Route path="/Dashboard" element={<Navbar />} />
 
-          <Route path="/User" element={<User />} />
+          <Route path="/Benefits" element={<Benefits />} />
           <Route path="/Add" element={<AddRecord />} />
-          <Route path="/Reports" element={<User />} />
+          <Route path="/Reports" element={<Benefits />} />
 
           <Route path="/Super" element={<SuperBet />} />
 

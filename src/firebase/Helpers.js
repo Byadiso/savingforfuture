@@ -55,7 +55,7 @@ export  const removePTag =(sentence)=>{
 }
 
 
-export const ValidateBlog = (transaction, setError) => { 
+export const ValidateTransaction = (transaction, setError) => { 
   let {title, amount}= transaction
 
   if (!title && !amount ) {

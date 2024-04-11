@@ -8,35 +8,19 @@ import CardBugdeto from "./CardBugdeto";
 import BudgetGraph from "./BudgetGraph";
 import "../Style/Dashboard.css";
 import { listTransactions } from "../firebase/getTransactions";
+import { listAlltransactionWithoutSuper } from "../firebase/Filters";
+import { KEYWORDS } from "../firebase/CONSTANTS";
 
 function Dashboard() {  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([])
 
-
-  function calculateTotalAmount(transactions) {
-    let totalExpense = 0;
-    let totalIncome = 0;
-  
-    transactions.forEach(transaction => {
-      const amount = parseFloat(transaction.amount);
-      if (transaction.type === 'Expense') {
-        totalExpense += amount;
-      } else if (transaction.type === 'Income') {
-        totalIncome += amount;
-      }
-    });
-  
-    return { totalExpense, totalIncome };
-  }
-  
-  const { totalExpense, totalIncome } = calculateTotalAmount(transactions);
-  
+  const { totalExpense, totalIncome } = listAlltransactionWithoutSuper(transactions,KEYWORDS); 
   
   const data = {
-    earnings: totalExpense,
-    expenses: totalIncome,
+    earnings: totalIncome,
+    expenses: totalExpense,
   };
 
   const navigate = useNavigate();

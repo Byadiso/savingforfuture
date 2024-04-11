@@ -1,36 +1,24 @@
+import {  db, storage } from "./Firebase";
 
-import { database, db, storage } from "./Firebase";
-import { app } from "./Firebase";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {
   ref as dbRef,
   set,
   serverTimestamp,
-  getDatabase,
   remove,
   get,
   update,
 } from "firebase/database";
 
-// import { ValidateBlog } from "./Helpers";
-
-// const db = getDatabase();
-
-
 
 export const createTransaction = async (data) => {
-  let { title, amount,type } = data;
-  console.log(data)
+  let { title, amount, type } = data;
   try {
     // Generate a unique random ID (consider using a more robust method like UUID)
     const id = Math.floor(Math.random() * 1000000); // 6-digit random number
-    console.log(id)
-    console.log(db)
     // Construct the database path
-    const transactionRef = dbRef(db, "Transactions/"+id);
-
-    console.log(transactionRef)
+    const transactionRef = dbRef(db, "Transactions/" + id);
 
     // Check if the path exists in the database
     const snapshot = await get(transactionRef);
@@ -52,61 +40,37 @@ export const createTransaction = async (data) => {
   }
 };
 
-
-// export const createTransaction = async (data) => {
-//   let { title, amount} = data;
-//   try {
-     
-
-//     // Generate a unique random ID (consider using a more robust method like UUID)
-//     const id = Math.floor(Math.random() * 1000000); // 6-digit random number
-
-//     // Save blog data to Firebase Realtime Database
-//     await set(dbRef(db, "Transactions/" + id), {
-//       title,
-//       amount,
-//       createdAt: serverTimestamp(),
-//       id,
-//     });
-
-//     console.log("Transaction added successfully!");
-//   } catch (error) {
-//     console.error("Error saving transaction data:", error.message);
-//   }
-// };
-
-export const deleteTransaction= async (id) => {
+export const deleteTransaction = async (id) => {
   try {
     //remove blog if I am the admin user
     await remove(dbRef(db, "blogs/" + id), function (error) {
       if (error) {
         console.log("delete error" + error);
       }
-    });    
+    });
   } catch (error) {
     console.error("Error deleting blog data:", error.message);
   }
 };
 
-export const editTransaction = async (blog, BlogID) => {
-  let { title, body, Image } = blog;
+export const editTransaction = async (data, id) => {
+  let { title, body, Image } = data;
   try {
     // Upload image to Firebase Storage
-    if(Image.title === undefined){
-      const blogRef = dbRef(db, "blogs/" + BlogID);
+    if (Image.title === undefined) {
+      const blogRef = dbRef(db, "blogs/" + id);
       await update(blogRef, {
         title,
         body,
         createdAt: serverTimestamp(),
         Image: Image,
-        id: BlogID,
+        id: id,
       });
-
-    } else { 
+    } else {
       const imageName = Image.name;
       const storageRef = ref(storage, "images/" + imageName);
       const uploadTask = uploadBytesResumable(storageRef, Image);
-  
+
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -120,20 +84,17 @@ export const editTransaction = async (blog, BlogID) => {
       );
       // Wait for the upload to complete and get the download URL
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-  
+
       // Save blog data to Firebase Realtime Database
-      const blogRef = dbRef(db, "blogs/" + BlogID);
+      const blogRef = dbRef(db, "blogs/" + id);
       await update(blogRef, {
         title,
         body,
         createdAt: serverTimestamp(),
         Image: downloadURL,
-        id: BlogID,
-      }); 
-      
-    }   
-    // console.log("Blog Updated successfully!");
-   
+        id: id,
+      });
+    }
   } catch (error) {
     console.error("Error saving blog data:", error.message);
   }

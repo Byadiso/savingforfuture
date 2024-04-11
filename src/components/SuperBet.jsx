@@ -8,25 +8,24 @@ import CardBugdeto from "./CardBugdeto";
 import "../Style/Dashboard.css";
 import { listTransactions } from "../firebase/getTransactions";
 import { filterTransactionsAndCalculateTotal } from "../firebase/Filters";
+import { KEYWORDS } from "../firebase/CONSTANTS";
 
 function SuperBet() {  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([])
-  const filterKeywords = ["bet", "super", "superbetting"];
   
-  const { filteredTransactions, total } =filterTransactionsAndCalculateTotal(transactions,filterKeywords)
+    
+  
+  const { filteredTransactions, total } =filterTransactionsAndCalculateTotal(transactions,KEYWORDS)
 
 const listSuper = (setDataList)=>{
   return setDataList(filteredTransactions)
 }  
-console.log(total> 0 ? "yes": "No")
 
-
-  useEffect(() => {      
+ useEffect(() => {      
        isAuthenticated(setIsLoggedIn);
-       listTransactions(setTransactions)
-    
+       listTransactions(setTransactions)    
     waitToLoad(setLoading);
   }, [isLoggedIn]);
 

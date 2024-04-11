@@ -1,8 +1,4 @@
-import { getDatabase , ref, onValue, serverTimestamp } from "firebase/database";
-import { ref as refStorage, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { initializeApp } from "firebase/app";
-import { storage } from './Firebase';
-import {app} from "./Firebase";
+import { getDatabase , ref, onValue } from "firebase/database";
 import 'firebase/firestore';
 
 const databaseFirebase = getDatabase();
@@ -11,7 +7,10 @@ const databaseFirebase = getDatabase();
 export const listTransactions = (setTransactionList)=>{
     const transactionRefList = ref(databaseFirebase, "Transactions/");
     onValue(transactionRefList, (snapshot) => {
-        const data = snapshot.val()       
+        const data = snapshot.val()         
+          if (!data){
+          return []
+          }
           let transactionsArray = [];
           for (var [key, value] of Object.entries(data)) {
             var obj = {

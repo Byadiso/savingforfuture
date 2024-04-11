@@ -5,7 +5,7 @@ import "../Style/Blogs.css";
 import { createTransaction } from "../firebase/Transaction";
 import { isAuthenticated } from "../firebase/Authentication";
 
-import { ValidateBlog, waitToLoad } from "../firebase/Helpers";
+import { ValidateTransaction, waitToLoad } from "../firebase/Helpers";
 import NoAccess from "./NoAccess";
 import RadioComponent from "./InputComonents/RadioComponent";
 
@@ -35,14 +35,12 @@ function AddRecord() {
   };
 
   const handleOnClick = () => {   
-    ValidateBlog(data,setErrorMessage);
-    console.log(errorMessage === null);
+    ValidateTransaction(data,setErrorMessage);    
     if(errorMessage === null){
       createTransaction(data)   
     }     
   };
-  console.log(data)
-
+  
   const handleChange = (event) => {
     const { name, value } = event.target;    
       setError("");
