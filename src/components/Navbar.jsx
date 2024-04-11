@@ -24,6 +24,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+import SavingsIcon from '@mui/icons-material/Savings';
 
 import Dashboard from "./Dashboard";
 
@@ -86,7 +87,7 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <SportsSoccerIcon />,<CalendarMonthIcon/>];
+  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <SportsSoccerIcon />,<SavingsIcon />,<CalendarMonthIcon/>];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -134,7 +135,7 @@ export default function Navbar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Dashboard", "Add ", "Benefits", "Reports", "Super"].map((text, index) => (
+          {["Dashboard", "Add ", "Benefits", "Reports", "Super","Motivation"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon style={{ display:"flex", justifyContent:"center",color: text!=="Super"? "#008DDA": "red" }}>{icons[index]}</ListItemIcon>
@@ -154,7 +155,7 @@ export default function Navbar() {
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon >
-                  {icons[5]}
+                  {icons[6]}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

@@ -8,6 +8,7 @@ import { isAuthenticated } from "../firebase/Authentication";
 import { ValidateTransaction, waitToLoad } from "../firebase/Helpers";
 import NoAccess from "./NoAccess";
 import RadioComponent from "./InputComonents/RadioComponent";
+import { Link } from "react-router-dom";
 
 function AddRecord() {  
   
@@ -62,11 +63,14 @@ function AddRecord() {
     <>
      
       <div style={{display:"flex", alignItems:"center"}}>
+      <div style={{ paddingTop: "20px", margin: "20px", display:"flex", justifyContent:"center", color:"white" ,alignItems:"center",  }}>
+        <Link to="/Dashboard" style={{ color:"white" }}> Go back</Link>
+      </div>
       {isLoggedIn ? 
 
       <div style={style} className="Add_blog_container">
         <h2 style={{ color: "white", marginBottom: "50px" }}>
-          Create Your Awesome Blog!{" "}
+          Your Treasure!
         </h2>
         <>
           <InputComponent name="title" handleChange={handleChange} />

@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar.jsx";
 import AddRecord from "./components/AddRecord.jsx";
 import SuperBet from "./components/SuperBet.jsx";
 import Benefits from "./components/Benefits.jsx";
+import Motivation from "./components/Motivation.jsx";
 
 
 function App() {
@@ -25,6 +26,10 @@ function App() {
           <Route path="/Benefits" element={<Benefits />} />
           <Route path="/Add" element={<AddRecord />} />
           <Route path="/Reports" element={<Benefits />} />
+
+          <Route path="/Motivation" element={<Motivation />} />
+
+          
 
           <Route path="/Super" element={<SuperBet />} />
 
