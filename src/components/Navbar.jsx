@@ -1,7 +1,8 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
+// import Drawer from "@mui/material/Drawer";
+import MuiDrawer from '@mui/material/Drawer';
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -30,50 +31,116 @@ import Dashboard from "./Dashboard";
 
 const drawerWidth = 240;
 
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
+// const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+//   ({ theme, open }) => ({
+//     flexGrow: 1,
+//     padding: theme.spacing(3),
+//     transition: theme.transitions.create("margin", {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.leavingScreen,
+//     }),
+//     marginLeft: `-${drawerWidth}px`,
+//     ...(open && {
+//       transition: theme.transitions.create("margin", {
+//         easing: theme.transitions.easing.easeOut,
+//         duration: theme.transitions.duration.enteringScreen,
+//       }),
+//       marginLeft: 0,
+//     }),
+//   })
+// );
+
+// const AppBar = styled(MuiAppBar, {
+//   shouldForwardProp: (prop) => prop !== "open",
+// })(({ theme, open }) => ({
+//   transition: theme.transitions.create(["margin", "width"], {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   ...(open && {
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     marginLeft: `${drawerWidth}px`,
+//     transition: theme.transitions.create(["margin", "width"], {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   }),
+// }));
+
+// const DrawerHeader = styled("div")(({ theme }) => ({
+//   display: "flex",
+//   alignItems: "center",
+//   padding: theme.spacing(0, 1),
+//   // necessary for content to be below app bar
+//   ...theme.mixins.toolbar,
+//   justifyContent: "flex-end",
+// }));
+
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
+    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
+
 
 export default function Navbar() {
   const theme = useTheme();
@@ -99,7 +166,7 @@ export default function Navbar() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
+            sx={{ marginRight: 5, ...(open && { display: "none" }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -108,20 +175,12 @@ export default function Navbar() {
               <PaymentsIcon fontSize="large" />
               Bugdeto
             </IconButton>
-          </Typography>
+          </Typography>          
         </Toolbar>
       </AppBar>
+
       <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
+        variant="permanent"
         open={open}
       >
         <DrawerHeader>
@@ -138,7 +197,10 @@ export default function Navbar() {
           {["Dashboard", "Add ", "Benefits", "Reports", "Super","Motivation"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon style={{ display:"flex", justifyContent:"center",color: text!=="Super"? "#008DDA": "red" }}>{icons[index]}</ListItemIcon>
+                <ListItemIcon style={{ display:"flex", justifyContent:"center" }}><Link
+                  to={"/" + text}
+                  style={{ textDecoration: "none",color: text!=="Super"? "#008DDA": "red"}}
+                >{icons[index]}</Link></ListItemIcon>
                 <Link
                   to={"/" + text}
                   style={{ textDecoration: "none", color: "black" }}
@@ -163,10 +225,12 @@ export default function Navbar() {
           ))}
         </List>
       </Drawer>
-      <Main open={open}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      {/* <Main open={open}> */}
         <DrawerHeader />
         <Dashboard />
-      </Main>
+      {/* </Main> */}
+      </Box>
     </Box>
   );
 }
