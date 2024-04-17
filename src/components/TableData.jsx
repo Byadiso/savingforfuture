@@ -1,28 +1,27 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import { TableHead } from '@mui/material';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { TableHead } from "@mui/material";
 // import { listTransactions } from '../firebase/getTransactions';
-import { formatTime } from '../firebase/Helpers';
+import { formatTime } from "../firebase/Helpers";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
-  
 
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);
@@ -39,7 +38,6 @@ function TablePaginationActions(props) {
   const handleLastPageButtonClick = (event) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
- 
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
@@ -48,28 +46,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -82,10 +88,10 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export default function TableData({fetchDataFunction}) {
+export default function TableData({ fetchDataFunction }) {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);  
-  const [data, setData] = React.useState([])
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [data, setData] = React.useState([]);
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
@@ -97,38 +103,43 @@ export default function TableData({fetchDataFunction}) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  React.useEffect(()=>{
-    fetchDataFunction(setData)
-  },[fetchDataFunction])
+  React.useEffect(() => {
+    fetchDataFunction(setData);
+  }, [fetchDataFunction]);
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 300 }} aria-label="custom pagination table">
-      <TableHead>
-        <TableRow sx={{ color: "Black" , fontWeight: "800px" }}>
-          <TableCell>Transaction</TableCell> 
-          {/* <TableCell>Money</TableCell>          */}
-        </TableRow>
-      </TableHead>
+        <TableHead>
+          <TableRow sx={{ color: "Black", fontWeight: "800px" }}>
+            <TableCell>Transaction</TableCell>
+          </TableRow>
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : data
-          ).map((row) => (
-            <TableRow key={row.name} >
+          ).map((row, index) => (
+            <TableRow key={index}>
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              <TableCell  style={{ color:  "#ACE2E1" }}>
+              <TableCell style={{ color: "#ACE2E1" }}>
                 {formatTime(row.createdAt)}
-              </TableCell>   
-              <TableCell >
-                {row.amount}
-              </TableCell>               
-              <TableCell style={{ display:"flex", justifyContent:"center",backgroundColor: row.type !=="Expense"? "#ACE2E1": "#F7EEDD", color: "#008DDA" }} align="right">
+              </TableCell>
+              <TableCell>{row.amount}</TableCell>
+              <TableCell
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  backgroundColor:
+                    row.type !== "Expense" ? "#ACE2E1" : "#F7EEDD",
+                  color: "#008DDA",
+                }}
+                align="right"
+              >
                 {row.type}
-              </TableCell> 
-                       
+              </TableCell>
             </TableRow>
           ))}
           {emptyRows > 0 && (
@@ -140,7 +151,7 @@ export default function TableData({fetchDataFunction}) {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={3}
               count={data.length}
               rowsPerPage={rowsPerPage}
@@ -148,7 +159,7 @@ export default function TableData({fetchDataFunction}) {
               slotProps={{
                 select: {
                   inputProps: {
-                    'aria-label': 'rows per page',
+                    "aria-label": "rows per page",
                   },
                   native: true,
                 },

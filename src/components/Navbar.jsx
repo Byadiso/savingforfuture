@@ -17,7 +17,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -103,10 +103,12 @@ export default function Navbar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const navigate = useNavigate();
+
   const handleClick=(text)=>{
-    if(text ==="Log out"){
-      console.log("let do log out")
+    if(text ==="Log out"){     
       LogoutUser()
+      navigate("/Login");
     }
 
   }
