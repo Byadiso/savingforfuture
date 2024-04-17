@@ -26,55 +26,11 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import SavingsIcon from '@mui/icons-material/Savings';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import Dashboard from "./Dashboard";
 
 const drawerWidth = 240;
-
-// const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-//   ({ theme, open }) => ({
-//     flexGrow: 1,
-//     padding: theme.spacing(3),
-//     transition: theme.transitions.create("margin", {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.leavingScreen,
-//     }),
-//     marginLeft: `-${drawerWidth}px`,
-//     ...(open && {
-//       transition: theme.transitions.create("margin", {
-//         easing: theme.transitions.easing.easeOut,
-//         duration: theme.transitions.duration.enteringScreen,
-//       }),
-//       marginLeft: 0,
-//     }),
-//   })
-// );
-
-// const AppBar = styled(MuiAppBar, {
-//   shouldForwardProp: (prop) => prop !== "open",
-// })(({ theme, open }) => ({
-//   transition: theme.transitions.create(["margin", "width"], {
-//     easing: theme.transitions.easing.sharp,
-//     duration: theme.transitions.duration.leavingScreen,
-//   }),
-//   ...(open && {
-//     width: `calc(100% - ${drawerWidth}px)`,
-//     marginLeft: `${drawerWidth}px`,
-//     transition: theme.transitions.create(["margin", "width"], {
-//       easing: theme.transitions.easing.easeOut,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//   }),
-// }));
-
-// const DrawerHeader = styled("div")(({ theme }) => ({
-//   display: "flex",
-//   alignItems: "center",
-//   padding: theme.spacing(0, 1),
-//   // necessary for content to be below app bar
-//   ...theme.mixins.toolbar,
-//   justifyContent: "flex-end",
-// }));
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -154,7 +110,7 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <SportsSoccerIcon />,<SavingsIcon />,<CalendarMonthIcon/>];
+  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <SportsSoccerIcon />,<SavingsIcon />,<CalendarMonthIcon/>,<LogoutIcon />];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -213,11 +169,11 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["Current month", "Last month", "2024"].map((text, index) => (
+          {["Current month", "Last month", "2024","Log out"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon >
-                  {icons[6]}
+                  {text ==="Log out"?icons[7]:icons[6]}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
