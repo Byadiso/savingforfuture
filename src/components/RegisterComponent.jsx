@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import "../Style/Register.css";
-import tellstory from "../images/tellstory.png";
+
 import { checkMyValue } from "../firebase/Helpers";
 import { isAuthenticated} from "../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "../firebase/Firebase";
 import ProgressBar from "./InputComonents/ProgressBar";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 function Register() {
   const [user, setUser] = useState({
@@ -95,10 +92,8 @@ function Register() {
       <div
         className="register_container"
       >
-        {!isLoggedIn && (
-        
-        <>
-        
+        {!isLoggedIn && (        
+        <>        
         <div className="register_form" id="register_form">
           <div>
             <div className="register_form_item">

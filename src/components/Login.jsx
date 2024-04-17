@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import "../Style/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../firebase/Authentication";
@@ -67,7 +65,7 @@ function Login() {
           <div>
             <div className="login_form">
               <div>
-                <p>Login to LearnByWriting.com</p>
+                <p style={{color:"black"}}>Login to LearnByWriting.com</p>
                 <p className="error">{error === null ? successMessage : error}</p>
                 <input
                   type="text"

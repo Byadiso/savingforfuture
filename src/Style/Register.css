@@ -66,13 +66,14 @@ body {
 
 .register_form {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: start;
-    background-color: var(--whiteColor);
-    color: var(--whiteColor);
-    /* width: 100%; */
-    margin: 25px;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    padding: 50px;
+    background: var(--whiteColor);
+    border: 5px solid var(--whiteColor);
+    border-radius: 10px;
 }
 
 .register_form_item {
@@ -181,13 +182,7 @@ input[type=text], input[type=password], textarea {
     margin-bottom: 75px;   
  
 }
-    .register_form {
-        padding-left: 35px;
-        padding-top: 100px;
-        background-color: var(--blueColor);
-        margin: 0px;
-    }
-
+    
     .register_content {
         display: none;
     }
