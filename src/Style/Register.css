@@ -71,7 +71,7 @@ body {
     align-items: start;
     background-color: var(--whiteColor);
     color: var(--whiteColor);
-    width: 100%;
+    /* width: 100%; */
     margin: 25px;
 }
 
@@ -161,6 +161,16 @@ input[type=text], input[type=password], textarea {
     justify-content: center;
 }
 
+.register{
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+    border: none;
+    border-radius: 1px;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
 
 
 
@@ -173,7 +183,7 @@ input[type=text], input[type=password], textarea {
 }
     .register_form {
         padding-left: 35px;
-        padding-top: 10px;
+        padding-top: 100px;
         background-color: var(--blueColor);
         margin: 0px;
     }

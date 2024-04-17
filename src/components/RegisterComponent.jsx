@@ -100,7 +100,7 @@ function Register() {
         <>
         
         <div className="register_form" id="register_form">
-          <div className="">
+          <div>
             <div className="register_form_item">
               <input
                 type="text"
@@ -138,11 +138,10 @@ function Register() {
               <p id="error">{error === null ? successMessage : error}</p>
               <div className="login_register">
                 <input
-                  className="register"
+                className="register"
                   type="submit"
                   onClick={handleSubmit}
-                  value="Create your account"
-                  id="registerSubmit"
+                  value="Create Your Account"                  
                 />
 
                 <div className="login_content">

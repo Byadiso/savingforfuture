@@ -29,6 +29,7 @@ import SavingsIcon from '@mui/icons-material/Savings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import Dashboard from "./Dashboard";
+import { LogoutUser } from "../firebase/Authentication";
 
 const drawerWidth = 240;
 
@@ -102,6 +103,14 @@ export default function Navbar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const handleClick=(text)=>{
+    if(text ==="Log out"){
+      console.log("let do log out")
+      LogoutUser()
+    }
+
+  }
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -171,9 +180,9 @@ export default function Navbar() {
         <List>
           {["Current month", "Last month", "2024","Log out"].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={()=>handleClick(text)}>
                 <ListItemIcon >
-                  {text ==="Log out"?icons[7]:icons[6]}
+                  {text ==="Log out"? icons[7]:icons[6]}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
