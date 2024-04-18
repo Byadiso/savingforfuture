@@ -19,7 +19,7 @@ Bugdeto
 
 ### Live project can be accessed via below link:
 
-- Github Pages: https://byadiso.github.io/bugdeto/
+- Github Pages: https://byadiso.github.io/budgeto/
 - Netlify : https://bugdeto.netlify.app
 
 # Build With
