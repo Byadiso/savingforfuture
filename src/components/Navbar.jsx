@@ -27,6 +27,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import SavingsIcon from "@mui/icons-material/Savings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import AdjustIcon from '@mui/icons-material/Adjust';
 
 import Dashboard from "./Dashboard";
 import { LogoutUser } from "../firebase/Authentication";
@@ -122,6 +123,7 @@ export default function Navbar() {
   const icons = [
     <DashboardIcon />,
     <AddBoxIcon />,
+    <AdjustIcon />,
     <GroupIcon />,
     <BarChartIcon />,
     <SportsSoccerIcon />,
@@ -168,6 +170,7 @@ export default function Navbar() {
           {[
             "Dashboard",
             "Add ",
+            "Plan",
             "Benefits",
             "Reports",
             "Super",
@@ -200,12 +203,12 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["Current month", "Last month", "2024", "Log out"].map(
+          {["Current month", "Last month", "Log out"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton onClick={() => handleClick(text)}>
                   <ListItemIcon>
-                    {text === "Log out" ? icons[7] : icons[6]}
+                    {text === "Log out" ? icons[8] : icons[7]}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>

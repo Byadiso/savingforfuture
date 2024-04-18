@@ -1,0 +1,105 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --blueColor: #008DDA;
+    --blueActiveColor: #29b4e2;
+    --redColor: #fa1717;  
+    --greyColor: #4b4a4a;
+    --backgroundGrey: rgba(244, 244, 244, 0.918)
+  
+}
+
+/* all styles  ---------------------------*/
+
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+/* body syles  */
+
+.Add_plan:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+
+/* for responsiveness */
+@media only screen and (max-width: 720px) {
+
+ 
+  
+    
+
+    
+}
+
+/* 
+for ipods and tables */
+
+@media only screen and (max-width: 920px) {
+
+    body {
+        min-width: 360px;
+    }
+  
+
+    /* for services */
+    .service_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    /* for portfolio */
+
+    .portfolio_nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .portfolio_nav h1 {
+        font-size: 1rem;
+        margin: 0px;
+    }
+
+    .dashboard_content{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+
+/* 
+  for dark mode */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: var(--blueColor);
+        color: white;
+    }
+
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: #ddd;
+        color: black;
+    }
+
+}
