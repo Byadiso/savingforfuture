@@ -65,8 +65,7 @@ function Register() {
           .set(userData)
           .then((user) => {       
             setIsLoggedIn(true)
-            error === "" && setSuccessMessage("Registered successfully!");
-            // error === "" && navigate("/");
+            error === "" && setSuccessMessage("Registered successfully!");           
           })
           
       }).catch((error) => {

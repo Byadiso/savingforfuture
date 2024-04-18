@@ -2,7 +2,7 @@ import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 // import Drawer from "@mui/material/Drawer";
-import MuiDrawer from '@mui/material/Drawer';
+import MuiDrawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -19,14 +19,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Link, useNavigate } from "react-router-dom";
 import PaymentsIcon from "@mui/icons-material/Payments";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import GroupIcon from '@mui/icons-material/Group';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
-import SavingsIcon from '@mui/icons-material/Savings';
-import LogoutIcon from '@mui/icons-material/Logout';
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import GroupIcon from "@mui/icons-material/Group";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+import SavingsIcon from "@mui/icons-material/Savings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import Dashboard from "./Dashboard";
 import { LogoutUser } from "../firebase/Authentication";
@@ -35,69 +35,68 @@ const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
-  transition: theme.transitions.create('width', {
+  transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  overflowX: 'hidden',
+  overflowX: "hidden",
 });
 
 const closedMixin = (theme) => ({
-  transition: theme.transitions.create('width', {
+  transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX: 'hidden',
+  overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
+  transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    ...(open && {
-      ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
-    }),
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  ...(open && {
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
   }),
-);
-
+  ...(!open && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
+  }),
+}));
 
 export default function Navbar() {
   const theme = useTheme();
@@ -105,13 +104,12 @@ export default function Navbar() {
 
   const navigate = useNavigate();
 
-  const handleClick=(text)=>{
-    if(text ==="Log out"){     
-      LogoutUser()
+  const handleClick = (text) => {
+    if (text === "Log out") {
+      LogoutUser();
       navigate("/Login");
     }
-
-  }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -121,7 +119,16 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const icons = [<DashboardIcon />, <AddBoxIcon />, <GroupIcon />, <BarChartIcon />, <SportsSoccerIcon />,<SavingsIcon />,<CalendarMonthIcon/>,<LogoutIcon />];
+  const icons = [
+    <DashboardIcon />,
+    <AddBoxIcon />,
+    <GroupIcon />,
+    <BarChartIcon />,
+    <SportsSoccerIcon />,
+    <SavingsIcon />,
+    <CalendarMonthIcon />,
+    <LogoutIcon />,
+  ];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -142,14 +149,11 @@ export default function Navbar() {
               <PaymentsIcon fontSize="large" />
               Bugdeto
             </IconButton>
-          </Typography>          
+          </Typography>
         </Toolbar>
       </AppBar>
 
-      <Drawer
-        variant="permanent"
-        open={open}
-      >
+      <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
@@ -161,13 +165,29 @@ export default function Navbar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Dashboard", "Add ", "Benefits", "Reports", "Super","Motivation"].map((text, index) => (
+          {[
+            "Dashboard",
+            "Add ",
+            "Benefits",
+            "Reports",
+            "Super",
+            "Motivation",
+          ].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon style={{ display:"flex", justifyContent:"center" }}><Link
-                  to={"/" + text}
-                  style={{ textDecoration: "none",color: text!=="Super"? "#008DDA": "red"}}
-                >{icons[index]}</Link></ListItemIcon>
+                <ListItemIcon
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Link
+                    to={"/" + text}
+                    style={{
+                      textDecoration: "none",
+                      color: text !== "Super" ? "#008DDA" : "red",
+                    }}
+                  >
+                    {icons[index]}
+                  </Link>
+                </ListItemIcon>
                 <Link
                   to={"/" + text}
                   style={{ textDecoration: "none", color: "black" }}
@@ -180,23 +200,23 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["Current month", "Last month", "2024","Log out"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton onClick={()=>handleClick(text)}>
-                <ListItemIcon >
-                  {text ==="Log out"? icons[7]:icons[6]}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {["Current month", "Last month", "2024", "Log out"].map(
+            (text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton onClick={() => handleClick(text)}>
+                  <ListItemIcon>
+                    {text === "Log out" ? icons[7] : icons[6]}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            )
+          )}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      {/* <Main open={open}> */}
         <DrawerHeader />
         <Dashboard />
-      {/* </Main> */}
       </Box>
     </Box>
   );
