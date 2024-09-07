@@ -84,3 +84,5 @@ export function formatTime(timestamp) {
   });
 }
 
+
+export const removeFirstLetter = (str) => str.startsWith('/') ? str.slice(1) : str;
