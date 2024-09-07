@@ -34,14 +34,14 @@ function Dashboard() {
 
   return (
     <div className="main_dashboard">     
-      <div className="bugdet_summary" style={{ display: "flex", alignItems: "center"}}>
+      {isLoggedIn &&<div className="bugdet_summary" style={{ display: "flex", alignItems: "center"}}>
         <div className="bugdet_summary_item" style={{ display: "flex", alignItems: "center", width:"50%", padding:"40px" }}>
-          <BudgetGraph data={data} />
+        {isLoggedIn && <BudgetGraph data={data} />}
         </div>
         <div className="bugdet_summary_item" style={{ display: "flex", alignItems: "center", width:"30%", padding:"20px" }}>
-          <CardBugdeto dataExpense={totalIncome - totalExpense}/>
+          {isLoggedIn && <CardBugdeto dataExpense={totalIncome - totalExpense}/>}
         </div>
-      </div>
+      </div>}
       <div style={{ display: "flex", alignItems: "center", width:"100%" , padding:"80px"}}>
         <div style={{ padding:"20px", width:"100%" }}>
         {isLoggedIn ? <TableData fetchDataFunction={listTransactions}/> : !loading && <NoAccess />}

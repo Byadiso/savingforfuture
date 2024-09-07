@@ -35,7 +35,7 @@ footer {
     flex-direction: column;
     background: var(--blackColor);
     color: var(--whiteColor);
-    /* padding: 5px; */
+   
 }
 
 footer div {

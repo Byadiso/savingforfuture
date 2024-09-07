@@ -23,10 +23,6 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 const db = getDatabase(app);
 
-// console.log(app)
-// console.log(auth)
-// console.log(storage)
-// console.log(db)
 
 export  {app, auth,storage, db};
 
