@@ -18,6 +18,7 @@ export default function RadioComponent(props) {
         <FormControlLabel value="Expense" control={<Radio />} label="Expenses" />
         <FormControlLabel value="Income" control={<Radio />} label="Income" />    
         <FormControlLabel value="Extra" control={<Radio />} label="Extra" /> 
+        <FormControlLabel value="whatIsNotMine" control={<Radio />} label="what Is Not Mine" /> 
        
       </RadioGroup>
     </FormControl>
