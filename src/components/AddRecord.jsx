@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 function AddRecord() {  
   
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [data, setData] = useState({});
@@ -36,17 +36,21 @@ function AddRecord() {
   };
 
   const handleOnClick = () => {   
-    ValidateTransaction(data,setErrorMessage);    
-    if(errorMessage === null){
+    let error = ValidateTransaction(data);
+    setErrorMessage(error)
+      
+    console.log(errorMessage)
+    console.log(error)
+    if(error === undefined){
       createTransaction(data)   
     }     
   };
   
   const handleChange = (event) => {
     const { name, value } = event.target;    
-      setError("");
-      setData((prevBlog) => ({
-        ...prevBlog,
+      setError("");      
+      setData((prevRecord) => ({
+        ...prevRecord,
         [name]: value,
       }))   
       

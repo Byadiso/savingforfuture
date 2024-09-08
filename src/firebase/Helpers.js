@@ -55,20 +55,30 @@ export  const removePTag =(sentence)=>{
 }
 
 
-export const ValidateTransaction = (transaction, setError) => { 
-  let {title, amount}= transaction
+export const ValidateTransaction = (transaction) => { 
+let errorMessage 
+  let {title, amount, type}= transaction
+  // console.log(title, isNaN(amount), type)
 
   if (!title && !amount ) {
-    setError("title & amount missing");
+    errorMessage ="title & amount missing";
     waitThreeSec();  
   } else if (!title) {
-    setError("title is missing");
+    errorMessage ="title is missing";
     waitThreeSec();
   } else if (!amount) {
-    setError("amount is missing");
+    errorMessage ="amount is missing";
     waitThreeSec();
-  } 
+  }  else if (isNaN(amount)) {
+    errorMessage="Amount must be a number";
+    waitThreeSec()
+  } else if (!type) {
+    errorMessage ="type is not selected";
+    waitThreeSec();
 };
+
+return errorMessage 
+}
 
 
 export function formatTime(timestamp) {
