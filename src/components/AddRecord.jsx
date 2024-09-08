@@ -37,10 +37,7 @@ function AddRecord() {
 
   const handleOnClick = () => {   
     let error = ValidateTransaction(data);
-    setErrorMessage(error)
-      
-    console.log(errorMessage)
-    console.log(error)
+    setErrorMessage(error) 
     if(error === undefined){
       createTransaction(data)   
     }     
