@@ -38,10 +38,13 @@ function AddRecord() {
   const handleOnClick = () => {   
     let error = ValidateTransaction(data);
     setErrorMessage(error) 
-    if(error === undefined){
+    if(!error){
       createTransaction(data)   
-    }     
+    }   
+   
   };
+
+  console.log(errorMessage)  
   
   const handleChange = (event) => {
     const { name, value } = event.target;    
@@ -78,6 +81,7 @@ function AddRecord() {
           <InputComponent name="amount" handleChange={handleChange} />  
           <RadioComponent name="type" handleChange={handleChange} />     
         </>
+        <p>{errorMessage}</p>
         <>
           
           <Button
