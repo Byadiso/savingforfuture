@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import InputComponent from "./InputComonents/InputComponent";
-import "../Style/Blogs.css";
+import "../Style/Transactions.css";
 import { createTransaction } from "../firebase/Transaction";
 import { isAuthenticated } from "../firebase/Authentication";
 
@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 function AddRecord() {  
   
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [data, setData] = useState({});
@@ -40,11 +41,10 @@ function AddRecord() {
     setErrorMessage(error) 
     if(!error){
       createTransaction(data)   
-    }   
-   
+      setSuccessMessage("Transaction has been created successfully")
+    }      
   };
-
-  console.log(errorMessage)  
+  
   
   const handleChange = (event) => {
     const { name, value } = event.target;    
@@ -81,7 +81,7 @@ function AddRecord() {
           <InputComponent name="amount" handleChange={handleChange} />  
           <RadioComponent name="type" handleChange={handleChange} />     
         </>
-        <p>{errorMessage}</p>
+        <p className={errorMessage ? "errorMessage": "successMessage"}>{successMessage? successMessage : errorMessage}</p>
         <>
           
           <Button

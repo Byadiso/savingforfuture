@@ -12,6 +12,8 @@ import SuperBet from "./components/SuperBet.jsx";
 import Benefits from "./components/Benefits.jsx";
 import Motivation from "./components/Motivation.jsx";
 import Planning from "./components/Planning.jsx";
+import Transaction from "./components/Transaction.jsx";
+
 
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
           
 
           <Route path="/Super" element={<SuperBet />} />
+          <Route path="/Transaction/:id" element={<Transaction />} />
 
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />

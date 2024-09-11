@@ -18,6 +18,8 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import { TableHead } from "@mui/material";
 // import { listTransactions } from '../firebase/getTransactions';
 import { formatTime } from "../firebase/Helpers";
+import { Link } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -107,6 +109,7 @@ export default function TableData({ fetchDataFunction }) {
     fetchDataFunction(setData);
   }, [fetchDataFunction]);
 
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 300 }} aria-label="custom pagination table">
@@ -121,9 +124,11 @@ export default function TableData({ fetchDataFunction }) {
             : data
           ).map((row, index) => (
             <TableRow key={index}>
+              <Link to={`/transaction/${row.id}`}>
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
+              </Link>
               <TableCell style={{ color: "#ACE2E1" }}>
                 {formatTime(row.createdAt)}
               </TableCell>

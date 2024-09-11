@@ -61,19 +61,19 @@ let errorMessage
   // console.log(title, isNaN(amount), type)
 
   if (!title && !amount ) {
-    errorMessage ="title & amount missing";
+    errorMessage ="Title & Amount missing";
     waitThreeSec();  
   } else if (!title) {
-    errorMessage ="title is missing";
+    errorMessage ="Title is missing";
     waitThreeSec();
   } else if (!amount) {
-    errorMessage ="amount is missing";
+    errorMessage ="Amount is missing";
     waitThreeSec();
   }  else if (isNaN(amount)) {
     errorMessage="Amount must be a number";
     waitThreeSec()
   } else if (!type) {
-    errorMessage ="type is not selected";
+    errorMessage ="Type is not selected";
     waitThreeSec();
 };
 
