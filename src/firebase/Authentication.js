@@ -21,6 +21,20 @@ export const isAuthenticated = (setIsloggedState, userId) => {
   });
 };
 
+export const isAuthenticatedDetails = (setIsloggedState, setUserId) => {
+  onAuthStateChanged(Auth, (user) => {
+    if (user) {
+      // User is authenticated, so set the logged state to true and set the userId
+      setIsloggedState(true);
+      setUserId(user.uid); // Pass the user's UID to the setUserId function
+    } else {
+      // User is not authenticated, set the logged state to false and clear userId
+      setIsloggedState(false);
+      setUserId(null); // Reset userId when the user logs out
+    }
+  });
+};
+
 export const getLoggedUser = (setIsloggedState) => {
   onAuthStateChanged(Auth, (user) => {
     if (user) {

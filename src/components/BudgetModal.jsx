@@ -34,7 +34,7 @@ function BudgetModal({ closeModal, addOrEditBudget, currentBudget }) {
       <div className="modal">
         <h2>{currentBudget ? "Edit Budget" : "Plan Your Budget"}</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className="form-group bugdet_name ">
             <label>Budget Name:</label>
             <input
               type="text"
