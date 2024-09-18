@@ -20,6 +20,7 @@ function SuperBet() {
     KEYWORDS
   );
 
+
   const listSuper = (setDataList) => {
     return setDataList(filteredTransactions);
   };
@@ -48,7 +49,7 @@ function SuperBet() {
             padding: "20px",
           }}
         >
-          <CardBugdeto dataExpense={total} />
+          <CardBugdeto dataExpense={-total} />
         </div>
       </div>
       <div

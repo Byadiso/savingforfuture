@@ -96,3 +96,38 @@ export function formatTime(timestamp) {
 
 
 export const removeFirstLetter = (str) => str.startsWith('/') ? str.slice(1) : str;
+
+
+
+// Export the calculateTotal function on budgets
+export const totalPlanBugdet = (budgets) => {
+  let incomeTotal = 0;
+  let extraTotal = 0;
+  let expenseTotal = 0;
+  let isNotMineTotal = 0;
+
+  budgets.forEach((budget) => {
+    const amount = parseFloat(budget.amount);
+    if (!isNaN(amount)) {
+      switch (budget.category) {
+        case "Income":
+          incomeTotal += amount;
+          break;
+        case "Extra":
+          extraTotal += amount;
+          break;
+        case "Expense":
+          expenseTotal += amount;
+          break;
+        case "IsNotMine":
+          isNotMineTotal += amount;
+          break;
+        default:
+          break;
+      }
+    }
+  });
+
+  return incomeTotal + extraTotal - expenseTotal - isNotMineTotal;
+};
+

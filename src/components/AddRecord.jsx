@@ -1,33 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import InputComponent from "./InputComonents/InputComponent";
 import "../Style/Transactions.css";
 import { createTransaction } from "../firebase/Transaction";
 import { isAuthenticated } from "../firebase/Authentication";
-
 import { ValidateTransaction, waitToLoad } from "../firebase/Helpers";
 import NoAccess from "./NoAccess";
-import RadioComponent from "./InputComonents/RadioComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
 
-function AddRecord() {  
-  
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+function AddRecord() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [data, setData] = useState({});
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false); // Track form submission
+
+  const navigate = useNavigate();  // Initialize useNavigate
 
   const style = {
     position: "absolute",
     display: "flex",
     justifyContent: "center",
-    alignItems: "start  ",
+    alignItems: "center",
     flexDirection: "column",
-    paddingBottom:"50px",
-    marginTop:"20px",
+    paddingBottom: "50px",
+    marginTop: "20px",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
@@ -36,67 +35,125 @@ function AddRecord() {
     p: 4,
   };
 
-  const handleOnClick = () => {   
+  const handleOnClick = () => {
     let error = ValidateTransaction(data);
-    setErrorMessage(error) 
-    if(!error){
-      createTransaction(data)   
-      setSuccessMessage("Transaction has been created successfully")
-    }      
-  };
-  
-  
-  const handleChange = (event) => {
-    const { name, value } = event.target;    
-      setError("");      
-      setData((prevRecord) => ({
-        ...prevRecord,
-        [name]: value,
-      }))   
-      
+    setIsSubmitted(true); // Mark form as submitted
+    setErrorMessage(error);
+    if (!error) {
+      createTransaction(data)
+        .then(() => {
+          setSuccessMessage("Transaction has been created successfully");
+
+          // Redirect to the dashboard after a brief delay
+          setTimeout(() => {
+            navigate("/Dashboard");  // Redirect to /Dashboard
+          }, 1000);  // Adjust delay as needed (optional)
+        })
+        .catch((err) => {
+          console.error("Error creating transaction:", err);
+        });
+    }
   };
 
-  React.useEffect(() => {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setError("");
+    setData((prevRecord) => ({
+      ...prevRecord,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     waitToLoad(setLoading);
-  }, []); 
-  
-
+  }, []);
 
   return (
     <>
-     
-      <div style={{display:"flex", alignItems:"center"}}>
-      <div style={{ paddingTop: "20px", margin: "20px", display:"flex", justifyContent:"center", color:"white" ,alignItems:"center",  }}>
-        <Link to="/Dashboard" style={{ color:"white" }}> Go back</Link>
-      </div>
-      {isLoggedIn ? 
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {/* Go back link */}
+        <div
+          style={{
+            paddingTop: "20px",
+            margin: "20px",
+            display: "flex",
+            justifyContent: "center",
+            color: "white",
+            alignItems: "center",
+          }}
+        >
+          <Link to="/Dashboard" style={{ color: "white" }}>
+            {" "}
+            Go back
+          </Link>
+        </div>
 
-      <div style={style} className="Add_blog_container">
-        <h2 style={{ color: "white", marginBottom: "50px" }}>
-          Your Treasure!
-        </h2>
-        <>
-          <InputComponent name="title" handleChange={handleChange} />
-          <InputComponent name="amount" handleChange={handleChange} />  
-          <RadioComponent name="type" handleChange={handleChange} />     
-        </>
-        <p className={errorMessage ? "errorMessage": "successMessage"}>{successMessage? successMessage : errorMessage}</p>
-        <>
-          
-          <Button
-            variant="contained"
-            onClick={handleOnClick}
-            style={{ marginTop: "50px" }}
-          >
-            Create
-          </Button>
-        </>
-      </div>
-      :!loading &&  <NoAccess />}
+        {/* Main Form */}
+        {isLoggedIn ? (
+          <div style={style} className="Add_blog_container">
+            <h2 style={{ color: "white", marginBottom: "50px" }}>
+              Your Treasure!
+            </h2>
+            <form>
+              {/* Input fields */}
+              <InputComponent
+                name="title"
+                handleChange={handleChange}
+                label="Title"
+              />
+              <InputComponent
+                name="amount"
+                handleChange={handleChange}
+                label="Amount"
+              />
 
+              {/* Dropdown for transaction type */}
+              <div style={{ marginTop: "20px", color: "white", width: "100%" }}>
+                <select
+                  name="type"
+                  id="type"
+                  onChange={handleChange}
+                  style={{
+                    padding: "10px",
+                    width: "100%",
+                    marginTop: "10px",
+                    background: "#fff",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                  }}
+                >
+                  <option value="">Select type</option>
+                  <option value="income">Income</option>
+                  <option value="expense">Expense</option>
+                  <option value="extra">Extra</option>
+                  <option value="isNotMine">Is Not Mine</option>
+                </select>
+              </div>
+
+              {/* Display error or success message only after form submission */}
+              {isSubmitted && (
+                <p
+                  className={errorMessage ? "errorMessage" : "successMessage"}
+                >
+                  {successMessage ? successMessage : errorMessage}
+                </p>
+              )}
+
+              {/* Submit button */}
+              <Button
+                variant="contained"
+                onClick={handleOnClick}
+                style={{ marginTop: "50px" }}
+              >
+                Create
+              </Button>
+            </form>
+          </div>
+        ) : (
+          !loading && <NoAccess />
+        )}
       </div>
-    
     </>
   );
 }

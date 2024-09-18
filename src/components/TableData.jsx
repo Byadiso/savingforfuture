@@ -1,181 +1,136 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableFooter from "@mui/material/TableFooter";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
-import { TableHead } from "@mui/material";
-// import { listTransactions } from '../firebase/getTransactions';
-import { formatTime } from "../firebase/Helpers";
-import { Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableFooter from '@mui/material/TableFooter';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import TableHead from '@mui/material/TableHead';
+import TablePaginationActions from './TablePaginationActions'; // Import your pagination actions component
+import { formatTime } from '../firebase/Helpers';
+import TransactionForm from './TransactionForm'; // Import the modal component
 
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
-}
-
-TablePaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
+// Define colors based on record type
+const typeColors = {
+  income: '#D4EDDA', // Light green
+  expense: '#F8D7DA', // Light red
+  extra: '#E2E3E5', // Light gray
+  isNotMine: '#CFE2FF', // Light blue
 };
 
 export default function TableData({ fetchDataFunction }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [data, setData] = React.useState([]);
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+  const [openModal, setOpenModal] = React.useState(false);
+  const [selectedTransaction, setSelectedTransaction] = React.useState(null);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // Fetch data when the component mounts or fetchDataFunction changes
   React.useEffect(() => {
     fetchDataFunction(setData);
   }, [fetchDataFunction]);
 
+  // Handle page change
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  // Handle rows per page change
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  // Calculate empty rows for pagination
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+
+  // Handle row click to open the modal
+  const handleRowClick = (transaction) => {
+    setSelectedTransaction(transaction);
+    setOpenModal(true);
+  };
+
+  // Close modal
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSelectedTransaction(null);
+  };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 300 }} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow sx={{ color: "Black", fontWeight: "800px" }}>
-            <TableCell>Transaction</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : data
-          ).map((row, index) => (
-            <TableRow key={index}>
-              <Link to={`/transaction/${row.id}`}>
-              <TableCell component="th" scope="row">
-                {row.title}
-              </TableCell>
-              </Link>
-              <TableCell style={{ color: "#ACE2E1" }}>
-                {formatTime(row.createdAt)}
-              </TableCell>
-              <TableCell>{row.amount}</TableCell>
-              <TableCell
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  backgroundColor:
-                    row.type !== "Expense" ? "#ACE2E1" : "#F7EEDD",
-                  color: "#008DDA",
-                }}
-                align="right"
-              >
-                {row.type}
-              </TableCell>
+    <div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 300 }} aria-label="custom pagination table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Transaction</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell>Amount</TableCell>
+              <TableCell>Type</TableCell>
             </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+          </TableHead>
+          <TableBody>
+            {(rowsPerPage > 0
+              ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : data
+            ).map((row, index) => {
+              const normalizedType = (row.type || '').toLowerCase();
+              return (
+                <TableRow
+                  key={index}
+                  onClick={() => handleRowClick(row)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.title}
+                  </TableCell>
+                  <TableCell>{row.createdAt ? formatTime(row.createdAt) : 'N/A'}</TableCell>
+                  <TableCell>{row.amount || 'N/A'}</TableCell>
+                  <TableCell
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      backgroundColor: typeColors[normalizedType] || '#FFFFFF', // Default to white if type is unknown
+                      color: '#000000', // Default text color
+                    }}
+                    align="right"
+                  >
+                    {row.type || 'N/A'}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={4} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={4}
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={3}
-              count={data.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  inputProps: {
-                    "aria-label": "rows per page",
-                  },
-                  native: true,
-                },
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+      {selectedTransaction && (
+        <TransactionForm
+          open={openModal}
+          handleClose={handleCloseModal}
+          transaction={selectedTransaction}
+        />
+      )}
+    </div>
   );
 }

@@ -93,9 +93,9 @@ export function filterTransactionsAndCalculateTotal(transactions, keywords) {
       transaction.title.toLowerCase().includes(keyword)
     );
     if (matchesKeyword) {
-      if (transaction.type === "Income") {
+      if (transaction.type === "Income" || "income") {
         totalExpense += parseFloat(transaction.amount);
-      } else if (transaction.type === "Expense") {
+      } else if (transaction.type === "Expense" || "expense") {
         totalIncome += parseFloat(transaction.amount);
       }
     }
@@ -110,73 +110,91 @@ export function filterTransactionsAndCalculateTotal(transactions, keywords) {
   };
 }
 
+// export function listAlltransactionWithoutSuper(transactions, filterKeywords) {
+//   let totalExpense = 0;
+//   let totalIncome = 0;
+//   transactions.filter((transaction) => {
+//     const matchesKeyword = filterKeywords.some((keyword) =>
+//       transaction.title.toLowerCase().includes(keyword)
+//     );
+//     if (!matchesKeyword) {
+//       if (transaction.type === "Expense" || "expense") {
+//         totalExpense += parseFloat(transaction.amount);
+//       } else if (transaction.type === "Income"|| "income") {
+//         totalIncome += parseFloat(transaction.amount);
+//       }else{
+//         totalIncome=0
+//         totalExpense = 0
+//       }
+//     }
+//     return !matchesKeyword;
+//   });
+//   return { totalExpense, totalIncome };
+// }
+
 export function listAlltransactionWithoutSuper(transactions, filterKeywords) {
   let totalExpense = 0;
   let totalIncome = 0;
-  transactions.filter((transaction) => {
+
+transactions.filter((transaction) => {
+    // Convert type to lowercase for case-insensitive comparison
+    const type = transaction.type.toLowerCase();
+
+    // Check if transaction title matches any of the filter keywords
     const matchesKeyword = filterKeywords.some((keyword) =>
       transaction.title.toLowerCase().includes(keyword)
     );
+
+    // Only consider transactions that do not match any filter keyword
     if (!matchesKeyword) {
-      if (transaction.type === "Expense") {
-        totalExpense += parseFloat(transaction.amount);
-      } else if (transaction.type === "Income") {
-        totalIncome += parseFloat(transaction.amount);
+      // Accumulate total expenses and income based on transaction type
+      if (type === "expense") {
+        totalExpense += parseFloat(transaction.amount) || 0;
+      } else if (type === "income") {
+        totalIncome += parseFloat(transaction.amount) || 0;
       }
     }
-    return matchesKeyword;
+
+    // Return true if the transaction does not match the filter keywords
+    return !matchesKeyword;
   });
+
   return { totalExpense, totalIncome };
 }
 
+
 // filter and return total and list
+
 export function filterBenefits(transactions) {
-  let totalIncome = 0;
+  let totalBenefits = 0;
+
   if (!transactions) {
     return {
-      filteredTransactions: [],
-      totalIncome: 0,
+      filteredBenefits: [],
+      totalBenefits: 0,
     };
   }
 
+  // Sort transactions by createdAt date in descending order
   const sortedTransactions = transactions.sort((a, b) => b.createdAt - a.createdAt);
-
-  const filteredTransactions = sortedTransactions.filter((transaction) => {
-    if (transaction.type === "Extra") {
-      totalIncome += parseFloat(transaction.amount); 
-      return true; 
+  
+  // Filter transactions to include only those with type "extra" or "Extra"
+  const filteredBenefits = sortedTransactions.filter((transaction) => {
+    const type = transaction.type.toLowerCase(); // Normalize type to lowercase
+    if (type === "extra") {
+      totalBenefits += parseFloat(transaction.amount) || 0; // Safely parse amount
+      return true;
     }
-    return false; 
+    return false;
   });
 
+ 
   return {
-    filteredTransactions,
-    totalIncome, 
+    filteredBenefits,
+    totalBenefits,
   };
 }
 
 
-// export function listAlltransactionWithoutSuper(transactions, keywords) {
-//   let totalExpense = 0;
-//   let totalIncome = 0
-//   const sortedTransactions = transactions.sort((a, b) => b.createdAt - a.createdAt);
-//   const filteredTransactions = sortedTransactions.filter(transaction => {
-//       const matchesKeyword = keywords.some(keyword => transaction.title.toLowerCase().includes(keyword));
-//       if (matchesKeyword) {
-//         if(transaction.type === "Income"){
-//           totalExpense += parseFloat(transaction.amount);
-//         } else if (transaction.type === "Expense"){
-//           totalIncome += parseFloat(transaction.amount);
-//         }
 
-//       }
-//       return matchesKeyword;
-//   });
 
-//   let total =  totalExpense - totalIncome;
-
-//   return {
-//       filteredTransactions,
-//       total,
-//   };
-// }

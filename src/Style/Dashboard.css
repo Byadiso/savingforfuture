@@ -60,6 +60,37 @@ body {
     padding: 20px;
 }
 
+.main_dashboard {
+    padding: 20px;
+  }
+  
+  .dashboard_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, auto); /* 2 rows */
+    gap: 20px; /* Space between grid items */
+  }
+  
+  .dashboard_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for grid items */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  }
+  
+  .goal_amount{
+    background-color: rgba(0, 128, 0, 0.411);
+  }
+
+  .home_amount{
+    background-color: rgba(255, 0, 0, 0.263);
+  }
+  .payback{
+    background-color: rgb(255, 0, 0);
+  }
 
 
 /* for responsiveness */

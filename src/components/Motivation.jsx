@@ -15,12 +15,13 @@ function Motivation() {
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([]);
 
-  const { filteredTransactions, totalIncome } = filterBenefits(
+  const { filteredBenefits, totalBenefits } = filterBenefits(
     transactions
   );
 
-  const listSuper = (setDataList) => {
-    return setDataList(filteredTransactions);
+
+  const listBenefits = (setDataList) => {
+    return setDataList(filteredBenefits);
   };
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function Motivation() {
             padding: "20px",
           }}
         >
-          <CardBugdeto dataExpense={totalIncome} />
+          <CardBugdeto dataExpense={totalBenefits} />
         </div>
       </div>
       <div
@@ -60,7 +61,7 @@ function Motivation() {
       >
         <div style={{ padding: "20px", width: "100%" }}>
           {isLoggedIn ? (
-            <TableData fetchDataFunction={listSuper} />
+            <TableData fetchDataFunction={listBenefits} />
           ) : (
             !loading && <NoAccess />
           )}

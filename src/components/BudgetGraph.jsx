@@ -5,6 +5,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BudgetGraph = ({ data }) => {
+
+    console.log(data)
     const chartData = {
         labels: ['Expenses', 'Earnings'],
         datasets: [

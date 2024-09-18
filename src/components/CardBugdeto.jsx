@@ -33,9 +33,9 @@ export default function CardBugdeto(props) {
       <React.Fragment>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Total On Account
+        Total On {props.type}
       </Typography>
-      <Typography variant="h5" component="div" sx={{ color: props.dataExpense < 0 ? "red" : "#008DDA"}}>
+      <Typography variant="h5" component="div" sx={{ color: props.dataExpense < 0 ? "#FF0000" : "#228B22"}}>
         {props.dataExpense} PLN
       </Typography>
     </CardContent>

@@ -15,12 +15,12 @@ function Benefits() {
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([]);
 
-  const { filteredTransactions, totalIncome } = filterBenefits(
+  const { filteredBenefits, totalBenefits } = filterBenefits(
     transactions
   );
 
   const listSuper = (setDataList) => {
-    return setDataList(filteredTransactions);
+    return setDataList(filteredBenefits);
   };
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function Benefits() {
             padding: "20px",
           }}
         >
-          <CardBugdeto dataExpense={totalIncome} />
+          <CardBugdeto dataExpense={totalBenefits} />
         </div>
       </div>
       <div
