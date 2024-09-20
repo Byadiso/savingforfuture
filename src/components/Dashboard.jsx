@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { isAuthenticated, isAuthenticatedDetails } from "../firebase/Authentication";
+import { checkIfAdmin, getLoggedUser, isAuthenticated, isAuthenticatedDetails } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
 import NoAccess from "./NoAccess";
 import { totalPlanBugdet, waitToLoad } from "../firebase/Helpers";
@@ -18,6 +18,7 @@ function Dashboard() {
   const [userId, setUserId] = useState(null);
   const [transactions, setTransactions] = React.useState([]);
   const [budgets, setBudgets] = useState([]);
+  const [loggedUser, setLoggedUser] = useState([]);
 
   const { totalExpense, totalIncome } = listAlltransactionWithoutSuper(transactions, KEYWORDS); 
   const { totalBenefits } = filterBenefits(transactions);
@@ -25,11 +26,9 @@ function Dashboard() {
 
   let goalAmount= 2000
   let HomeExpenseAmount= 1500
-  let totalTobePaid= 55000
+  let totalTobePaid= 54500
 
-let isAdmin = 'EpGTjGelY2WQqYqyt6FsgpUHp5Z2'
-
-  console.log(userId)
+  let isAdmin =  checkIfAdmin(userId)
 
   const fetchBudgets = async (userId) => {
     const plans = await readPlans(userId);
@@ -46,6 +45,7 @@ let isAdmin = 'EpGTjGelY2WQqYqyt6FsgpUHp5Z2'
   
   useEffect(() => {      
     isAuthenticated(setIsLoggedIn);
+    getLoggedUser(setLoggedUser)
     isAuthenticatedDetails(setIsLoggedIn, setUserId);
     listTransactions(setTransactions);
     fetchBudgets(userId);
@@ -55,10 +55,9 @@ let isAdmin = 'EpGTjGelY2WQqYqyt6FsgpUHp5Z2'
   return (
     <div className="main_dashboard">  
 
-
       {isLoggedIn && (
         <>
-        <div>Logged in user: {userId}</div>
+        <div>Logged in user: {loggedUser.email}</div>
         <div className="dashboard_grid">
           <div className="dashboard_item goal_amount">
             {isLoggedIn && <CardBugdeto dataExpense={goalAmount} type="Save Goal till 30th December 2024"/>}
@@ -72,13 +71,13 @@ let isAdmin = 'EpGTjGelY2WQqYqyt6FsgpUHp5Z2'
           <div className="dashboard_item">
             {isLoggedIn && <CardBugdeto dataExpense={totalBenefits} type="Benefit Account"/>}
           </div>
-          {userId===isAdmin &&<div className="dashboard_item">
+          {isAdmin &&<div className="dashboard_item">
             {isLoggedIn &&  <CardBugdeto dataExpense={-total} type="Super Account"/>}
           </div>}
           <div className="dashboard_item">
             {isLoggedIn && <CardBugdeto dataExpense={totalBudgetPlan} type="Planned Account monthly"/>}
           </div>
-          {userId===isAdmin &&<div className="dashboard_item payback">
+          {isAdmin &&<div className="dashboard_item payback">
             {isLoggedIn && <CardBugdeto dataExpense={totalTobePaid} type="What is not mine"/>}
           </div>}
           
