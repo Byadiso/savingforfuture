@@ -30,9 +30,12 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AdjustIcon from '@mui/icons-material/Adjust';
 
 import Dashboard from "./Dashboard";
-import { LogoutUser } from "../firebase/Authentication";
+import { isAuthenticatedDetails, LogoutUser } from "../firebase/Authentication";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const drawerWidth = 240;
+
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -102,6 +105,14 @@ const Drawer = styled(MuiDrawer, {
 export default function Navbar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [userId, setUserId] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+  useEffect(() => {       
+    isAuthenticatedDetails(setIsLoggedIn, setUserId);   
+  }, [ userId]);
+  
 
   const navigate = useNavigate();
 
@@ -109,6 +120,10 @@ export default function Navbar() {
     if (text === "Log out") {
       LogoutUser();
       navigate("/Login");
+    }
+    if (text === "Last month") {
+      
+      navigate("/Archived");
     }
   };
 

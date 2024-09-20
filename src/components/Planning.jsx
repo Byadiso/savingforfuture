@@ -5,6 +5,8 @@ import "../Style/Planning.css";
 import AddIcon from "@mui/icons-material/Add";
 import BudgetModal from "./BudgetModal"; // Import the modal
 import { createPlan, readPlans, editPlan, deletePlan } from "../firebase/Plan"; // Import CRUD functions
+import {  getCurrentMonthName } from "../firebase/Helpers";
+import ArchivePlanButton from "./ArchivePlans";
 
 function Planning() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,6 +15,10 @@ function Planning() {
   const [budgets, setBudgets] = useState([]); // Store planned budgets
   const [currentBudget, setCurrentBudget] = useState(null); // Store the budget being edited
   const [editIndex, setEditIndex] = useState(null); // Store index of the budget being edited
+
+  let currentMonth= getCurrentMonthName()
+
+  console.log(currentMonth)
 
   useEffect(() => {
     isAuthenticatedDetails(setIsLoggedIn, setUserId);
@@ -45,7 +51,7 @@ function Planning() {
     setIsModalOpen(true);
   };
 
-  console.log(userId)
+ 
   const handleAddOrEditBudget = async (newBudget) => {
     if (editIndex !== null) {
       // Update an existing budget
@@ -55,8 +61,7 @@ function Planning() {
       );
       setBudgets(updatedBudgets);
     } else {
-      // Add a new budget
-      console.log(userId)
+      // Add a new budget   
       await createPlan(userId, newBudget);
       setBudgets([...budgets, { ...newBudget, id: Math.floor(Math.random() * 1000000) }]);
     }
@@ -132,7 +137,7 @@ function Planning() {
       </div>
 
       <div style={{ padding: "20px", margin: "20px", color: "black" }}>
-        <h4>Welcome to your planning page</h4>
+        <h4>Welcome to your planning page for <span style={{color: "green"}}> {currentMonth}</span></h4>
 
         <div className="total-amount">
           <h2 style={getTotalStyle(totalAmount)}>Total: {totalAmount} PLN</h2>
@@ -171,6 +176,10 @@ function Planning() {
               <p>No plans yet. Start by adding a budget.</p>
             )}
           </div>
+          <div>
+      <h1>Archive Plan for the Month</h1>
+          <ArchivePlanButton currentTotalAmount={totalAmount} />
+    </div>
         </div>
       </div>
 

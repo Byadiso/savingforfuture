@@ -13,6 +13,7 @@ import Benefits from "./components/Benefits.jsx";
 import Motivation from "./components/Motivation.jsx";
 import Planning from "./components/Planning.jsx";
 import Transaction from "./components/Transaction.jsx";
+import ArchiveCard from "./components/Archived.jsx";
 
 
 
@@ -40,6 +41,10 @@ function App() {
 
           <Route path="/Super" element={<SuperBet />} />
           <Route path="/Transaction/:id" element={<Transaction />} />
+
+          <Route path="/Archived" element={<ArchiveCard />} />
+
+          
 
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />

@@ -1,0 +1,162 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --blueColor: #008DDA;
+    --blueActiveColor: #29b4e2;
+    --redColor: #fa1717;  
+    --greyColor: #4b4a4a;
+    --backgroundGrey: rgba(244, 244, 244, 0.918)
+  
+}
+
+/* all styles  ---------------------------*/
+
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+/* Archive Card Styles */
+.archive-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: space-between; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  padding: 10px; 
+  margin: 20px;
+  background-color: #fff; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}
+
+.archive-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.archive-card h5 {
+  
+  font-size: 1.4rem; 
+  color: #333; 
+  margin-bottom: 5px; 
+}
+
+.archive-card p {
+  margin: 0;
+  font-size: 1.1rem; 
+  color: #666; 
+}
+.archive-card h3 { 
+  font-size: 1.1rem; 
+  color: #666; 
+}
+
+
+/* Card Container (For Nested Elements) */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Add spacing between items in the card */
+}
+
+/* Body Global Styles */
+body {
+  font-family: 'Roboto', sans-serif; 
+  background-color: #f4f4f9; 
+  color: #333; 
+  margin: 0;
+  padding: 20px;
+}
+
+/* Link Styling */
+a {
+  text-decoration: none;
+  color: #053568; 
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #0056b3; 
+}
+
+
+  
+
+  
+
+
+
+/* for responsiveness */
+@media only screen and (max-width: 720px) {
+
+         
+}
+
+/* 
+for ipods and tables */
+
+@media only screen and (max-width: 920px) {
+
+    body {
+        min-width: 360px;
+    }
+  
+
+    /* for services */
+    .service_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    /* for portfolio */
+
+    .portfolio_nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .portfolio_nav h1 {
+        font-size: 1rem;
+        margin: 0px;
+    }
+
+    .dashboard_content{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+
+/* 
+  for dark mode */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: var(--blueColor);
+        color: white;
+    }
+
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: #ddd;
+        color: black;
+    }
+
+}
