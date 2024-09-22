@@ -1,7 +1,5 @@
 import {  db, storage } from "./Firebase";
 
-
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {
   ref as dbRef,
   set,

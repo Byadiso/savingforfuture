@@ -3,6 +3,8 @@ import { readArchivedPlans } from '../firebase/ArchiveLogics';
 import { isAuthenticatedDetails } from '../firebase/Authentication';
 import { Link } from 'react-router-dom';
 import "../Style/Archive.css";
+import { filterTransactionByMonthAndType, listTransactionsByMonthAndType } from '../firebase/Filters';
+import { listTransactions } from '../firebase/getTransactions';
 
 // Archived Component
 const CurrentTransaction = () => {
@@ -10,13 +12,20 @@ const CurrentTransaction = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null); // Store the user ID
+  const [transactions, setTransactions] = React.useState([]);
 
-  console.log(archives, userId);
-  
+
+ let filtered= listTransactionsByMonthAndType(transactions,"current","expense");
+ 
+
+ console.log(filtered)
+
 
   useEffect(() => {
    
-    isAuthenticatedDetails(setIsLoggedIn, setUserId);  
+    isAuthenticatedDetails(setIsLoggedIn, setUserId); 
+    listTransactions(setTransactions);
+    // filterTransactionByMonthAndType(transactions,"rent","rent","expense")
     if (userId) {
       fetchArchivedData(userId)
     }

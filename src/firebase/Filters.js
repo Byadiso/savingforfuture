@@ -210,11 +210,87 @@ export function listHomeAndStoresExpenses(transactions) {
 
 // list transaction based on the date current or last month
 
-export function filterTransactionByMonthAndType(transactions, filterKeywords, monthType, transactionType) {
+
+// export function listTransactionsByMonthAndType(transactions, monthType, transactionType) {
+//   let totalExpense = 0;
+//   let totalIncome = 0;
+//   let totalExtra = 0; // To accumulate the total for the "Extra" type
+//   let matchingTransactions = [];
+
+//   // Get the current date
+//   const currentDate = new Date();
+
+//   // Calculate start and end dates based on the monthType (current or previous month)
+//   let startDate, endDate;
+
+//   if (monthType === "current") {
+//     // Set start date to the 1st of the current month at midnight (00:00:00)
+//     startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+//     startDate.setHours(0, 0, 0, 0);
+
+//     // Set end date to the end of the current day (23:59:59)
+//     endDate = new Date();
+//     endDate.setHours(23, 59, 59, 999); // Set to the very end of the day
+//   } else if (monthType === "last") {
+//     // Set start date to the 1st of the previous month at midnight (00:00:00)
+//     startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+//     startDate.setHours(0, 0, 0, 0);
+
+//     // Set end date to the last day of the previous month at the end of the day (23:59:59)
+//     endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+//     endDate.setHours(23, 59, 59, 999); // Set to the very end of the last day of the previous month
+//   }
+
+//   // Formatter for the date to match "Sun September 2024" format
+//   const dateFormatter = new Intl.DateTimeFormat('en-US', {
+//     weekday: 'short', // e.g., Sun
+//     year: 'numeric', // e.g., 2024
+//     month: 'long', // e.g., September
+//   });
+
+//   transactions.forEach((transaction) => {
+//     // Convert transaction timestamp (assuming it's in seconds, multiply by 1000 for ms)
+//     const transactionDate = new Date(transaction.createdAt * 1000); // assuming Unix timestamp is in seconds
+
+//     // Normalize transaction date for consistent comparison (set hours to midnight)
+//     transactionDate.setHours(0, 0, 0, 0);
+
+//     // Format the transaction date for readability
+//     const formattedTransactionDate = dateFormatter.format(transactionDate);
+
+   
+//     // Check if the transaction falls within the calculated date range
+//     const withinDateRange = transactionDate >= startDate && transactionDate <= endDate;
+//     console.log(formattedTransactionDate)
+//     console.log(withinDateRange)
+
+//     // Convert type to lowercase for case-insensitive comparison
+//     const type = transaction.type.toLowerCase();
+
+//     // Only consider transactions that are within the date range and match the transaction type
+//     if (withinDateRange) {
+//       if (transactionType === "Expense" && type === "expense") {
+//         totalExpense += parseFloat(transaction.amount) || 0;
+//         matchingTransactions.push({ ...transaction, date: formattedTransactionDate }); // Add formatted date
+//       } else if (transactionType === "Income" && type === "income") {
+//         totalIncome += parseFloat(transaction.amount) || 0;
+//         matchingTransactions.push({ ...transaction, date: formattedTransactionDate }); // Add formatted date
+//       } else if (transactionType === "Extra" && type === "extra") {
+//         totalExtra += parseFloat(transaction.amount) || 0;
+//         matchingTransactions.push({ ...transaction, date: formattedTransactionDate }); // Add formatted date
+//       }
+//     }
+//   });
+
+//   // Return total expenses, total income, total extra, and matching transactions
+//   return { totalExpense, totalIncome, totalExtra, matchingTransactions };
+// }
+
+export function listTransactionsByMonthAndType(transactions, monthType, transactionType) {
   let totalExpense = 0;
   let totalIncome = 0;
   let totalExtra = 0; // To accumulate the total for the "Extra" type
-  let filteredTransactions = [];
+  let matchingTransactions = [];
 
   // Get the current date
   const currentDate = new Date();
@@ -223,51 +299,72 @@ export function filterTransactionByMonthAndType(transactions, filterKeywords, mo
   let startDate, endDate;
 
   if (monthType === "current") {
-    // Set start date to the 1st of the current month
+    // Set start date to the 1st of the current month at midnight (00:00:00)
     startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    // Set end date to the current date
-    endDate = currentDate;
+    startDate.setHours(0, 0, 0, 0);
+
+    // Set end date to the end of the current day (23:59:59)
+    endDate = new Date();
+    endDate.setHours(23, 59, 59, 999); // Set to the very end of the day
   } else if (monthType === "last") {
-    // Set start date to the 1st of the previous month
+    // Set start date to the 1st of the previous month at midnight (00:00:00)
     startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
-    // Set end date to the last day of the previous month
+    startDate.setHours(0, 0, 0, 0);
+
+    // Set end date to the last day of the previous month at the end of the day (23:59:59)
     endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+    endDate.setHours(23, 59, 59, 999); // Set to the very end of the last day of the previous month
   }
 
+  // Formatter for the date to match "Sun September 2024" format
+  const dateFormatter = new Intl.DateTimeFormat('en-US', {
+    weekday: 'short', // e.g., Sun
+    year: 'numeric',  // e.g., 2024
+    month: 'long',    // e.g., September
+  });
+
   transactions.forEach((transaction) => {
-    // Convert type to lowercase for case-insensitive comparison
-    const type = transaction.type.toLowerCase();
+    // Correct handling of Unix timestamp (assuming it's in seconds)
+    // If the timestamp is in milliseconds, do NOT multiply by 1000.
+    const transactionTimestamp = transaction.createdAt;
+    const transactionDate = new Date(transactionTimestamp * 1000); // Convert seconds to milliseconds
 
-    // Check if transaction title matches any of the filter keywords
-    const matchesKeyword = filterKeywords.some((keyword) =>
-      transaction.title.toLowerCase().includes(keyword)
-    );
+    // Normalize transaction date for consistent comparison (set hours to midnight)
+    transactionDate.setHours(0, 0, 0, 0);
 
-    // Convert transaction timestamp to a Date object (assuming it's a Unix timestamp)
-    const transactionDate = new Date(transaction.timestamp);
+    // Format the transaction date for readability
+    const formattedTransactionDate = dateFormatter.format(transactionDate);
 
     // Check if the transaction falls within the calculated date range
     const withinDateRange = transactionDate >= startDate && transactionDate <= endDate;
 
-    // Only consider transactions that do not match any filter keyword and are within the date range
-    if (!matchesKeyword && withinDateRange) {
-      // Accumulate totals based on the specified transaction type
+    console.log(formattedTransactionDate)
+    console.log(withinDateRange)
+
+    // Convert type to lowercase for case-insensitive comparison
+    const type = transaction.type.toLowerCase();
+
+    // Only consider transactions that are within the date range and match the transaction type
+    if (withinDateRange) {
       if (transactionType === "Expense" && type === "expense") {
         totalExpense += parseFloat(transaction.amount) || 0;
-        filteredTransactions.push(transaction);
+        matchingTransactions.push({ ...transaction, date: formattedTransactionDate }); // Add formatted date
       } else if (transactionType === "Income" && type === "income") {
         totalIncome += parseFloat(transaction.amount) || 0;
-        filteredTransactions.push(transaction);
+        matchingTransactions.push({ ...transaction, date: formattedTransactionDate }); // Add formatted date
       } else if (transactionType === "Extra" && type === "extra") {
         totalExtra += parseFloat(transaction.amount) || 0;
-        filteredTransactions.push(transaction);
+        matchingTransactions.push({ ...transaction, date: formattedTransactionDate }); // Add formatted date
       }
     }
   });
 
-  // Return total expenses, total income, total extra, and filtered transactions
-  return { totalExpense, totalIncome, totalExtra, filteredTransactions };
+  // Return total expenses, total income, total extra, and matching transactions
+  return { totalExpense, totalIncome, totalExtra, matchingTransactions };
 }
+
+
+
 
 
 
