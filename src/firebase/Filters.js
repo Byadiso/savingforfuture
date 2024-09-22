@@ -76,8 +76,7 @@ export const fetchFilteredTransactions = async (
 };
 
 // Example button handlers
-export const handleCurrentMonth = () =>
-  fetchFilteredTransactions("currentMonth");
+export const handleCurrentMonth = () =>   fetchFilteredTransactions("currentMonth");
 export const handleLastMonth = () => fetchFilteredTransactions("lastMonth");
 export const handleWholeYear = () => fetchFilteredTransactions("wholeYear");
 
@@ -110,27 +109,6 @@ export function filterTransactionsAndCalculateTotal(transactions, keywords) {
   };
 }
 
-// export function listAlltransactionWithoutSuper(transactions, filterKeywords) {
-//   let totalExpense = 0;
-//   let totalIncome = 0;
-//   transactions.filter((transaction) => {
-//     const matchesKeyword = filterKeywords.some((keyword) =>
-//       transaction.title.toLowerCase().includes(keyword)
-//     );
-//     if (!matchesKeyword) {
-//       if (transaction.type === "Expense" || "expense") {
-//         totalExpense += parseFloat(transaction.amount);
-//       } else if (transaction.type === "Income"|| "income") {
-//         totalIncome += parseFloat(transaction.amount);
-//       }else{
-//         totalIncome=0
-//         totalExpense = 0
-//       }
-//     }
-//     return !matchesKeyword;
-//   });
-//   return { totalExpense, totalIncome };
-// }
 
 export function listAlltransactionWithoutSuper(transactions, filterKeywords) {
   let totalExpense = 0;
@@ -164,7 +142,6 @@ transactions.filter((transaction) => {
 
 
 // filter and return total and list
-
 export function filterBenefits(transactions) {
   let totalBenefits = 0;
 
@@ -194,6 +171,104 @@ export function filterBenefits(transactions) {
     totalBenefits,
   };
 }
+
+//fetch anything created with keyword home or Home or Biedronka or Auchan, Zabka
+
+export function listHomeAndStoresExpenses(transactions) {
+  let totalExpense = 0;
+
+  // Define the keywords to look for (case-insensitive)
+  const filterKeywords = ["home", "biedronka", "auchan", "zabka"];
+
+  transactions.filter((transaction) => {
+    // Convert type to lowercase for case-insensitive comparison
+    const type = transaction.type.toLowerCase();
+
+    // Only process transactions where the type is "expense"
+    if (type === "expense") {
+      // Convert expense to lowercase for case-insensitive comparison
+      const expense = transaction.expense ? transaction.expense.toLowerCase() : '';
+
+      // Check if the expense contains any of the keywords
+      const matchesKeyword = filterKeywords.some((keyword) =>
+        expense.includes(keyword)
+      );
+
+      // If it matches a keyword, accumulate the total expense
+      if (matchesKeyword) {
+        totalExpense += parseFloat(transaction.amount) || 0;
+      }
+
+      // Return true if the transaction matches the filter keywords
+      return matchesKeyword;
+    }
+    return false; // Return false for non-expense transactions
+  });
+
+  return { totalExpense };
+}
+
+// list transaction based on the date current or last month
+
+export function filterTransactionByMonthAndType(transactions, filterKeywords, monthType, transactionType) {
+  let totalExpense = 0;
+  let totalIncome = 0;
+  let totalExtra = 0; // To accumulate the total for the "Extra" type
+  let filteredTransactions = [];
+
+  // Get the current date
+  const currentDate = new Date();
+
+  // Calculate start and end dates based on the monthType (current or previous month)
+  let startDate, endDate;
+
+  if (monthType === "current") {
+    // Set start date to the 1st of the current month
+    startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    // Set end date to the current date
+    endDate = currentDate;
+  } else if (monthType === "last") {
+    // Set start date to the 1st of the previous month
+    startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    // Set end date to the last day of the previous month
+    endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+  }
+
+  transactions.forEach((transaction) => {
+    // Convert type to lowercase for case-insensitive comparison
+    const type = transaction.type.toLowerCase();
+
+    // Check if transaction title matches any of the filter keywords
+    const matchesKeyword = filterKeywords.some((keyword) =>
+      transaction.title.toLowerCase().includes(keyword)
+    );
+
+    // Convert transaction timestamp to a Date object (assuming it's a Unix timestamp)
+    const transactionDate = new Date(transaction.timestamp);
+
+    // Check if the transaction falls within the calculated date range
+    const withinDateRange = transactionDate >= startDate && transactionDate <= endDate;
+
+    // Only consider transactions that do not match any filter keyword and are within the date range
+    if (!matchesKeyword && withinDateRange) {
+      // Accumulate totals based on the specified transaction type
+      if (transactionType === "Expense" && type === "expense") {
+        totalExpense += parseFloat(transaction.amount) || 0;
+        filteredTransactions.push(transaction);
+      } else if (transactionType === "Income" && type === "income") {
+        totalIncome += parseFloat(transaction.amount) || 0;
+        filteredTransactions.push(transaction);
+      } else if (transactionType === "Extra" && type === "extra") {
+        totalExtra += parseFloat(transaction.amount) || 0;
+        filteredTransactions.push(transaction);
+      }
+    }
+  });
+
+  // Return total expenses, total income, total extra, and filtered transactions
+  return { totalExpense, totalIncome, totalExtra, filteredTransactions };
+}
+
 
 
 

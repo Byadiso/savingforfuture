@@ -63,7 +63,7 @@ function Dashboard() {
             {isLoggedIn && <CardBugdeto dataExpense={goalAmount} type="Save Goal till 30th December 2024"/>}
           </div>
           <div className="dashboard_item home_amount">
-            {isLoggedIn && <CardBugdeto dataExpense={HomeExpenseAmount} type="Home Expense monthly"/>}
+            {isLoggedIn && <CardBugdeto dataExpense={HomeExpenseAmount} type="Home grosseries monthly"/>}
           </div>
           <div className="dashboard_item">
             {isLoggedIn && <CardBugdeto dataExpense={totalIncome - totalExpense} type="Bank Account"/>}
