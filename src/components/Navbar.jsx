@@ -125,6 +125,11 @@ export default function Navbar() {
       
       navigate("/Archived");
     }
+    if (text === "Current month") {
+      
+      navigate("/CurrentTransaction");
+    }
+  
   };
 
   const handleDrawerOpen = () => {

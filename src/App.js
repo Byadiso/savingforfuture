@@ -14,6 +14,7 @@ import Motivation from "./components/Motivation.jsx";
 import Planning from "./components/Planning.jsx";
 import Transaction from "./components/Transaction.jsx";
 import ArchiveCard from "./components/Archived.jsx";
+import CurrentTransaction from "./components/CurrentTransaction.jsx";
 
 
 
@@ -43,9 +44,9 @@ function App() {
           <Route path="/Transaction/:id" element={<Transaction />} />
 
           <Route path="/Archived" element={<ArchiveCard />} />
+          <Route path="/CurrentTransaction" element={<CurrentTransaction />} />     
 
           
-
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
 
