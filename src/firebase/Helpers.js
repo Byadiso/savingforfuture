@@ -85,7 +85,7 @@ export function formatTime(timestamp) {
   const date = new Date(timestamp);
   return date.toLocaleString("en-US", {
     year: 'numeric', // numeric, 2-digit
-    month: 'long', // numeric, 2-digit, long, short, narrow
+    month: 'short', // numeric, 2-digit, long, short, narrow
     day: 'numeric', // numeric, 2-digit
     hour: '2-digit', // numeric, 2-digit
     minute: '2-digit', // numeric, 2-digit
@@ -93,6 +93,42 @@ export function formatTime(timestamp) {
     // timeZoneName: 'short' // short, long
   });
 }
+
+export const isDateInMonthRange = (providedDateStr, monthType) => {
+  const currentDate = new Date();
+
+  // Convert provided date string to Date object and strip time and day information
+  const providedDate = new Date(providedDateStr);
+  providedDate.setHours(0, 0, 0, 0); // Strip time
+
+  let startDate, endDate;
+
+  if (monthType === "current") {
+    // Start of the current month, stripping time
+    startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    startDate.setHours(0, 0, 0, 0); // Strip time
+
+    endDate = new Date(currentDate); // End date is the current date
+    endDate.setHours(0, 0, 0, 0); // Strip time
+  } else if (monthType === "last") {
+    // Start of the last month, stripping time
+    startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    startDate.setHours(0, 0, 0, 0); // Strip time
+    
+    // End date is the 30th of the last month, or the last day if it has fewer than 30 days
+    endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+    if (endDate.getDate() > 30) {
+      endDate.setDate(30); // Adjust to 30th if the month has more than 30 days
+    }
+    endDate.setHours(0, 0, 0, 0); // Strip time
+  } else {
+    throw new Error('Invalid month type. Use "current" or "last".');
+  }
+
+  // Compare provided date only with year, month, and day (no time)
+  return providedDate >= startDate && providedDate <= endDate;
+};
+
 
 
 export const removeFirstLetter = (str) => str.startsWith('/') ? str.slice(1) : str;

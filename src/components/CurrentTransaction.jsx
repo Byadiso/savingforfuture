@@ -15,7 +15,7 @@ const CurrentTransaction = () => {
   const [transactions, setTransactions] = React.useState([]);
 
 
- let filtered= listTransactionsByMonthAndType(transactions,"current","expense");
+ let filtered= listTransactionsByMonthAndType(transactions,"current");
  
 
  console.log(filtered)
@@ -25,7 +25,6 @@ const CurrentTransaction = () => {
    
     isAuthenticatedDetails(setIsLoggedIn, setUserId); 
     listTransactions(setTransactions);
-    // filterTransactionByMonthAndType(transactions,"rent","rent","expense")
     if (userId) {
       fetchArchivedData(userId)
     }
