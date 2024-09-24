@@ -27,6 +27,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import SavingsIcon from "@mui/icons-material/Savings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from '@mui/icons-material/Login';
 import AdjustIcon from '@mui/icons-material/Adjust';
 
 import Dashboard from "./Dashboard";
@@ -129,6 +130,9 @@ export default function Navbar() {
       
       navigate("/CurrentTransaction");
     }
+    if (text === "Log in") {
+      navigate("/Login");
+    }
   
   };
 
@@ -149,7 +153,7 @@ export default function Navbar() {
     <SportsSoccerIcon />,
     <SavingsIcon />,
     <CalendarMonthIcon />,
-    <LogoutIcon />,
+    isLoggedIn? <LogoutIcon />: <LoginIcon />,
   ];
 
   return (
@@ -223,12 +227,12 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["Current month", "Last month", "Log out"].map(
+          {["Current month", "Last month", isLoggedIn ?"Log out":"Log in"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton onClick={() => handleClick(text)}>
                   <ListItemIcon>
-                    {text === "Log out" ? icons[8] : icons[7]}
+                    {text === "Log out"|| text === "Log in" ? icons[8] : icons[7]}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
