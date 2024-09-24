@@ -97,35 +97,30 @@ export function formatTime(timestamp) {
 export const isDateInMonthRange = (providedDateStr, monthType) => {
   const currentDate = new Date();
 
-  // Convert provided date string to Date object and strip time and day information
   const providedDate = new Date(providedDateStr);
-  providedDate.setHours(0, 0, 0, 0); // Strip time
-
+  providedDate.setHours(0, 0, 0, 0); 
   let startDate, endDate;
 
   if (monthType === "current") {
     // Start of the current month, stripping time
     startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    startDate.setHours(0, 0, 0, 0); // Strip time
+    startDate.setHours(0, 0, 0, 0); 
 
-    endDate = new Date(currentDate); // End date is the current date
-    endDate.setHours(0, 0, 0, 0); // Strip time
-  } else if (monthType === "last") {
-    // Start of the last month, stripping time
+    endDate = new Date(currentDate); 
+    endDate.setHours(0, 0, 0, 0); 
+  } else if (monthType === "last") { 
     startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
-    startDate.setHours(0, 0, 0, 0); // Strip time
+    startDate.setHours(0, 0, 0, 0); 
     
     // End date is the 30th of the last month, or the last day if it has fewer than 30 days
     endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
     if (endDate.getDate() > 30) {
-      endDate.setDate(30); // Adjust to 30th if the month has more than 30 days
+      endDate.setDate(30); 
     }
-    endDate.setHours(0, 0, 0, 0); // Strip time
+    endDate.setHours(0, 0, 0, 0); 
   } else {
     throw new Error('Invalid month type. Use "current" or "last".');
   }
-
-  // Compare provided date only with year, month, and day (no time)
   return providedDate >= startDate && providedDate <= endDate;
 };
 
