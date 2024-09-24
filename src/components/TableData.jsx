@@ -87,7 +87,7 @@ export default function TableData({ fetchDataFunction }) {
                     {row.title}
                   </TableCell>
                   <TableCell>{row.createdAt ? formatTime(row.createdAt) : 'N/A'}</TableCell>
-                  <TableCell>{row.amount || 'N/A'}</TableCell>
+                  <TableCell>{row.amount || 'N/A'} PLN</TableCell>
                   <TableCell
                     style={{
                       display: 'flex',

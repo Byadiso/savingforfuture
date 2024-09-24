@@ -50,9 +50,9 @@ export const waitToLoad =(setFunction)=>{
   }, 1500); 
 }
 
-export  const removePTag =(sentence)=>{ 
- return sentence.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/&nbsp/g,"");
-}
+// export  const removePTag =(sentence)=>{ 
+//  return sentence.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/&nbsp/g,"");
+// }
 
 
 export const ValidateTransaction = (transaction) => { 

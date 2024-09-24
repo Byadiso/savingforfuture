@@ -11,9 +11,6 @@ const ArchiveCard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null); // Store the user ID
 
-  console.log(archives, userId);
-  
-
   useEffect(() => {
    
     isAuthenticatedDetails(setIsLoggedIn, setUserId);  
