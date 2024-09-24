@@ -65,12 +65,12 @@ function Dashboard() {
           <div className="dashboard_item home_amount">
             {isLoggedIn && <CardBugdeto dataExpense={HomeExpenseAmount} type="Home grosseries monthly"/>}
           </div>
-          <div className="dashboard_item">
+          {isAdmin &&<div className="dashboard_item">
             {isLoggedIn && <CardBugdeto dataExpense={totalIncome - totalExpense} type="Bank Account"/>}
-          </div>
-          <div className="dashboard_item">
+          </div>}
+          {isAdmin &&<div className="dashboard_item">
             {isLoggedIn && <CardBugdeto dataExpense={totalBenefits} type="Benefit Account"/>}
-          </div>
+          </div>}
           {isAdmin &&<div className="dashboard_item">
             {isLoggedIn &&  <CardBugdeto dataExpense={-total} type="Super Account"/>}
           </div>}

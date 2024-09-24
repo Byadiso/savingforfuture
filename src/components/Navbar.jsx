@@ -31,9 +31,10 @@ import LoginIcon from '@mui/icons-material/Login';
 import AdjustIcon from '@mui/icons-material/Adjust';
 
 import Dashboard from "./Dashboard";
-import { isAuthenticatedDetails, LogoutUser } from "../firebase/Authentication";
+import { checkIfAdmin, isAuthenticatedDetails, LogoutUser } from "../firebase/Authentication";
 import { useEffect } from "react";
 import { useState } from "react";
+import { ADMIN_KEY } from "../firebase/CONSTANTS";
 
 const drawerWidth = 240;
 
@@ -109,6 +110,10 @@ export default function Navbar() {
   const [userId, setUserId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const isAdmin =  checkIfAdmin(userId)
+
+  
+
 
   useEffect(() => {       
     isAuthenticatedDetails(setIsLoggedIn, setUserId);   
@@ -148,13 +153,25 @@ export default function Navbar() {
     <DashboardIcon />,
     <AddBoxIcon />,
     <AdjustIcon />,
-    <GroupIcon />,
-    <BarChartIcon />,
-    <SportsSoccerIcon />,
-    <SavingsIcon />,
+    isAdmin && <GroupIcon />,
+    isAdmin &&<BarChartIcon />,
+    isAdmin && <SportsSoccerIcon />,
+    isAdmin && <SavingsIcon />,
     <CalendarMonthIcon />,
     isLoggedIn? <LogoutIcon />: <LoginIcon />,
-  ];
+  ].filter(Boolean);
+
+  const menu= [
+    "Dashboard",
+    "Add ",
+    "Plan",
+     isAdmin && "Benefits",
+    isAdmin && "Reports",
+    isAdmin && "Super",
+     isAdmin && "Motivation",
+  ].filter(Boolean)
+
+ 
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -191,15 +208,7 @@ export default function Navbar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {[
-            "Dashboard",
-            "Add ",
-            "Plan",
-            "Benefits",
-            "Reports",
-            "Super",
-            "Motivation",
-          ].map((text, index) => (
+          {menu.map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon
@@ -232,7 +241,7 @@ export default function Navbar() {
               <ListItem key={text} disablePadding>
                 <ListItemButton onClick={() => handleClick(text)}>
                   <ListItemIcon>
-                    {text === "Log out"|| text === "Log in" ? icons[8] : icons[7]}
+                    {text === "Log out"|| text === "Log in" ? icons[icons.length-1] : icons[icons.length-2]}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
