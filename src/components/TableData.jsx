@@ -8,16 +8,16 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
-import TablePaginationActions from './TablePaginationActions'; // Import your pagination actions component
+import TablePaginationActions from './TablePaginationActions'; 
 import { formatTime } from '../firebase/Helpers';
-import TransactionForm from './TransactionForm'; // Import the modal component
+import TransactionForm from './TransactionForm'; 
 
-// Define colors based on record type
+
 const typeColors = {
-  income: '#D4EDDA', // Light green
-  expense: '#F8D7DA', // Light red
-  extra: '#E2E3E5', // Light gray
-  isNotMine: '#CFE2FF', // Light blue
+  income: '#D4EDDA', 
+  expense: '#F8D7DA', 
+  extra: '#E2E3E5', 
+  isNotMine: '#CFE2FF', 
 };
 
 export default function TableData({ fetchDataFunction }) {
@@ -92,8 +92,8 @@ export default function TableData({ fetchDataFunction }) {
                     style={{
                       display: 'flex',
                       justifyContent: 'center',
-                      backgroundColor: typeColors[normalizedType] || '#FFFFFF', // Default to white if type is unknown
-                      color: '#000000', // Default text color
+                      backgroundColor: typeColors[normalizedType] || '#FFFFFF', 
+                      color: '#000000', 
                     }}
                     align="right"
                   >

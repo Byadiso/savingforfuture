@@ -29,11 +29,11 @@ export const listTransactions = (setTransactionList)=>{
 }
 
 
-export const singleTransaction = (setBlogList, blogId)=>{
-  const blogRefList = ref(databaseFirebase, "Transactions/" + blogId);
+export const singleTransaction = (setTransactionList, transaction_ID)=>{
+  const blogRefList = ref(databaseFirebase, "Transactions/" + transaction_ID);
   onValue(blogRefList, (snapshot) => {
       const data = snapshot.val()        
-        let blogsArray = [];
+        let Transactions_Array = [];
         for (var [key, value] of Object.entries(data)) {
           var obj = {
             id: value.id,
@@ -42,8 +42,8 @@ export const singleTransaction = (setBlogList, blogId)=>{
             Image: value.Image,
             uid_key: key,
           };  
-          blogsArray.push(obj);
+          Transactions_Array.push(obj);
         }
-        setBlogList(blogsArray)         
+        setTransactionList(Transactions_Array)         
     })
 }

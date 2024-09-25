@@ -42,11 +42,11 @@ export const readArchivedPlans = async (userId) => {
       return snapshot.val(); // Return all archived plans
     } else {
       console.error("No archived plans found for this user.");
-      return {}; // Return an empty object if no data
+      return {}; 
     }
   } catch (error) {
     console.error("Error fetching archived plans:", error.message);
-    return {}; // Return an empty object in case of error
+    return {}; 
   }
 };
 
@@ -60,7 +60,7 @@ export const editArchivedPlan = async (userId, id, updatedData) => {
     await update(archiveRef, {
         month,
         amount,      
-         updatedAt: serverTimestamp(), // Store updated timestamp
+         updatedAt: serverTimestamp(), 
     });
 
     console.log("Archived plan updated successfully!");

@@ -21,11 +21,7 @@ function Transaction() {
 
   const transaction = transactions.find(transact => transact.id === transactionId);  
 
-  const handlePlan = ()=>{
-    console.log("Let start")
-    console.log(transactions[0])
-    console.log(transaction)
-  }
+  
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
@@ -38,9 +34,9 @@ function Transaction() {
       <div style={{ paddingTop: "20px", margin: "20px" }}>
         <Link to="/Dashboard"> Go back</Link>
       </div>
-      <div style={{ padding: "20px", margin: "20px", color: "black" }}>      
-        <div className="main_container_planner">
-          
+      <div style={{ padding: "20px", margin: "20px", color: "black" }}>   
+       
+        <div className="main_container_planner">          
           <TransactionForm transactions={transactions} />
         </div>
       </div>
