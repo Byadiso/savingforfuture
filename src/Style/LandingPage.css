@@ -4,11 +4,10 @@
 
 :root {
     --blueColor: #008DDA;
-
+    --textColorGreyParagraph: #333; /* Assuming the grey color */
 }
 
 /* all styles  ---------------------------*/
-
 
 * {
     box-sizing: border-box;
@@ -18,59 +17,72 @@
     outline: none;
 }
 
-/* body syles  */
-
+/* body styles  */
 body {
-    font-family: 'Roboto',  sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: var(--blueColor);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
+    padding: 0; /* Added to prevent unwanted horizontal scrolling */
 }
 
-.main_Landing{    
+/* .main_Landing {    
     justify-content: center;
     display: flex;
     align-items: center;
-    background-color: var(--blueColor) ;
+    background-color: var(--blueColor);
     padding-top: 250px;
+} */
+
+.main_Landing {
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;    /* Centers content vertically */
+    flex-direction: row; /* Stacks the elements (IconButton and h2) vertically */
+    height: 100vh;          /* Optional: full viewport height */
+    background-color: var(--blueColor); /* Keeps the original background color */
+    /* padding-top: 250px;       */
 }
 
 
-
-/* for responsiveness  mobile*/
+/* Mobile responsiveness */
 @media only screen and (max-width: 720px) {
-   
     .ngana_logo {
-        margin-right: 200px;
-        font-size: 30px;
-    } 
-   
+        margin-right: auto; /* Adjusted to be flexible */
+        margin-left: auto;  /* Center the logo */
+        font-size: 24px; /* Reduced size for better fit */
+        text-align: center;
+    }
 
     .welcome_text {
-        color: var(--blueColor);        
+        color: var(--blueColor);
+        font-size: 1.2rem; /* Scaled text for readability */
+        text-align: center; /* Centered for better mobile view */
+        padding: 10px;
     }
-   
+
     .hero_section_header {
         display: flex;
         justify-content: center;
         flex-direction: column;
+        align-items: center; /* Added to center content */
     }
 
     .hero_section_header div .fa {
         padding: 5px;
     }
-    
-    .image_landing{
+
+    .image_landing {
         display: none;
     }
 
-    
     .hero_section {
-        font-size: .8rem;
+        font-size: 0.8rem;
+        padding: 15px; /* Added padding for content spacing */
+        text-align: center; /* Centered for mobile view */
     }
-  
 
     /* for main_who_items */
     .main_who_items {
@@ -80,10 +92,12 @@ body {
         flex-direction: column;
         color: var(--textColorGreyParagraph);
         margin: 20px;
+        padding: 10px; /* Added padding for better spacing */
     }
 
     .main_who_items img {
-        width: 100%;
+        width: 90%; /* Slight reduction to avoid edge overlap */
+        max-width: 400px; /* Restrict large images on larger screens */
     }
 
     /* for services */
@@ -92,33 +106,35 @@ body {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        padding: 15px; /* Added padding for better spacing */
     }
 
     /* remove link style on a tag */
     a, button {
         all: unset;
     }
-    
-  
 }
 
-/* 
-for ipads and tables */
+/* For iPads and tablets */
 @media only screen and (max-width: 920px) {
     body {
         min-width: 360px;
     }
+
     .ngana_logo {
         margin-right: 50px;
         margin-left: 50px;
         font-size: 30px;
     }
-   
+
     .hero_section {
-        font-size: .8rem;
+        font-size: 0.9rem;
+        padding: 20px; /* More padding for larger tablets */
+        text-align: center;
     }
+
     .hire_text {
-        font-size: .7rem;
+        font-size: 0.7rem;
         min-width: 130px;
     }
 
@@ -127,16 +143,18 @@ for ipads and tables */
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;      
-        margin: 20px;        
+        flex-direction: column;
+        margin: 20px;
+        padding: 10px;
     }
 
-    .dropdown {       
+    .dropdown {
         margin-bottom: 10px;
     }
 
     .main_who_items img {
-        width: 100%;
+        width: 90%;
+        max-width: 400px;
     }
 
     /* for services */
@@ -157,15 +175,11 @@ for ipads and tables */
 
     .portfolio_nav h1 {
         font-size: 1rem;
-        margin: 0px;
+        margin: 0;
     }
-
 }
 
-
-
-/* 
-  for dark mode */
+/* For dark mode */
 @media (prefers-color-scheme: dark) {
     body {       
         color: white;

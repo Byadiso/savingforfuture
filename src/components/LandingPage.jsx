@@ -18,14 +18,14 @@ function LandingPage() {
   }, []);
   return (
     <div className="main_Landing">
-        <IconButton style={{ color: "white" }}>
-          <Link to="/Dashboard" style={{textDecoration:"none", color:"white"}}>
-          <PaymentsIcon fontSize="large" />
-          </Link>              
-             
-            </IconButton>
-            <h2>Bugdeto </h2>
-    </div>
+    <IconButton style={{ color: "white" }}>
+        <Link to="/Dashboard" style={{ textDecoration: "none", color: "white" }}>
+            <PaymentsIcon fontSize="large" />
+        </Link>
+    </IconButton>
+    <h2 style={{ marginLeft: '10px', color: "white" }}>Bugdeto</h2>
+</div>
+
   );
 }
 

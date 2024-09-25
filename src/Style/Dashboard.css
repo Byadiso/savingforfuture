@@ -1,4 +1,3 @@
-
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -8,12 +7,10 @@
     --blueActiveColor: #29b4e2;
     --redColor: #fa1717;  
     --greyColor: #4b4a4a;
-    --backgroundGrey: rgba(244, 244, 244, 0.918)
-  
+    --backgroundGrey: rgba(244, 244, 244, 0.918);
 }
 
-/* all styles  ---------------------------*/
-
+/* Base Styles */
 
 * {
     box-sizing: border-box;
@@ -23,166 +20,151 @@
     outline: none;
 }
 
-/* body syles  */
-
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: rgba(244, 244, 244, 0.918);
+    background-color: var(--backgroundGrey);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
+    padding: 0; /* Ensure no unwanted overflow */
 }
 
-.main_dashboard{
-    background-color: rgba(244, 244, 244, 0.918);
+/* Dashboard Main Container */
+.main_dashboard {
+    background-color: var(--backgroundGrey);
+    padding: 20px;
 }
 
+/* Summary Section */
 .bugdet_summary {
     display: flex;
     flex-direction: row;    
     align-items: center;
     justify-content: center;
     width: 100%;
+    flex-wrap: wrap; /* Added for responsiveness */
 }
 
-.bugdet_summary_item{
+.bugdet_summary_item {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    margin: 15px;  
+    margin: 15px;
+    padding: 10px; /* Added padding for content spacing */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;    
+    border-radius: 8px;
+    min-width: 100px; /* Ensure minimum size on mobile */
+    max-width: 300px; /* Limit width for larger screens */
 }
 
-#main_dashboard {
-    padding: 20px;
-}
-
-.main_dashboard {
-    padding: 20px;
-  }
-  
-  .dashboard_grid {
+/* Dashboard Grid Layout */
+.dashboard_grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    grid-template-rows: repeat(2, auto); /* 2 rows */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px; /* Space between grid items */
-  }
-  
-  .dashboard_item {
+}
+
+.dashboard_item {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #f9f9f9; /* Light background for grid items */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-  }
-  
-  .goal_amount{
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centered text for smaller screens */
+}
+
+.goal_amount {
     background-color: rgba(0, 128, 0, 0.411);
-  }
+}
 
-  .home_amount{
+.home_amount {
     background-color: rgba(255, 0, 0, 0.263);
-  }
-  .payback{
+}
+
+.payback {
     background-color: rgb(255, 0, 0);
-  }
+}
 
-
-/* for responsiveness */
+/* Mobile Responsiveness */
 @media only screen and (max-width: 720px) {
-
     body {
         min-width: 360px;
     }
 
- 
+    /* Hide elements on small devices */
     .small_device {
         display: none;
     }
 
+    .bugdet_summary {
+        flex-direction: column; /* Stack summary items vertically */
+    }
+
+    .dashboard_grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .dashboard_item {
+        padding: 15px; /* Reduced padding for smaller screens */
+    }
 
     .hero_section {
-        font-size: .8rem;
+        font-size: 0.8rem;
     }
 
     .hire_text {
-        font-size: .7rem;
+        font-size: 0.7rem;
         min-width: 130px;
     }
 
-    .blog_item{
+    .blog_item {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-   
-    
-    .stat_content span{
+
+    .stat_content span {
         margin-left: 20px;
-    }   
+    }
 }
 
-/* 
-for ipods and tables */
-
+/* Tablets and Larger Mobile Devices */
 @media only screen and (max-width: 920px) {
-
     body {
         min-width: 360px;
     }
-  
 
-    /* for services */
-    .service_content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
+    .bugdet_summary {
+        flex-wrap: wrap; /* Ensure proper wrapping on medium screens */
     }
 
-    /* for portfolio */
-
-    .portfolio_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+    .dashboard_grid {
+        grid-template-columns: repeat(2, 1fr); /* Keep 2-column layout for larger mobile */
     }
 
-    .portfolio_nav h1 {
-        font-size: 1rem;
-        margin: 0px;
-    }
-
-    .dashboard_content{
+    /* Dashboard Layout */
+    .dashboard_content {
         display: flex;
         flex-direction: column;
     }
-
 }
 
-
-
-/* 
-  for dark mode */
-
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
     body {
         background: var(--blueColor);
         color: white;
     }
-
 }
 
+/* Light Mode */
 @media (prefers-color-scheme: light) {
     body {
         background: #ddd;
         color: black;
     }
-
 }

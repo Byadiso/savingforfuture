@@ -1,7 +1,6 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-// import Drawer from "@mui/material/Drawer";
 import MuiDrawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
@@ -34,7 +33,6 @@ import Dashboard from "./Dashboard";
 import { checkIfAdmin, isAuthenticatedDetails, LogoutUser } from "../firebase/Authentication";
 import { useEffect } from "react";
 import { useState } from "react";
-import { ADMIN_KEY } from "../firebase/CONSTANTS";
 
 const drawerWidth = 240;
 
@@ -110,9 +108,7 @@ export default function Navbar() {
   const [userId, setUserId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const isAdmin =  checkIfAdmin(userId)
-
-  
+  const isAdmin =  checkIfAdmin(userId) 
 
 
   useEffect(() => {       
@@ -171,8 +167,6 @@ export default function Navbar() {
      isAdmin && "Motivation",
   ].filter(Boolean)
 
- 
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -212,7 +206,7 @@ export default function Navbar() {
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon
-                  style={{ display: "flex", justifyContent: "center" }}
+                  style={{ display: "flex"}}
                 >
                   <Link
                     to={"/" + text}

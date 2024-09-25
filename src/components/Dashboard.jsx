@@ -3,9 +3,7 @@ import { checkIfAdmin, getLoggedUser, isAuthenticated, isAuthenticatedDetails } 
 import { useNavigate } from "react-router-dom";
 import NoAccess from "./NoAccess";
 import { totalPlanBugdet, waitToLoad } from "../firebase/Helpers";
-import TableData from "./TableData";
 import CardBugdeto from "./CardBugdeto";
-import BudgetGraph from "./BudgetGraph";
 import "../Style/Dashboard.css";
 import { listTransactions } from "../firebase/getTransactions";
 import { filterBenefits, filterTransactionsAndCalculateTotal, listAlltransactionWithoutSuper } from "../firebase/Filters";
@@ -79,12 +77,12 @@ function Dashboard() {
           </div>
           {isAdmin &&<div className="dashboard_item payback">
             {isLoggedIn && <CardBugdeto dataExpense={totalTobePaid} type="What is not mine"/>}
-          </div>}
-          
+          </div>}          
         </div>
         </>
         
       )}
+      {!isLoggedIn && <NoAccess/>}
     </div>
   );
 }
