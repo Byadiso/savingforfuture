@@ -12,14 +12,6 @@
 
 /* Base Styles */
 
-* {
-    box-sizing: border-box;
-}
-
-*:focus {
-    outline: none;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--backgroundGrey);
@@ -46,24 +38,25 @@ body {
     flex-wrap: wrap; /* Added for responsiveness */
 }
 
+/* Summary Item Styles */
 .bugdet_summary_item {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    margin: 15px;
-    padding: 10px; /* Added padding for content spacing */
+    margin: 10px; /* Reduced margin for better spacing */
+    padding: 15px; /* Adjusted padding for content spacing */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    min-width: 100px; /* Ensure minimum size on mobile */
+    min-width: 150px; /* Ensure minimum size on mobile */
     max-width: 300px; /* Limit width for larger screens */
 }
 
 /* Dashboard Grid Layout */
 .dashboard_grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px; /* Space between grid items */
+    grid-template-columns: repeat(2, 1fr); /* Default to two columns */
+    gap: 20px; 
 }
 
 .dashboard_item {
@@ -77,6 +70,7 @@ body {
     text-align: center; /* Centered text for smaller screens */
 }
 
+/* Color Backgrounds */
 .goal_amount {
     background-color: rgba(0, 128, 0, 0.411);
 }
@@ -92,50 +86,30 @@ body {
 /* Mobile Responsiveness */
 @media only screen and (max-width: 720px) {
     body {
-        min-width: 360px;
-    }
-
-    /* Hide elements on small devices */
-    .small_device {
-        display: none;
+        padding: 0 10px; /* Add padding to prevent overflow */
     }
 
     .bugdet_summary {
         flex-direction: column; /* Stack summary items vertically */
+        align-items: stretch; /* Stretch items to fill the width */
     }
 
     .dashboard_grid {
-        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-columns: 1fr; /* Change to a single column */
+        gap: 15px; /* Adjust gap for smaller screens if necessary */
     }
 
     .dashboard_item {
         padding: 15px; /* Reduced padding for smaller screens */
-    }
-
-    .hero_section {
-        font-size: 0.8rem;
-    }
-
-    .hire_text {
-        font-size: 0.7rem;
-        min-width: 130px;
-    }
-
-    .blog_item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .stat_content span {
-        margin-left: 20px;
+        margin: 10px 0; /* Add vertical spacing between items */
+        width: 100%; /* Ensure items take full width */
     }
 }
 
 /* Tablets and Larger Mobile Devices */
-@media only screen and (max-width: 920px) {
+@media only screen and (min-width: 720px) and (max-width: 920px) {
     body {
-        min-width: 360px;
+        padding: 0 15px; /* Add padding for better spacing */
     }
 
     .bugdet_summary {
@@ -143,13 +117,11 @@ body {
     }
 
     .dashboard_grid {
-        grid-template-columns: repeat(2, 1fr); /* Keep 2-column layout for larger mobile */
+        grid-template-columns: repeat(2, 1fr); /* Two columns for larger mobile */
     }
 
-    /* Dashboard Layout */
-    .dashboard_content {
-        display: flex;
-        flex-direction: column;
+    .dashboard_item {
+        padding: 20px; /* Maintain padding for larger mobile screens */
     }
 }
 
