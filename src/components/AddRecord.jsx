@@ -15,9 +15,9 @@ function AddRecord() {
   const [data, setData] = useState({});
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [isSubmitted, setIsSubmitted] = useState(false); // Track form submission
+  const [isSubmitted, setIsSubmitted] = useState(false); 
 
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate();  
 
   const style = {
     position: "absolute",
@@ -44,10 +44,10 @@ function AddRecord() {
         .then(() => {
           setSuccessMessage("Transaction has been created successfully");
 
-          // Redirect to the dashboard after a brief delay
+          
           setTimeout(() => {
-            navigate("/Dashboard");  // Redirect to /Dashboard
-          }, 1000);  // Adjust delay as needed (optional)
+            navigate("/Dashboard");  
+          }, 1000);  
         })
         .catch((err) => {
           console.error("Error creating transaction:", err);
@@ -70,9 +70,9 @@ function AddRecord() {
   }, []);
 
   return (
-    <>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        {/* Go back link */}
+  
+      <div style={{ display: "flex", alignItems: "center", flexDirection:"column" }}>
+       
         <div
           style={{
             paddingTop: "20px",
@@ -89,14 +89,14 @@ function AddRecord() {
           </Link>
         </div>
 
-        {/* Main Form */}
+     
         {isLoggedIn ? (
           <div style={style} className="Add_blog_container">
             <h2 style={{ color: "white", marginBottom: "50px" }}>
               Your Treasure!
             </h2>
             <form>
-              {/* Input fields */}
+            
               <InputComponent
                 name="title"
                 handleChange={handleChange}
@@ -108,7 +108,7 @@ function AddRecord() {
                 label="Amount"
               />
 
-              {/* Dropdown for transaction type */}
+             
               <div style={{ marginTop: "20px", color: "white", width: "100%" }}>
                 <select
                   name="type"
@@ -131,7 +131,7 @@ function AddRecord() {
                 </select>
               </div>
 
-              {/* Display error or success message only after form submission */}
+             
               {isSubmitted && (
                 <p
                   className={errorMessage ? "errorMessage" : "successMessage"}
@@ -140,7 +140,7 @@ function AddRecord() {
                 </p>
               )}
 
-              {/* Submit button */}
+           
               <Button
                 variant="contained"
                 onClick={handleOnClick}
@@ -154,7 +154,7 @@ function AddRecord() {
           !loading && <NoAccess />
         )}
       </div>
-    </>
+   
   );
 }
 

@@ -32,9 +32,7 @@ function Login() {
     if(user.email && user.password){
       const Auth = getAuth();
       signInWithEmailAndPassword(Auth, user.email, user.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log("logged in successfull", user);
+        .then((userCredential) => {               
           error === "" && setSuccessMessage("Logged in successfully");
         })
         .catch((error) => {
@@ -51,9 +49,9 @@ function Login() {
     isAuthenticated(setIsLoggedIn);    
     setTimeout(() => {
       if (isLoggedIn) {
-        navigate("/");
+        navigate("/Dashboard");
       }  
-    }, 6000);  
+    }, 7500);  
 
      }, [navigate, isLoggedIn]);
 
@@ -112,6 +110,7 @@ function Login() {
               display: "flex",
               justifyContent: "center",
               marginTop: "100px",
+              marginBottom: "120px",
               flexDirection: "column",
               }}
           >

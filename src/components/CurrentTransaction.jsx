@@ -3,7 +3,7 @@ import { readArchivedPlans } from '../firebase/ArchiveLogics';
 import { isAuthenticatedDetails } from '../firebase/Authentication';
 import { Link } from 'react-router-dom';
 import "../Style/Archive.css";
-import { filterTransactionByMonthAndType, listTransactionsByMonthAndType } from '../firebase/Filters';
+import { listTransactionsByMonthAndType } from '../firebase/Filters';
 import { listTransactions } from '../firebase/getTransactions';
 import NoAccess from './NoAccess';
 import TableData from './TableData';
@@ -56,38 +56,39 @@ const CurrentTransaction = () => {
       <div style={{ paddingTop: "20px", margin: "20px" }}>
         <Link to="/Dashboard"> Go back</Link>
       </div>
-      <div
-        className="bugdet_summary"
-        style={{ display: "flex", alignItems: "center" }}
-      >
-        <div
-          className="bugdet_summary_item"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            width: "30%",
-            padding: "20px",
-          }}
-        >
-          <CardBugdeto dataExpense={total} type="current month bugdet" />
-        </div>
+      {!isLoggedIn? <NoAccess/> :
+      
+      <><div
+            className="bugdet_summary"
+            style={{ display: "flex", alignItems: "center"}}
+          >
+            <div
+              className="bugdet_summary_item"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                padding: "20px",
+              }}
+            >
+              <CardBugdeto dataExpense={total} type="current month bugdet" />
+            </div>
       </div>
       <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          padding: "80px",
-        }}
-      >
-        <div style={{ padding: "20px", width: "100%" }}>
-          {isLoggedIn ? (
-            <TableData fetchDataFunction={listByMonth} />
-          ) : (
-            !loading && <NoAccess />
-          )}
-        </div>
+            style={{
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              padding: "80px",
+            }}
+          >
+            <div style={{ padding: "20px", width: "100%" }}>              
+                <TableData fetchDataFunction={listByMonth} />             
+             
+            </div>
       </div>
+      </>}
+    
     </div>
 
   );

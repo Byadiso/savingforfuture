@@ -3,6 +3,7 @@ import { readArchivedPlans } from '../firebase/ArchiveLogics';
 import { isAuthenticatedDetails } from '../firebase/Authentication';
 import { Link } from 'react-router-dom';
 import "../Style/Archive.css";
+import NoAccess from './NoAccess';
 
 // Archived Component
 const ArchiveCard = () => {
@@ -33,25 +34,25 @@ const ArchiveCard = () => {
   <div style={{ paddingTop: "20px", margin: "20px" }}>
     <Link to="/Dashboard"> Go back</Link>
   </div>
-  <div
-    className="bugdet_summary"
-    style={{ display: "flex", flexDirection: "row", alignItems: "center", margin:"10" }} /* Updated */
-  >
-    {archives ? isLoggedIn && archives.map((archive, index) => (
-      <div key={index} className="archive-card">
-        <h3>Total amount for the month</h3>
-        <div className='card'>
-        <h5>{archive.month}</h5>
-        <p>Amount: {archive.amount}</p>
+    {isLoggedIn ?<div
+      className="bugdet_summary"
+      style={{ display: "flex", flexDirection: "row", alignItems: "center", margin:"10" }} /* Updated */
+    >
+      {archives ? isLoggedIn && archives.map((archive, index) => (
+        <div key={index} className="archive-card">
+          <h3>Total amount for the month</h3>
+          <div className='card'>
+          <h5>{archive.month}</h5>
+          <p>Amount: {archive.amount}</p>
+          </div>
+          
         </div>
-        
-      </div>
-    )) : (
-      <div className="archive-card">
-        <h3>No plan archived for this user</h3>
-      </div>
-    )}
-  </div>
+      )) : (
+        <div className="archive-card">
+          <h3>No plan archived for this user</h3>
+        </div>
+      )}
+    </div>: <NoAccess/>}
 </div>
 
   );

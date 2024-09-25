@@ -3,18 +3,19 @@ import { isAuthenticated, isAuthenticatedDetails } from "../firebase/Authenticat
 import { Link } from "react-router-dom";
 import "../Style/Planning.css";
 import AddIcon from "@mui/icons-material/Add";
-import BudgetModal from "./BudgetModal"; // Import the modal
-import { createPlan, readPlans, editPlan, deletePlan } from "../firebase/Plan"; // Import CRUD functions
+import BudgetModal from "./BudgetModal"; 
+import { createPlan, readPlans, editPlan, deletePlan } from "../firebase/Plan"; 
 import {  getCurrentMonthName } from "../firebase/Helpers";
 import ArchivePlanButton from "./ArchivePlans";
+import NoAccess from "./NoAccess";
 
 function Planning() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null); // Store the user ID
-  const [isModalOpen, setIsModalOpen] = useState(false); // Control modal visibility
-  const [budgets, setBudgets] = useState([]); // Store planned budgets
-  const [currentBudget, setCurrentBudget] = useState(null); // Store the budget being edited
-  const [editIndex, setEditIndex] = useState(null); // Store index of the budget being edited
+  const [userId, setUserId] = useState(null); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [budgets, setBudgets] = useState([]); 
+  const [currentBudget, setCurrentBudget] = useState(null); 
+  const [editIndex, setEditIndex] = useState(null); 
 
   let currentMonth= getCurrentMonthName()
 
@@ -40,13 +41,13 @@ function Planning() {
   };
 
   const handleAddNewPlan = () => {
-    setCurrentBudget(null); // No budget for adding a new one
+    setCurrentBudget(null); 
     setEditIndex(null);
     setIsModalOpen(true);
   };
 
   const handleEditBudget = (index) => {
-    setCurrentBudget(budgets[index]); // Set the current budget for editing
+    setCurrentBudget(budgets[index]); 
     setEditIndex(index);
     setIsModalOpen(true);
   };
@@ -54,18 +55,18 @@ function Planning() {
  
   const handleAddOrEditBudget = async (newBudget) => {
     if (editIndex !== null) {
-      // Update an existing budget
+     
       await editPlan(userId, budgets[editIndex].id, newBudget);
       const updatedBudgets = budgets.map((budget, index) =>
         index === editIndex ? { ...newBudget, id: budgets[editIndex].id } : budget
       );
       setBudgets(updatedBudgets);
     } else {
-      // Add a new budget   
+      
       await createPlan(userId, newBudget);
       setBudgets([...budgets, { ...newBudget, id: Math.floor(Math.random() * 1000000) }]);
     }
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   const handleRemoveBudget = async (index) => {
@@ -77,15 +78,15 @@ function Planning() {
   const getCardStyle = (category) => {
     switch (category) {
       case "Income":
-        return { backgroundColor: "#c8e6c9" }; // Light green
+        return { backgroundColor: "#c8e6c9" };
       case "Expense":
-        return { backgroundColor: "#ffcdd2" }; // Light red
+        return { backgroundColor: "#ffcdd2" }; 
       case "Extra":
-        return { backgroundColor: "#fff9c4" }; // Light yellow
+        return { backgroundColor: "#fff9c4" }; 
       case "IsNotMine":
-        return { backgroundColor: "#e1bee7" }; // Light purple
+        return { backgroundColor: "#e1bee7" }; 
       default:
-        return { backgroundColor: "#ffffff" }; // Default white
+        return { backgroundColor: "#ffffff" };
     }
   };
 
@@ -122,9 +123,9 @@ function Planning() {
 
   const getTotalStyle = (total) => {
     if (total < 0) {
-      return { color: "red" }; // Red for negative total
+      return { color: "red" }; 
     } else {
-      return { color: "green" }; // Green for positive or zero total
+      return { color: "green" }; 
     }
   };
 
@@ -135,61 +136,63 @@ function Planning() {
       <div style={{ paddingTop: "20px", margin: "20px" }}>
         <Link to="/Dashboard"> Go back</Link>
       </div>
+      {isLoggedIn ?<>
+        <div style={{ padding: "20px", margin: "20px", color: "black" }}>
+          <h4>Welcome to your planning page for <span style={{color: "green"}}> {currentMonth}</span></h4>
 
-      <div style={{ padding: "20px", margin: "20px", color: "black" }}>
-        <h4>Welcome to your planning page for <span style={{color: "green"}}> {currentMonth}</span></h4>
-
-        <div className="total-amount">
-          <h2 style={getTotalStyle(totalAmount)}>Total: {totalAmount} PLN</h2>
-        </div>
-
-        <div className="main_container_planner">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              padding: "10px",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p>Start Planning</p>
-            <AddIcon onClick={handleAddNewPlan} className="Add_plan" />
+          <div className="total-amount">
+            <h2 style={getTotalStyle(totalAmount)}>Total: {totalAmount} PLN</h2>
           </div>
 
-          <div className="budget-cards-container">
-            {budgets.length > 0 ? (
-              budgets.map((budget, index) => (
-                <div
-                  className="budget-card"
-                  key={budget.id}
-                  style={getCardStyle(budget.category)}
-                >
-                  <h5>{budget.name}</h5>
-                  <p>Amount: {budget.amount}PLN</p>
-                  <p>Category: {budget.category}</p>
-                  <button onClick={() => handleEditBudget(index)}>Edit</button>
-                  <button onClick={() => handleRemoveBudget(index)}>Remove</button>
-                </div>
-              ))
-            ) : (
-              <p>No plans yet. Start by adding a budget.</p>
-            )}
-          </div>
-          <div>
-      <h1>Archive Plan for the Month</h1>
-          <ArchivePlanButton currentTotalAmount={totalAmount} />
-    </div>
-        </div>
+          <div className="main_container_planner">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                padding: "10px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <p>Start Planning</p>
+              <AddIcon onClick={handleAddNewPlan} className="Add_plan" />
+            </div>
+
+            <div className="budget-cards-container">
+              {budgets.length > 0 ? (
+                budgets.map((budget, index) => (
+                  <div
+                    className="budget-card"
+                    key={budget.id}
+                    style={getCardStyle(budget.category)}
+                  >
+                    <h5>{budget.name}</h5>
+                    <p>Amount: {budget.amount}PLN</p>
+                    <p>Category: {budget.category}</p>
+                    <button onClick={() => handleEditBudget(index)}>Edit</button>
+                    <button onClick={() => handleRemoveBudget(index)}>Remove</button>
+                  </div>
+                ))
+              ) : (
+                <p>No plans yet. Start by adding a budget.</p>
+              )}
+            </div>
+            <div>
+        <h1>Archive Plan for the Month</h1>
+            <ArchivePlanButton currentTotalAmount={totalAmount} />
       </div>
+          </div>
+        </div>
 
-      {isModalOpen && (
-        <BudgetModal
-          closeModal={() => setIsModalOpen(false)}
-          addOrEditBudget={handleAddOrEditBudget}
-          currentBudget={currentBudget}
-        />
-      )}
+        {isModalOpen && (
+          <BudgetModal
+            closeModal={() => setIsModalOpen(false)}
+            addOrEditBudget={handleAddOrEditBudget}
+            currentBudget={currentBudget}
+          />
+        )}
+
+      </>: <NoAccess/>}
     </div>
   );
 }
