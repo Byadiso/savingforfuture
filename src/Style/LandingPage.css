@@ -28,21 +28,14 @@ body {
     padding: 0; /* Added to prevent unwanted horizontal scrolling */
 }
 
-/* .main_Landing {    
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    background-color: var(--blueColor);
-    padding-top: 250px;
-} */
 
 .main_Landing {
     display: flex;
-    justify-content: center; /* Centers content horizontally */
-    align-items: center;    /* Centers content vertically */
-    flex-direction: row; /* Stacks the elements (IconButton and h2) vertically */
-    height: 100vh;          /* Optional: full viewport height */
-    background-color: var(--blueColor); /* Keeps the original background color */
+    justify-content: center; 
+    align-items: center;    
+    flex-direction: row; 
+    height: 100vh;        
+    background-color: var(--blueColor); 
     /* padding-top: 250px;       */
 }
 

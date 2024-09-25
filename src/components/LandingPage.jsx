@@ -10,9 +10,7 @@ function LandingPage() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
-  useEffect(() => {
-  
+  useEffect(() => {  
     isAuthenticated(setIsLoggedIn);
    
   }, []);
@@ -21,9 +19,10 @@ function LandingPage() {
     <IconButton style={{ color: "white" }}>
         <Link to="/Dashboard" style={{ textDecoration: "none", color: "white" }}>
             <PaymentsIcon fontSize="large" />
+            <h2 style={{ marginLeft: '1px', color: "white" }}>Bugdeto</h2>
         </Link>
+        
     </IconButton>
-    <h2 style={{ marginLeft: '10px', color: "white" }}>Bugdeto</h2>
 </div>
 
   );
