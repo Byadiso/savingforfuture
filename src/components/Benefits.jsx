@@ -43,7 +43,7 @@ function Benefits() {
           style={{
             display: "flex",
             alignItems: "center",
-            width: "30%",
+            width: "100%",
             padding: "20px",
           }}
         >
@@ -55,10 +55,11 @@ function Benefits() {
           display: "flex",
           alignItems: "center",
           width: "100%",
-          padding: "80px",
+          padding: "5px",
+          
         }}
       >
-        <div style={{ padding: "20px", width: "100%" }}>
+        <div style={{  width: "100%"}}>
           {isLoggedIn ? (
             <TableData fetchDataFunction={listSuper} />
           ) : (

@@ -25,7 +25,7 @@ body {
 /* Dashboard Main Container */
 .main_dashboard {
     background-color: var(--backgroundGrey);
-    padding: 20px;
+    padding: 10px;
 }
 
 /* Summary Section */
@@ -90,13 +90,14 @@ body {
     }
 
     .bugdet_summary {
-        flex-direction: column; /* Stack summary items vertically */
-        align-items: stretch; /* Stretch items to fill the width */
+        flex-direction: column; 
+        align-items: stretch; 
     }
 
     .dashboard_grid {
-        grid-template-columns: 1fr; /* Change to a single column */
-        gap: 15px; /* Adjust gap for smaller screens if necessary */
+        grid-template-columns: 1fr; 
+        gap: 15px; 
+        padding-right: 0px;
     }
 
     .dashboard_item {

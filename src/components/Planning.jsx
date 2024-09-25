@@ -137,7 +137,7 @@ function Planning() {
         <Link to="/Dashboard"> Go back</Link>
       </div>
       {isLoggedIn ?<>
-        <div style={{ padding: "20px", margin: "20px", color: "black" }}>
+        <div style={{ padding: "35px", margin: "35px", color: "black" }}>
           <h4>Welcome to your planning page for <span style={{color: "green"}}> {currentMonth}</span></h4>
 
           <div className="total-amount">
