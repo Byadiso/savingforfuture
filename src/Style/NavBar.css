@@ -218,18 +218,7 @@ body {
         all: unset;
     }
 
-    /* for portfolio */
-    .portfolio_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .portfolio_nav h1 {
-        font-size: 1rem;
-        margin: 0px;
-    }
-
+  
    
 }
 
@@ -249,35 +238,8 @@ for ipads and tables */
     .hero_section {
         font-size: .8rem;
     }
-    .hire_text {
-        font-size: .7rem;
-        min-width: 130px;
-    }
-    .statistic_section {
-        background-color: var(--whiteColor);
-        display: flex;
-        color: var(--textColorGrey);
-        justify-content: center;
-        align-items: center;
-        padding: var(--spacing);
-        border-radius: 20px;
-        box-shadow: 0.1em 0.1em 0.2em;
-        box-shadow: none;
-        width: 70%;
-        margin-left: 150px;
-      
-        margin-top: -25px;
-      
-    }
-
-    /* for main_who_items */
-    .main_who_items {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;       
-        margin: 20px;        
-    }
+  
+    
 
     .dropdown {
        margin-bottom: 10px;
@@ -287,26 +249,9 @@ for ipads and tables */
         width: 100%;
     }
 
-    /* for services */
-    .service_content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+    
 
-    /* for portfolio */
-    .portfolio_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .portfolio_nav h1 {
-        font-size: 1rem;
-        margin: 0px;
-    }   
+  
 }
 
 

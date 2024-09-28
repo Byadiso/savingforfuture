@@ -36,23 +36,23 @@ body {
     flex-direction: row; 
     height: 100vh;        
     background-color: var(--blueColor); 
-    /* padding-top: 250px;       */
+   
 }
 
 
 /* Mobile responsiveness */
 @media only screen and (max-width: 720px) {
     .ngana_logo {
-        margin-right: auto; /* Adjusted to be flexible */
-        margin-left: auto;  /* Center the logo */
-        font-size: 24px; /* Reduced size for better fit */
+        margin-right: auto; 
+        margin-left: auto;  
+        font-size: 24px; 
         text-align: center;
     }
 
     .welcome_text {
         color: var(--blueColor);
-        font-size: 1.2rem; /* Scaled text for readability */
-        text-align: center; /* Centered for better mobile view */
+        font-size: 1.2rem; 
+        text-align: center; 
         padding: 10px;
     }
 
@@ -60,7 +60,7 @@ body {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        align-items: center; /* Added to center content */
+        align-items: center; 
     }
 
     .hero_section_header div .fa {
@@ -73,34 +73,14 @@ body {
 
     .hero_section {
         font-size: 0.8rem;
-        padding: 15px; /* Added padding for content spacing */
-        text-align: center; /* Centered for mobile view */
+        padding: 15px; 
+        text-align: center; 
     }
 
-    /* for main_who_items */
-    .main_who_items {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        color: var(--textColorGreyParagraph);
-        margin: 20px;
-        padding: 10px; /* Added padding for better spacing */
-    }
+    
+   
 
-    .main_who_items img {
-        width: 90%; /* Slight reduction to avoid edge overlap */
-        max-width: 400px; /* Restrict large images on larger screens */
-    }
-
-    /* for services */
-    .service_content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 15px; /* Added padding for better spacing */
-    }
+   
 
     /* remove link style on a tag */
     a, button {
@@ -126,20 +106,7 @@ body {
         text-align: center;
     }
 
-    .hire_text {
-        font-size: 0.7rem;
-        min-width: 130px;
-    }
-
-    /* for main_who_items */
-    .main_who_items {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin: 20px;
-        padding: 10px;
-    }
+   
 
     .dropdown {
         margin-bottom: 10px;
@@ -149,27 +116,7 @@ body {
         width: 90%;
         max-width: 400px;
     }
-
-    /* for services */
-    .service_content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    /* for portfolio */
-    .portfolio_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .portfolio_nav h1 {
-        font-size: 1rem;
-        margin: 0;
-    }
+    
 }
 
 /* For dark mode */

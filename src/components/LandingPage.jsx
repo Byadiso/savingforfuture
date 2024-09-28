@@ -20,8 +20,7 @@ function LandingPage() {
         <Link to="/Dashboard" style={{ textDecoration: "none", color: "white" }}>
             <PaymentsIcon fontSize="large" />
             <h2 style={{ marginLeft: '1px', color: "white" }}>Bugdeto</h2>
-        </Link>
-        
+        </Link>        
     </IconButton>
 </div>
 

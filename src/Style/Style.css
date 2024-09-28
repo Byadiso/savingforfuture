@@ -11,9 +11,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 150px; /* Adjusted for better scaling */
+    padding-top: 150px; 
     text-align: center;
-    flex-direction: column; /* Stack content vertically for small screens */
+    flex-direction: column;
 }
 
 .not_found p {
@@ -40,11 +40,11 @@
 @media only screen and (max-width: 720px) {
 
     .not_found {
-        padding-top: 80px; /* Reduce padding on smaller screens */
+        padding-top: 80px; 
     }
 
     .not_found p {
-        font-size: 1.2rem; /* Adjust font size for mobile */
+        font-size: 1.2rem; 
     }
 
     .NoAccessContainer {
