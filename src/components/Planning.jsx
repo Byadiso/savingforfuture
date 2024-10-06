@@ -138,7 +138,7 @@ function Planning() {
       </div>
       {isLoggedIn ?<>
         <div style={{ padding: "35px", margin: "35px", color: "black" }}>
-          <h4>Welcome to your planning page for <span style={{color: "green"}}> {currentMonth}</span></h4>
+          <h4>Welcome to your Planning page for <span style={{color: "green"}}> {currentMonth}</span></h4>
 
           <div className="total-amount">
             <h2 style={getTotalStyle(totalAmount)}>Total: {totalAmount} PLN</h2>
@@ -169,8 +169,8 @@ function Planning() {
                     <h5>{budget.name}</h5>
                     <p>Amount: {budget.amount}PLN</p>
                     <p>Category: {budget.category}</p>
-                    <button onClick={() => handleEditBudget(index)}>Edit</button>
-                    <button onClick={() => handleRemoveBudget(index)}>Remove</button>
+                    <button onClick={() => handleEditBudget(index)} className="btn-edit">Edit</button>
+                    <button onClick={() => handleRemoveBudget(index)} className="btn-remove">Remove</button>
                   </div>
                 ))
               ) : (

@@ -23,8 +23,8 @@ function Dashboard() {
   const { total } = filterTransactionsAndCalculateTotal(transactions, KEYWORDS);
 
   let goalAmount= 2000
-  let HomeExpenseAmount= 1500
-  let totalTobePaid= 54500
+  let HomeExpenseAmount= 1000
+  let totalTobePaid= 53500
 
   let isAdmin =  checkIfAdmin(userId)
 

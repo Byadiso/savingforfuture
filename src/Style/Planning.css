@@ -35,6 +35,15 @@
     gap: 20px;
     margin-top: 20px;
   }
+
+  .budget-cards-container button {    
+    margin: 2.5px;
+  }
+
+  .btn-remove{
+    background-color: rgba(203, 66, 66, 0.717);
+    color: white;
+  }
   
   .budget-card {
     background-color: #f1f1f1;
@@ -102,21 +111,6 @@ for ipods and tables */
         align-items: center;
         flex-wrap: wrap;
     }
-
-    /* for portfolio */
-
-    .portfolio_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .portfolio_nav h1 {
-        font-size: 1rem;
-        margin: 0px;
-    }
-
     .dashboard_content{
         display: flex;
         flex-direction: column;
