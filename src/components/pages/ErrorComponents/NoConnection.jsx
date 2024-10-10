@@ -3,7 +3,7 @@ import "../Style/Style.css";
 import SignalWifiBadIcon from "@mui/icons-material/SignalWifiBad";
 
 function NoConnection(props) {
-  //   console.log(props.errorMessage);
+ 
   return (
     <div
       className="NoConnection"

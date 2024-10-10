@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import "../Style/Archive.css";
 import { listTransactionsByMonthAndType } from '../firebase/Filters';
 import { listTransactions } from '../firebase/getTransactions';
-import NoAccess from './NoAccess';
+import NoAccess from './pages/ErrorComponents/NoAccess';
 import TableData from './TableData';
 import CardBugdeto from './CardBugdeto';
 import { waitToLoad } from '../Helpers/Helpers';

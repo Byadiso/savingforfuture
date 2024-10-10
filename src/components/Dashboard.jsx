@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { checkIfAdmin, getLoggedUser, isAuthenticated, isAuthenticatedDetails } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
-import NoAccess from "./NoAccess";
+import NoAccess from "./pages/ErrorComponents/NoAccess";
 import { totalPlanBugdet, waitToLoad } from "../Helpers/Helpers";
 import CardBugdeto from "./CardBugdeto";
 import "../Style/Dashboard.css";

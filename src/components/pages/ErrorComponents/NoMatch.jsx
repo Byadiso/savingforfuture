@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./pages/Layouts/Navbar";
-import Footer from "./pages/Layouts/Footer";
+import Navbar from "../Layouts/Navbar";
+import Footer from "../Layouts/Footer";
 import { Link } from "react-router-dom";
 
 function NoMatch() {

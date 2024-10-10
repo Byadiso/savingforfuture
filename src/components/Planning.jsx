@@ -9,7 +9,7 @@ import BudgetModal from "./Modals/BudgetModal";
 import { createPlan, readPlans, editPlan, deletePlan } from "../firebase/Plan"; 
 import {  getCardStyle, getCurrentMonthName, getTotalStyle, totalPlanBugdet } from "../Helpers/Helpers";
 import ArchivePlanButton from "./ArchivePlans";
-import NoAccess from "./NoAccess";
+import NoAccess from "./pages/ErrorComponents/NoAccess";
 
 function Planning() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

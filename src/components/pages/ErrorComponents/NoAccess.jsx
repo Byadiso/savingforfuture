@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import "../Style/Style.css";
-import { removeFirstLetter } from "../Helpers/Helpers";
+import "../../../Style/Style.css";
+import { removeFirstLetter } from "../../../Helpers/Helpers";
 
 function NoAccess() {
   

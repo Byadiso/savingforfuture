@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./components/LandingPage.jsx";
 
-import Login from "./components/Login.jsx";
-import NoMatch from "./components/NoMatch.jsx";
-import Logout from "./components/Logout.jsx";
-import Register from "./components/RegisterComponent.jsx";
+import Login from "./components/pages/UserAuth/Login.jsx";
+import NoMatch from "./components/pages/ErrorComponents/NoMatch.jsx";
+import Logout from "./components/pages/UserAuth/Logout.jsx";
+import Register from "./components/pages/UserAuth/RegisterComponent.jsx";
 import Navbar from "./components/pages/Layouts/Navbar.jsx";
 import AddRecord from "./components/AddRecord.jsx";
 import SuperBet from "./components/SuperBet.jsx";

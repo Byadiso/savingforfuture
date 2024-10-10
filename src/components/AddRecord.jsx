@@ -5,7 +5,7 @@ import "../Style/Transactions.css";
 import { createTransaction } from "../firebase/Transaction";
 import { isAuthenticated } from "../firebase/Authentication";
 import { ValidateTransaction, waitToLoad } from "../Helpers/Helpers";
-import NoAccess from "./NoAccess";
+import NoAccess from "./pages/ErrorComponents/NoAccess";
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
 
 function AddRecord() {

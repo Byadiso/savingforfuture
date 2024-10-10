@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { isAuthenticated } from "../firebase/Authentication";
 import { Link } from "react-router-dom";
-import NoAccess from "./NoAccess";
+import NoAccess from "./pages/ErrorComponents/NoAccess";
 import { waitToLoad } from "../Helpers/Helpers";
 import TableData from "./TableData";
 import CardBugdeto from "./CardBugdeto";

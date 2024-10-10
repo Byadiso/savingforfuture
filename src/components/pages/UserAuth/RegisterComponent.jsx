@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "../Style/Register.css";
+import "../../../Style/Register.css";
 
-import { checkMyValue } from "../Helpers/Helpers";
-import { isAuthenticated} from "../firebase/Authentication";
+import { checkMyValue } from "../../../Helpers/Helpers";
+import { isAuthenticated} from "../../../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { app } from "../firebase/Firebase";
-import ProgressBar from "./InputComonents/ProgressBar";
+import { app } from "../../../firebase/Firebase";
+import ProgressBar from "../../InputComonents/ProgressBar";
 
 function Register() {
   const [user, setUser] = useState({

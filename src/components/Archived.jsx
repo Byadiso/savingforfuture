@@ -3,7 +3,7 @@ import { readArchivedPlans } from '../firebase/ArchiveLogics';
 import { isAuthenticatedDetails } from '../firebase/Authentication';
 import { Link } from 'react-router-dom';
 import "../Style/Archive.css";
-import NoAccess from './NoAccess';
+import NoAccess from './pages/ErrorComponents/NoAccess';
 
 // Archived Component
 const ArchiveCard = () => {
