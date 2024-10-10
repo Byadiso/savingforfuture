@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { checkIfAdmin, getLoggedUser, isAuthenticated, isAuthenticatedDetails } from "../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
 import NoAccess from "./NoAccess";
-import { totalPlanBugdet, waitToLoad } from "../firebase/Helpers";
+import { totalPlanBugdet, waitToLoad } from "../Helpers/Helpers";
 import CardBugdeto from "./CardBugdeto";
 import "../Style/Dashboard.css";
 import { listTransactions } from "../firebase/getTransactions";
@@ -23,8 +23,8 @@ function Dashboard() {
   const { total } = filterTransactionsAndCalculateTotal(transactions, KEYWORDS);
 
   let goalAmount= 2000
-  let HomeExpenseAmount= 1000
-  let totalTobePaid= 53500
+  let HomeExpenseAmount= 1000 
+  let totalTobePaid= 53800
 
   let isAdmin =  checkIfAdmin(userId)
 
@@ -38,6 +38,8 @@ function Dashboard() {
   };
 
   const totalBudgetPlan= totalPlanBugdet(budgets)
+
+  HomeExpenseAmount = HomeExpenseAmount + totalBudgetPlan
 
   const navigate = useNavigate();
   
@@ -60,9 +62,9 @@ function Dashboard() {
           <div className="dashboard_item goal_amount">
             {isLoggedIn && <CardBugdeto dataExpense={goalAmount} type="Save Goal till 30th December 2024"/>}
           </div>
-          <div className="dashboard_item home_amount">
-            {isLoggedIn && <CardBugdeto dataExpense={HomeExpenseAmount} type="Home grosseries monthly"/>}
-          </div>
+          {!isAdmin &&<div className="dashboard_item home_amount">
+            {isLoggedIn &&  <CardBugdeto dataExpense={HomeExpenseAmount} type="Home grosseries monthly"/>}
+          </div>}
           {isAdmin &&<div className="dashboard_item">
             {isLoggedIn && <CardBugdeto dataExpense={totalIncome - totalExpense} type="Bank Account"/>}
           </div>}

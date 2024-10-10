@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { isAuthenticated } from "../firebase/Authentication";
 import { Link, useParams } from "react-router-dom";
 import NoAccess from "./NoAccess";
-import { waitToLoad } from "../firebase/Helpers";
+import { waitToLoad } from "../Helpers/Helpers";
 import "../Style/Planning.css";
 
 import AddIcon from "@mui/icons-material/Add";

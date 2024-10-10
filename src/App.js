@@ -6,7 +6,7 @@ import Login from "./components/Login.jsx";
 import NoMatch from "./components/NoMatch.jsx";
 import Logout from "./components/Logout.jsx";
 import Register from "./components/RegisterComponent.jsx";
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "./components/pages/Layouts/Navbar.jsx";
 import AddRecord from "./components/AddRecord.jsx";
 import SuperBet from "./components/SuperBet.jsx";
 import Benefits from "./components/Benefits.jsx";
@@ -36,9 +36,7 @@ function App() {
           <Route path="/Add" element={<AddRecord />} />
           <Route path="/Reports" element={<Benefits />} />
 
-          <Route path="/Motivation" element={<Motivation />} />
-
-          
+          <Route path="/Motivation" element={<Motivation />} />          
 
           <Route path="/Super" element={<SuperBet />} />
           <Route path="/Transaction/:id" element={<Transaction />} />

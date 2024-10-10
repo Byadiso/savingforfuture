@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCurrentMonthName } from '../firebase/Helpers';
+import { getCurrentMonthName } from '../Helpers/Helpers';
 import { addArchivedPlan, archivePlan } from '../firebase/ArchiveLogics';
 import { isAuthenticatedDetails } from '../firebase/Authentication';
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "../Style/Modal.css"; // Modal-specific styling
+import "../../Style/Modal.css"; 
 
 function BudgetModal({ closeModal, addOrEditBudget, currentBudget }) {
   const [budget, setBudget] = useState({
     name: "",
     amount: "",
-    category: "Income", // Default to "Income"
+    category: "Income", 
   });
 
   useEffect(() => {
@@ -25,8 +25,8 @@ function BudgetModal({ closeModal, addOrEditBudget, currentBudget }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addOrEditBudget(budget); // Pass the budget back to the Planning component
-    setBudget({ name: "", amount: "", category: "Income" }); // Clear the form fields
+    addOrEditBudget(budget); 
+    setBudget({ name: "", amount: "", category: "Income" }); 
   };
 
   return (

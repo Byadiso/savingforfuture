@@ -163,6 +163,7 @@ export const totalPlanBugdet = (budgets) => {
 };
 
 
+
 export const getCurrentMonthName = () => {
   const date = new Date();
   const monthNames = [
@@ -170,4 +171,32 @@ export const getCurrentMonthName = () => {
     "July", "August", "September", "October", "November", "December"
   ];
   return monthNames[date.getMonth()];
+};
+
+
+// for styling cards
+
+export const getCardStyle = (category) => {
+  switch (category) {
+    case "Income":
+      return { backgroundColor: "#c8e6c9" };
+    case "Expense":
+      return { backgroundColor: "#ffcdd2" }; 
+    case "Extra":
+      return { backgroundColor: "#fff9c4" }; 
+    case "IsNotMine":
+      return { backgroundColor: "#e1bee7" }; 
+    default:
+      return { backgroundColor: "#ffffff" };
+  }
+};
+
+// For style when total is negative
+
+export const getTotalStyle = (total) => {
+  if (total < 0) {
+    return { color: "red" }; 
+  } else {
+    return { color: "green" }; 
+  }
 };

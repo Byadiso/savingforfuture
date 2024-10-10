@@ -8,7 +8,7 @@ import { listTransactions } from '../firebase/getTransactions';
 import NoAccess from './NoAccess';
 import TableData from './TableData';
 import CardBugdeto from './CardBugdeto';
-import { waitToLoad } from '../firebase/Helpers';
+import { waitToLoad } from '../Helpers/Helpers';
 
 // Archived Component
 const CurrentTransaction = () => {

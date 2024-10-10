@@ -1,5 +1,6 @@
 import React from "react";
-import "../Style/Footer.css";
+// import "../../Style/Footer.css";
+import "../../../Style/Footer.css";
 import { FaCopyright } from "react-icons/fa";
 
 function Footer() {

@@ -29,8 +29,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from '@mui/icons-material/Login';
 import AdjustIcon from '@mui/icons-material/Adjust';
 
-import Dashboard from "./Dashboard";
-import { checkIfAdmin, isAuthenticatedDetails, LogoutUser } from "../firebase/Authentication";
+import Dashboard from "../../Dashboard";
+import { checkIfAdmin, isAuthenticatedDetails, LogoutUser } from "../../../firebase/Authentication";
 import { useEffect } from "react";
 import { useState } from "react";
 

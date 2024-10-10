@@ -4,7 +4,7 @@ import InputComponent from "./InputComonents/InputComponent";
 import "../Style/Transactions.css";
 import { createTransaction } from "../firebase/Transaction";
 import { isAuthenticated } from "../firebase/Authentication";
-import { ValidateTransaction, waitToLoad } from "../firebase/Helpers";
+import { ValidateTransaction, waitToLoad } from "../Helpers/Helpers";
 import NoAccess from "./NoAccess";
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
 

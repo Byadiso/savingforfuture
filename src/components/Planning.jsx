@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { isAuthenticated, isAuthenticatedDetails } from "../firebase/Authentication";
 import { Link } from "react-router-dom";
+// import "../../Style/Planning.css";
 import "../Style/Planning.css";
+
 import AddIcon from "@mui/icons-material/Add";
-import BudgetModal from "./BudgetModal"; 
+import BudgetModal from "./Modals/BudgetModal"; 
 import { createPlan, readPlans, editPlan, deletePlan } from "../firebase/Plan"; 
-import {  getCurrentMonthName } from "../firebase/Helpers";
+import {  getCardStyle, getCurrentMonthName, getTotalStyle, totalPlanBugdet } from "../Helpers/Helpers";
 import ArchivePlanButton from "./ArchivePlans";
 import NoAccess from "./NoAccess";
 
@@ -19,8 +21,7 @@ function Planning() {
 
   let currentMonth= getCurrentMonthName()
 
-  console.log(currentMonth)
-
+ 
   useEffect(() => {
     isAuthenticatedDetails(setIsLoggedIn, setUserId);
   }, [isLoggedIn]);
@@ -54,82 +55,27 @@ function Planning() {
 
  
   const handleAddOrEditBudget = async (newBudget) => {
-    if (editIndex !== null) {
-     
+    if (editIndex !== null) {     
       await editPlan(userId, budgets[editIndex].id, newBudget);
       const updatedBudgets = budgets.map((budget, index) =>
         index === editIndex ? { ...newBudget, id: budgets[editIndex].id } : budget
       );
       setBudgets(updatedBudgets);
-    } else {
-      
+    } else {      
       await createPlan(userId, newBudget);
       setBudgets([...budgets, { ...newBudget, id: Math.floor(Math.random() * 1000000) }]);
     }
     setIsModalOpen(false);
   };
 
-  const handleRemoveBudget = async (index) => {
+const handleRemoveBudget = async (index) => {
     await deletePlan(userId, budgets[index].id);
     const updatedBudgets = budgets.filter((_, i) => i !== index);
     setBudgets(updatedBudgets);
   };
 
-  const getCardStyle = (category) => {
-    switch (category) {
-      case "Income":
-        return { backgroundColor: "#c8e6c9" };
-      case "Expense":
-        return { backgroundColor: "#ffcdd2" }; 
-      case "Extra":
-        return { backgroundColor: "#fff9c4" }; 
-      case "IsNotMine":
-        return { backgroundColor: "#e1bee7" }; 
-      default:
-        return { backgroundColor: "#ffffff" };
-    }
-  };
 
-  const calculateTotal = () => {
-    let incomeTotal = 0;
-    let extraTotal = 0;
-    let expenseTotal = 0;
-    let isNotMineTotal = 0;
-
-    budgets.forEach((budget) => {
-      const amount = parseFloat(budget.amount);
-      if (!isNaN(amount)) {
-        switch (budget.category) {
-          case "Income":
-            incomeTotal += amount;
-            break;
-          case "Extra":
-            extraTotal += amount;
-            break;
-          case "Expense":
-            expenseTotal += amount;
-            break;
-          case "IsNotMine":
-            isNotMineTotal += amount;
-            break;
-          default:
-            break;
-        }
-      }
-    });
-
-    return incomeTotal + extraTotal - expenseTotal - isNotMineTotal;
-  };
-
-  const getTotalStyle = (total) => {
-    if (total < 0) {
-      return { color: "red" }; 
-    } else {
-      return { color: "green" }; 
-    }
-  };
-
-  const totalAmount = calculateTotal();
+const totalAmount = totalPlanBugdet(budgets);
 
   return (
     <div className="main_dashboard">
@@ -151,10 +97,12 @@ function Planning() {
                 flexDirection: "row",
                 padding: "10px",
                 alignItems: "center",
+                color: "white",
+                backgroundColor:"#008DDA",
                 justifyContent: "center",
               }}
             >
-              <p>Start Planning</p>
+              <p onClick={handleAddNewPlan} className="Add_plan">Start Planning</p>
               <AddIcon onClick={handleAddNewPlan} className="Add_plan" />
             </div>
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../Style/Register.css";
 
-import { checkMyValue } from "../firebase/Helpers";
+import { checkMyValue } from "../Helpers/Helpers";
 import { isAuthenticated} from "../firebase/Authentication";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";

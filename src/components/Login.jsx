@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../Style/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../firebase/Authentication";
-import { checkMyValue } from "../firebase/Helpers";
+import { checkMyValue } from "../Helpers/Helpers";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import ProgressBar from "./InputComonents/ProgressBar";
 
