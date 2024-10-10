@@ -1,8 +1,8 @@
-import "../Style/LandingPage.css";
+import "../../Style/LandingPage.css";
 import React, { useEffect, useState } from "react";
 import PaymentsIcon from '@mui/icons-material/Payments';
 import { Link } from "react-router-dom";
-import { isAuthenticated } from "../firebase/Authentication";
+import { isAuthenticated } from "../../firebase/Authentication";
 import { IconButton } from "@mui/material";
 
 function LandingPage() {

@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { isAuthenticated } from "../firebase/Authentication";
+import { isAuthenticated } from "../../firebase/Authentication";
 import { Link } from "react-router-dom";
-import NoAccess from "./pages/ErrorComponents/NoAccess";
-import { waitToLoad } from "../Helpers/Helpers";
+import NoAccess from "./ErrorComponents/NoAccess";
+import { waitToLoad } from "../../Helpers/Helpers";
 import TableData from "./TableData";
 import CardBugdeto from "./CardBugdeto";
-import "../Style/Dashboard.css";
-import { listTransactions } from "../firebase/getTransactions";
-import { filterTransactionsAndCalculateTotal } from "../firebase/Filters";
-import { KEYWORDS } from "../firebase/CONSTANTS";
+import "../../Style/Dashboard.css";
+import { listTransactions } from "../../firebase/getTransactions";
+import { filterBenefits} from "../../firebase/Filters";
 
-function SuperBet() {
+
+function Benefits() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([]);
 
-  const { filteredTransactions, total } = filterTransactionsAndCalculateTotal(
-    transactions,
-    KEYWORDS
+  const { filteredBenefits, totalBenefits } = filterBenefits(
+    transactions
   );
 
-
   const listSuper = (setDataList) => {
-    return setDataList(filteredTransactions);
+    return setDataList(filteredBenefits);
   };
 
   useEffect(() => {
@@ -49,7 +47,7 @@ function SuperBet() {
             padding: "20px",
           }}
         >
-          <CardBugdeto dataExpense={-total} />
+          <CardBugdeto dataExpense={totalBenefits} />
         </div>
       </div>
       <div
@@ -58,9 +56,10 @@ function SuperBet() {
           alignItems: "center",
           width: "100%",
           padding: "5px",
+          
         }}
       >
-        <div style={{  width: "100%" }}>
+        <div style={{  width: "100%"}}>
           {isLoggedIn ? (
             <TableData fetchDataFunction={listSuper} />
           ) : (
@@ -72,4 +71,4 @@ function SuperBet() {
   );
 }
 
-export default SuperBet;
+export default Benefits;

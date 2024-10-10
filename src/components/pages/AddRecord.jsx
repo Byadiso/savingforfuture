@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
-import InputComponent from "./InputComonents/InputComponent";
-import "../Style/Transactions.css";
-import { createTransaction } from "../firebase/Transaction";
-import { isAuthenticated } from "../firebase/Authentication";
-import { ValidateTransaction, waitToLoad } from "../Helpers/Helpers";
-import NoAccess from "./pages/ErrorComponents/NoAccess";
+import InputComponent from "../InputComonents/InputComponent";
+import "../../Style/Transactions.css";
+import { createTransaction } from "../../firebase/Transaction";
+import { isAuthenticated } from "../../firebase/Authentication";
+import { ValidateTransaction, waitToLoad } from "../../Helpers/Helpers";
+import NoAccess from "./ErrorComponents/NoAccess";
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
 
 function AddRecord() {

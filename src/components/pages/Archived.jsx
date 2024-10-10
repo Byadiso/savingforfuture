@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { readArchivedPlans } from '../firebase/ArchiveLogics';
-import { isAuthenticatedDetails } from '../firebase/Authentication';
+import { readArchivedPlans } from '../../firebase/ArchiveLogics';
+import { isAuthenticatedDetails } from '../../firebase/Authentication';
 import { Link } from 'react-router-dom';
-import "../Style/Archive.css";
-import NoAccess from './pages/ErrorComponents/NoAccess';
+import "../../Style/Archive.css";
+import NoAccess from './ErrorComponents/NoAccess';
 
 // Archived Component
 const ArchiveCard = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Box, Button, Typography, MenuItem, FormControl, Select, InputLabel, TextField } from '@mui/material';
-import { editTransaction, deleteTransaction } from '../firebase/Transaction';
+import { editTransaction, deleteTransaction } from '../../firebase/Transaction';
 
 const TransactionForm = ({ open, handleClose, transaction }) => {
   const [formData, setFormData] = useState({ title: '', amount: '', type: '' });

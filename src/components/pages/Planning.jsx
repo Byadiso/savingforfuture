@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { isAuthenticated, isAuthenticatedDetails } from "../firebase/Authentication";
+import { isAuthenticated, isAuthenticatedDetails } from "../../firebase/Authentication";
 import { Link } from "react-router-dom";
-// import "../../Style/Planning.css";
-import "../Style/Planning.css";
+import "../../Style/Planning.css";
 
 import AddIcon from "@mui/icons-material/Add";
-import BudgetModal from "./Modals/BudgetModal"; 
-import { createPlan, readPlans, editPlan, deletePlan } from "../firebase/Plan"; 
-import {  getCardStyle, getCurrentMonthName, getTotalStyle, totalPlanBugdet } from "../Helpers/Helpers";
+import BudgetModal from "../Modals/BudgetModal"; 
+import { createPlan, readPlans, editPlan, deletePlan } from "../../firebase/Plan"; 
+import {  getCardStyle, getCurrentMonthName, getTotalStyle, totalPlanBugdet } from "../../Helpers/Helpers";
 import ArchivePlanButton from "./ArchivePlans";
-import NoAccess from "./pages/ErrorComponents/NoAccess";
+import NoAccess from "./ErrorComponents/NoAccess";
 
 function Planning() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableHead from '@mui/material/TableHead';
 import TablePaginationActions from './TablePaginationActions'; 
-import { formatTime } from '../Helpers/Helpers';
+import { formatTime } from '../../Helpers/Helpers';
 import TransactionForm from './TransactionForm'; 
 
 

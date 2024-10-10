@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { readArchivedPlans } from '../firebase/ArchiveLogics';
-import { isAuthenticatedDetails } from '../firebase/Authentication';
+import { readArchivedPlans } from '../../firebase/ArchiveLogics';
+import { isAuthenticatedDetails } from '../../firebase/Authentication';
 import { Link } from 'react-router-dom';
-import "../Style/Archive.css";
-import { listTransactionsByMonthAndType } from '../firebase/Filters';
-import { listTransactions } from '../firebase/getTransactions';
-import NoAccess from './pages/ErrorComponents/NoAccess';
+import "../../Style/Archive.css";
+import { listTransactionsByMonthAndType } from '../../firebase/Filters';
+import { listTransactions } from '../../firebase/getTransactions';
+import NoAccess from './ErrorComponents/NoAccess';
 import TableData from './TableData';
 import CardBugdeto from './CardBugdeto';
-import { waitToLoad } from '../Helpers/Helpers';
+import { waitToLoad } from '../../Helpers/Helpers';
 
 // Archived Component
 const CurrentTransaction = () => {

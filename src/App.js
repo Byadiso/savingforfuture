@@ -1,20 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import LandingPage from "./components/LandingPage.jsx";
+import LandingPage from "./components/pages/LandingPage.jsx";
 
 import Login from "./components/pages/UserAuth/Login.jsx";
 import NoMatch from "./components/pages/ErrorComponents/NoMatch.jsx";
 import Logout from "./components/pages/UserAuth/Logout.jsx";
 import Register from "./components/pages/UserAuth/RegisterComponent.jsx";
 import Navbar from "./components/pages/Layouts/Navbar.jsx";
-import AddRecord from "./components/AddRecord.jsx";
-import SuperBet from "./components/SuperBet.jsx";
-import Benefits from "./components/Benefits.jsx";
-import Motivation from "./components/Motivation.jsx";
-import Planning from "./components/Planning.jsx";
-import Transaction from "./components/Transaction.jsx";
-import ArchiveCard from "./components/Archived.jsx";
-import CurrentTransaction from "./components/CurrentTransaction.jsx";
+import AddRecord from "./components/pages/AddRecord.jsx";
+import SuperBet from "./components/pages/SuperBet.jsx";
+import Benefits from "./components/pages/Benefits.jsx";
+import Motivation from "./components/pages/Motivation.jsx";
+import Planning from "./components/pages/Planning.jsx";
+import Transaction from "./components/pages/Transaction.jsx";
+import ArchiveCard from "./components/pages/Archived.jsx";
+import CurrentTransaction from "./components/pages/CurrentTransaction.jsx";
 
 
 

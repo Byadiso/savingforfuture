@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { isAuthenticated } from "../firebase/Authentication";
+import { isAuthenticated } from "../../firebase/Authentication";
 import { Link } from "react-router-dom";
-import NoAccess from "./pages/ErrorComponents/NoAccess";
-import { waitToLoad } from "../Helpers/Helpers";
+import NoAccess from "./ErrorComponents/NoAccess";
+import { waitToLoad } from "../../Helpers/Helpers";
 import TableData from "./TableData";
 import CardBugdeto from "./CardBugdeto";
-import "../Style/Dashboard.css";
-import { listTransactions } from "../firebase/getTransactions";
-import { filterBenefits} from "../firebase/Filters";
+import "../../Style/Dashboard.css";
+import { listTransactions } from "../../firebase/getTransactions";
+import { filterBenefits} from "../../firebase/Filters";
 
 
 function Motivation() {

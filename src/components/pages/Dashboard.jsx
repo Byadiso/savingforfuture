@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { checkIfAdmin, getLoggedUser, isAuthenticated, isAuthenticatedDetails } from "../firebase/Authentication";
+import { checkIfAdmin, getLoggedUser, isAuthenticated, isAuthenticatedDetails } from "../../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
-import NoAccess from "./pages/ErrorComponents/NoAccess";
-import { totalPlanBugdet, waitToLoad } from "../Helpers/Helpers";
+import NoAccess from "./ErrorComponents/NoAccess";
+import { totalPlanBugdet, waitToLoad } from "../../Helpers/Helpers";
 import CardBugdeto from "./CardBugdeto";
-import "../Style/Dashboard.css";
-import { listTransactions } from "../firebase/getTransactions";
-import { filterBenefits, filterTransactionsAndCalculateTotal, listAlltransactionWithoutSuper } from "../firebase/Filters";
-import { KEYWORDS } from "../firebase/CONSTANTS";
-import { readPlans } from "../firebase/Plan";
+import "../../Style/Dashboard.css";
+import { listTransactions } from "../../firebase/getTransactions";
+import { filterBenefits, filterTransactionsAndCalculateTotal, listAlltransactionWithoutSuper } from "../../firebase/Filters";
+import { KEYWORDS } from "../../firebase/CONSTANTS";
+import { readPlans } from "../../firebase/Plan";
 
 function Dashboard() {  
   const [isLoggedIn, setIsLoggedIn] = useState(false);

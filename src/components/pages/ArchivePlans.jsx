@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getCurrentMonthName } from '../Helpers/Helpers';
-import { addArchivedPlan, archivePlan } from '../firebase/ArchiveLogics';
-import { isAuthenticatedDetails } from '../firebase/Authentication';
+import { getCurrentMonthName } from '../../Helpers/Helpers';
+import { addArchivedPlan, archivePlan } from '../../firebase/ArchiveLogics';
+import { isAuthenticatedDetails } from '../../firebase/Authentication';
 
 
 // Independent ArchivePlanButton Component

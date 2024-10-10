@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { isAuthenticated } from "../firebase/Authentication";
+import { isAuthenticated } from "../../firebase/Authentication";
 import { Link, useParams } from "react-router-dom";
-import NoAccess from "./pages/ErrorComponents/NoAccess";
-import { waitToLoad } from "../Helpers/Helpers";
-import "../Style/Planning.css";
+import NoAccess from "./ErrorComponents/NoAccess";
+import { waitToLoad } from "../../Helpers/Helpers";
+import "../../Style/Planning.css";
 
-import AddIcon from "@mui/icons-material/Add";
-import { listTransactions } from "../firebase/getTransactions";
+
+import { listTransactions } from "../../firebase/getTransactions";
 import TransactionForm from "./TransactionForm";
-import { editTransaction } from "../firebase/Transaction";
+import { editTransaction } from "../../firebase/Transaction";
 
 function Transaction() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

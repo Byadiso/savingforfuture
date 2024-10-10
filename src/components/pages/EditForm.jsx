@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import { IconButton, TextField } from "@mui/material";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { listBlog } from "../firebase/getBlogs";
-import InputFileUpload from "./InputComonents/FileUpload";
+import InputFileUpload from "../InputComonents/FileUpload";
 import { editBlog } from "../firebase/createBlog";
 
 export default function EditForm(props) {
