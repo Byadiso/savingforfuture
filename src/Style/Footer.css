@@ -23,9 +23,8 @@
 }
 
 
-footer {
-    
-    /* or absolute, depending on your layout */
+footer {    
+   
     bottom: 0;
     left: 0;
     width: 100%;

@@ -44,6 +44,11 @@
     background-color: rgba(203, 66, 66, 0.717);
     color: white;
   }
+
+  .btn-edit{
+    background-color: rgba(70, 141, 70, 0.717);
+    color: white;
+  }
   
   .budget-card {
     background-color: #f1f1f1;
@@ -89,10 +94,10 @@
 
 
 /* for responsiveness */
-@media only screen and (max-width: 720px) {
+/* @media only screen and (max-width: 720px) {
 
          
-}
+} */
 
 /* 
 for ipods and tables */
@@ -101,16 +106,9 @@ for ipods and tables */
 
     body {
         min-width: 360px;
-    }
-  
+    } 
 
-    /* for services */
-    .service_content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+  
     .dashboard_content{
         display: flex;
         flex-direction: column;
@@ -120,21 +118,5 @@ for ipods and tables */
 
 
 
-/* 
-  for dark mode */
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background: var(--blueColor);
-        color: white;
-    }
 
-}
-
-@media (prefers-color-scheme: light) {
-    body {
-        background: #ddd;
-        color: black;
-    }
-
-}

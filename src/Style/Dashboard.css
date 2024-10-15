@@ -35,7 +35,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    flex-wrap: wrap; /* Added for responsiveness */
+    flex-wrap: wrap; 
 }
 
 /* Summary Item Styles */
@@ -44,18 +44,18 @@ body {
     justify-content: center;
     align-items: center;
     background-color: white;
-    margin: 10px; /* Reduced margin for better spacing */
-    padding: 15px; /* Adjusted padding for content spacing */
+    margin: 10px; 
+    padding: 15px; 
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    min-width: 150px; /* Ensure minimum size on mobile */
-    max-width: 300px; /* Limit width for larger screens */
+    min-width: 150px; 
+    max-width: 300px; 
 }
 
 /* Dashboard Grid Layout */
 .dashboard_grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Default to two columns */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 20px; 
 }
 

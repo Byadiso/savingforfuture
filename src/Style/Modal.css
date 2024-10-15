@@ -136,3 +136,36 @@
   }
   
   
+
+  
+  
+
+
+/* for responsiveness */
+@media only screen and (max-width: 720px) {
+
+  button {
+    padding: 5px 2px;
+    
+  }
+ 
+}
+
+/* 
+for ipods and tables */
+
+@media only screen and (max-width: 920px) {
+
+    body {
+        min-width: 360px;
+    }
+  
+
+  
+    button {
+      padding: 5px 2px;
+      
+    }
+  
+}
+

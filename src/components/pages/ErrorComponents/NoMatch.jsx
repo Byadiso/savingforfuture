@@ -7,7 +7,6 @@ function NoMatch() {
   return (
     <div>
       <Navbar />
-
       <div
         style={{
           display: "flex",

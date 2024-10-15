@@ -175,7 +175,6 @@ export const getCurrentMonthName = () => {
 
 
 // for styling cards
-
 export const getCardStyle = (category) => {
   switch (category) {
     case "Income":

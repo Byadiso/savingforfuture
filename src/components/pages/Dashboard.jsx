@@ -24,7 +24,7 @@ function Dashboard() {
 
   let goalAmount= 2000
   let HomeExpenseAmount= 1000 
-  let totalTobePaid= 53800
+  let totalTobePaid= 54100
 
   let isAdmin =  checkIfAdmin(userId)
 
