@@ -20,6 +20,9 @@ const ArchiveCard = () => {
     
   }, [userId]);
 
+
+ 
+
   const fetchArchivedData = async (userId) => {
     const data = await readArchivedPlans(userId);    
     const archiveArray = Object.keys(data).map(key => ({
@@ -38,12 +41,16 @@ const ArchiveCard = () => {
       className="bugdet_summary"
       style={{ display: "flex", flexDirection: "row", alignItems: "center", margin:"10" }} /* Updated */
     >
-      {archives ? isLoggedIn && archives.map((archive, index) => (
+      {archives ? isLoggedIn && archives.sort((a, b) => -1).map((archive, index) => (
         <div key={index} className="archive-card">
           <h3>Total amount for the month</h3>
           <div className='card'>
           <h5>{archive.month}</h5>
           <p>Amount: {archive.amount}</p>
+          <div className='Archive_control'>
+            <input type="button" value="edit" className="btn-edit"/>
+            <input type="button" value="delete" className="btn-remove"/>
+          </div>
           </div>
           
         </div>
