@@ -20,7 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import GroupIcon from "@mui/icons-material/Group";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
@@ -28,11 +28,13 @@ import SavingsIcon from "@mui/icons-material/Savings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from '@mui/icons-material/Login';
 import AdjustIcon from '@mui/icons-material/Adjust';
+import PaidIcon from '@mui/icons-material/Paid';
 
 import Dashboard from "../Dashboard";
-import { checkIfAdmin, isAuthenticatedDetails, LogoutUser } from "../../../firebase/Authentication";
+import { checkIfAdmin, getLoggedUser, isAuthenticatedDetails, LogoutUser } from "../../../firebase/Authentication";
 import { useEffect } from "react";
 import { useState } from "react";
+import { getUsername } from "../../../Helpers/Helpers";
 
 const drawerWidth = 240;
 
@@ -107,12 +109,15 @@ export default function Navbar() {
   const [open, setOpen] = React.useState(false);
   const [userId, setUserId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedUser, setLoggedUser] = useState([]);
 
   const isAdmin =  checkIfAdmin(userId) 
+  const username= getUsername(loggedUser.email)
 
 
   useEffect(() => {       
-    isAuthenticatedDetails(setIsLoggedIn, setUserId);   
+    isAuthenticatedDetails(setIsLoggedIn, setUserId);  
+    getLoggedUser(setLoggedUser) 
   }, [ userId]);
   
 
@@ -149,11 +154,11 @@ export default function Navbar() {
     <DashboardIcon />,
     <AddBoxIcon />,
     <AdjustIcon />,
-    isAdmin && <GroupIcon />,
+    isAdmin && <PaidIcon />,
     isAdmin &&<BarChartIcon />,
     isAdmin && <SportsSoccerIcon />,
     isAdmin && <SavingsIcon />,
-    <CalendarMonthIcon />,
+    isAdmin && <CalendarMonthIcon />,
     isLoggedIn? <LogoutIcon />: <LoginIcon />,
   ].filter(Boolean);
 
@@ -161,7 +166,7 @@ export default function Navbar() {
     "Dashboard",
     "Add ",
     "Plan",
-     isAdmin && "Benefits",
+     isAdmin && "ToBePaid",
     isAdmin && "Reports",
     isAdmin && "Super",
      isAdmin && "Motivation",
@@ -187,6 +192,15 @@ export default function Navbar() {
               Bugdeto
             </IconButton>
           </Typography>
+          <div style={{alignContent:"left", marginLeft:"810px"}}>        
+          
+            <IconButton style={{ color: "white" }}>
+              <AccountCircleIcon fontSize="large" />
+              {username}
+            </IconButton>
+           
+     
+          </div>
         </Toolbar>
       </AppBar>
 

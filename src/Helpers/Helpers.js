@@ -50,9 +50,7 @@ export const waitToLoad =(setFunction)=>{
   }, 1500); 
 }
 
-// export  const removePTag =(sentence)=>{ 
-//  return sentence.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/&nbsp/g,"");
-// }
+export const getUsername = (email) => email?.split('@')[0] || '';
 
 
 export const ValidateTransaction = (transaction) => { 

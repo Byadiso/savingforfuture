@@ -6,7 +6,7 @@ import { totalPlanBugdet, waitToLoad } from "../../Helpers/Helpers";
 import CardBugdeto from "./CardBugdeto";
 import "../../Style/Dashboard.css";
 import { listTransactions } from "../../firebase/getTransactions";
-import { filterBenefits, filterTransactionsAndCalculateTotal, listAlltransactionWithoutSuper } from "../../firebase/Filters";
+import { filterBenefits, filterTransactionsAndCalculateTotal, filterWhatIsNotMine, listAlltransactionWithoutSuper } from "../../firebase/Filters";
 import { KEYWORDS } from "../../firebase/CONSTANTS";
 import { readPlans } from "../../firebase/Plan";
 
@@ -22,11 +22,13 @@ function Dashboard() {
   const { totalBenefits } = filterBenefits(transactions);
   const { total } = filterTransactionsAndCalculateTotal(transactions, KEYWORDS);
 
+  const {filteredWhatIsNotMine,totalWhatIsNotMine } = filterWhatIsNotMine(transactions)
+
   let goalAmount= 2000
   let HomeExpenseAmount= 1000 
-  let totalTobePaid= 63000
 
-  let isAdmin =  checkIfAdmin(userId)
+
+ let isAdmin =  checkIfAdmin(userId)
 
   const fetchBudgets = async (userId) => {
     const plans = await readPlans(userId);
@@ -57,7 +59,7 @@ function Dashboard() {
 
       {isLoggedIn && (
         <>
-        <div>Logged in user: {loggedUser.email}</div>
+        
         <div className="dashboard_grid">
           <div className="dashboard_item goal_amount">
             {isLoggedIn && <CardBugdeto dataExpense={goalAmount} type="Save Goal till 30th December 2024"/>}
@@ -78,7 +80,7 @@ function Dashboard() {
             {isLoggedIn && <CardBugdeto dataExpense={totalBudgetPlan} type="Planned Account monthly"/>}
           </div>
           {isAdmin &&<div className="dashboard_item payback">
-            {isLoggedIn && <CardBugdeto dataExpense={totalTobePaid} type="What is not mine"/>}
+            {isLoggedIn && <CardBugdeto dataExpense={totalWhatIsNotMine} type="What is not mine"/>}
           </div>}          
         </div>
         </>

@@ -16,6 +16,7 @@ import Transaction from "./components/pages/Transaction.jsx";
 import ArchiveCard from "./components/pages/Archived.jsx";
 import CurrentTransaction from "./components/pages/CurrentTransaction.jsx";
 import Reports from "./components/pages/Reports.jsx";
+import ToBePaid from "./components/pages/ToBePaid.jsx";
 
 
 
@@ -34,6 +35,8 @@ function App() {
           <Route path="/Dashboard" element={<Navbar />} />
 
           <Route path="/Benefits" element={<Benefits />} />
+          <Route path="/ToBePaid" element={<ToBePaid />} />
+
           <Route path="/Add" element={<AddRecord />} />
           <Route path="/Reports" element={<Reports />} />
 

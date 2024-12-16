@@ -246,6 +246,39 @@ export function listTransactionsByMonthAndType(transactions, monthType) {
 }
 
 
+// list what is not mine like credit or what I need to pay back
+export function filterWhatIsNotMine(transactions) {
+  let totalWhatIsNotMine = 0;
+
+  if (!transactions) {
+    return {
+      filteredWhatIsNotMine: [],
+      totalWhatIsNotMine: 0,
+    };
+  }
+
+  // Sort transactions by createdAt date in descending order
+  const sortedTransactions = transactions.sort((a, b) => b.createdAt - a.createdAt);
+
+  
+  // Filter transactions to include only those with type "isNotMine"
+  const filteredWhatIsNotMine = sortedTransactions.filter((transaction) => {
+    const type = transaction.type; 
+    if (type === "isNotMine") {   
+      totalWhatIsNotMine += parseFloat(transaction.amount) || 0; // Safely parse amount
+      return true;
+    }
+    return false;
+  });
+ 
+
+   return {
+    filteredWhatIsNotMine,
+    totalWhatIsNotMine,
+  };
+}
+
+
 
 
 
