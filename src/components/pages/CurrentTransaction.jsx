@@ -9,6 +9,7 @@ import NoAccess from './ErrorComponents/NoAccess';
 import TableData from './TableData';
 import CardBugdeto from './CardBugdeto';
 import { waitToLoad } from '../../Helpers/Helpers';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 // Archived Component
 const CurrentTransaction = () => {
@@ -53,8 +54,25 @@ const CurrentTransaction = () => {
 
   return (
     <div className="main_dashboard">
-      <div style={{ paddingTop: "20px", margin: "20px" }}>
-        <Link to="/Dashboard"> Go back</Link>
+      <div
+        style={{
+          paddingTop: "5px",
+          margin: "5px",
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+        <Link
+          to="/Dashboard"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+          }}
+        >
+          <ArrowBackIcon style={{ marginRight: "5px" }} /> Go back
+        </Link>
       </div>
       {!isLoggedIn? <NoAccess/> :
       

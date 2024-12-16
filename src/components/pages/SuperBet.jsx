@@ -9,6 +9,7 @@ import "../../Style/Dashboard.css";
 import { listTransactions } from "../../firebase/getTransactions";
 import { filterTransactionsAndCalculateTotal } from "../../firebase/Filters";
 import { KEYWORDS } from "../../firebase/CONSTANTS";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function SuperBet() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,8 +34,25 @@ function SuperBet() {
 
   return (
     <div className="main_dashboard">
-      <div style={{ paddingTop: "20px", margin: "20px" }}>
-        <Link to="/Dashboard"> Go back</Link>
+      <div
+        style={{
+          paddingTop: "5px",
+          margin: "5px",
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+        <Link
+          to="/Dashboard"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+          }}
+        >
+          <ArrowBackIcon style={{ marginRight: "5px" }} /> Go back
+        </Link>
       </div>
       <div
         className="bugdet_summary"

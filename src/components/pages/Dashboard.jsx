@@ -80,7 +80,7 @@ function Dashboard() {
             {isLoggedIn && <CardBugdeto dataExpense={totalBudgetPlan} type="Planned Account monthly"/>}
           </div>
           {isAdmin &&<div className="dashboard_item payback">
-            {isLoggedIn && <CardBugdeto dataExpense={totalWhatIsNotMine} type="What is not mine"/>}
+            {isLoggedIn && <CardBugdeto dataExpense={-totalWhatIsNotMine} type="What is not mine"/>}
           </div>}          
         </div>
         </>

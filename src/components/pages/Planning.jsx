@@ -9,6 +9,7 @@ import { createPlan, readPlans, editPlan, deletePlan } from "../../firebase/Plan
 import {  getCardStyle, getCurrentMonthName, getTotalStyle, totalPlanBugdet } from "../../Helpers/Helpers";
 import ArchivePlanButton from "./ArchivePlans";
 import NoAccess from "./ErrorComponents/NoAccess";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function Planning() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,9 +79,28 @@ const totalAmount = totalPlanBugdet(budgets);
 
   return (
     <div className="main_dashboard">
-      <div style={{ paddingTop: "20px", margin: "20px" }}>
-        <Link to="/Dashboard"> Go back</Link>
-      </div>
+      <div
+  style={{
+    paddingTop: "5px",
+    margin: "5px",
+    display: "flex",
+    justifyContent: "flex-start", // Center horizontally
+    alignItems: "center", // Center vertically
+  }}
+>
+  <Link
+    to="/Dashboard"
+    style={{
+      display: "flex", // Make the link a flex container
+      alignItems: "center", // Vertically center the content inside the link
+      textDecoration: "none", // Optional: Removes underline for a cleaner look
+
+    }}
+  >
+    <ArrowBackIcon style={{ marginRight: "5px" }} /> Go back
+  </Link>
+</div>
+
       {isLoggedIn ?<>
         <div style={{ padding: "35px", margin: "35px", color: "black" }}>
           <h4>Welcome to your Planning page for <span style={{color: "green"}}> {currentMonth}</span></h4>

@@ -7,6 +7,7 @@ import { isAuthenticated } from "../../firebase/Authentication";
 import { ValidateTransaction, waitToLoad } from "../../Helpers/Helpers";
 import NoAccess from "./ErrorComponents/NoAccess";
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function AddRecord() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -73,21 +74,29 @@ function AddRecord() {
   
       <div style={{ display: "flex", alignItems: "center", flexDirection:"column" }}>
        
-        <div
-          style={{
-            paddingTop: "20px",
-            margin: "20px",
-            display: "flex",
-            justifyContent: "center",
-            color: "white",
-            alignItems: "center",
-          }}
-        >
-          <Link to="/Dashboard" style={{ color: "white" }}>
-            {" "}
-            Go back
-          </Link>
-        </div>
+       <div
+  style={{
+    paddingTop: "20px",
+    margin: "20px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "white",
+  }}
+>
+  <Link
+    to="/Dashboard"
+    style={{
+      color: "white",
+      display: "flex",
+      alignItems: "center",
+      textDecoration: "none", // Optional: Removes underline for better appearance
+    }}
+  >
+    <ArrowBackIcon style={{ marginRight: "8px" }} /> Go back
+  </Link>
+</div>
+
 
      
         {isLoggedIn ? (

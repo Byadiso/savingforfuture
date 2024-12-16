@@ -7,20 +7,16 @@ import TableData from "./TableData";
 import CardBugdeto from "./CardBugdeto";
 import "../../Style/Dashboard.css";
 import { listTransactions } from "../../firebase/getTransactions";
-import { filterBenefits, filterWhatIsNotMine} from "../../firebase/Filters";
-
+import { filterWhatIsNotMine } from "../../firebase/Filters";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function ToBePaid() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([]);
 
-  const { filteredBenefits, totalBenefits } = filterBenefits(
-    transactions
-  );
-
-  const {filteredWhatIsNotMine,totalWhatIsNotMine } = filterWhatIsNotMine(transactions)
-
+  const { filteredWhatIsNotMine, totalWhatIsNotMine } =
+    filterWhatIsNotMine(transactions);
 
   const listWhatIsNotMine = (setDataList) => {
     return setDataList(filteredWhatIsNotMine);
@@ -34,8 +30,25 @@ function ToBePaid() {
 
   return (
     <div className="main_dashboard">
-      <div style={{ paddingTop: "20px", margin: "20px" }}>
-        <Link to="/Dashboard"> Go back</Link>
+      <div
+        style={{
+          paddingTop: "5px",
+          margin: "5px",
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+        <Link
+          to="/Dashboard"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+          }}
+        >
+          <ArrowBackIcon style={{ marginRight: "5px" }} /> Go back
+        </Link>
       </div>
       <div
         className="bugdet_summary"
@@ -50,7 +63,7 @@ function ToBePaid() {
             padding: "20px",
           }}
         >
-          <CardBugdeto dataExpense={totalWhatIsNotMine} />
+          <CardBugdeto dataExpense={-totalWhatIsNotMine} />
         </div>
       </div>
       <div
@@ -59,10 +72,9 @@ function ToBePaid() {
           alignItems: "center",
           width: "100%",
           padding: "5px",
-          
         }}
       >
-        <div style={{  width: "100%"}}>
+        <div style={{ width: "100%" }}>
           {isLoggedIn ? (
             <TableData fetchDataFunction={listWhatIsNotMine} />
           ) : (
