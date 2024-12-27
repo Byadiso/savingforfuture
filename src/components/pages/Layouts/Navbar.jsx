@@ -196,7 +196,8 @@ export default function Navbar() {
           
             <IconButton style={{ color: "white" }}>
               <AccountCircleIcon fontSize="large" />
-              {username}
+              <Link to='/UserSettings' style={{textDecoration:"none", color:"white"}}> {username}
+              </Link>             
             </IconButton>
            
      

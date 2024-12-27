@@ -17,6 +17,7 @@ import ArchiveCard from "./components/pages/Archived.jsx";
 import CurrentTransaction from "./components/pages/CurrentTransaction.jsx";
 import Reports from "./components/pages/Reports.jsx";
 import ToBePaid from "./components/pages/ToBePaid.jsx";
+import UserSettings from "./components/pages/UserSettings.jsx";
 
 
 
@@ -51,6 +52,11 @@ function App() {
           
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
+
+          <Route path="/UserSettings" element={<UserSettings />} />
+
+
+          
 
           <Route path="/Logout" element={<Logout />} />
           {/* routes when no match */}
