@@ -198,8 +198,7 @@ export default function Navbar() {
               <AccountCircleIcon fontSize="large" />
               <Link to='/UserSettings' style={{textDecoration:"none", color:"white"}}> {username}
               </Link>             
-            </IconButton>
-           
+            </IconButton>          
      
           </div>
         </Toolbar>
@@ -250,7 +249,7 @@ export default function Navbar() {
               <ListItem key={text} disablePadding>
                 <ListItemButton onClick={() => handleClick(text)}>
                   <ListItemIcon>
-                    {text === "Log out"|| text === "Log in" ? icons[icons.length-1] : icons[icons.length-2]}
+                    {text === "Log out"|| text === "Log in" ? icons[icons.length-1] : <CalendarMonthIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>

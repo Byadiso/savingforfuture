@@ -149,7 +149,7 @@ function UserSettings() {
                 display: "flex",
                 alignItems: "center",
                 textDecoration: "none",
-                color: "inherit",
+                color: "black",
               }}
             >
               <ArrowBackIcon style={{ marginRight: "5px" }} /> Go back
