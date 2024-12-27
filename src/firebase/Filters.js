@@ -271,7 +271,6 @@ export function filterWhatIsNotMine(transactions) {
     return false;
   });
  
-
    return {
     filteredWhatIsNotMine,
     totalWhatIsNotMine,

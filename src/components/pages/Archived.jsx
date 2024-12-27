@@ -73,7 +73,7 @@ const ArchiveCard = () => {
                   <h3>Total amount for the month</h3>
                   <div className="card">
                     <h5>{archive.month}</h5>
-                    <p>Amount: {archive.amount}</p>
+                    <p >Amount: <span style={{color:archive.amount < 0 ? "#fa1717":"#56a256"}}>{archive.amount}PLN </span></p>
                     <div className="Archive_control">
                       <input type="button" value="edit" className="btn-edit" />
                       <input

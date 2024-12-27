@@ -36,8 +36,8 @@ const ArchivePlanButton = ({ currentTotalAmount}) => {
       <button onClick={handleArchivePlan} disabled={archived}>
         {archived 
           ? `Plan for ${currentMonth} Archived`
-          : `Archive Plan for ${currentMonth} - Amount: $${currentTotalAmount}`}
-      </button>
+          : `Archive Plan for ${currentMonth} - Amount:  PLN${currentTotalAmount}`}
+      </button> 
     </div>
   );
 };
