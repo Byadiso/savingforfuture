@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { checkIfAdmin, getLoggedUser, isAuthenticated, isAuthenticatedDetails } from "../../firebase/Authentication";
 import { useNavigate } from "react-router-dom";
 import NoAccess from "./ErrorComponents/NoAccess";
-import { totalPlanBugdet, waitToLoad } from "../../Helpers/Helpers";
+import { getCurrentMonthName, totalPlanBugdet, waitToLoad } from "../../Helpers/Helpers";
 import CardBugdeto from "./CardBugdeto";
 import "../../Style/Dashboard.css";
 import { listTransactions } from "../../firebase/getTransactions";
@@ -24,8 +24,10 @@ function Dashboard() {
 
   const {filteredWhatIsNotMine,totalWhatIsNotMine } = filterWhatIsNotMine(transactions)
 
-  let goalAmount= 2000
+  let goalAmount= 500
   let HomeExpenseAmount= 1000 
+
+  let currentMonth= getCurrentMonthName()
 
 
  let isAdmin =  checkIfAdmin(userId)
@@ -62,7 +64,7 @@ function Dashboard() {
         
         <div className="dashboard_grid">
           <div className="dashboard_item goal_amount">
-            {isLoggedIn && <CardBugdeto dataExpense={goalAmount} type="Save Goal till 30th December 2024"/>}
+            {isLoggedIn && <CardBugdeto dataExpense={goalAmount} type={"Save Goal till 30th "+ currentMonth +" 2024"}/>}
           </div>
           {!isAdmin &&<div className="dashboard_item home_amount">
             {isLoggedIn &&  <CardBugdeto dataExpense={HomeExpenseAmount} type="Home grosseries monthly"/>}

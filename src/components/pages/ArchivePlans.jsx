@@ -27,7 +27,7 @@ const ArchivePlanButton = ({ currentTotalAmount}) => {
       setArchived(true);
     } catch (error) {
       console.error('Error archiving plan:', error);
-      // Optionally, handle the error (e.g., show a message to the user)
+     
     }
   };
 

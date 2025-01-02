@@ -24,10 +24,10 @@ const BudgetGraph = ({ data }) => {
 
     const options = {
         scales: {
-            x: { // Updated for Chart.js version 3 and later
+            x: { 
                 beginAtZero: true,
             },
-            y: { // Updated for Chart.js version 3 and later
+            y: { 
                 beginAtZero: true,
                 ticks: {
                     // This is where you configure the ticks for the y-axis
