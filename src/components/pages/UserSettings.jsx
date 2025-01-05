@@ -22,6 +22,8 @@ import { readPlans } from "../../firebase/Plan";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Navbar from "./Layouts/Navbar";
 import AddIcon from "@mui/icons-material/Add";
+import UserModal from "../Modals/UserModal"; 
+import SettingsIcon from '@mui/icons-material/Settings';
 
 function UserSettings() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,94 +32,9 @@ function UserSettings() {
   const [transactions, setTransactions] = React.useState([]);
   const [budgets, setBudgets] = useState([]);
   const [loggedUser, setLoggedUser] = useState([]);
-
-  const { totalExpense, totalIncome } = listAlltransactionWithoutSuper(
-    transactions,
-    KEYWORDS
-  );
-  const { totalBenefits } = filterBenefits(transactions);
-  const { total } = filterTransactionsAndCalculateTotal(transactions, KEYWORDS);
-
-  const { filteredWhatIsNotMine, totalWhatIsNotMine } =
-    filterWhatIsNotMine(transactions);
-
-  let goalAmount = 2000;
-  let HomeExpenseAmount = 1000;
-
-  let isAdmin = checkIfAdmin(userId);
-
-  const fetchBudgets = async (userId) => {
-    const plans = await readPlans(userId);
-    const plansArray = Object.keys(plans).map((key) => ({
-      id: key,
-      ...plans[key],
-    }));
-    setBudgets(plansArray);
-  };
-
-  const totalBudgetPlan = totalPlanBugdet(budgets);
-
-  HomeExpenseAmount = HomeExpenseAmount + totalBudgetPlan;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
-   
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-   
-    const [currentBudget, setCurrentBudget] = useState(null);
-    const [editIndex, setEditIndex] = useState(null);
-  
-    // let currentMonth = getCurrentMonthName();
-  
-    useEffect(() => {
-      isAuthenticatedDetails(setIsLoggedIn, setUserId);
-    }, [isLoggedIn]);
-  
-    useEffect(() => {
-      if (userId) {
-        fetchBudgets(userId);
-      }
-    }, [userId]);
-  
-    
-    const handleAddNewPlan = () => {
-      setCurrentBudget(null);
-      setEditIndex(null);
-      setIsModalOpen(true);
-    };
-  
-    const handleEditBudget = (index) => {
-      setCurrentBudget(budgets[index]);
-      setEditIndex(index);
-      setIsModalOpen(true);
-    };
-  
-    // const handleAddOrEditBudget = async (newBudget) => {
-    //   if (editIndex !== null) {
-    //     await editPlan(userId, budgets[editIndex].id, newBudget);
-    //     const updatedBudgets = budgets.map((budget, index) =>
-    //       index === editIndex
-    //         ? { ...newBudget, id: budgets[editIndex].id }
-    //         : budget
-    //     );
-    //     setBudgets(updatedBudgets);
-    //   } else {
-    //     await createPlan(userId, newBudget);
-    //     setBudgets([
-    //       ...budgets,
-    //       { ...newBudget, id: Math.floor(Math.random() * 1000000) },
-    //     ]);
-    //   }
-    //   setIsModalOpen(false);
-    // };
-  
-    // const handleRemoveBudget = async (index) => {
-    //   await deletePlan(userId, budgets[index].id);
-    //   const updatedBudgets = budgets.filter((_, i) => i !== index);
-    //   setBudgets(updatedBudgets);
-    // };
-  
-    const totalAmount = totalPlanBugdet(budgets);
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
@@ -128,11 +45,33 @@ function UserSettings() {
     waitToLoad(setLoading);
   }, [navigate, isLoggedIn]);
 
+  const fetchBudgets = async (userId) => {
+    const plans = await readPlans(userId);
+    const plansArray = Object.keys(plans).map((key) => ({
+      id: key,
+      ...plans[key],
+    }));
+    setBudgets(plansArray);
+  };
+
+  const handleAddNewPlan = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSaveData = (dropdownValue, textFieldValue) => {
+    // Handle the save logic here
+    console.log("Saved data:", { dropdownValue, textFieldValue });
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="main_dashboard">
       {isLoggedIn && (
         <>
-       
           <div
             style={{
               paddingTop: "5px",
@@ -156,11 +95,29 @@ function UserSettings() {
             </Link>
           </div>
 
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              padding: "5px",
+              marginBottom:"100px",
+              alignItems: "center",
+              color: "white",
+              backgroundColor: "#008DDA",
+              justifyContent: "center",
+            }}
+          >
+            <p onClick={handleAddNewPlan} className="Add_plan">
+              Change Settings
+            </p>
+            <SettingsIcon onClick={handleAddNewPlan} className="Add_plan" />
+          </div>
+
           <div className="dashboard_grid">
             <div className="dashboard_item goal_amount">
               {isLoggedIn && (
                 <CardBugdeto
-                  dataExpense={goalAmount}
+                  dataExpense={500} // Replace with dynamic goalAmount
                   type="Save Goal till 30th December 2024"
                 />
               )}
@@ -173,22 +130,15 @@ function UserSettings() {
             </div>
           </div>
 
-          <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  padding: "10px",
-                  alignItems: "center",
-                  color: "white",
-                  backgroundColor: "#008DDA",
-                  justifyContent: "center",
-                }}
-              >
-                <p onClick={handleAddNewPlan} className="Add_plan">
-                  Add a Goal for this month
-                </p>
-                <AddIcon onClick={handleAddNewPlan} className="Add_plan" />
-              </div>
+          
+
+          {isModalOpen && (
+            <UserModal
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              onSave={handleSaveData}
+            />
+          )}
         </>
       )}
       {!isLoggedIn && <NoAccess />}
