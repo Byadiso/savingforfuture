@@ -90,7 +90,7 @@ function AddRecord() {
       color: "white",
       display: "flex",
       alignItems: "center",
-      textDecoration: "none", // Optional: Removes underline for better appearance
+      textDecoration: "none", 
     }}
   >
     <ArrowBackIcon style={{ marginRight: "8px" }} /> Go back
