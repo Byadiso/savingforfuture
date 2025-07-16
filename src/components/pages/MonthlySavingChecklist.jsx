@@ -1,32 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  collection,
+  addDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+  getDocs,
+} from "firebase/firestore";
 import { firestore } from "../../firebase/Firebase";
 import { Button, Checkbox, Typography, Box } from "@mui/material";
 
 const membersList = [
-  "Alice", "Bob", "Charlie", "David", "Eva", "Frank",
-  "Grace", "Helen", "Ian", "Jane", "Kyle", "Lara"
+  "N.Eric", "B.Desire", "U.Raymond", "N.Olivier", "N.Celine", "M.Clement",
+  "N.Fabrice", "U.Pascaline", "M.Dassise", "U.Marie Assumpta", "M.Elyseus", "S.Patrick"
 ];
 
-const currentMonthId = () => {
-  const d = new Date();
-  return `${d.getFullYear()}_${(d.getMonth() + 1).toString().padStart(2, "0")}`;
+const MEMBER_VALUE = 600;
+
+const getCurrentDate = () => new Date();
+
+const formatMonthId = (date) => {
+  return `${date.getFullYear()}_${(date.getMonth() + 1).toString().padStart(2, "0")}`;
+};
+
+const getNextMonthId = () => {
+  const d = getCurrentDate();
+  const year = d.getMonth() === 11 ? d.getFullYear() + 1 : d.getFullYear();
+  const month = d.getMonth() === 11 ? 1 : d.getMonth() + 2;
+  return `${year}_${month.toString().padStart(2, "0")}`;
 };
 
 const getCurrentMonthName = () => {
-  const d = new Date();
-  return d.toLocaleString('default', { month: 'long', year: 'numeric' });
+  const d = getCurrentDate();
+  return d.toLocaleString("default", { month: "long", year: "numeric" });
 };
 
 export default function MonthlySavingChecklist() {
   const [members, setMembers] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [monthId, setMonthId] = useState(null);
 
-  // Load month data from Firestore
   useEffect(() => {
-    async function fetchData() {
-      const docRef = doc(firestore, "savings", currentMonthId());
+    async function fetchIncompleteOrCurrentMonth() {
+      setLoading(true);
+
+      // Query for incomplete months, order by ID descending, limit 1
+      const savingsCol = collection(firestore, "savings");
+      const q = query(
+        savingsCol,
+        where("completed", "==", false),
+        orderBy("__name__", "desc"),
+        limit(1)
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      let monthDocId;
+      if (!querySnapshot.empty) {
+        monthDocId = querySnapshot.docs[0].id;
+      } else {
+        // No incomplete month found, fallback to current month ID
+        monthDocId = formatMonthId(getCurrentDate());
+      }
+      setMonthId(monthDocId);
+
+      const docRef = doc(firestore, "savings", monthDocId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -45,6 +89,7 @@ export default function MonthlySavingChecklist() {
         setMembers(populated);
         setCompleted(data.completed || false);
       } else {
+        // Initialize if document doesn't exist (unlikely for current or incomplete month)
         const initialMembers = membersList.map((name, idx) => ({
           id: idx,
           name,
@@ -56,7 +101,7 @@ export default function MonthlySavingChecklist() {
           membersObj[m.id] = { name: m.name, saved: false };
         });
 
-        await setDoc(docRef, { members: membersObj, completed: false });
+        await setDoc(docRef, { members: membersObj, completed: false, totalAmount: 0 });
         setMembers(initialMembers);
         setCompleted(false);
       }
@@ -64,17 +109,16 @@ export default function MonthlySavingChecklist() {
       setLoading(false);
     }
 
-    fetchData();
+    fetchIncompleteOrCurrentMonth();
   }, []);
 
-  // Toggle member saved state and update Firestore
   const toggleSaved = async (id) => {
     const updatedMembers = members.map((m) =>
       m.id === id ? { ...m, saved: !m.saved } : m
     );
     setMembers(updatedMembers);
 
-    const docRef = doc(firestore, "savings", currentMonthId());
+    const docRef = doc(firestore, "savings", monthId);
     const membersData = {};
     updatedMembers.forEach((m) => {
       membersData[m.id] = { name: m.name, saved: m.saved };
@@ -83,15 +127,44 @@ export default function MonthlySavingChecklist() {
     await updateDoc(docRef, { members: membersData });
   };
 
-  // Mark month complete
   const completeMonth = async () => {
-    const docRef = doc(firestore, "savings", currentMonthId());
-    await updateDoc(docRef, { completed: true });
+    const totalSaved = members.filter((m) => m.saved).length;
+    const totalAmount = totalSaved * MEMBER_VALUE;
+
+    // Archive the month
+    await addDoc(collection(firestore, "archives"), {
+      month: getCurrentMonthName(),
+      amount: totalAmount,
+      timestamp: new Date(),
+    });
+
+    // Mark current month as completed
+    await updateDoc(doc(firestore, "savings", monthId), {
+      completed: true,
+      totalAmount: totalAmount,
+    });
+
+    // Create/reset next month document
+    const nextMonthDoc = doc(firestore, "savings", getNextMonthId());
+
+    const nextMembers = {};
+    membersList.forEach((name, idx) => {
+      nextMembers[idx] = { name, saved: false };
+    });
+
+    await setDoc(nextMonthDoc, {
+      members: nextMembers,
+      completed: false,
+      totalAmount: 0,
+    });
+
     setCompleted(true);
+    setMonthId(getNextMonthId());
+    setMembers(membersList.map((name, idx) => ({ id: idx, name, saved: false })));
   };
 
   const totalSaved = members.filter((m) => m.saved).length;
-  const totalAmount = totalSaved * 600; // Assuming 600 PLN per saved member
+  const totalAmount = totalSaved * MEMBER_VALUE;
 
   if (loading) return <Typography sx={{ color: "#222" }}>Loading...</Typography>;
 
@@ -104,20 +177,19 @@ export default function MonthlySavingChecklist() {
         borderRadius: 2,
         boxShadow: 3,
         bgcolor: "background.paper",
-        color: "#222", // default text color
+        color: "#222",
       }}
     >
-      {/* Current Month */}
-      <Typography variant="h6" align="center" sx={{ mb: 1, color: "#222" }}>
-        {getCurrentMonthName()}
+      <Typography variant="h6" align="center" sx={{ mb: 1 }}>
+        {monthId === formatMonthId(getCurrentDate())
+          ? getCurrentMonthName()
+          : `Pending Month: ${monthId.replace("_", "/")}`}
       </Typography>
 
-      {/* Total Amount */}
-      <Typography variant="h5" align="center" sx={{ mb: 3, fontWeight: "bold", color: "#000" }}>
+      <Typography variant="h5" align="center" sx={{ mb: 3, fontWeight: "bold" }}>
         Total Amount: {totalAmount.toLocaleString()} PLN
       </Typography>
 
-      {/* Members Checklist */}
       <Box>
         {members.map(({ id, name, saved }) => (
           <Box
@@ -129,10 +201,9 @@ export default function MonthlySavingChecklist() {
               paddingY: 1,
               borderBottom: "1px solid",
               borderColor: "divider",
-              color: "#222",
             }}
           >
-            <Typography color="#222">{name}</Typography>
+            <Typography>{name}</Typography>
             <Checkbox
               checked={saved}
               onChange={() => toggleSaved(id)}
@@ -144,15 +215,12 @@ export default function MonthlySavingChecklist() {
         ))}
       </Box>
 
-      {/* Total saved count */}
-      <Typography sx={{ mt: 2, color: "#222" }} align="center">
+      <Typography sx={{ mt: 2 }} align="center">
         Total Saved: {totalSaved} / {members.length}
       </Typography>
 
-      {/* Complete Month Button */}
       <Button
         variant="contained"
-        color="primary"
         fullWidth
         sx={{ mt: 3 }}
         onClick={completeMonth}

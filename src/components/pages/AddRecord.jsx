@@ -1,169 +1,196 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  TextField,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+  Alert,
+} from "@mui/material";
 import InputComponent from "../InputComonents/InputComponent";
-import "../../Style/Transactions.css";
 import { createTransaction } from "../../firebase/Transaction";
 import { isAuthenticated } from "../../firebase/Authentication";
 import { ValidateTransaction, waitToLoad } from "../../Helpers/Helpers";
 import NoAccess from "./ErrorComponents/NoAccess";
-import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link, useNavigate } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function AddRecord() {
+  const [data, setData] = useState({
+    title: "",
+    amount: "",
+    type: "",
+  });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [data, setData] = useState({});
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [isSubmitted, setIsSubmitted] = useState(false); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const navigate = useNavigate();  
-
-  const style = {
-    position: "absolute",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    paddingBottom: "50px",
-    marginTop: "20px",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 500,
-    bgcolor: "background.paper",
-    p: 4,
-  };
-
-  const handleOnClick = () => {
-    let error = ValidateTransaction(data);
-    setIsSubmitted(true); // Mark form as submitted
-    setErrorMessage(error);
-    if (!error) {
-      createTransaction(data)
-        .then(() => {
-          setSuccessMessage("Transaction has been created successfully");
-
-          
-          setTimeout(() => {
-            navigate("/Dashboard");  
-          }, 1000);  
-        })
-        .catch((err) => {
-          console.error("Error creating transaction:", err);
-        });
-    }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setError("");
-    setData((prevRecord) => ({
-      ...prevRecord,
-      [name]: value,
-    }));
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     waitToLoad(setLoading);
   }, []);
 
+  const handleChange = (event) => {
+    setErrorMessage("");
+    setSuccessMessage("");
+    const { name, value } = event.target;
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    const error = ValidateTransaction(data);
+    setErrorMessage(error);
+
+    if (!error) {
+      try {
+        await createTransaction(data);
+        setSuccessMessage("🎉 Success! Your record was added.");
+        setData({ title: "", amount: "", type: "" });
+        setTimeout(() => {
+          navigate("/Dashboard");
+        }, 1200);
+      } catch (err) {
+        setErrorMessage("Oops! Something went wrong.");
+        console.error("Error creating transaction:", err);
+      }
+    }
+    setIsSubmitting(false);
+  };
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          minHeight: "80vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+        }}
+      >
+        <Typography variant="h6">Loading your vault...</Typography>
+      </Box>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return <NoAccess />;
+  }
+
   return (
-  
-      <div style={{ display: "flex", alignItems: "center", flexDirection:"column" }}>
-       
-       <div
-  style={{
-    paddingTop: "20px",
-    margin: "20px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "white",
-  }}
->
-  <Link
-    to="/Dashboard"
-    style={{
-      color: "white",
-      display: "flex",
-      alignItems: "center",
-      textDecoration: "none", 
-    }}
-  >
-    <ArrowBackIcon style={{ marginRight: "8px" }} /> Go back
-  </Link>
-</div>
+    <Box
+      sx={{
+        maxWidth: 500,
+        mx: "auto",
+        mt: 6,
+        p: 4,
+        bgcolor: "#f9fafc",
+        borderRadius: 3,
+        boxShadow: 4,
+        color: "text.primary",
+        display: "flex",
+        flexDirection: "column",
+        gap: 3,
+      }}
+    >
+      {/* Back link */}
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Link
+          to="/Dashboard"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+            color: "#0072e5",
+            fontWeight: "bold",
+          }}
+        >
+          <ArrowBackIcon sx={{ mr: 1 }} />
+          Back to Dashboard
+        </Link>
+      </Box>
 
+      {/* Title */}
+      <Typography variant="h5" component="h2" align="center" gutterBottom>
+        🧾 Add Something Meaningful
+      </Typography>
+      <Typography align="center" sx={{ mb: 2, color: "gray" }}>
+        Log a member, goal, or special contribution to your journey.
+      </Typography>
 
-     
-        {isLoggedIn ? (
-          <div style={style} className="Add_blog_container">
-            <h2 style={{ color: "white", marginBottom: "50px" }}>
-              Your Treasure, here you can add a member, a goal or something great!
-            </h2>
-            <form>
-            
-              <InputComponent
-                name="title"
-                handleChange={handleChange}
-                label="Title"
-              />
-              <InputComponent
-                name="amount"
-                handleChange={handleChange}
-                label="Amount"
-              />
+      {/* Form */}
+      <form onSubmit={handleSubmit} noValidate>
+        <InputComponent
+          name="title"
+          label="Title"
+          placeholder="e.g. New member: Sarah"
+          handleChange={handleChange}
+          value={data.title}
+          required
+        />
 
-             
-              <div style={{ marginTop: "20px", color: "white", width: "100%" }}>
-                <select
-                  name="type"
-                  id="type"
-                  onChange={handleChange}
-                  style={{
-                    padding: "10px",
-                    width: "100%",
-                    marginTop: "10px",
-                    background: "#fff",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
-                  }}
-                >
-                  <option value="">Select type</option>
-                  <option value="income">A member</option>
-                  <option value="expense">Set a Goal amount</option>
-                  <option value="extra">Other</option>
-                 
-                </select>
-              </div>
+        <InputComponent
+          name="amount"
+          label="Amount"
+          placeholder="e.g. 200 (PLN)"
+          handleChange={handleChange}
+          value={data.amount}
+          type="number"
+          required
+        />
 
-             
-              {isSubmitted && (
-                <p
-                  className={errorMessage ? "errorMessage" : "successMessage"}
-                >
-                  {successMessage ? successMessage : errorMessage}
-                </p>
-              )}
+        <FormControl fullWidth required sx={{ mt: 2 }}>
+          <InputLabel id="type-label">Select Type</InputLabel>
+          <Select
+            labelId="type-label"
+            id="type"
+            name="type"
+            value={data.type}
+            label="Select Type"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>Select one</em>
+            </MenuItem>
+            <MenuItem value="income">👤 Team Member</MenuItem>
+            <MenuItem value="expense">🎯 Goal Amount</MenuItem>
+            <MenuItem value="extra">✨ Other Contribution</MenuItem>
+          </Select>
+        </FormControl>
 
-           
-              <Button
-                variant="contained"
-                onClick={handleOnClick}
-                style={{ marginTop: "50px" }}
-              >
-                Create
-              </Button>
-            </form>
-          </div>
-        ) : (
-          !loading && <NoAccess />
+        {errorMessage && (
+          <Alert severity="error" sx={{ mt: 2 }}>
+            {errorMessage}
+          </Alert>
         )}
-      </div>
-   
+
+        {successMessage && (
+          <Alert severity="success" sx={{ mt: 2 }}>
+            {successMessage}
+          </Alert>
+        )}
+
+        <Button
+          type="submit"
+          variant="contained"
+          fullWidth
+          color="primary"
+          sx={{ mt: 4, py: 1.5 }}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Saving..." : "🚀 Add to Vault"}
+        </Button>
+      </form>
+    </Box>
   );
 }
 

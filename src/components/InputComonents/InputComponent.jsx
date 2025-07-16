@@ -1,89 +1,51 @@
-import * as React from "react";
-import { useInput } from "@mui/base/useInput";
+import React, { memo } from "react";
+import { TextField } from "@mui/material";
 import { styled } from "@mui/system";
-import { unstable_useForkRef as useForkRef } from "@mui/utils";
 
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { getRootProps, getInputProps } = useInput(props);
+// Styled MUI TextField
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  width: "100%",
+  maxWidth: 360,
+  margin: "10px 0",
+  fontFamily: "IBM Plex Sans, sans-serif",
+  fontSize: "0.875rem",
+  fontWeight: 400,
+  lineHeight: 1.5,
+  borderRadius: 8,
+  "& .MuiOutlinedInput-root": {
+    backgroundColor: theme.palette.mode === "dark" ? "#1C2025" : "#fff",
+    color: theme.palette.mode === "dark" ? "#F3F6F9" : "#1C2025",
+    borderRadius: 8,
+    "& fieldset": {
+      borderColor: theme.palette.mode === "dark" ? "#434D5B" : "#DAE2ED",
+    },
+    "&:hover fieldset": {
+      borderColor: "#3399FF",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#007FFF",
+      boxShadow:
+        theme.palette.mode === "dark"
+          ? "0 0 0 3px rgba(0, 127, 255, 0.4)"
+          : "0 0 0 3px rgba(128, 191, 255, 0.4)",
+    },
+  },
+}));
 
-  const inputProps = getInputProps();
-
-  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
-  inputProps.ref = useForkRef(inputProps.ref, ref);
-
+// Memoized Input Component
+const MemoizedInputComponent = memo(function InputComponent(props) {
   return (
-    <div {...getRootProps()}>
-      <StyledInputElement {...props} {...inputProps} />
-    </div>
-  );
-});
-
-// Here we wrap the InputComponent with React.memo
-const MemoizedInputComponent = React.memo(function InputComponent(props) {
-  return (
-    <CustomInput
-      aria-label="Demo input"
-      placeholder={"Your " + props.name}
-      name={props.name}      
+    <StyledTextField
+      label={props.label || props.name}
+      placeholder={`Your ${props.name}`}
+      name={props.name}
+      value={props.value}
       onChange={props.handleChange}
+      type={props.type || "text"}
+      variant="outlined"
+      required={props.required || false}
     />
   );
 });
 
 export default MemoizedInputComponent;
-
-const blue = {
-  100: "#DAECFF",
-  200: "#80BFFF",
-  400: "#3399FF",
-  500: "#007FFF",
-  600: "#0072E5",
-  700: "#0059B2",
-};
-
-const grey = {
-  50: "#F3F6F9",
-  100: "#E5EAF2",
-  200: "#DAE2ED",
-  300: "#C7D0DD",
-  400: "#B0B8C4",
-  500: "#9DA8B7",
-  600: "#6B7A90",
-  700: "#434D5B",
-  800: "#303740",
-  900: "#1C2025",
-};
-
-const StyledInputElement = styled("input")(
-  ({ theme }) => `
-  width: 320px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.5;
-  padding: 8px 12px;
-  border-radius: 8px;
-  color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-  background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
-    theme.palette.mode === "dark" ? "rgba(0,0,0, 0.5)" : "rgba(0,0,0, 0.05)"
-  };
-
-  &:hover {
-    border-color: ${blue[400]};
-  }
-
-  &:focus {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${
-      theme.palette.mode === "dark" ? blue[600] : blue[200]
-    };
-  }
-
-  // firefox
-  &:focus-visible {
-    outline: 0;
-  }
-`
-);

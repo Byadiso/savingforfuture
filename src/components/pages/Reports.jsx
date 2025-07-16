@@ -1,78 +1,77 @@
 import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  IconButton,
+  Divider,
+  useTheme
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { isAuthenticated } from "../../firebase/Authentication";
 import { Link } from "react-router-dom";
 import NoAccess from "./ErrorComponents/NoAccess";
 import { waitToLoad } from "../../Helpers/Helpers";
-import TableData from "./TableData";
-import CardBugdeto from "./CardBugdeto";
-import "../../Style/Dashboard.css";
 import { listTransactions } from "../../firebase/getTransactions";
-import { filterBenefits} from "../../firebase/Filters";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import MonthlySavingChecklist from "./MonthlySavingChecklist";
-
+import { filterBenefits } from "../../firebase/Filters";
+import MissingSavings from "./OverviewSavings";
 
 function Reports() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [transactions, setTransactions] = React.useState([]);
-  
-  const { filteredBenefits, totalBenefits } = filterBenefits(
-    transactions
-  );
+  const [transactions, setTransactions] = useState([]);
+  const theme = useTheme();
 
-
-  const list = (setDataList) => {
-    return  listTransactions(setDataList);;
-  };
+  const { filteredBenefits, totalBenefits } = filterBenefits(transactions);
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     waitToLoad(setLoading);
-  }, [isLoggedIn]);
+    listTransactions(setTransactions);
+  }, []);
+
+  if (!isLoggedIn && !loading) return <NoAccess />;
 
   return (
-    <div className="main_dashboard">
-      <div
-        style={{
-          paddingTop: "5px",
-          paddingBottom: "140px",
-          margin: "5px",
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-        }}
-      >
-        <Link
-          to="/Dashboard"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            textDecoration: "none",
-          }}
-        >
-          <ArrowBackIcon style={{ marginRight: "5px" }} /> Go back
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      {/* Back Navigation */}
+      <Box display="flex" alignItems="center" mb={4}>
+        <Link to="/Dashboard" style={{ textDecoration: "none", color: "inherit" }}>
+          <IconButton size="small" edge="start">
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography variant="body2" component="span" sx={{ ml: 1 }}>
+            Back to Dashboard
+          </Typography>
         </Link>
-      </div>
-     
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          padding: "5px",
-          
-        }}
-      >
-        <div style={{  width: "100%"}}>
-          {isLoggedIn ? (
-            <MonthlySavingChecklist/>
-          ) : (
-            !loading && <NoAccess />
-          )}
-        </div>
-      </div>
-    </div>
+      </Box>
+
+      {/* Report Header */}
+      <Typography variant="h4" sx={{ fontWeight: 500, mb: 1 }}>
+        Monthly Financial Report
+      </Typography>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+        Overview of savings activity for this month including members who saved and those who haven’t.
+      </Typography>
+
+      <Divider sx={{ mb: 4 }} />
+
+      {/* Savings Overview */}
+      <MissingSavings />
+
+      {/* Future Feature Slots */}
+      {/* 
+      <Divider sx={{ my: 6 }} />
+
+      <Typography variant="h6" sx={{ mb: 2 }}>💡 Benefits Breakdown</Typography>
+      <CardBugdeto data={filteredBenefits} total={totalBenefits} />
+
+      <Divider sx={{ my: 6 }} />
+
+      <Typography variant="h6" sx={{ mb: 2 }}>🧾 All Transactions</Typography>
+      <TableData data={transactions} />
+      */}
+    </Container>
   );
 }
 

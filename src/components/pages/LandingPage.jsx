@@ -28,7 +28,7 @@ function LandingPage() {
       }}
     >
       <Typography variant="h3" gutterBottom>
-        Your Journey to Smart Saving Starts Here 💰
+        Your Journey to Smart Saving Starts Here !
       </Typography>
 
       <Typography variant="h6" sx={{ mb: 4 }}>

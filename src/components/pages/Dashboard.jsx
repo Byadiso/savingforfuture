@@ -23,6 +23,8 @@ import {
 } from "../../firebase/Filters";
 import { KEYWORDS } from "../../firebase/CONSTANTS";
 import { readPlans } from "../../firebase/Plan";
+import DashboardTotalSaved from "./DashbardTotal";
+import MonthlyTotal from "./MonthlyTotal";
 
 function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -87,22 +89,19 @@ function Dashboard() {
     <div className="main_dashboard">
       <div className="dashboard_grid">
         <section className="dashboard_item goal_amount">
-          <CardBugdeto
-            dataExpense={goalAmount}
-            type={`The account in ${currentMonth},${currentYear} `}
-          />
+           <DashboardTotalSaved />
         </section>
 
         {!isAdmin && (
           <section className="dashboard_item home_amount">
-            <CardBugdeto dataExpense={homeExpenseAmount} type=" in 12 Months" />
+            <MonthlyTotal />
           </section>
         )}
 
         
 
         <section className="dashboard_item">
-          <CardBugdeto dataExpense={totalBudgetPlan} type="After 3 Years" />
+          <CardBugdeto dataExpense={totalBudgetPlan} type="Goal After 3 Years" />
         </section>
 
         
