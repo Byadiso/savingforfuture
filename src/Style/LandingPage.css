@@ -3,8 +3,9 @@
 }
 
 :root {
-    --blueColor: #008DDA;
+    /* --blueColor: #008DDA; */
     --textColorGreyParagraph: #333; /* Assuming the grey color */
+    --blueColor: linear-gradient(135deg, #004e92, #000428);
 }
 
 /* all styles  ---------------------------*/

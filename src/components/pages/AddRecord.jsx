@@ -102,7 +102,7 @@ function AddRecord() {
         {isLoggedIn ? (
           <div style={style} className="Add_blog_container">
             <h2 style={{ color: "white", marginBottom: "50px" }}>
-              Your Treasure!
+              Your Treasure, here you can add a member, a goal or something great!
             </h2>
             <form>
             
@@ -133,10 +133,10 @@ function AddRecord() {
                   }}
                 >
                   <option value="">Select type</option>
-                  <option value="income">Income</option>
-                  <option value="expense">Expense</option>
-                  <option value="extra">Extra</option>
-                  <option value="isNotMine">Is Not Mine</option>
+                  <option value="income">A member</option>
+                  <option value="expense">Set a Goal amount</option>
+                  <option value="extra">Other</option>
+                 
                 </select>
               </div>
 

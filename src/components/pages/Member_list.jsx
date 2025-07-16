@@ -12,22 +12,23 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MonthlySavingChecklist from "./MonthlySavingChecklist";
 
 
-function Reports() {
+function MemberList() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = React.useState([]);
-  
+
   const { filteredBenefits, totalBenefits } = filterBenefits(
     transactions
   );
 
 
-  const list = (setDataList) => {
-    return  listTransactions(setDataList);;
+  const listBenefits = (setDataList) => {
+    return setDataList(filteredBenefits);
   };
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
+    listTransactions(setTransactions);
     waitToLoad(setLoading);
   }, [isLoggedIn]);
 
@@ -36,7 +37,6 @@ function Reports() {
       <div
         style={{
           paddingTop: "5px",
-          paddingBottom: "140px",
           margin: "5px",
           display: "flex",
           justifyContent: "flex-start",
@@ -61,19 +61,18 @@ function Reports() {
           alignItems: "center",
           width: "100%",
           padding: "5px",
-          
         }}
       >
         <div style={{  width: "100%"}}>
-          {isLoggedIn ? (
-            <MonthlySavingChecklist/>
-          ) : (
-            !loading && <NoAccess />
-          )}
-        </div>
+                  {isLoggedIn ? (
+                    <MonthlySavingChecklist/>
+                  ) : (
+                    !loading && <NoAccess />
+                  )}
+                </div>
       </div>
     </div>
   );
 }
 
-export default Reports;
+export default MemberList;

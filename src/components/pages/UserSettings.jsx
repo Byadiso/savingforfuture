@@ -117,8 +117,8 @@ function UserSettings() {
             <div className="dashboard_item goal_amount">
               {isLoggedIn && (
                 <CardBugdeto
-                  dataExpense={500} // Replace with dynamic goalAmount
-                  type="Save Goal till 30th December 2024"
+                  dataExpense={7200} 
+                  type="Every Month"
                 />
               )}
             </div>

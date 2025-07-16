@@ -1,143 +1,152 @@
+/* Reset & Box Sizing */
 *, *::before, *::after {
     box-sizing: border-box;
-}
-
-:root {
+  }
+  
+  /* CSS Variables */
+  :root {
     --blueColor: #008DDA;
     --blueActiveColor: #29b4e2;
-    --redColor: #fa1717;  
+    --redColor: #fa1717;
     --greyColor: #4b4a4a;
     --backgroundGrey: rgba(244, 244, 244, 0.918);
-}
-
-/* Base Styles */
-
-body {
+  }
+  
+  /* Base Styles */
+  body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--backgroundGrey);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
-    padding: 0; /* Ensure no unwanted overflow */
-}
-
-/* Dashboard Main Container */
-.main_dashboard {
+    padding: 0;
+    color: var(--greyColor);
+  }
+  
+  /* Main Dashboard Container */
+  .main_dashboard {
     background-color: var(--backgroundGrey);
-    padding: 10px;
-}
-
-/* Summary Section */
-.bugdet_summary {
-    display: flex;
-    flex-direction: row;    
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap; 
-}
-
-/* Summary Item Styles */
-.bugdet_summary_item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin: 10px; 
-    padding: 15px; 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    min-width: 150px; 
-    max-width: 300px; 
-}
-
-/* Dashboard Grid Layout */
-.dashboard_grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 20px; 
-}
-
-.dashboard_item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Centered text for smaller screens */
-}
-
-/* Color Backgrounds */
-.goal_amount {
-    background-color: rgba(0, 128, 0, 0.411);
-}
-
-.home_amount {
-    background-color: rgba(255, 0, 0, 0.263);
-}
-
-.payback {
-    background-color: rgb(255, 0, 0);
-}
-
-/* Mobile Responsiveness */
-@media only screen and (max-width: 720px) {
+    min-height: 100vh;
+  }
+  
+  /* Dashboard Grid Layout */
+  .dashboard_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  
+  /* Dashboard Items */
+  .dashboard_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-weight: 600;
+    color: var(--greyColor);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dashboard_item:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+  }
+  
+  /* Color Variants */
+  .goal_amount {
+    background: linear-gradient(135deg, #004e92, #000428);
+    color: white;
+    font-weight: 700;
+  }
+  
+  .home_amount {
+    background-color: #fff4e5; /* soft warm tone */
+    border: 1.5px solid #ffd54f;
+    color: #664d03;
+  }
+  
+  .payback {
+    background-color: #ffe6e6;
+    border: 1.5px solid var(--redColor);
+    color: var(--redColor);
+  }
+  
+  /* Responsive Adjustments */
+  
+  /* Mobile: full width stacked */
+  @media only screen and (max-width: 720px) {
     body {
-        padding: 0 10px; /* Add padding to prevent overflow */
+      padding: 0 10px;
     }
-
-    .bugdet_summary {
-        flex-direction: column; 
-        align-items: stretch; 
-    }
-
+  
     .dashboard_grid {
-        grid-template-columns: 1fr; 
-        gap: 15px; 
-        padding-right: 0px;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
-
+  
     .dashboard_item {
-        padding: 15px; /* Reduced padding for smaller screens */
-        margin: 10px 0; /* Add vertical spacing between items */
-        width: 100%; /* Ensure items take full width */
+      padding: 20px;
+      font-size: 1rem;
     }
-}
-
-/* Tablets and Larger Mobile Devices */
-@media only screen and (min-width: 720px) and (max-width: 920px) {
+  }
+  
+  /* Medium screens */
+  @media only screen and (min-width: 721px) and (max-width: 920px) {
     body {
-        padding: 0 15px; /* Add padding for better spacing */
+      padding: 0 15px;
     }
-
-    .bugdet_summary {
-        flex-wrap: wrap; /* Ensure proper wrapping on medium screens */
-    }
-
+  
     .dashboard_grid {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for larger mobile */
+      grid-template-columns: repeat(2, 1fr);
     }
-
+  
     .dashboard_item {
-        padding: 20px; /* Maintain padding for larger mobile screens */
+      padding: 22px;
+      font-size: 1.05rem;
     }
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
+  }
+  
+  /* Dark Mode */
+  @media (prefers-color-scheme: dark) {
     body {
-        background: var(--blueColor);
-        color: white;
+      background: var(--blueColor);
+      color: white;
     }
-}
-
-/* Light Mode */
-@media (prefers-color-scheme: light) {
+    
+    .dashboard_item {
+      background-color: rgba(255 255 255 / 0.1);
+      box-shadow: none;
+      color: white;
+    }
+  
+    .goal_amount {
+      background: linear-gradient(135deg, #0078d7, #003366);
+    }
+  
+    .home_amount {
+      background-color: rgba(255 229 143 / 0.15);
+      border-color: #ffd54f;
+      color: #ffd54f;
+    }
+  
+    .payback {
+      background-color: rgba(255 105 105 / 0.15);
+      border-color: #ff5252;
+      color: #ff5252;
+    }
+  }
+  
+  /* Light Mode */
+  @media (prefers-color-scheme: light) {
     body {
-        background: #ddd;
-        color: black;
+      background: #ddd;
+      color: var(--greyColor);
     }
-}
+  }
+  

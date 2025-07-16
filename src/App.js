@@ -18,6 +18,7 @@ import CurrentTransaction from "./components/pages/CurrentTransaction.jsx";
 import Reports from "./components/pages/Reports.jsx";
 import ToBePaid from "./components/pages/ToBePaid.jsx";
 import UserSettings from "./components/pages/UserSettings.jsx";
+import MemberList from "./components/pages/Member_list.jsx";
 
 
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/bugdeto" element={<LandingPage />} />                         
 
           <Route path="/Dashboard" element={<Navbar />} />
+          <Route path="/Members list" element={<MemberList />} />
 
           <Route path="/Benefits" element={<Benefits />} />
           <Route path="/ToBePaid" element={<ToBePaid />} />

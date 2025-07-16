@@ -38,7 +38,6 @@ import { getUsername } from "../../../Helpers/Helpers";
 
 const drawerWidth = 240;
 
-
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -65,13 +64,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-   ...theme.mixins.toolbar,
+  ...theme.mixins.toolbar,
 }));
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
+  background: "linear-gradient(135deg, #004e92, #000428)", // custom gradient
+  color: "white",
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -110,15 +111,13 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState([]);
 
-  const isAdmin =  checkIfAdmin(userId) 
-  const username= getUsername(loggedUser.email)
+  const isAdmin = checkIfAdmin(userId);
+  const username = getUsername(loggedUser.email);
 
-
-  useEffect(() => {       
-    isAuthenticatedDetails(setIsLoggedIn, setUserId);  
-    getLoggedUser(setLoggedUser) 
-  }, [ userId]);
-  
+  useEffect(() => {
+    isAuthenticatedDetails(setIsLoggedIn, setUserId);
+    getLoggedUser(setLoggedUser);
+  }, [userId]);
 
   const navigate = useNavigate();
 
@@ -128,17 +127,14 @@ export default function Navbar() {
       navigate("/Login");
     }
     if (text === "Last month") {
-      
       navigate("/Archived");
     }
     if (text === "Current month") {
-      
       navigate("/CurrentTransaction");
     }
     if (text === "Log in") {
       navigate("/Login");
     }
-  
   };
 
   const handleDrawerOpen = () => {
@@ -154,18 +150,18 @@ export default function Navbar() {
     <AddBoxIcon />,
     <AdjustIcon />,
     !isAdmin && <PaidIcon />,
-    !isAdmin &&<BarChartIcon />,
+    !isAdmin && <BarChartIcon />,
     !isAdmin && <CalendarMonthIcon />,
-    !isLoggedIn? <LogoutIcon />: <LoginIcon />,
+    !isLoggedIn ? <LogoutIcon /> : <LoginIcon />,
   ].filter(Boolean);
 
-  const menu= [
+  const menu = [
     "Dashboard",
     "Add",
     "Plan",
-     !isAdmin && "Members list",
-    !isAdmin && "Reports",    
-  ].filter(Boolean)
+    !isAdmin && "Members list",
+    !isAdmin && "Reports",
+  ].filter(Boolean);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -181,42 +177,48 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            <IconButton style={{ color: "white" }}>
-              <PaymentsIcon fontSize="large" />
-              Saving for the future
-            </IconButton>
+
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
+            <PaymentsIcon fontSize="large" />
+            Saving for the Future
           </Typography>
-          <div style={{alignContent:"left", marginLeft:"810px"}}>        
-          
-            <IconButton style={{ color: "white" }}>
-              <AccountCircleIcon fontSize="large" />
-              <Link to='/UserSettings' style={{textDecoration:"none", color:"white"}}> {username}
-              </Link>             
-            </IconButton>          
-     
-          </div>
+
+          <Box sx={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 1 }}>
+            <AccountCircleIcon fontSize="large" />
+            <Link
+              to="/UserSettings"
+              style={{ textDecoration: "none", color: "white", fontWeight: "bold" }}
+            >
+              {username}
+            </Link>
+          </Box>
         </Toolbar>
       </AppBar>
 
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
+            {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
           {menu.map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon
-                  style={{ display: "flex"}}
-                >
+              <ListItemButton
+                sx={{
+                  '&:hover': {
+                    backgroundColor: '#ffca28',
+                    color: '#000',
+                  },
+                }}
+              >
+                <ListItemIcon style={{ display: "flex" }}>
                   <Link
                     to={"/" + text}
                     style={{
@@ -227,10 +229,7 @@ export default function Navbar() {
                     {icons[index]}
                   </Link>
                 </ListItemIcon>
-                <Link
-                  to={"/" + text}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+                <Link to={"/" + text} style={{ textDecoration: "none", color: "black" }}>
                   <ListItemText primary={text} />
                 </Link>
               </ListItemButton>
@@ -239,20 +238,27 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["Current month", "Last month", isLoggedIn ?"Log out":"Log in"].map(
-            (text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton onClick={() => handleClick(text)}>
-                  <ListItemIcon>
-                    {text === "Log out"|| text === "Log in" ? icons[icons.length-1] : <CalendarMonthIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            )
-          )}
+          {["Current month", "Last month", isLoggedIn ? "Log out" : "Log in"].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton
+                onClick={() => handleClick(text)}
+                sx={{
+                  '&:hover': {
+                    backgroundColor: '#ffca28',
+                    color: '#000',
+                  },
+                }}
+              >
+                <ListItemIcon>
+                  {text === "Log out" || text === "Log in" ? icons[icons.length - 1] : <CalendarMonthIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Dashboard />

@@ -80,31 +80,8 @@ const CurrentTransaction = () => {
             className="bugdet_summary"
             style={{ display: "flex", alignItems: "center"}}
           >
-            <div
-              className="bugdet_summary_item"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                padding: "20px",
-              }}
-            >
-              <CardBugdeto dataExpense={total} type="current month bugdet" />
-            </div>
-      </div>
-      <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              padding: "5px",
-            }}
-          >
-            <div style={{ width: "100%" }}>              
-                <TableData fetchDataFunction={listByMonth} />             
-             
-            </div>
-      </div>
+            
+      </div>      
       </>}
     
     </div>
