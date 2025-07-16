@@ -7,14 +7,14 @@ import { getStorage } from "firebase/storage";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDwrBTO77z2Z-O2HfBZ6yxO5NJG2gUo4dg",
-  authDomain: "bugdeto.firebaseapp.com",
-  databaseURL: "https://bugdeto-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "bugdeto",
-  storageBucket: "bugdeto.appspot.com",
-  messagingSenderId: "1013395788593",
-  appId: "1:1013395788593:web:5d7d10a30ebc5364dbd610",
-  measurementId: "G-LD959Z9TBW"
+  apiKey: "AIzaSyC705NQ6r02gGuGpiekSIE5Nj5Bbr4hxnM",
+  authDomain: "saving-for-the-future.firebaseapp.com",
+  databaseURL: "https://saving-for-the-future-default-rtdb.firebaseio.com",
+  projectId: "saving-for-the-future",
+  storageBucket: "saving-for-the-future.firebasestorage.app",
+  messagingSenderId: "856852461879",
+  appId: "1:856852461879:web:80a247c1e1a729af6a82b2",
+  measurementId: "G-Z2JKL143F0"
 };
 
 // Initialize Firebase

@@ -153,22 +153,18 @@ export default function Navbar() {
     <DashboardIcon />,
     <AddBoxIcon />,
     <AdjustIcon />,
-    isAdmin && <PaidIcon />,
-    isAdmin &&<BarChartIcon />,
-    isAdmin && <SportsSoccerIcon />,
-    isAdmin && <SavingsIcon />,
-    isAdmin && <CalendarMonthIcon />,
-    isLoggedIn? <LogoutIcon />: <LoginIcon />,
+    !isAdmin && <PaidIcon />,
+    !isAdmin &&<BarChartIcon />,
+    !isAdmin && <CalendarMonthIcon />,
+    !isLoggedIn? <LogoutIcon />: <LoginIcon />,
   ].filter(Boolean);
 
   const menu= [
     "Dashboard",
-    "Add ",
+    "Add",
     "Plan",
-     isAdmin && "ToBePaid",
-    isAdmin && "Reports",
-    isAdmin && "Super",
-     isAdmin && "Motivation",
+     !isAdmin && "Members list",
+    !isAdmin && "Reports",    
   ].filter(Boolean)
 
   return (
@@ -188,7 +184,7 @@ export default function Navbar() {
           <Typography variant="h6" noWrap component="div">
             <IconButton style={{ color: "white" }}>
               <PaymentsIcon fontSize="large" />
-              Bugdeto
+              Saving for the future
             </IconButton>
           </Typography>
           <div style={{alignContent:"left", marginLeft:"810px"}}>        

@@ -1,9 +1,9 @@
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ac2c8eeb-7293-489f-a00b-6c4808240c71/deploy-status)](https://app.netlify.com/sites/Bugdeto/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ac2c8eeb-7293-489f-a00b-6c4808240c71/deploy-status)](https://app.netlify.com/sites/savingforfuture/deploys)
 
-# Bugdeto
+# Saving for the future
 
-Bugdeto
+Saving for the future
 
 # TABLE OF CONTENTS
 
@@ -20,7 +20,7 @@ Bugdeto
 ### Live project can be accessed via below link:
 
 - Github Pages: https://byadiso.github.io/budgeto/
-- Netlify : https://bugdeto.netlify.app
+- Netlify : https://savingforfuture.netlify.app
 
 # Build With
 
@@ -35,8 +35,8 @@ Bugdeto
 
 # Installation
 
-- \$ git clone https://github.com/Byadiso/Bugdeto.git
-- \$ cd Bugdeto
+- \$ git clone https://github.com/Byadiso/savingforfuture.git
+- \$ cd savingforfuture
 
 # Author
 

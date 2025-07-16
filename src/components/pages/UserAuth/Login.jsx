@@ -63,7 +63,7 @@ function Login() {
           <div>
             <div className="login_form">
               <div>
-                <p style={{color:"black"}}>Login to bugdeto.com</p>
+                <p style={{color:"black"}}>Login to saving for the future</p>
                 <p className="error">{error === null ? successMessage : error}</p>
                 <input
                   type="text"
@@ -92,11 +92,11 @@ function Login() {
                   
                   <p>Don't have an account yet?</p>
                   <Link to="/Register" className="register_button">
-                    Sign Up. It's free and takes seconds.
+                    Sign Up Here...
                   </Link>
                 </div>
                 <p >
-                  <Link to="/" style={{color:"black", textDecoration:"none"}} className="buttonToHome"><strong>Bugdeto.com</strong></Link>
+                  <Link to="/" style={{color:"black", textDecoration:"none"}} className="buttonToHome"><strong>savingforthefuture.com</strong></Link>
                 </p>
               </div>
               
