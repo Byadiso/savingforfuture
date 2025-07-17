@@ -1,29 +1,56 @@
-import React, { useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-import "../../../Style/Style.css";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Box, Typography, Button } from "@mui/material";
 import { removeFirstLetter } from "../../../Helpers/Helpers";
 
-function NoAccess() {
-  
-
-  const pageName = useLocation(); 
-  const page = removeFirstLetter(pageName.pathname);
+export default function NoAccess() {
+  const location = useLocation();
+  const page = removeFirstLetter(location.pathname);
 
   return (
-    <div
-      className="NoAccessContainer"     
+    <Box
+      sx={{
+        height: "70vh",           // reduced height
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        px: 3,
+        textAlign: "center",
+        bgcolor: "#f9fafb",
+        borderRadius: 2,
+        boxShadow: 3,
+        maxWidth: 360,            // reduced width
+        mx: "auto",
+        mt: 4,                    // reduced top margin
+      }}
     >
-      <h1 style={{ color: "black" }}> 403</h1>
-      <h3 style={{ color: "black" }}> Access Denied</h3>
-      <p style={{ color: "black" }}>
-        {" "}
-        You don't have permission to access <span style={{ color: "#29b4e2" }}>{page}</span> page!
-      </p>
-      <Link to="/Login">       
-        <input className="login" type="submit" value="First login" id="loginSubmit" />
-      </Link>
-    </div>
+      <Typography variant="h1" color="error" sx={{ fontWeight: "bold", mb: 1 }}>
+        403
+      </Typography>
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        Access Denied
+      </Typography>
+      <Typography variant="body1" sx={{ mb: 4, color: "text.secondary" }}>
+        You don't have permission to access{" "}
+        <Box
+          component="span"
+          sx={{ color: "primary.main", fontWeight: "medium" }}
+        >
+          {page}
+        </Box>{" "}
+        page!
+      </Typography>
+
+      <Button
+        component={Link}
+        to="/Login"
+        variant="contained"
+        color="primary"
+        size="large"
+      >
+        Go to Login
+      </Button>
+    </Box>
   );
 }
-
-export default NoAccess;

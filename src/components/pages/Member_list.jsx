@@ -3,11 +3,9 @@ import { isAuthenticated } from "../../firebase/Authentication";
 import { Link } from "react-router-dom";
 import NoAccess from "./ErrorComponents/NoAccess";
 import { waitToLoad } from "../../Helpers/Helpers";
-import TableData from "./TableData";
-import CardBugdeto from "./CardBugdeto";
 import "../../Style/Dashboard.css";
-import { listTransactions } from "../../firebase/getTransactions";
-import { filterBenefits} from "../../firebase/Filters";
+// import { listTransactions } from "../../firebase/getTransactions";
+// import { filterBenefits} from "../../firebase/Filters";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MonthlySavingChecklist from "./MonthlySavingChecklist";
 
@@ -15,20 +13,13 @@ import MonthlySavingChecklist from "./MonthlySavingChecklist";
 function MemberList() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [transactions, setTransactions] = React.useState([]);
+  // const [transactions, setTransactions] = React.useState([]);
 
-  const { filteredBenefits, totalBenefits } = filterBenefits(
-    transactions
-  );
-
-
-  const listBenefits = (setDataList) => {
-    return setDataList(filteredBenefits);
-  };
+  
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
-    listTransactions(setTransactions);
+    // listTransactions(setTransactions);
     waitToLoad(setLoading);
   }, [isLoggedIn]);
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Typography, Button, CircularProgress } from "@mui/material";
+import { isAuthenticatedDetails } from "../../firebase/Authentication";
 import { Link } from "react-router-dom";
+import { Box, Container, Typography, Button, CircularProgress } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import NoAccess from "./ErrorComponents/NoAccess";
 import SavingsMatrix from "./SavingsMatrix";
-import { isAuthenticatedDetails } from "../../firebase/Authentication";
 
-export default function CurrentTransaction() {
+const LastMonths = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,8 +32,8 @@ export default function CurrentTransaction() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* Back Button - Always visible and prominent */}
-      <Box sx={{ mb: 4, display: "flex", justifyContent: "flex-start" }}>
+      {/* Back Button */}
+      <Box sx={{ mb: 3, display: "flex", justifyContent: "flex-start" }}>
         <Button
           component={Link}
           to="/Dashboard"
@@ -41,25 +41,29 @@ export default function CurrentTransaction() {
           variant="contained"
           color="primary"
           sx={{
-            fontWeight: "bold",
             px: 3,
             py: 1,
+            fontWeight: "bold",
             borderRadius: 2,
-            boxShadow: 2,
             textTransform: "none",
+            boxShadow: 2,
           }}
         >
           Go Back
         </Button>
       </Box>
 
-      {/* Header */}
+      {/* Page Title */}
       <Typography variant="h5" fontWeight={600} sx={{ mb: 2 }}>
-        📊 Current Monthly Savings Overview
+        🔄 Monthly Savings Overview
       </Typography>
 
-      {/* Matrix */}
-      <SavingsMatrix />
+      {/* Savings Table */}
+      <Box>
+        <SavingsMatrix />
+      </Box>
     </Container>
   );
-}
+};
+
+export default LastMonths;

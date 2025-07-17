@@ -28,7 +28,11 @@ import SavingsIcon from "@mui/icons-material/Savings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from '@mui/icons-material/Login';
 import AdjustIcon from '@mui/icons-material/Adjust';
+import NoteIcon from '@mui/icons-material/Note';
+
 import PaidIcon from '@mui/icons-material/Paid';
+import GroupIcon from '@mui/icons-material/Group';
+
 
 import Dashboard from "../Dashboard";
 import { checkIfAdmin, getLoggedUser, isAuthenticatedDetails, LogoutUser } from "../../../firebase/Authentication";
@@ -126,8 +130,8 @@ export default function Navbar() {
       LogoutUser();
       navigate("/Login");
     }
-    if (text === "Last month") {
-      navigate("/Archived");
+    if (text === "Last months") {
+      navigate("/Last_Months");
     }
     if (text === "Current month") {
       navigate("/CurrentTransaction");
@@ -148,8 +152,8 @@ export default function Navbar() {
   const icons = [
     <DashboardIcon />,
     <AddBoxIcon />,
-    <AdjustIcon />,
-    !isAdmin && <PaidIcon />,
+    <NoteIcon />,
+    !isAdmin && <GroupIcon />,
     !isAdmin && <BarChartIcon />,
     !isAdmin && <CalendarMonthIcon />,
     !isLoggedIn ? <LogoutIcon /> : <LoginIcon />,
@@ -158,7 +162,7 @@ export default function Navbar() {
   const menu = [
     "Dashboard",
     "Add",
-    "Plan",
+    "Add Notes",
     !isAdmin && "Members list",
     !isAdmin && "Reports",
   ].filter(Boolean);
@@ -238,7 +242,7 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["Current month", "Last month", isLoggedIn ? "Log out" : "Log in"].map((text, index) => (
+          {["Current month", "Last months", isLoggedIn ? "Log out" : "Log in"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton
                 onClick={() => handleClick(text)}
