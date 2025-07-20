@@ -9,7 +9,6 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

@@ -10,7 +10,6 @@ import Navbar from "./components/pages/Layouts/Navbar.jsx";
 import AddRecord from "./components/pages/AddRecord.jsx";
 import Planning from "./components/pages/Planning.jsx";
 import Transaction from "./components/pages/Transaction.jsx";
-import ArchiveCard from "./components/pages/LastMonths.jsx";
 import CurrentTransaction from "./components/pages/CurrentTransaction.jsx";
 import Reports from "./components/pages/Reports.jsx";
 import UserSettings from "./components/pages/UserSettings.jsx";

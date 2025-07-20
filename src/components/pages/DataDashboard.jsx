@@ -10,20 +10,28 @@ import {
   ListItemText,
   Divider,
   Link as MuiLink,
+  Paper,
+  Avatar,
+  Button,
+  Stack,
 } from "@mui/material";
-import UploadDocument from "./UploadDocuments"; // Your existing upload component
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import GroupIcon from "@mui/icons-material/Group";
+import DescriptionIcon from "@mui/icons-material/Description";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import GavelIcon from "@mui/icons-material/Gavel";
+import UploadDocument from "./UploadDocuments";
 import { firestore } from "../../firebase/Firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router-dom"; // Optional if using routing
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
+function TabPanel({ children, value, index, ...other }) {
   return (
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`dashboard-tabpanel-${index}`}
+      aria-labelledby={`dashboard-tab-${index}`}
       {...other}
     >
       {value === index && <Box sx={{ py: 3 }}>{children}</Box>}
@@ -33,152 +41,149 @@ function TabPanel(props) {
 
 export default function DataDashboard() {
   const [tabIndex, setTabIndex] = useState(0);
-
-  // Members state
   const [members, setMembers] = useState([]);
-  const [membersLoading, setMembersLoading] = useState(true);
-
-  // Documents state
   const [documents, setDocuments] = useState([]);
+  const [membersLoading, setMembersLoading] = useState(true);
   const [docsLoading, setDocsLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchMembers() {
-      setMembersLoading(true);
-      try {
-        const querySnapshot = await getDocs(collection(firestore, "members"));
-        const membersList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setMembers(membersList);
-      } catch (error) {
-        console.error("Error fetching members:", error);
-      }
-      setMembersLoading(false);
-    }
+  const navigate = useNavigate(); // Optional if using React Router
 
-    async function fetchDocuments() {
+  useEffect(() => {
+    const fetchData = async () => {
+      setMembersLoading(true);
       setDocsLoading(true);
       try {
-        const querySnapshot = await getDocs(collection(firestore, "documents"));
-        const docsList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setDocuments(docsList);
+        const [memberSnap, docSnap] = await Promise.all([
+          getDocs(collection(firestore, "members")),
+          getDocs(collection(firestore, "documents")),
+        ]);
+        setMembers(memberSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+        setDocuments(docSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
       } catch (error) {
-        console.error("Error fetching documents:", error);
+        console.error("Error fetching data:", error);
+      } finally {
+        setMembersLoading(false);
+        setDocsLoading(false);
       }
-      setDocsLoading(false);
-    }
+    };
 
-    fetchMembers();
-    fetchDocuments();
+    fetchData();
   }, []);
 
-  const handleChange = (event, newValue) => {
-    setTabIndex(newValue);
-  };
-
   return (
-    <Box sx={{ maxWidth: 900, mx: "auto", mt: 6, p: 3, bgcolor: "#f9fafb", borderRadius: 2 }}>
-      <Typography variant="h4" gutterBottom align="center" fontWeight="bold" sx={{
-    bgcolor: "background.paper", // usually white/light background
-    color:"grey",
-    py: 2,
-    borderRadius: 2,
-    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-  }}>
-        📂 Data Dashboard
-      </Typography>
+    <Box sx={{ maxWidth: 960, mx: "auto", mt: 6, p: 2 }}>
+      <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
+        {/* Back Button */}
+        <Stack direction="row" justifyContent="flex-start" sx={{ mb: 2 }}>
+          <Button
+            startIcon={<ArrowBackIcon />}
+            variant="outlined"
+            color="primary"
+            onClick={() => navigate("/dashboard")} // Adjust this route as needed
+          >
+            Back to Dashboard
+          </Button>
+        </Stack>
 
-      <Tabs
-        value={tabIndex}
-        onChange={handleChange}
-        aria-label="dashboard tabs"
-        centered
-        textColor="primary"
-        indicatorColor="primary"
-      >
-        <Tab label="Agreements" />
-        <Tab label="Members" />
-        <Tab label="Documents" />
-        <Tab label="Upload Document" />
-      </Tabs>
+        <Typography
+          variant="h4"
+          align="center"
+          fontWeight="bold"
+          color="primary"
+          gutterBottom
+        >
+          Data and Documents
+        </Typography>
 
-      {/* Agreement Section */}
-      <TabPanel value={tabIndex} index={0}>
-        {/* You can replace below static content with dynamic if needed */}
-        <Typography variant="h6" gutterBottom>
-          🤝 Agreement Sections
-        </Typography>
-        <Typography sx={{ mb: 2 }}>
-          Review your agreements, terms, and conditions here. This section can include static text or links to important documents.
-        </Typography>
-        <Typography>
-          Example Agreement:{" "}
-          <MuiLink href="https://example.com/agreement.pdf" target="_blank" rel="noopener">
-            Terms and Conditions
+        <Tabs
+          value={tabIndex}
+          onChange={(e, newValue) => setTabIndex(newValue)}
+          centered
+          variant="scrollable"
+          scrollButtons="auto"
+          textColor="primary"
+          indicatorColor="primary"
+          sx={{ mb: 2 }}
+        >
+          <Tab icon={<GavelIcon />} iconPosition="start" label="Agreements" />
+          <Tab icon={<GroupIcon />} iconPosition="start" label="Members" />
+          <Tab icon={<DescriptionIcon />} iconPosition="start" label="Documents" />
+          <Tab icon={<UploadFileIcon />} iconPosition="start" label="Upload" />
+        </Tabs>
+
+        {/* ... TabPanels remain unchanged ... */}
+        <TabPanel value={tabIndex} index={0}>
+          <Typography variant="h6" gutterBottom color="text.secondary">
+            🤝 Agreements & Terms
+          </Typography>
+          <Typography sx={{ mb: 2 }} color="text.secondary">
+            Review your agreements, terms, and conditions here.
+          </Typography>
+          <MuiLink href="https://example.com/agreement.pdf" target="_blank" underline="hover">
+            📄 View Terms and Conditions
           </MuiLink>
-        </Typography>
-      </TabPanel>
+        </TabPanel>
 
-      {/* Members Section */}
-      <TabPanel value={tabIndex} index={1}>
-        <Typography variant="h6" gutterBottom>
-          👥 Team Members ({members.length})
-        </Typography>
-        {membersLoading ? (
-          <CircularProgress />
-        ) : (
-          <List dense>
-            {members.map((member) => (
-              <React.Fragment key={member.id}>
-                <ListItem>
-                  <ListItemText primary={member.name || "Unnamed Member"} />
-                </ListItem>
-                <Divider />
-              </React.Fragment>
-            ))}
-            {members.length === 0 && <Typography>No members found.</Typography>}
-          </List>
-        )}
-      </TabPanel>
+        <TabPanel value={tabIndex} index={1}>
+          <Typography variant="h6" gutterBottom color="text.secondary">
+            👥 Members ({members.length})
+          </Typography>
+          {membersLoading ? (
+            <Box textAlign="center" py={4}><CircularProgress /></Box>
+          ) : members.length === 0 ? (
+            <Typography>No members found.</Typography>
+          ) : (
+            <List>
+              {members.map((member) => (
+                <React.Fragment key={member.id}>
+                  <ListItem>
+                    <Avatar sx={{ mr: 2 }}>{member.name?.charAt(0) || "U"}</Avatar>
+                    <ListItemText
+                      primary={member.name || "Unnamed Member"}
+                      secondary={member.email || "No email provided"}
+                    />
+                  </ListItem>
+                  <Divider />
+                </React.Fragment>
+              ))}
+            </List>
+          )}
+        </TabPanel>
 
-      {/* Documents Section */}
-      <TabPanel value={tabIndex} index={2}>
-        <Typography variant="h6" gutterBottom>
-          📄 Uploaded Documents ({documents.length})
-        </Typography>
-        {docsLoading ? (
-          <CircularProgress />
-        ) : (
-          <List dense>
-            {documents.map((doc) => (
-              <React.Fragment key={doc.id}>
-                <ListItem>
-                  <ListItemText
-                    primary={doc.name || "Unnamed Document"}
-                    secondary={
-                      <MuiLink href={doc.url} target="_blank" rel="noopener" underline="hover">
-                        View / Download
-                      </MuiLink>
-                    }
-                  />
-                </ListItem>
-                <Divider />
-              </React.Fragment>
-            ))}
-            {documents.length === 0 && <Typography>No documents uploaded yet.</Typography>}
-          </List>
-        )}
-      </TabPanel>
+        <TabPanel value={tabIndex} index={2}>
+          <Typography variant="h6" gutterBottom color="text.secondary">
+            📄 Uploaded Documents ({documents.length})
+          </Typography>
+          {docsLoading ? (
+            <Box textAlign="center" py={4}><CircularProgress /></Box>
+          ) : documents.length === 0 ? (
+            <Typography>No documents uploaded yet.</Typography>
+          ) : (
+            <List>
+              {documents.map((doc) => (
+                <React.Fragment key={doc.id}>
+                  <ListItem>
+                    <DescriptionIcon sx={{ color: "primary.main", mr: 2 }} />
+                    <ListItemText
+                      primary={doc.name || "Unnamed Document"}
+                      secondary={
+                        <MuiLink href={doc.url} target="_blank" underline="hover">
+                          View / Download
+                        </MuiLink>
+                      }
+                    />
+                  </ListItem>
+                  <Divider />
+                </React.Fragment>
+              ))}
+            </List>
+          )}
+        </TabPanel>
 
-      {/* Upload Document Section */}
-      <TabPanel value={tabIndex} index={3}>
-        <UploadDocument />
-      </TabPanel>
+        <TabPanel value={tabIndex} index={3}>
+          <UploadDocument />
+        </TabPanel>
+      </Paper>
     </Box>
   );
 }

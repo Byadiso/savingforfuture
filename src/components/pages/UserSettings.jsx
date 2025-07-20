@@ -1,149 +1,191 @@
 import React, { useEffect, useState } from "react";
 import {
-  checkIfAdmin,
-  getLoggedUser,
-  isAuthenticated,
-  isAuthenticatedDetails,
-} from "../../firebase/Authentication";
-import { Link, useNavigate } from "react-router-dom";
-import NoAccess from "./ErrorComponents/NoAccess";
-import { totalPlanBugdet, waitToLoad } from "../../Helpers/Helpers";
-import CardBugdeto from "./CardBugdeto";
-import "../../Style/Dashboard.css";
-import { listTransactions } from "../../firebase/getTransactions";
-import {
-  filterBenefits,
-  filterTransactionsAndCalculateTotal,
-  filterWhatIsNotMine,
-  listAlltransactionWithoutSuper,
-} from "../../firebase/Filters";
-import { KEYWORDS } from "../../firebase/CONSTANTS";
-import { readPlans } from "../../firebase/Plan";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Navbar from "./Layouts/Navbar";
-import AddIcon from "@mui/icons-material/Add";
-import UserModal from "../Modals/UserModal"; 
-import SettingsIcon from '@mui/icons-material/Settings';
+  Box,
+  Typography,
+  Grid,
+  Paper,
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+  Divider,
+} from "@mui/material";
 
-function UserSettings() {
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SettingsIcon from "@mui/icons-material/Settings";
+
+import { Link, useNavigate } from "react-router-dom";
+
+import { isAuthenticated, isAuthenticatedDetails } from "../../firebase/Authentication";
+import { readPlans } from "../../firebase/Plan";
+
+import CardBugdeto from "./CardBugdeto";
+import UserModal from "../Modals/UserModal";
+import NoAccess from "./ErrorComponents/NoAccess";
+
+export default function UserSettings() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState(null);
-  const [transactions, setTransactions] = React.useState([]);
   const [budgets, setBudgets] = useState([]);
-  const [loggedUser, setLoggedUser] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
-    getLoggedUser(setLoggedUser);
     isAuthenticatedDetails(setIsLoggedIn, setUserId);
-    listTransactions(setTransactions);
-    fetchBudgets(userId);
-    waitToLoad(setLoading);
-  }, [navigate, isLoggedIn]);
+    setLoading(false);
+  }, []);
 
-  const fetchBudgets = async (userId) => {
-    const plans = await readPlans(userId);
-    const plansArray = Object.keys(plans).map((key) => ({
-      id: key,
-      ...plans[key],
-    }));
-    setBudgets(plansArray);
+  useEffect(() => {
+    if (userId) fetchBudgets(userId);
+  }, [userId]);
+
+  const fetchBudgets = async (uid) => {
+    setLoading(true);
+    try {
+      const plans = await readPlans(uid);
+      const plansArray = Object.keys(plans).map((key) => ({
+        id: key,
+        ...plans[key],
+      }));
+      setBudgets(plansArray);
+    } catch (error) {
+      console.error("Failed to fetch plans:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleAddNewPlan = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const handleSaveData = (dropdownValue, textFieldValue) => {
-    // Handle the save logic here
+    // Save logic here
     console.log("Saved data:", { dropdownValue, textFieldValue });
     setIsModalOpen(false);
   };
 
+  if (!isLoggedIn) return <NoAccess />;
+
   return (
-    <div className="main_dashboard">
-      {isLoggedIn && (
-        <>
-          <div
-            style={{
-              paddingTop: "5px",
-              paddingBottom: "20px",
-              margin: "5px",
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            <Link
-              to="/Dashboard"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                textDecoration: "none",
-                color: "black",
+    <Box sx={{ maxWidth: 960, mx: "auto", mt: 6, px: 2 }}>
+      {/* Back Button */}
+      <Box sx={{ mb: 3 }}>
+        <Button
+          component={Link}
+          to="/Dashboard"
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
+          color="primary"
+        >
+          Back to Dashboard
+        </Button>
+      </Box>
+
+      {/* Header & Action */}
+      <Paper
+        elevation={3}
+        sx={{
+          p: 3,
+          mb: 5,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          bgcolor: "#1976d2",
+          color: "white",
+          borderRadius: 2,
+        }}
+      >
+        <Typography variant="h5" fontWeight="bold">
+          User Settings & Goals
+        </Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<SettingsIcon />}
+          onClick={handleOpenModal}
+          sx={{
+            bgcolor: "#fff",
+            color: "#1976d2",
+            fontWeight: "bold",
+            "&:hover": { bgcolor: "#f0f0f0" },
+          }}
+        >
+          Change Settings
+        </Button>
+      </Paper>
+
+      {/* Content */}
+      {loading ? (
+        <Box sx={{ textAlign: "center", mt: 6 }}>
+          <CircularProgress size={50} />
+        </Box>
+      ) : (
+        <Grid container spacing={4}>
+          {/* Budget Cards */}
+          {budgets.length > 0 ? (
+            budgets.map((budget) => (
+              <Grid item xs={12} sm={6} key={budget.id}>
+                <CardBugdeto dataExpense={budget.expense} type={budget.type} />
+              </Grid>
+            ))
+          ) : (
+            <Grid item xs={12}>
+              <Paper
+                elevation={1}
+                sx={{
+                  p: 3,
+                  textAlign: "center",
+                  color: "text.secondary",
+                  fontStyle: "italic",
+                }}
+              >
+                No budget plans found. Click “Change Settings” to add your first plan.
+              </Paper>
+            </Grid>
+          )}
+
+          {/* Info Panel */}
+          <Grid item xs={12}>
+            <Paper
+              elevation={1}
+              sx={{
+                p: 3,
+                bgcolor: "#e3f2fd",
+                borderRadius: 2,
+                textAlign: "center",
+                fontWeight: "medium",
+                fontSize: "1.1rem",
+                color: "#1976d2",
               }}
             >
-              <ArrowBackIcon style={{ marginRight: "5px" }} /> Go back
-            </Link>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              padding: "5px",
-              marginBottom:"100px",
-              alignItems: "center",
-              color: "white",
-              backgroundColor: "#008DDA",
-              justifyContent: "center",
-            }}
-          >
-            <p onClick={handleAddNewPlan} className="Add_plan">
-              Change Settings
-            </p>
-            <SettingsIcon onClick={handleAddNewPlan} className="Add_plan" />
-          </div>
-
-          <div className="dashboard_grid">
-            <div className="dashboard_item goal_amount">
-              {isLoggedIn && (
-                <CardBugdeto
-                  dataExpense={7200} 
-                  type="Every Month"
-                />
-              )}
-            </div>
-            <div className="dashboard_item goal_amount">
-              <p>
-                On this page you will be able to change goal settings and more
-                settings
-              </p>
-            </div>
-          </div>
-
-          
-
-          {isModalOpen && (
-            <UserModal
-              isOpen={isModalOpen}
-              onClose={handleCloseModal}
-              onSave={handleSaveData}
-            />
-          )}
-        </>
+              Update your financial goals, preferences, and user settings here to tailor
+              your dashboard experience.
+            </Paper>
+          </Grid>
+        </Grid>
       )}
-      {!isLoggedIn && <NoAccess />}
-    </div>
+
+      {/* Settings Modal */}
+      <Dialog open={isModalOpen} onClose={handleCloseModal} fullWidth maxWidth="sm">
+        <DialogTitle sx={{ fontWeight: "bold" }}>
+          Change User Settings
+        </DialogTitle>
+        <DialogContent>
+          <UserModal onSave={handleSaveData} onClose={handleCloseModal} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal}>Cancel</Button>
+          <Button variant="contained" onClick={() => {/* Trigger save inside UserModal or lift state */}}>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
   );
 }
-
-export default UserSettings;

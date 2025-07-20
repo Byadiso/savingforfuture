@@ -21,6 +21,7 @@ import PaymentsIcon from "@mui/icons-material/Payments";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
@@ -31,10 +32,8 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from '@mui/icons-material/Login';
-import AdjustIcon from '@mui/icons-material/Adjust';
 import NoteIcon from '@mui/icons-material/Note';
 
-import PaidIcon from '@mui/icons-material/Paid';
 import GroupIcon from '@mui/icons-material/Group';
 
 
