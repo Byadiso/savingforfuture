@@ -28,10 +28,18 @@ const formatMonthId = (date) => {
   return `${date.getFullYear()}_${(date.getMonth() + 1).toString().padStart(2, "0")}`;
 };
 
-const getNextMonthId = () => {
-  const d = getCurrentDate();
-  const year = d.getMonth() === 11 ? d.getFullYear() + 1 : d.getFullYear();
-  const month = d.getMonth() === 11 ? 1 : d.getMonth() + 2;
+// ✅ NEW FUNCTION: Next month based on current document ID
+const getNextMonthIdFrom = (currentMonthId) => {
+  const [yearStr, monthStr] = currentMonthId.split("_");
+  let year = parseInt(yearStr, 10);
+  let month = parseInt(monthStr, 10);
+
+  month += 1;
+  if (month > 12) {
+    month = 1;
+    year += 1;
+  }
+
   return `${year}_${month.toString().padStart(2, "0")}`;
 };
 
@@ -50,7 +58,6 @@ export default function MonthlySavingChecklist() {
     async function fetchIncompleteOrCurrentMonth() {
       setLoading(true);
 
-      // Query for incomplete months, order by ID descending, limit 1
       const savingsCol = collection(firestore, "savings");
       const q = query(
         savingsCol,
@@ -65,7 +72,6 @@ export default function MonthlySavingChecklist() {
       if (!querySnapshot.empty) {
         monthDocId = querySnapshot.docs[0].id;
       } else {
-        // No incomplete month found, fallback to current month ID
         monthDocId = formatMonthId(getCurrentDate());
       }
       setMonthId(monthDocId);
@@ -89,7 +95,6 @@ export default function MonthlySavingChecklist() {
         setMembers(populated);
         setCompleted(data.completed || false);
       } else {
-        // Initialize if document doesn't exist (unlikely for current or incomplete month)
         const initialMembers = membersList.map((name, idx) => ({
           id: idx,
           name,
@@ -131,21 +136,19 @@ export default function MonthlySavingChecklist() {
     const totalSaved = members.filter((m) => m.saved).length;
     const totalAmount = totalSaved * MEMBER_VALUE;
 
-    // Archive the month
     await addDoc(collection(firestore, "archives"), {
       month: getCurrentMonthName(),
       amount: totalAmount,
       timestamp: new Date(),
     });
 
-    // Mark current month as completed
     await updateDoc(doc(firestore, "savings", monthId), {
       completed: true,
       totalAmount: totalAmount,
     });
 
-    // Create/reset next month document
-    const nextMonthDoc = doc(firestore, "savings", getNextMonthId());
+    const nextMonthId = getNextMonthIdFrom(monthId);
+    const nextMonthDoc = doc(firestore, "savings", nextMonthId);
 
     const nextMembers = {};
     membersList.forEach((name, idx) => {
@@ -159,7 +162,7 @@ export default function MonthlySavingChecklist() {
     });
 
     setCompleted(true);
-    setMonthId(getNextMonthId());
+    setMonthId(nextMonthId);
     setMembers(membersList.map((name, idx) => ({ id: idx, name, saved: false })));
   };
 

@@ -23,8 +23,12 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import SavingsIcon from "@mui/icons-material/Savings";
+
+
+import SaveIcon from '@mui/icons-material/Save';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from '@mui/icons-material/Login';
 import AdjustIcon from '@mui/icons-material/Adjust';
@@ -133,8 +137,8 @@ export default function Navbar() {
     if (text === "Last months") {
       navigate("/Last_Months");
     }
-    if (text === "Current month") {
-      navigate("/CurrentTransaction");
+    if (text === "Add-ons & Charges") {
+      navigate("/records/add_on_and_bank_charges");
     }
     if (text === "Log in") {
       navigate("/Login");
@@ -155,6 +159,8 @@ export default function Navbar() {
     <NoteIcon />,
     !isAdmin && <GroupIcon />,
     !isAdmin && <BarChartIcon />,
+    <SaveIcon />,
+    <CreditCardIcon />,
     !isAdmin && <CalendarMonthIcon />,
     !isLoggedIn ? <LogoutIcon /> : <LoginIcon />,
   ].filter(Boolean);
@@ -165,6 +171,8 @@ export default function Navbar() {
     "Add Notes",
     !isAdmin && "Members list",
     !isAdmin && "Reports",
+    "Data & Documents",
+    "Add-ons & Charges"
   ].filter(Boolean);
 
   return (
@@ -242,7 +250,7 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["Current month", "Last months", isLoggedIn ? "Log out" : "Log in"].map((text, index) => (
+          {[ "Last months", isLoggedIn ? "Log out" : "Log in"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton
                 onClick={() => handleClick(text)}
@@ -255,6 +263,7 @@ export default function Navbar() {
               >
                 <ListItemIcon>
                   {text === "Log out" || text === "Log in" ? icons[icons.length - 1] : <CalendarMonthIcon />}
+                  {/* {text === "Add-ons & Charges" && icons[icons.lengt ]} */}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

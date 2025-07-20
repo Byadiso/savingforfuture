@@ -53,7 +53,7 @@ export default function DashboardTotalSaved() {
       }}
     >
       <Typography variant="h6" align="center" sx={{ color: "#222" }}>
-        Total Savings
+        Total Saved
       </Typography>
       <Typography
         variant="h4"

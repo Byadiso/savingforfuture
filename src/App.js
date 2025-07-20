@@ -16,6 +16,8 @@ import Reports from "./components/pages/Reports.jsx";
 import UserSettings from "./components/pages/UserSettings.jsx";
 import MemberList from "./components/pages/Member_list.jsx";
 import LastMonths from "./components/pages/LastMonths.jsx";
+import ViewAddAndBankCharges from "./components/pages/ViewAddAndBankCharges.jsx";
+import DataDashboard from "./components/pages/DataDashboard.jsx";
 
 
 
@@ -47,6 +49,10 @@ function App() {
           <Route path="/Register" element={<Register />} />
 
           <Route path="/UserSettings" element={<UserSettings />} />
+
+          <Route path="/Add-ons & Charges" element={<ViewAddAndBankCharges />} />
+          <Route path="/Data & Documents" element={<DataDashboard />} />
+
 
 
           
