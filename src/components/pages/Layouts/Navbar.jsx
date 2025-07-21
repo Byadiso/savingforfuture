@@ -167,7 +167,7 @@ export default function Navbar() {
   const menu = [
     "Dashboard",
     "Add",
-    "Add Notes",
+    "Notes",
     !isAdmin && "Members list",
     !isAdmin && "Reports",
     "Data & Documents",

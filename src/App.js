@@ -28,7 +28,7 @@ function App() {
           <Route path="/" element={<LandingPage />} /> 
           <Route path="https://byadiso.github.io/savingforthefuture/" element={<LandingPage />} />
           
-          <Route path="/Add Notes" element={<Planning />} />             
+          <Route path="/Notes" element={<Planning />} />             
 
           <Route path="/bugdeto" element={<LandingPage />} />                         
 
