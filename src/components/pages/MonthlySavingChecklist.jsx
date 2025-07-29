@@ -16,8 +16,8 @@ import { firestore } from "../../firebase/Firebase";
 import { Button, Checkbox, Typography, Box } from "@mui/material";
 
 const membersList = [
-  "N.Eric", "B.Desire", "U.Raymond", "N.Olivier", "N.Celine", "M.Clement",
-  "N.Fabrice", "U.Pascaline", "M.Dassise", "U.Marie Assumpta", "M.Elyseus", "S.Patrick"
+  "Eric Uwoyiremeye", "Desire Byamungu", "Raymond Umazekabiri", "Olivier Ndayishimiye", "Celine Niyirora", "Clement  Manirumva Ishimwe",
+  "Fabrice Ntihinyuzwa", "Dr. Aime Pascaline Uwineza", "Francois D’Assise Munyamahoro", "Marie Assumpta Umugwaneza", "Elyseus Munezero", "Patrick Shimirwa"
 ];
 
 const MEMBER_VALUE = 600;
