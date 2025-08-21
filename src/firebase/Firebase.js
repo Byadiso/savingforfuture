@@ -5,10 +5,11 @@ import { getDatabase } from "firebase/database";
 import 'firebase/firestore';
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { FIREBASE_API_KEY } from "./ApiKey";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC705NQ6r02gGuGpiekSIE5Nj5Bbr4hxnM",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "saving-for-the-future.firebaseapp.com",
   databaseURL: "https://saving-for-the-future-default-rtdb.firebaseio.com",
   projectId: "saving-for-the-future",
