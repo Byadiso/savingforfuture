@@ -9,6 +9,7 @@ import {
 import { initializeApp } from "firebase/app";
 import { app } from "./Firebase";
 import { ADMIN_KEY } from "./CONSTANTS";
+import { useEffect, useState } from "react";
 
 const Auth = getAuth();
 
@@ -46,6 +47,24 @@ export const getLoggedUser = (setIsloggedState) => {
   });
 }
 
+// export const useLoggedUser = () => {
+//   const [user, setUser] = useState(null);
+
+//   useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(Auth, (firebaseUser) => {
+//       if (firebaseUser) {
+//         setUser(firebaseUser);
+//       } else {
+//         setUser(null);
+//       }
+//     });
+
+//     return () => unsubscribe(); // cleanup on unmount
+//   }, []);
+
+//   return user;
+// };
+
 
 export const LogoutUser = () => {
   signOut(Auth)
@@ -59,6 +78,7 @@ export const LogoutUser = () => {
 
 export const checkUser = () => {
   let currentUser = Auth.currentUser;
+  console.log(currentUser)
   return currentUser;
 };
 

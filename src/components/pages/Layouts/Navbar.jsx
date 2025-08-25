@@ -42,6 +42,8 @@ import { checkIfAdmin, getLoggedUser, isAuthenticatedDetails, LogoutUser } from 
 import { useEffect } from "react";
 import { useState } from "react";
 import { getUsername } from "../../../Helpers/Helpers";
+import { ManageAccounts } from "@mui/icons-material";
+import { checkIfAdminUser, checkIfFinanceUser } from "../../../firebase/Roles";
 
 const drawerWidth = 240;
 
@@ -117,13 +119,34 @@ export default function Navbar() {
   const [userId, setUserId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState([]);
+  const [isAdminUser, setIsAdminUser] = useState(true);
+  const [isFinanceUser, setIsFinanceUser] = useState(true)
 
-  const isAdmin = checkIfAdmin(userId);
+  const isAdminSuper = checkIfAdmin(userId);
+  
+    
+
+  console.log(isAdminSuper)
+  console.log(isAdminUser)
+  console.log(isFinanceUser)
+ 
+  
   const username = getUsername(loggedUser.email);
 
   useEffect(() => {
     isAuthenticatedDetails(setIsLoggedIn, setUserId);
     getLoggedUser(setLoggedUser);
+    const CheckIsAdminUser = async () => {
+      const isAdminUser = await checkIfAdminUser(userId);
+      setIsAdminUser(isAdminUser)
+    };
+    const CheckIsFinanceUser = async () => {
+      const isFinanceUser = await checkIfFinanceUser(userId);
+      setIsFinanceUser(isFinanceUser)
+    };
+
+    CheckIsFinanceUser();
+    CheckIsAdminUser();
   }, [userId]);
 
   const navigate = useNavigate();
@@ -138,6 +161,9 @@ export default function Navbar() {
     }
     if (text === "Add-ons & Charges") {
       navigate("/records/add_on_and_bank_charges");
+    }
+    if (text === "User management") {
+      navigate("/UserManagement");
     }
     if (text === "Log in") {
       navigate("/Login");
@@ -154,24 +180,26 @@ export default function Navbar() {
 
   const icons = [
     <DashboardIcon />,
-    <AddBoxIcon />,
+    (isFinanceUser || isAdminSuper || isAdminUser) &&  <AddBoxIcon />,
     <NoteIcon />,
-    !isAdmin && <GroupIcon />,
-    !isAdmin && <BarChartIcon />,
+    (isFinanceUser || isAdminSuper || isAdminUser) &&  <GroupIcon />,
+   (isFinanceUser || isAdminSuper || isAdminUser) &&  <BarChartIcon />,
     <SaveIcon />,
-    <CreditCardIcon />,
-    !isAdmin && <CalendarMonthIcon />,
+    (isFinanceUser || isAdminSuper || isAdminUser) && <CreditCardIcon />,
+    isAdminSuper && <ManageAccounts />,
+    <CalendarMonthIcon />,
     !isLoggedIn ? <LogoutIcon /> : <LoginIcon />,
   ].filter(Boolean);
 
   const menu = [
     "Dashboard",
-    "Add",
+    (isFinanceUser || isAdminSuper || isAdminUser) &&  "Add",
     "Notes",
-    !isAdmin && "Members list",
-    !isAdmin && "Reports",
+    (isFinanceUser || isAdminSuper || isAdminUser) &&  "Members list",
+    (isFinanceUser || isAdminSuper || isAdminUser) &&   "Reports",
     "Data & Documents",
-    "Add-ons & Charges"
+    (isFinanceUser || isAdminSuper || isAdminUser) &&  "Add-ons & Charges",
+     isAdminSuper && "User management"
   ].filter(Boolean);
 
   return (

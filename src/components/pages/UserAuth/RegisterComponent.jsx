@@ -10,7 +10,7 @@ import "../../../Style/Register.css";
 import { Box, TextField, Button, Typography, Paper } from "@mui/material";
 
 // Define admin emails
-const adminEmails = ["admin@example.com"]; // Replace with your real admin email(s)
+const adminEmails = ["byadiso@gmail.com"]; 
 
 function Register() {
   const [user, setUser] = useState({

@@ -22,7 +22,7 @@ import {
   listAlltransactionWithoutSuper,
 } from "../../firebase/Filters";
 import { KEYWORDS } from "../../firebase/CONSTANTS";
-import { readPlans } from "../../firebase/Plan";
+// import { readPlans } from "../../firebase/Plan";
 import DashboardTotalSaved from "./DashbardTotal";
 import MonthlyTotal from "./MonthlyTotal";
 
@@ -58,21 +58,21 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
-  const fetchBudgets = async (userId) => {
-    const plans = await readPlans(userId);
-    const plansArray = Object.keys(plans).map((key) => ({
-      id: key,
-      ...plans[key],
-    }));
-    setBudgets(plansArray);
-  };
+  // const fetchBudgets = async (userId) => {
+  //   const plans = await readPlans(userId);
+  //   const plansArray = Object.keys(plans).map((key) => ({
+  //     id: key,
+  //     ...plans[key],
+  //   }));
+  //   setBudgets(plansArray);
+  // };
 
   useEffect(() => {
     isAuthenticated(setIsLoggedIn);
     getLoggedUser(setLoggedUser);
     isAuthenticatedDetails(setIsLoggedIn, setUserId);
     listTransactions(setTransactions);
-    fetchBudgets(userId);
+    // fetchBudgets(userId);
     waitToLoad(setLoading);
   }, [navigate, isLoggedIn, userId]);
 

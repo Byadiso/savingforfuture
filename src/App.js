@@ -17,6 +17,7 @@ import MemberList from "./components/pages/Member_list.jsx";
 import LastMonths from "./components/pages/LastMonths.jsx";
 import ViewAddAndBankCharges from "./components/pages/ViewAddAndBankCharges.jsx";
 import DataDashboard from "./components/pages/DataDashboard.jsx";
+import UserManagement from "./components/pages/UserAuth/UserManagement.jsx";
 
 
 
@@ -34,6 +35,8 @@ function App() {
 
           <Route path="/Dashboard" element={<Navbar />} />
           <Route path="/Members list" element={<MemberList />} />
+
+          <Route path="/User management" element={<UserManagement />} />
 
           <Route path="/Add" element={<AddRecord />} />
           <Route path="/Reports" element={<Reports />} />

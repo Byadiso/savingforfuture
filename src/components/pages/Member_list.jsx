@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { isAuthenticated } from "../../firebase/Authentication";
+import { checkUser, getLoggedUser, isAuthenticated, useLoggedUser } from "../../firebase/Authentication";
 import { Link } from "react-router-dom";
 import NoAccess from "./ErrorComponents/NoAccess";
 import { waitToLoad } from "../../Helpers/Helpers";
 import "../../Style/Dashboard.css";
-// import { listTransactions } from "../../firebase/getTransactions";
-// import { filterBenefits} from "../../firebase/Filters";
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MonthlySavingChecklist from "./MonthlySavingChecklist";
+
 
 
 function MemberList() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-  // const [transactions, setTransactions] = React.useState([]);
-
-  
+  const [loggedUser, setLoggedUser] = useState([]);
+    
+console.log(loggedUser.email) 
 
   useEffect(() => {
-    isAuthenticated(setIsLoggedIn);
-    // listTransactions(setTransactions);
+    isAuthenticated(setIsLoggedIn);    
     waitToLoad(setLoading);
+    getLoggedUser(setLoggedUser);
   }, [isLoggedIn]);
 
   return (
